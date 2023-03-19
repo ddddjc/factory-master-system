@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.MachineTypeMapper">
+
+    <resultMap type="com.djc.entity.MachineType" id="MachineTypeMap">
+        <result property="machineTypeId" column="machine_type_id" jdbcType="INTEGER"/>
+        <result property="machineType" column="machine_type" jdbcType="VARCHAR"/>
+        <result property="machineTypeInformation" column="machine_type_information" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MachineTypeMap">
+        select machine_type_id,
+               machine_type,
+               machine_type_information
+        from machine_type
+        where machine_type_id = #{machineTypeId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MachineTypeMap">
+        select
+        machine_type_id, machine_type, machine_type_information
+        from machine_type
+        <where>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="machineType != null and machineType != ''">
+                and machine_type = #{machineType}
+            </if>
+            <if test="machineTypeInformation != null and machineTypeInformation != ''">
+                and machine_type_information = #{machineTypeInformation}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="MachineType">
+        SELECT * FROM machine_type
+        where xxx LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from machine_type
+        <where>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="machineType != null and machineType != ''">
+                and machine_type = #{machineType}
+            </if>
+            <if test="machineTypeInformation != null and machineTypeInformation != ''">
+                and machine_type_information = #{machineTypeInformation}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="machineTypeId" useGeneratedKeys="true">
+        insert into machine_type(machine_type, machine_type_information)
+        values (#{machineType}, #{machineTypeInformation})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="machineTypeId" useGeneratedKeys="true">
+        insert into machine_type(machine_type, machine_type_information)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineType}, #{entity.machineTypeInformation})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="machineTypeId" useGeneratedKeys="true">
+        insert into machine_type(machine_type, machine_type_information)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineType}, #{entity.machineTypeInformation})
+        </foreach>
+        on duplicate key update
+        machine_type = values(machine_type),
+        machine_type_information = values(machine_type_information)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update machine_type
+        <set>
+            <if test="machineType != null and machineType != ''">
+                machine_type = #{machineType},
+            </if>
+            <if test="machineTypeInformation != null and machineTypeInformation != ''">
+                machine_type_information = #{machineTypeInformation},
+            </if>
+        </set>
+        where machine_type_id = #{machineTypeId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from machine_type
+        where machine_type_id = #{machineTypeId}
+    </delete>
+
+</mapper>
+

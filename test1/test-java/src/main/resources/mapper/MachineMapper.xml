@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.MachineMapper">
+
+    <resultMap type="com.djc.entity.Machine" id="MachineMap">
+        <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
+        <result property="machineTypeId" column="machine_type_id" jdbcType="VARCHAR"/>
+        <result property="machineInformation" column="machine_information" jdbcType="VARCHAR"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MachineMap">
+        select machine_id,
+               machine_type_id,
+               machine_information,
+               employee_id
+        from machine
+        where machine_id = #{machineId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MachineMap">
+        select
+        machine_id, machine_type_id, machine_information, employee_id
+        from machine
+        <where>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+            <if test="machineTypeId != null and machineTypeId != ''">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="machineInformation != null and machineInformation != ''">
+                and machine_information = #{machineInformation}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="Machine">
+        SELECT * FROM machine
+        where xxx LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from machine
+        <where>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+            <if test="machineTypeId != null and machineTypeId != ''">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="machineInformation != null and machineInformation != ''">
+                and machine_information = #{machineInformation}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="machineId" useGeneratedKeys="true">
+        insert into machine(machine_type_id, machine_information, employee_id)
+        values (#{machineTypeId}, #{machineInformation}, #{employeeId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="machineId" useGeneratedKeys="true">
+        insert into machine(machine_type_id, machine_information, employee_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineTypeId}, #{entity.machineInformation}, #{entity.employeeId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="machineId" useGeneratedKeys="true">
+        insert into machine(machine_type_id, machine_information, employee_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineTypeId}, #{entity.machineInformation}, #{entity.employeeId})
+        </foreach>
+        on duplicate key update
+        machine_type_id = values(machine_type_id),
+        machine_information = values(machine_information),
+        employee_id = values(employee_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update machine
+        <set>
+            <if test="machineTypeId != null and machineTypeId != ''">
+                machine_type_id = #{machineTypeId},
+            </if>
+            <if test="machineInformation != null and machineInformation != ''">
+                machine_information = #{machineInformation},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+        </set>
+        where machine_id = #{machineId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from machine
+        where machine_id = #{machineId}
+    </delete>
+
+</mapper>
+

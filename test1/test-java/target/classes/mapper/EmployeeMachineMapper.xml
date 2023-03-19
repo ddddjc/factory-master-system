@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.EmployeeMachineMapper">
+
+    <resultMap type="com.djc.entity.EmployeeMachine" id="EmployeeMachineMap">
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="EmployeeMachineMap">
+        select employee_id,
+               machine_id
+        from employee_machine
+        where employee_id = #{employeeId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="EmployeeMachineMap">
+        select
+        employee_id, machine_id
+        from employee_machine
+        <where>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="EmployeeMachine">
+        SELECT * FROM employee_machine
+        where xxx LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from employee_machine
+        <where>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">
+        insert into employee_machine()
+        values ()
+    </insert>
+
+    <insert id="insertBatch" keyProperty="employeeId" useGeneratedKeys="true">
+        insert into employee_machine()
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            ()
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="employeeId" useGeneratedKeys="true">
+        insert into employee_machine()
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            ()
+        </foreach>
+        on duplicate key update
+
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update employee_machine
+        <set>
+        </set>
+        where employee_id = #{employeeId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from employee_machine
+        where employee_id = #{employeeId}
+    </delete>
+
+</mapper>
+

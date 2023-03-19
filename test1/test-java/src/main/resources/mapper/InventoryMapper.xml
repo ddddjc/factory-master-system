@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.InventoryMapper">
+
+    <resultMap type="com.djc.entity.Inventory" id="InventoryMap">
+        <result property="inventoryId" column="inventory_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="InventoryMap">
+        select inventory_id,
+               employee_id,
+               accessories_id,
+               num
+        from inventory
+        where employee_id = #{employeeId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="InventoryMap">
+        select
+        inventory_id, employee_id, accessories_id, num
+        from inventory
+        <where>
+            <if test="inventoryId != null">
+                and inventory_id = #{inventoryId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="Inventory">
+        SELECT * FROM inventory
+        where xxx LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from inventory
+        <where>
+            <if test="inventoryId != null">
+                and inventory_id = #{inventoryId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">
+        insert into inventory(inventory_id, num)
+        values (#{inventoryId}, #{num})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="employeeId" useGeneratedKeys="true">
+        insert into inventory(inventory_id, num)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.inventoryId}, #{entity.num})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="employeeId" useGeneratedKeys="true">
+        insert into inventory(inventory_id, num)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.inventoryId}, #{entity.num})
+        </foreach>
+        on duplicate key update
+        inventory_id = values(inventory_id),
+        num = values(num)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update inventory
+        <set>
+            <if test="inventoryId != null">
+                inventory_id = #{inventoryId},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+        </set>
+        where employee_id = #{employeeId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from inventory
+        where employee_id = #{employeeId}
+    </delete>
+
+</mapper>
+
