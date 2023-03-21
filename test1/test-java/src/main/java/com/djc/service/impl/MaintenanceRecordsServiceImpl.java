@@ -16,7 +16,7 @@ import java.util.List;
  * (MaintenanceRecords)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-03-21 21:59:30
  */
 @Service("maintenanceRecordsService")
 public class MaintenanceRecordsServiceImpl implements MaintenanceRecordsService {
@@ -57,7 +57,7 @@ public class MaintenanceRecordsServiceImpl implements MaintenanceRecordsService 
      */
     @Override
     public List<MaintenanceRecords> queryAll(String keyWord, int page, int num) {
-        return this.maintenanceRecordsMapper.queryAll(keyWord, page, num);
+        return this.maintenanceRecordsMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

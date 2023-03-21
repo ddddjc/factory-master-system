@@ -15,7 +15,7 @@ import java.util.List;
  * 库存变更记录(AccessEcords)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:19
+ * @since 2023-03-21 21:59:31
  */
 @Service("accessEcordsService")
 public class AccessEcordsServiceImpl implements AccessEcordsService {
@@ -56,7 +56,7 @@ public class AccessEcordsServiceImpl implements AccessEcordsService {
      */
     @Override
     public List<AccessEcords> queryAll(String keyWord, int page, int num) {
-        return this.accessEcordsMapper.queryAll(keyWord, page, num);
+        return this.accessEcordsMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

@@ -11,7 +11,7 @@ import java.util.List;
  * (Accessories)表服务接口
  *
  * @author djc
- * @since 2023-03-21 21:31:15
+ * @since 2023-03-21 21:59:32
  */
 public interface AccessoriesService {
 
@@ -66,5 +66,4 @@ public interface AccessoriesService {
      */
     boolean deleteById(Integer accessoriesId);
 
-    List<Accessories> findByMachineType(Integer machineTypeId);
 }

@@ -8,10 +8,10 @@ import java.io.Serializable;
  * (MaintenanceRecords)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-03-21 21:59:30
  */
 public class MaintenanceRecords implements Serializable {
-    private static final long serialVersionUID = 194297772547076613L;
+    private static final long serialVersionUID = 438803466460790635L;
     /**
      * 记录id
      */

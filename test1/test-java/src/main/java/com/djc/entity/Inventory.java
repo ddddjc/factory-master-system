@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 库存(Inventory)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:21
+ * @since 2023-03-21 21:59:31
  */
 public class Inventory implements Serializable {
-    private static final long serialVersionUID = -58933590774799985L;
+    private static final long serialVersionUID = 437258466512267080L;
 
     private Integer inventoryId;
 

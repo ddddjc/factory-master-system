@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 库存变更记录(AccessEcords)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:19
+ * @since 2023-03-21 21:59:31
  */
 public class AccessEcords implements Serializable {
-    private static final long serialVersionUID = -54594271795626037L;
+    private static final long serialVersionUID = 131911762284641400L;
     /**
      * id
      */

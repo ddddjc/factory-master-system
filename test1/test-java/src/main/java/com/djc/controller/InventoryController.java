@@ -51,14 +51,14 @@ public class InventoryController<E> {
     /**
      * 通过主键查询单条数据
      *
-     * @param keyWord 关键字
+     * @param keyword 关键字
      * @param page    页码
      * @param num     每页数量
      * @return 多条数据
      */
     @GetMapping("/findAll")
-    public JsonResult<List<Inventory>> findAll(String keyWord, int page, int num) {
-        return new JsonResult<List<Inventory>>(200, "查询成功", this.inventoryService.queryAll(keyWord, page, num));
+    public JsonResult<List<Inventory>> findAll(String keyword, int page, int num) {
+        return new JsonResult<List<Inventory>>(200, "查询成功", this.inventoryService.queryAll(keyword, page, num));
     }
 
     /**

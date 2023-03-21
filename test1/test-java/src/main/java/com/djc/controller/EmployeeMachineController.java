@@ -2,13 +2,14 @@ package com.djc.controller;
 
 import com.djc.entity.EmployeeMachine;
 import com.djc.service.EmployeeMachineService;
-import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.djc.util.JsonResult;
 
 /**
  * (EmployeeMachine)表控制层
@@ -49,14 +50,15 @@ public class EmployeeMachineController<E> {
 
     /**
      * 通过主键查询单条数据
-     * @param keyWord 关键字
-     * @param page    页
+     *
+     * @param keyword 关键字
+     * @param page    页码
      * @param num     每页数量
      * @return 多条数据
      */
     @GetMapping("/findAll")
-    public JsonResult<List<EmployeeMachine>> findAll(String keyWord, int page, int num) {
-        return new JsonResult<List<EmployeeMachine>>(200, "查询成功", this.employeeMachineService.queryAll(keyWord, page, num));
+    public JsonResult<List<EmployeeMachine>> findAll(String keyword, int page, int num) {
+        return new JsonResult<List<EmployeeMachine>>(200, "查询成功", this.employeeMachineService.queryAll(keyword, page, num));
     }
 
     /**

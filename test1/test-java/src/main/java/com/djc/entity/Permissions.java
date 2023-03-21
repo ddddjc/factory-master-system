@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 权限表(Permissions)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-03-21 21:59:31
  */
 public class Permissions implements Serializable {
-    private static final long serialVersionUID = -57364788684025967L;
+    private static final long serialVersionUID = 824991426403404433L;
     /**
      * 权限id
      */

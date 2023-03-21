@@ -10,7 +10,7 @@ import java.util.List;
  * 库存变更记录(AccessEcords)表数据库访问层
  *
  * @author djc
- * @since 2023-03-19 19:14:19
+ * @since 2023-03-21 21:59:31
  */
 public interface AccessEcordsMapper {
 

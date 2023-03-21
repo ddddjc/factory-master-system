@@ -15,7 +15,7 @@ import java.util.List;
  * 库存(Inventory)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:21
+ * @since 2023-03-21 21:59:31
  */
 @Service("inventoryService")
 public class InventoryServiceImpl implements InventoryService {
@@ -56,7 +56,7 @@ public class InventoryServiceImpl implements InventoryService {
      */
     @Override
     public List<Inventory> queryAll(String keyWord, int page, int num) {
-        return this.inventoryMapper.queryAll(keyWord, page, num);
+        return this.inventoryMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

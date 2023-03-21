@@ -16,7 +16,7 @@ import java.util.List;
  * (Accessories)表服务实现类
  *
  * @author djc
- * @since 2023-03-21 21:31:16
+ * @since 2023-03-21 21:59:32
  */
 @Service("accessoriesService")
 public class AccessoriesServiceImpl implements AccessoriesService {
@@ -57,7 +57,7 @@ public class AccessoriesServiceImpl implements AccessoriesService {
      */
     @Override
     public List<Accessories> queryAll(String keyWord, int page, int num) {
-        return this.accessoriesMapper.queryAll(keyWord, page, num);
+        return this.accessoriesMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**
@@ -93,10 +93,5 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     @Override
     public boolean deleteById(Integer accessoriesId) {
         return this.accessoriesMapper.deleteById(accessoriesId) > 0;
-    }
-
-    @Override
-    public List<Accessories> findByMachineType(Integer machineTypeId) {
-        return accessoriesMapper.findByMachineType(machineTypeId);
     }
 }

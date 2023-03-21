@@ -15,7 +15,7 @@ import java.util.List;
  * (EmployeeMachine)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:20
+ * @since 2023-03-21 21:59:32
  */
 @Service("employeeMachineService")
 public class EmployeeMachineServiceImpl implements EmployeeMachineService {
@@ -56,7 +56,7 @@ public class EmployeeMachineServiceImpl implements EmployeeMachineService {
      */
     @Override
     public List<EmployeeMachine> queryAll(String keyWord, int page, int num) {
-        return this.employeeMachineMapper.queryAll(keyWord, page, num);
+        return this.employeeMachineMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

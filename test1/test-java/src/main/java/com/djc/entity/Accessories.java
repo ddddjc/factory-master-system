@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (Accessories)实体类
  *
  * @author djc
- * @since 2023-03-21 21:31:15
+ * @since 2023-03-21 21:59:32
  */
 public class Accessories implements Serializable {
-    private static final long serialVersionUID = 637990129472729911L;
+    private static final long serialVersionUID = -60498897074882976L;
     /**
      * 配件id
      */
@@ -26,7 +26,7 @@ public class Accessories implements Serializable {
     /**
      * 配件名字
      */
-    private String name;
+    private String accessoriesName;
     /**
      * 计量单位
      */
@@ -81,12 +81,12 @@ public class Accessories implements Serializable {
         this.stockCode = stockCode;
     }
 
-    public String getName() {
-        return name;
+    public String getAccessoriesName() {
+        return accessoriesName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccessoriesName(String accessoriesName) {
+        this.accessoriesName = accessoriesName;
     }
 
     public String getUnit() {

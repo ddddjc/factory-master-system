@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (EmployeeMachine)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:20
+ * @since 2023-03-21 21:59:32
  */
 public class EmployeeMachine implements Serializable {
-    private static final long serialVersionUID = -98142119177616335L;
+    private static final long serialVersionUID = 424913028975146332L;
 
     private Integer employeeId;
 

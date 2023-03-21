@@ -15,7 +15,7 @@ import java.util.List;
  * 权限表(Permissions)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-03-21 21:59:31
  */
 @Service("permissionsService")
 public class PermissionsServiceImpl implements PermissionsService {
@@ -56,7 +56,7 @@ public class PermissionsServiceImpl implements PermissionsService {
      */
     @Override
     public List<Permissions> queryAll(String keyWord, int page, int num) {
-        return this.permissionsMapper.queryAll(keyWord, page, num);
+        return this.permissionsMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

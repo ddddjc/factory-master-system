@@ -11,7 +11,7 @@ import java.util.List;
  * (Accessories)表数据库访问层
  *
  * @author djc
- * @since 2023-03-21 21:31:15
+ * @since 2023-03-21 21:59:32
  */
 public interface AccessoriesMapper {
 
@@ -91,6 +91,5 @@ public interface AccessoriesMapper {
      */
     int deleteById(Integer accessoriesId);
 
-    List<Accessories> findByMachineType(@Param("machineTypeId") Integer machineTypeId);
 }
 

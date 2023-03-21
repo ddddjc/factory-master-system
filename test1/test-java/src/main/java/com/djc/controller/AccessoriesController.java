@@ -2,13 +2,14 @@ package com.djc.controller;
 
 import com.djc.entity.Accessories;
 import com.djc.service.AccessoriesService;
-import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.djc.util.JsonResult;
 
 /**
  * 配件表
@@ -51,7 +52,7 @@ public class AccessoriesController<E> {
     /**
      * 通过主键查询单条数据
      *
-     * @param keyWord 关键字
+     * @param keyword 关键字
      * @param page    页码
      * @param num     每页数量
      * @return 多条数据
