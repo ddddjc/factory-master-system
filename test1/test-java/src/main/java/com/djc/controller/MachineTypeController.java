@@ -104,7 +104,7 @@ public class MachineTypeController<E> {
     }
     @GetMapping("/findAccessories/{machineTypeId}")
     public JsonResult findAccessories(@PathVariable Integer machineTypeId){
-        Accessories accessories=new Accessories();
-        accessories.setMachineTypeId(machineTypeId);
+        List<Accessories> list=accessoriesService.findByMachineType(machineTypeId);
+        return new JsonResult(200,"查询成功",list);
     }
 }

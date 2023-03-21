@@ -57,8 +57,8 @@ public class AccessoriesController<E> {
      * @return 多条数据
      */
     @GetMapping("/findAll")
-    public JsonResult<List<Accessories>> findAll(String keyWord, int page, int num) {
-        return new JsonResult<List<Accessories>>(200, "查询成功", this.accessoriesService.queryAll(keyWord, page, num));
+    public JsonResult<List<Accessories>> findAll(String keyword, int page, int num) {
+        return new JsonResult<List<Accessories>>(200, "查询成功", this.accessoriesService.queryAll(keyword, page, num));
     }
 
     /**
