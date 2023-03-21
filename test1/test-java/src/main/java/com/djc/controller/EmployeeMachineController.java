@@ -49,9 +49,8 @@ public class EmployeeMachineController<E> {
 
     /**
      * 通过主键查询单条数据
-     *
      * @param keyWord 关键字
-     * @param page    页码
+     * @param page    页
      * @param num     每页数量
      * @return 多条数据
      */

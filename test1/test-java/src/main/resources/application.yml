@@ -6,12 +6,20 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://gz-cynosdbmysql-grp-lqdbgset.sql.tencentcdb.com:23453/ruoyi?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://gz-cynosdbmysql-grp-lqdbgset.sql.tencentcdb.com:23453/machine?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: Du061224
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
 #  web:
 #    resources:
 #      static-locations:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.djc.entity
+
+jwt:
+  secret: 52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain
+  expiration: 3600
