@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public List<Employee> queryAll(String keyWord, int page, int num) {
-        return this.employeeMapper.queryAll(keyWord, page, num);
+        return this.employeeMapper.queryAll(keyWord, (page-1)*num, num);
     }
 
     /**

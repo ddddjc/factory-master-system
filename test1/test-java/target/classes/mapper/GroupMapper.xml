@@ -5,7 +5,7 @@
     <resultMap type="com.djc.entity.Group" id="GroupMap">
         <result property="groupId" column="group_id" jdbcType="INTEGER"/>
         <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
-        <result property="machineid" column="machineId" jdbcType="INTEGER"/>
+        <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -13,15 +13,15 @@
         select group_id,
                employee_id,
                machineId
-        from group
+        from team
         where group_id = #{groupId}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="GroupMap">
         select
-        group_id, employee_id, machineId
-        from group
+        group_id, employee_id, machine_id
+        from team
         <where>
             <if test="groupId != null">
                 and group_id = #{groupId}
@@ -29,25 +29,27 @@
             <if test="employeeId != null">
                 and employee_id = #{employeeId}
             </if>
-            <if test="machineid != null">
-                and machineId = #{machineid}
+            <if test="machineId != null">
+                and machineId = #{machineId}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="Group">
-        SELECT * FROM group
-        where xxx LIKE CONCAT('%', #{keyWord}, '%')
-        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
-    </select>-->
+    <select id="queryAll" resultMap="GroupMap">
+        SELECT * FROM team
+        where group_id LIKE CONCAT('%', #{keyWord}, '%')
+        or employee_id LIKE CONCAT('%', #{keyWord}, '%')
+        or machine_id LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{page},#{num}
+    </select>
 
 
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
-        from group
+        from team
         <where>
             <if test="groupId != null">
                 and group_id = #{groupId}
@@ -55,31 +57,34 @@
             <if test="employeeId != null">
                 and employee_id = #{employeeId}
             </if>
-            <if test="machineid != null">
-                and machineId = #{machineid}
+            <if test="machineId != null">
+                and machineId = #{machineId}
             </if>
         </where>
+    </select>
+    <select id="findEmployee" resultMap="com.djc.mapper.EmployeeMapper.EmployeeMap">
+        select * from employee where group_id=#{groupId}
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="groupId" useGeneratedKeys="true">
-        insert into group(employee_id, machineId)
-        values (#{employeeId}, #{machineid})
+        insert into team (employee_id, machine_id)
+        values (#{employeeId}, #{machineId})
     </insert>
 
     <insert id="insertBatch" keyProperty="groupId" useGeneratedKeys="true">
-        insert into group(employee_id, machineId)
+        insert into team(employee_id, machine_id)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.employeeId}, #{entity.machineid})
+            (#{entity.employeeId}, #{entity.machineId})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="groupId" useGeneratedKeys="true">
-        insert into group(employee_id, machineId)
+        insert into team(employee_id, machine_id)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.employeeId}, #{entity.machineid})
+            (#{entity.employeeId}, #{entity.machineId})
         </foreach>
         on duplicate key update
         employee_id = values(employee_id),
@@ -88,13 +93,13 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update group
+        update team
         <set>
             <if test="employeeId != null">
                 employee_id = #{employeeId},
             </if>
-            <if test="machineid != null">
-                machineId = #{machineid},
+            <if test="machineId != null">
+                machineId = #{machineId},
             </if>
         </set>
         where group_id = #{groupId}
@@ -103,9 +108,12 @@
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
-        from group
+        from team
         where group_id = #{groupId}
     </delete>
+    <update id="deleteEmployee">
+        update employee set group_id =-1 where employee_id=#{employeeId}
+    </update>
 
 </mapper>
 

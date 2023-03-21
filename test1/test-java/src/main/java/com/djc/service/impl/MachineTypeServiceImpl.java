@@ -56,7 +56,7 @@ public class MachineTypeServiceImpl implements MachineTypeService {
      */
     @Override
     public List<MachineType> queryAll(String keyWord, int page, int num) {
-        return this.machineTypeMapper.queryAll(keyWord, page, num);
+        return this.machineTypeMapper.queryAll(keyWord, (page-1)*num, num);
     }
 
     /**

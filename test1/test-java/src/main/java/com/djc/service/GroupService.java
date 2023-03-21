@@ -1,5 +1,6 @@
 package com.djc.service;
 
+import com.djc.entity.Employee;
 import com.djc.entity.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -65,4 +66,7 @@ public interface GroupService {
      */
     boolean deleteById(Integer groupId);
 
+    List<Employee> findEmployee(Integer groupId);
+
+    void deletcEmployee(Integer groupId, Integer employeeId);
 }

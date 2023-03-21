@@ -1,5 +1,6 @@
 package com.djc.mapper;
 
+import com.djc.entity.Employee;
 import com.djc.entity.Group;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,13 @@ public interface GroupMapper {
      * @return 多条数据
      */
     List<Group> queryAll(String keyWord, int page, int num);
+
+    /**
+     * 通过小组id查询成员
+     * @param groupId 小组id
+     * @return 多条数据
+     */
+    List<Employee> findEmployee(Integer groupId);
 
     /**
      * 统计总行数
@@ -90,5 +98,6 @@ public interface GroupMapper {
      */
     int deleteById(Integer groupId);
 
+    void deleteEmployee(@Param("groupId") Integer groupId,@Param("employeeId") Integer employeeId);
 }
 

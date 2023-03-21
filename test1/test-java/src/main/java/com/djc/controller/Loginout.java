@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class Loginout {
     @Autowired
     EmployeeService employeeService;
@@ -36,5 +36,16 @@ public class Loginout {
         System.out.println(sessionUtil.getAttribute(employeeId.toString()).toString());
         sessionUtil.removeAttribute(employeeId.toString());
         return new JsonResult(200,"登出成功",null);
+    }
+    @PutMapping("/passwordUpdate")
+    public JsonResult passwordUpdate(@RequestBody Employee employee){
+        Employee employee1 = employeeService.queryById(employee.getEmployeeId());
+        if (null==employee1){
+            return new JsonResult(440,"没有该用户",null);
+        }
+        else{
+            employeeService.update(employee);
+            return new JsonResult<>(200,"修改成功",null);
+        }
     }
 }

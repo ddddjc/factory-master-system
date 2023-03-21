@@ -39,7 +39,7 @@ public interface EmployeeMapper {
      * @param num     每页数量
      * @return 多条数据
      */
-    List<Employee> queryAll(String keyWord, int page, int num);
+    List<Employee> queryAll(@Param("keyWord") String keyWord,@Param("page") int page,@Param("num") int num);
 
     /**
      * 统计总行数

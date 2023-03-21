@@ -47,11 +47,13 @@
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="Employee">
+    <select id="queryAll" resultMap="EmployeeMap">
         SELECT * FROM employee
-        where xxx LIKE CONCAT('%', #{keyWord}, '%')
-        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
-    </select>-->
+        where machine.employee.employee_name LIKE CONCAT('%', #{keyWord}, '%')
+        or role  LIKE CONCAT('%', #{keyWord}, '%')
+        or employee_Id LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{page},#{num}
+    </select>
 
 
     <!--统计总行数-->
@@ -76,7 +78,6 @@
             </if>
         </where>
     </select>
-
     <!--新增所有列-->
     <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">
         insert into employee(employee_name, role, group_id, password)

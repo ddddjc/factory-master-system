@@ -21,7 +21,7 @@ public class Group implements Serializable {
     /**
      * 小组管理的机器id
      */
-    private Integer machineid;
+    private Integer machineId;
 
 
     public Integer getGroupId() {
@@ -40,12 +40,12 @@ public class Group implements Serializable {
         this.employeeId = employeeId;
     }
 
-    public Integer getMachineid() {
-        return machineid;
+    public Integer getMachineId() {
+        return machineId;
     }
 
-    public void setMachineid(Integer machineid) {
-        this.machineid = machineid;
+    public void setMachineId(Integer machineId) {
+        this.machineId = machineId;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.djc.service.impl;
 
+import com.djc.entity.Employee;
 import com.djc.entity.Group;
 import com.djc.mapper.GroupMapper;
 import com.djc.service.GroupService;
@@ -56,7 +57,7 @@ public class GroupServiceImpl implements GroupService {
      */
     @Override
     public List<Group> queryAll(String keyWord, int page, int num) {
-        return this.groupMapper.queryAll(keyWord, page, num);
+        return this.groupMapper.queryAll(keyWord, (page-1)*num, num);
     }
 
     /**
@@ -93,4 +94,15 @@ public class GroupServiceImpl implements GroupService {
     public boolean deleteById(Integer groupId) {
         return this.groupMapper.deleteById(groupId) > 0;
     }
+
+    @Override
+    public List<Employee> findEmployee(Integer groupId) {
+        return groupMapper.findEmployee(groupId);
+    }
+
+    @Override
+    public void deletcEmployee(Integer groupId, Integer employeeId) {
+        groupMapper.deleteEmployee(groupId,employeeId);
+    }
+
 }
