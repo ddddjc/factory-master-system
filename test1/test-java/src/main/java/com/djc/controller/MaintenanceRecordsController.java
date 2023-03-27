@@ -2,14 +2,18 @@ package com.djc.controller;
 
 import com.djc.entity.MaintenanceRecords;
 import com.djc.service.MaintenanceRecordsService;
+import com.djc.util.JsonResult;
+import com.djc.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 维修记录表
@@ -70,7 +74,7 @@ public class MaintenanceRecordsController<E> {
      */
 
     @PostMapping
-    public JsonResult<MaintenanceRecords> add(MaintenanceRecords maintenanceRecords) {
+    public JsonResult<MaintenanceRecords> add(@RequestBody MaintenanceRecords maintenanceRecords) {
         return new JsonResult<>(200, "新增成功", this.maintenanceRecordsService.insert(maintenanceRecords));
     }
 
@@ -81,7 +85,7 @@ public class MaintenanceRecordsController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<MaintenanceRecords> edit(MaintenanceRecords maintenanceRecords) {
+    public JsonResult<MaintenanceRecords> edit(@RequestBody MaintenanceRecords maintenanceRecords) {
         return new JsonResult<>(200, "修改成功", this.maintenanceRecordsService.update(maintenanceRecords));
     }
 
@@ -99,5 +103,22 @@ public class MaintenanceRecordsController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+    @GetMapping("/findRecord/employee/{employeeName}")
+    public JsonResult findRecordByEmployee(@PathVariable("employeeName") String name, @Param("num") Integer num,@Param("page") Integer page){
+        List<MaintenanceRecords> list=maintenanceRecordsService.queryByEmployeeName(name,page,num);
+        return new JsonResult(200,"查询成功",list);
+    }
+    @Autowired
+    JwtUtil jwtUtil;
+    @PostMapping("/file")
+    public JsonResult uploadFile(@RequestPart("file") MultipartFile file,@RequestPart("recordsId") Integer recordsId ,HttpServletRequest request) throws IOException {
+        maintenanceRecordsService.uploadFile(file,recordsId);
+        return new JsonResult(200,"上传成功",null);
+    }
+    @GetMapping("/file")
+    public JsonResult findFile(@Param("type") String type,@Param("recoedId") Integer recoedId){
+        List<String> strings=maintenanceRecordsService.findFile(type,recoedId);
+        return new JsonResult(200,"查询成功",strings);
     }
 }

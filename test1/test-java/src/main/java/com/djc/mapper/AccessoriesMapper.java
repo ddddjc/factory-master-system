@@ -91,5 +91,6 @@ public interface AccessoriesMapper {
      */
     int deleteById(Integer accessoriesId);
 
+    List<Accessories> findByMachineType(@Param("machineTypeId") Integer machineTypeId, @Param("page") Integer page, @Param("num") Integer num);
 }
 

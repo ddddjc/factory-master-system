@@ -40,7 +40,7 @@ public interface MaintenanceRecordsMapper {
      * @param num     每页数量
      * @return 多条数据
      */
-    List<MaintenanceRecords> queryAll(String keyWord, int page, int num);
+    List<MaintenanceRecords> queryAll(@Param("keyWord") String keyWord, @Param("page") int page,@Param("num") int num);
 
     /**
      * 统计总行数
@@ -91,5 +91,8 @@ public interface MaintenanceRecordsMapper {
      */
     int deleteById(Integer recordsId);
 
+    List<MaintenanceRecords> queryByMachineId(@Param("machineId") Integer machineId);
+
+    List<MaintenanceRecords> queryByEmployeeName(@Param("name") String name, @Param("page") int i, @Param("num") Integer num);
 }
 

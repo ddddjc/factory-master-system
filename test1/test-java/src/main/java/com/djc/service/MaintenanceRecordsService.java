@@ -3,7 +3,9 @@ package com.djc.service;
 import com.djc.entity.MaintenanceRecords;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -66,4 +68,11 @@ public interface MaintenanceRecordsService {
      */
     boolean deleteById(Integer recordsId);
 
+    List<MaintenanceRecords> quarryByMachineId(Integer machineId);
+
+    List<MaintenanceRecords> queryByEmployeeName(String name, Integer page, Integer num);
+
+    void uploadFile(MultipartFile file, Integer recordsId) throws IOException;
+
+    List<String> findFile(String type, Integer recoedId);
 }

@@ -32,7 +32,7 @@
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="EmployeeMachine">
+    <!--<select id="queryAll" resultMap="EmployeeMachineMap">
         SELECT * FROM employee_machine
         where xxx LIKE CONCAT('%', #{keyWord}, '%')
         LIMIT #{num} OFFSET (#{page} - 1) * #{num}

@@ -1,14 +1,20 @@
 package com.djc.service.impl;
 
+import com.djc.entity.File;
 import com.djc.entity.MaintenanceRecords;
+import com.djc.mapper.FileMapper;
 import com.djc.mapper.MaintenanceRecordsMapper;
 import com.djc.service.MaintenanceRecordsService;
+import com.djc.util.FileTypeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -22,7 +28,8 @@ import java.util.List;
 public class MaintenanceRecordsServiceImpl implements MaintenanceRecordsService {
     @Autowired
     private MaintenanceRecordsMapper maintenanceRecordsMapper;
-
+    @Autowired
+    FileMapper fileMapper;
     /**
      * 通过ID查询单条数据
      *
@@ -93,5 +100,39 @@ public class MaintenanceRecordsServiceImpl implements MaintenanceRecordsService 
     @Override
     public boolean deleteById(Integer recordsId) {
         return this.maintenanceRecordsMapper.deleteById(recordsId) > 0;
+    }
+
+    @Override
+    public List<MaintenanceRecords> quarryByMachineId(Integer machineId) {
+        return maintenanceRecordsMapper.queryByMachineId(machineId);
+    }
+
+    @Override
+    public List<MaintenanceRecords> queryByEmployeeName(String name, Integer page, Integer num) {
+        return maintenanceRecordsMapper.queryByEmployeeName(name,(page-1)*num,num);
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file, Integer recordsId) throws IOException {
+        String fileName=file.getOriginalFilename();
+        File file1=new File();
+        file1.setFileType(FileTypeUtils.getFileType(file));
+        byte[] bytes = file.getBytes();
+        String path = "D:testFile/"+recordsId+ fileName;
+        file1.setFilePlace(path);
+        file1.setRecordsId(recordsId);
+        int insert = fileMapper.insert(file1);
+        if (insert!=0){
+            // 创建文件输出流对象
+            FileOutputStream fos = new FileOutputStream(path);
+            fos.write(bytes);
+            fos.close();
+        }
+        System.out.println(insert);
+    }
+
+    @Override
+    public List<String> findFile(String type, Integer recoedId) {
+        return fileMapper.findFile(type,recoedId);
     }
 }

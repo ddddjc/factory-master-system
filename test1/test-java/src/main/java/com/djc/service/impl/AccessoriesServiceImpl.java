@@ -94,4 +94,9 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     public boolean deleteById(Integer accessoriesId) {
         return this.accessoriesMapper.deleteById(accessoriesId) > 0;
     }
+
+    @Override
+    public List<Accessories> findByMachineType(Integer machineTypeId, Integer page, Integer num) {
+        return accessoriesMapper.findByMachineType(machineTypeId,(page-1)*num,num);
+    }
 }

@@ -8,6 +8,7 @@ import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -103,8 +104,8 @@ public class MachineTypeController<E> {
         }
     }
     @GetMapping("/findAccessories/{machineTypeId}")
-    public JsonResult findAccessories(@PathVariable Integer machineTypeId){
-        List<Accessories> list=accessoriesService.findByMachineType(machineTypeId);
+    public JsonResult findAccessories(@PathVariable Integer machineTypeId, @Param("page") Integer page,@Param("num") Integer num){
+        List<Accessories> list=accessoriesService.findByMachineType(machineTypeId,page,num);
         return new JsonResult(200,"查询成功",list);
     }
 }

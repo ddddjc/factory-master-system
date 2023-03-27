@@ -66,4 +66,5 @@ public interface AccessoriesService {
      */
     boolean deleteById(Integer accessoriesId);
 
+    List<Accessories> findByMachineType(Integer machineTypeId, Integer page, Integer num);
 }

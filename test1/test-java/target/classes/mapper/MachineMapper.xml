@@ -42,11 +42,12 @@
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="Machine">
+    <select id="queryAll" resultMap="MachineMap">
         SELECT * FROM machine
-        where xxx LIKE CONCAT('%', #{keyWord}, '%')
-        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
-    </select>-->
+        where machine_id LIKE CONCAT('%', #{keyWord}, '%')
+        or machine_informaton LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{page}, #{num}
+    </select>
 
 
     <!--统计总行数-->

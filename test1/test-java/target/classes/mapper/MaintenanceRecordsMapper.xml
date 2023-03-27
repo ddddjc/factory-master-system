@@ -73,11 +73,14 @@
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="MaintenanceRecords">
-        SELECT * FROM maintenance_records
-        where xxx LIKE CONCAT('%', #{keyWord}, '%')
-        LIMIT #{num} OFFSET (#{page} - 1) * #{num}
-    </select>-->
+    <select id="queryAll" resultMap="MaintenanceRecordsMap">
+        SELECT * FROM machine.maintenance_records
+        where records_id LIKE CONCAT('%', #{keyWord}, '%')
+        or maintenance_time LIKE CONCAT('%', #{keyWord}, '%')
+        or method_description LIKE CONCAT('%', #{keyWord}, '%')
+        or fault_description LIKE CONCAT('%', #{keyWord}, '%')
+        LIMIT #{page},#{num}
+    </select>
 
 
     <!--统计总行数-->
@@ -116,6 +119,13 @@
                 and machine_type_id = #{machineTypeId}
             </if>
         </where>
+    </select>
+    <select id="queryByMachineId" resultType="com.djc.entity.MaintenanceRecords">
+        select * from machine.maintenance_records where machine_id=#{machineId}
+    </select>
+    <select id="queryByEmployeeName" resultType="com.djc.entity.MaintenanceRecords">
+        select * from maintenance_records where employee_id in (select employee_id from employee where employee_name =#{name})
+            limit #{page},#{name}
     </select>
 
     <!--新增所有列-->

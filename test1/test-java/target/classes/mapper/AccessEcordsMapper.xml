@@ -47,7 +47,7 @@
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="AccessEcords">
+    <!--<select id="queryAll" resultMap="AccessEcordsMap">
         SELECT * FROM access_ecords
         where xxx LIKE CONCAT('%', #{keyWord}, '%')
         LIMIT #{num} OFFSET (#{page} - 1) * #{num}

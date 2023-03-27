@@ -37,7 +37,7 @@
     </select>
 
     <!--关键字模糊查询-->
-    <!--<select id="queryAll" resultMap="Permissions">
+    <!--<select id="queryAll" resultMap="PermissionsMap">
         SELECT * FROM permissions
         where xxx LIKE CONCAT('%', #{keyWord}, '%')
         LIMIT #{num} OFFSET (#{page} - 1) * #{num}

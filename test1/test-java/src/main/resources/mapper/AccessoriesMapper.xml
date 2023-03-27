@@ -135,6 +135,10 @@
             </if>
         </where>
     </select>
+    <select id="findByMachineType" resultType="com.djc.entity.Accessories">
+        select * from accessories where machine.accessories.machine_type_id =#{machineTypeId}
+            limit #{page},#{num}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="accessoriesId" useGeneratedKeys="true">

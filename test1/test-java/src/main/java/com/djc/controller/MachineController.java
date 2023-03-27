@@ -1,15 +1,16 @@
 package com.djc.controller;
 
 import com.djc.entity.Machine;
+import com.djc.entity.MaintenanceRecords;
 import com.djc.service.MachineService;
+import com.djc.service.MaintenanceRecordsService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 设备表(Machine)表控制层
@@ -69,7 +70,7 @@ public class MachineController<E> {
      */
 
     @PostMapping
-    public JsonResult<Machine> add(Machine machine) {
+    public JsonResult<Machine> add(@RequestBody Machine machine) {
         return new JsonResult<>(200, "新增成功", this.machineService.insert(machine));
     }
 
@@ -80,7 +81,7 @@ public class MachineController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<Machine> edit(Machine machine) {
+    public JsonResult<Machine> edit(@RequestBody Machine machine) {
         return new JsonResult<>(200, "修改成功", this.machineService.update(machine));
     }
 
@@ -98,5 +99,12 @@ public class MachineController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+    @Autowired
+    MaintenanceRecordsService maintenanceRecordsService;
+    @GetMapping("/findReword/{id}")
+    public JsonResult findReword(@PathVariable("id") Integer id){
+        List<MaintenanceRecords> list=maintenanceRecordsService.quarryByMachineId(id);
+        return new JsonResult(200,"查询成功",list);
     }
 }
