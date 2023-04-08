@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -29,10 +28,9 @@ public class MaintenanceRecordsController<E> {
      */
     @Autowired
     private MaintenanceRecordsService maintenanceRecordsService;
-
     /**
      * 分页查询
-     *
+     *掉分车队参加
      * @param maintenanceRecords 筛选条件
      * @param pageRequest        分页对象
      * @return 查询结果
@@ -121,4 +119,5 @@ public class MaintenanceRecordsController<E> {
         List<String> strings=maintenanceRecordsService.findFile(type,recoedId);
         return new JsonResult(200,"查询成功",strings);
     }
+
 }
