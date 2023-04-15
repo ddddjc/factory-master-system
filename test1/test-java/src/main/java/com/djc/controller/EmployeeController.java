@@ -3,6 +3,7 @@ package com.djc.controller;
 import com.djc.entity.Employee;
 import com.djc.service.EmployeeService;
 import com.djc.util.JsonResult;
+import com.djc.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +24,8 @@ public class EmployeeController<E> {
      */
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * 分页查询

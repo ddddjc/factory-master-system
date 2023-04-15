@@ -27,6 +27,7 @@ public class JwtUtil {
         Date expirationDate = new Date(System.currentTimeMillis() + expiration * 1000);
         return Jwts.builder()
                 .claim("employeeId",employee.getEmployeeId())
+                .claim("role",employee.getRole())
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
@@ -43,7 +44,13 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
+    public Employee parseTokenToEmployee(String token){
+        Claims claims=parseToken(token);
+        Employee employee=new Employee();
+        employee.setEmployeeId((int)claims.get("employeeId"));
+        employee.setRole((String) claims.get("role"));
+        return employee;
+    }
     /**
      * 从 token 中获取指定的值
      * @param token token

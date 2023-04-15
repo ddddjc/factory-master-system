@@ -8,6 +8,8 @@ import com.djc.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * {@code @Author:} djc
  * &#064;Date:  2023-04-15-19:40
@@ -43,10 +45,15 @@ public class Loginout {
         return new JsonResult(200,"登出成功",null);
     }
     @PutMapping("/passwordUpdate")
-    public JsonResult passwordUpdate(@RequestBody Employee employee){
-        Employee employee1 = employeeService.queryById(employee.getEmployeeId());
+    public JsonResult passwordUpdate(@RequestBody Employee employee,HttpServletRequest request){
+        String token = request.getHeader("token");
+        Employee employee1=jwtUtil.parseTokenToEmployee(token);
+        System.out.println("employee1 = " + employee1);
+        System.out.println("employee = " + employee);
         if (null==employee1){
             return new JsonResult(440,"没有该用户",null);
+        }if(!employee1.getEmployeeId().equals(employee.getEmployeeId())||employee1.getRole().equals("manager")){
+            return new JsonResult(559,"该用户权限不够",null);
         }
         else{
             employeeService.update(employee);

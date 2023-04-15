@@ -1,5 +1,7 @@
 package com.djc.entity;
 
+import lombok.ToString;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author djc
  * @since 2023-04-15 15:54:57
  */
+@ToString
 public class Employee implements Serializable {
     private static final long serialVersionUID = 177624330112425688L;
     /**
