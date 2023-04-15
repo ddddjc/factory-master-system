@@ -4,15 +4,27 @@
 
     <resultMap type="com.djc.entity.MachineType" id="MachineTypeMap">
         <result property="machineTypeId" column="machine_type_id" jdbcType="INTEGER"/>
-        <result property="machineType" column="machine_type" jdbcType="VARCHAR"/>
+        <result property="machineTypeName" column="machine_type_name" jdbcType="VARCHAR"/>
         <result property="machineTypeInformation" column="machine_type_information" jdbcType="VARCHAR"/>
+        <result property="machineModel" column="machine_model" jdbcType="VARCHAR"/>
+        <result property="machineManufacturer" column="machine_manufacturer" jdbcType="VARCHAR"/>
+        <result property="orientationPosition" column="orientation_position" jdbcType="VARCHAR"/>
+        <result property="machineVoltage" column="machine_voltage" jdbcType="VARCHAR"/>
+        <result property="machinePower" column="machine_power" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="MachineTypeMap">
         select machine_type_id,
-               machine_type,
-               machine_type_information
+               machine_type_name,
+               machine_type_information,
+               machine_model,
+               machine_manufacturer,
+               orientation_position,
+               machine_voltage,
+               machine_power,
+               remark
         from machine_type
         where machine_type_id = #{machineTypeId}
     </select>
@@ -20,30 +32,47 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="MachineTypeMap">
         select
-        machine_type_id, machine_type, machine_type_information
+        machine_type_id, machine_type_name, machine_type_information, machine_model, machine_manufacturer,
+        orientation_position, machine_voltage, machine_power, remark
         from machine_type
         <where>
             <if test="machineTypeId != null">
                 and machine_type_id = #{machineTypeId}
             </if>
-            <if test="machineType != null and machineType != ''">
-                and machine_type = #{machineType}
+            <if test="machineTypeName != null and machineTypeName != ''">
+                and machine_type_name = #{machineTypeName}
             </if>
             <if test="machineTypeInformation != null and machineTypeInformation != ''">
                 and machine_type_information = #{machineTypeInformation}
+            </if>
+            <if test="machineModel != null and machineModel != ''">
+                and machine_model = #{machineModel}
+            </if>
+            <if test="machineManufacturer != null and machineManufacturer != ''">
+                and machine_manufacturer = #{machineManufacturer}
+            </if>
+            <if test="orientationPosition != null and orientationPosition != ''">
+                and orientation_position = #{orientationPosition}
+            </if>
+            <if test="machineVoltage != null and machineVoltage != ''">
+                and machine_voltage = #{machineVoltage}
+            </if>
+            <if test="machinePower != null and machinePower != ''">
+                and machine_power = #{machinePower}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--关键字模糊查询-->
-    <select id="queryAll" resultMap="MachineTypeMap">
+    <!--<select id="queryAll" resultMap="MachineTypeMap">
         SELECT * FROM machine_type
-        where machine_type_id LIKE CONCAT('%', #{keyWord}, '%')
-        or machine_type LIKE CONCAT('%', #{keyWord}, '%')
-        or machine_type_information LIKE CONCAT('%', #{keyWord}, '%')
-        LIMIT #{page} ,#{num}
-    </select>
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
 
 
     <!--统计总行数-->
@@ -54,49 +83,99 @@
             <if test="machineTypeId != null">
                 and machine_type_id = #{machineTypeId}
             </if>
-            <if test="machineType != null and machineType != ''">
-                and machine_type = #{machineType}
+            <if test="machineTypeName != null and machineTypeName != ''">
+                and machine_type_name = #{machineTypeName}
             </if>
             <if test="machineTypeInformation != null and machineTypeInformation != ''">
                 and machine_type_information = #{machineTypeInformation}
+            </if>
+            <if test="machineModel != null and machineModel != ''">
+                and machine_model = #{machineModel}
+            </if>
+            <if test="machineManufacturer != null and machineManufacturer != ''">
+                and machine_manufacturer = #{machineManufacturer}
+            </if>
+            <if test="orientationPosition != null and orientationPosition != ''">
+                and orientation_position = #{orientationPosition}
+            </if>
+            <if test="machineVoltage != null and machineVoltage != ''">
+                and machine_voltage = #{machineVoltage}
+            </if>
+            <if test="machinePower != null and machinePower != ''">
+                and machine_power = #{machinePower}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
             </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="machineTypeId" useGeneratedKeys="true">
-        insert into machine_type(machine_type, machine_type_information)
-        values (#{machineType}, #{machineTypeInformation})
+        insert into machine_type(machine_type_name, machine_type_information, machine_model, machine_manufacturer,
+                                 orientation_position, machine_voltage, machine_power, remark)
+        values (#{machineTypeName}, #{machineTypeInformation}, #{machineModel}, #{machineManufacturer},
+                #{orientationPosition}, #{machineVoltage}, #{machinePower}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="machineTypeId" useGeneratedKeys="true">
-        insert into machine_type(machine_type, machine_type_information)
+        insert into machine_type(machine_type_name, machine_type_information, machine_model, machine_manufacturer,
+        orientation_position, machine_voltage, machine_power, remark)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.machineType}, #{entity.machineTypeInformation})
+            (#{entity.machineTypeName}, #{entity.machineTypeInformation}, #{entity.machineModel},
+            #{entity.machineManufacturer}, #{entity.orientationPosition}, #{entity.machineVoltage},
+            #{entity.machinePower}, #{entity.remark})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="machineTypeId" useGeneratedKeys="true">
-        insert into machine_type(machine_type, machine_type_information)
+        insert into machine_type(machine_type_name, machine_type_information, machine_model, machine_manufacturer,
+        orientation_position, machine_voltage, machine_power, remark)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.machineType}, #{entity.machineTypeInformation})
+            (#{entity.machineTypeName}, #{entity.machineTypeInformation}, #{entity.machineModel},
+            #{entity.machineManufacturer}, #{entity.orientationPosition}, #{entity.machineVoltage},
+            #{entity.machinePower}, #{entity.remark})
         </foreach>
         on duplicate key update
-        machine_type = values(machine_type),
-        machine_type_information = values(machine_type_information)
+        machine_type_name = values(machine_type_name),
+        machine_type_information = values(machine_type_information),
+        machine_model = values(machine_model),
+        machine_manufacturer = values(machine_manufacturer),
+        orientation_position = values(orientation_position),
+        machine_voltage = values(machine_voltage),
+        machine_power = values(machine_power),
+        remark = values(remark)
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update machine_type
         <set>
-            <if test="machineType != null and machineType != ''">
-                machine_type = #{machineType},
+            <if test="machineTypeName != null and machineTypeName != ''">
+                machine_type_name = #{machineTypeName},
             </if>
             <if test="machineTypeInformation != null and machineTypeInformation != ''">
                 machine_type_information = #{machineTypeInformation},
+            </if>
+            <if test="machineModel != null and machineModel != ''">
+                machine_model = #{machineModel},
+            </if>
+            <if test="machineManufacturer != null and machineManufacturer != ''">
+                machine_manufacturer = #{machineManufacturer},
+            </if>
+            <if test="orientationPosition != null and orientationPosition != ''">
+                orientation_position = #{orientationPosition},
+            </if>
+            <if test="machineVoltage != null and machineVoltage != ''">
+                machine_voltage = #{machineVoltage},
+            </if>
+            <if test="machinePower != null and machinePower != ''">
+                machine_power = #{machinePower},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
             </if>
         </set>
         where machine_type_id = #{machineTypeId}

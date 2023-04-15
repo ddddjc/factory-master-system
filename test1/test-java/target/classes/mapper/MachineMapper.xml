@@ -5,16 +5,24 @@
     <resultMap type="com.djc.entity.Machine" id="MachineMap">
         <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
         <result property="machineTypeId" column="machine_type_id" jdbcType="VARCHAR"/>
-        <result property="machineInformation" column="machine_information" jdbcType="VARCHAR"/>
-        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="machineSerialNumber" column="machine_serial_number" jdbcType="VARCHAR"/>
+        <result property="machineLocation" column="machine_location" jdbcType="VARCHAR"/>
+        <result property="intoDate" column="into_date" jdbcType="TIMESTAMP"/>
+        <result property="assetNumber" column="asset_number" jdbcType="VARCHAR"/>
+        <result property="machineState" column="machine_state" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="MachineMap">
         select machine_id,
                machine_type_id,
-               machine_information,
-               employee_id
+               machine_serial_number,
+               machine_location,
+               into_date,
+               asset_number,
+               machine_state,
+               remark
         from machine
         where machine_id = #{machineId}
     </select>
@@ -22,7 +30,8 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="MachineMap">
         select
-        machine_id, machine_type_id, machine_information, employee_id
+        machine_id, machine_type_id, machine_serial_number, machine_location, into_date, asset_number, machine_state,
+        remark
         from machine
         <where>
             <if test="machineId != null">
@@ -31,23 +40,34 @@
             <if test="machineTypeId != null and machineTypeId != ''">
                 and machine_type_id = #{machineTypeId}
             </if>
-            <if test="machineInformation != null and machineInformation != ''">
-                and machine_information = #{machineInformation}
+            <if test="machineSerialNumber != null and machineSerialNumber != ''">
+                and machine_serial_number = #{machineSerialNumber}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="machineLocation != null and machineLocation != ''">
+                and machine_location = #{machineLocation}
+            </if>
+            <if test="intoDate != null">
+                and into_date = #{intoDate}
+            </if>
+            <if test="assetNumber != null and assetNumber != ''">
+                and asset_number = #{assetNumber}
+            </if>
+            <if test="machineState != null and machineState != ''">
+                and machine_state = #{machineState}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--关键字模糊查询-->
-    <select id="queryAll" resultMap="MachineMap">
+    <!--<select id="queryAll" resultMap="MachineMap">
         SELECT * FROM machine
-        where machine_id LIKE CONCAT('%', #{keyWord}, '%')
-        or machine_informaton LIKE CONCAT('%', #{keyWord}, '%')
-        LIMIT #{page}, #{num}
-    </select>
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
 
 
     <!--统计总行数-->
@@ -61,39 +81,61 @@
             <if test="machineTypeId != null and machineTypeId != ''">
                 and machine_type_id = #{machineTypeId}
             </if>
-            <if test="machineInformation != null and machineInformation != ''">
-                and machine_information = #{machineInformation}
+            <if test="machineSerialNumber != null and machineSerialNumber != ''">
+                and machine_serial_number = #{machineSerialNumber}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="machineLocation != null and machineLocation != ''">
+                and machine_location = #{machineLocation}
+            </if>
+            <if test="intoDate != null">
+                and into_date = #{intoDate}
+            </if>
+            <if test="assetNumber != null and assetNumber != ''">
+                and asset_number = #{assetNumber}
+            </if>
+            <if test="machineState != null and machineState != ''">
+                and machine_state = #{machineState}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
             </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="machineId" useGeneratedKeys="true">
-        insert into machine(machine_type_id, machine_information, employee_id)
-        values (#{machineTypeId}, #{machineInformation}, #{employeeId})
+        insert into machine(machine_type_id, machine_serial_number, machine_location, into_date, asset_number,
+                            machine_state, remark)
+        values (#{machineTypeId}, #{machineSerialNumber}, #{machineLocation}, #{intoDate}, #{assetNumber},
+                #{machineState}, #{remark})
     </insert>
 
     <insert id="insertBatch" keyProperty="machineId" useGeneratedKeys="true">
-        insert into machine(machine_type_id, machine_information, employee_id)
+        insert into machine(machine_type_id, machine_serial_number, machine_location, into_date, asset_number,
+        machine_state, remark)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.machineTypeId}, #{entity.machineInformation}, #{entity.employeeId})
+            (#{entity.machineTypeId}, #{entity.machineSerialNumber}, #{entity.machineLocation}, #{entity.intoDate},
+            #{entity.assetNumber}, #{entity.machineState}, #{entity.remark})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="machineId" useGeneratedKeys="true">
-        insert into machine(machine_type_id, machine_information, employee_id)
+        insert into machine(machine_type_id, machine_serial_number, machine_location, into_date, asset_number,
+        machine_state, remark)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.machineTypeId}, #{entity.machineInformation}, #{entity.employeeId})
+            (#{entity.machineTypeId}, #{entity.machineSerialNumber}, #{entity.machineLocation}, #{entity.intoDate},
+            #{entity.assetNumber}, #{entity.machineState}, #{entity.remark})
         </foreach>
         on duplicate key update
         machine_type_id = values(machine_type_id),
-        machine_information = values(machine_information),
-        employee_id = values(employee_id)
+        machine_serial_number = values(machine_serial_number),
+        machine_location = values(machine_location),
+        into_date = values(into_date),
+        asset_number = values(asset_number),
+        machine_state = values(machine_state),
+        remark = values(remark)
     </insert>
 
     <!--通过主键修改数据-->
@@ -103,11 +145,23 @@
             <if test="machineTypeId != null and machineTypeId != ''">
                 machine_type_id = #{machineTypeId},
             </if>
-            <if test="machineInformation != null and machineInformation != ''">
-                machine_information = #{machineInformation},
+            <if test="machineSerialNumber != null and machineSerialNumber != ''">
+                machine_serial_number = #{machineSerialNumber},
             </if>
-            <if test="employeeId != null">
-                employee_id = #{employeeId},
+            <if test="machineLocation != null and machineLocation != ''">
+                machine_location = #{machineLocation},
+            </if>
+            <if test="intoDate != null">
+                into_date = #{intoDate},
+            </if>
+            <if test="assetNumber != null and assetNumber != ''">
+                asset_number = #{assetNumber},
+            </if>
+            <if test="machineState != null and machineState != ''">
+                machine_state = #{machineState},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
             </if>
         </set>
         where machine_id = #{machineId}
