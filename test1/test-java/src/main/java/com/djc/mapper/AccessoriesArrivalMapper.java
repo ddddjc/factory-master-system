@@ -10,7 +10,7 @@ import java.util.List;
  * 到货单(AccessoriesArrival)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:28:55
+ * @since 2023-04-15 15:55:10
  */
 public interface AccessoriesArrivalMapper {
 

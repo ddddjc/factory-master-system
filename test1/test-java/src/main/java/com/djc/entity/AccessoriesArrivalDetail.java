@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 到货详情(AccessoriesArrivalDetail)实体类
  *
  * @author djc
- * @since 2023-04-15 15:29:01
+ * @since 2023-04-15 15:55:11
  */
 public class AccessoriesArrivalDetail implements Serializable {
-    private static final long serialVersionUID = -36809769587763499L;
+    private static final long serialVersionUID = -17076345672051078L;
     /**
      * 到达详情id
      */

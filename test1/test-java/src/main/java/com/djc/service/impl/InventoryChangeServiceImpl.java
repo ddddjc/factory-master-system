@@ -15,7 +15,7 @@ import java.util.List;
  * (InventoryChange)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:28:53
+ * @since 2023-04-15 15:55:00
  */
 @Service("inventoryChangeService")
 public class InventoryChangeServiceImpl implements InventoryChangeService {

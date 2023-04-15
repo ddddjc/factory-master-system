@@ -9,10 +9,10 @@ import java.io.Serializable;
  * (Records)实体类
  *
  * @author djc
- * @since 2023-04-15 15:29:04
+ * @since 2023-04-15 15:55:07
  */
 public class Records implements Serializable {
-    private static final long serialVersionUID = -37765236138155685L;
+    private static final long serialVersionUID = 197575070680318116L;
     /**
      * 记录id
      */

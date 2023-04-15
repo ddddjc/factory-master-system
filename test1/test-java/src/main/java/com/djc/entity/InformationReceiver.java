@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 消息接收者(InformationReceiver)实体类
  *
  * @author djc
- * @since 2023-04-15 15:28:59
+ * @since 2023-04-15 15:54:51
  */
 public class InformationReceiver implements Serializable {
-    private static final long serialVersionUID = 835536237263653514L;
+    private static final long serialVersionUID = 693255214801341752L;
     /**
      * 关系id
      */

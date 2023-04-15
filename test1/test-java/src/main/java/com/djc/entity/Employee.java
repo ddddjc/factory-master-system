@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 员工表(Employee)实体类
  *
  * @author djc
- * @since 2023-04-15 15:29:00
+ * @since 2023-04-15 15:54:57
  */
 public class Employee implements Serializable {
-    private static final long serialVersionUID = 874605398446317969L;
+    private static final long serialVersionUID = 177624330112425688L;
     /**
      * 员工id
      */

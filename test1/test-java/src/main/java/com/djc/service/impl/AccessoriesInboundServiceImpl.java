@@ -15,7 +15,7 @@ import java.util.List;
  * 入库信息(AccessoriesInbound)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:29:00
+ * @since 2023-04-15 15:55:07
  */
 @Service("accessoriesInboundService")
 public class AccessoriesInboundServiceImpl implements AccessoriesInboundService {

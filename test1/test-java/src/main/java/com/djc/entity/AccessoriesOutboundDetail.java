@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 出库详情（材料申请表）(AccessoriesOutboundDetail)实体类
  *
  * @author djc
- * @since 2023-04-15 15:29:02
+ * @since 2023-04-15 15:55:15
  */
 public class AccessoriesOutboundDetail implements Serializable {
-    private static final long serialVersionUID = -99410445704230051L;
+    private static final long serialVersionUID = 207026504966120116L;
     /**
      * id
      */

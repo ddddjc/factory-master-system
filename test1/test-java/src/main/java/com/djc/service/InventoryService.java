@@ -10,7 +10,7 @@ import java.util.List;
  * 库存(Inventory)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:28:55
+ * @since 2023-04-15 15:55:04
  */
 public interface InventoryService {
 

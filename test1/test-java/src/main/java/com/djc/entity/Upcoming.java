@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 待办信息表(Upcoming)实体类
  *
  * @author djc
- * @since 2023-04-15 15:28:52
+ * @since 2023-04-15 15:55:14
  */
 public class Upcoming implements Serializable {
-    private static final long serialVersionUID = -28489580716443818L;
+    private static final long serialVersionUID = -59971031300198066L;
     /**
      * 待办id
      */

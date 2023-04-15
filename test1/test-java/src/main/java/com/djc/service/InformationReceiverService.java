@@ -10,7 +10,7 @@ import java.util.List;
  * 消息接收者(InformationReceiver)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:28:59
+ * @since 2023-04-15 15:54:52
  */
 public interface InformationReceiverService {
 

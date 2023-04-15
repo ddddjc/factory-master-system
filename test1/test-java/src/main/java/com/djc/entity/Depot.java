@@ -8,10 +8,10 @@ import java.io.Serializable;
  * (Depot)实体类
  *
  * @author djc
- * @since 2023-04-15 15:28:51
+ * @since 2023-04-15 15:55:13
  */
 public class Depot implements Serializable {
-    private static final long serialVersionUID = 406952262768711543L;
+    private static final long serialVersionUID = -20099045635665273L;
     /**
      * 仓库id
      */

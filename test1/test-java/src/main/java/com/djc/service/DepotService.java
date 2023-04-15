@@ -11,7 +11,7 @@ import java.util.List;
  * (Depot)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:28:51
+ * @since 2023-04-15 15:55:14
  */
 public interface DepotService {
 

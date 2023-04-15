@@ -10,7 +10,7 @@ import java.util.List;
  * 维护完成汇总(MaintenanceFinishUmmary)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:28:48
+ * @since 2023-04-15 15:55:05
  */
 public interface MaintenanceFinishUmmaryMapper {
 

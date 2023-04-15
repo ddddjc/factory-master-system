@@ -15,7 +15,7 @@ import java.util.List;
  * 申购详情(AccessoriesProcurementDetail)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:29:03
+ * @since 2023-04-15 15:54:59
  */
 @Service("accessoriesProcurementDetailService")
 public class AccessoriesProcurementDetailServiceImpl implements AccessoriesProcurementDetailService {

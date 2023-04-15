@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 小组表(Team)实体类
  *
  * @author djc
- * @since 2023-04-15 15:28:57
+ * @since 2023-04-15 15:55:01
  */
 public class Team implements Serializable {
-    private static final long serialVersionUID = 340504185137653252L;
+    private static final long serialVersionUID = -37457566217646367L;
     /**
      * 小组id
      */

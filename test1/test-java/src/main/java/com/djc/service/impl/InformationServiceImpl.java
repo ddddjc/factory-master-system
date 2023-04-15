@@ -15,7 +15,7 @@ import java.util.List;
  * 消息表(Information)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:28:49
+ * @since 2023-04-15 15:55:03
  */
 @Service("informationService")
 public class InformationServiceImpl implements InformationService {

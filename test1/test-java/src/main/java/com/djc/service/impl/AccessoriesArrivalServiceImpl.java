@@ -15,7 +15,7 @@ import java.util.List;
  * 到货单(AccessoriesArrival)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:28:56
+ * @since 2023-04-15 15:55:10
  */
 @Service("accessoriesArrivalService")
 public class AccessoriesArrivalServiceImpl implements AccessoriesArrivalService {

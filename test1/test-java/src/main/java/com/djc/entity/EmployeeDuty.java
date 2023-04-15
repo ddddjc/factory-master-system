@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 小组值班分工(EmployeeDuty)实体类
  *
  * @author djc
- * @since 2023-04-15 15:29:01
+ * @since 2023-04-15 15:55:09
  */
 public class EmployeeDuty implements Serializable {
-    private static final long serialVersionUID = 642942298634790401L;
+    private static final long serialVersionUID = 514183283833002236L;
     /**
      * 值班id
      */

@@ -11,7 +11,7 @@ import java.util.List;
  * (MachineType)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:28:52
+ * @since 2023-04-15 15:54:57
  */
 public interface MachineTypeService {
 

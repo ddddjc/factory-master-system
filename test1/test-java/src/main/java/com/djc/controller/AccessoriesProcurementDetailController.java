@@ -2,13 +2,14 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesProcurementDetail;
 import com.djc.service.AccessoriesProcurementDetailService;
-import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.djc.util.JsonResult;
 
 /**
  * 申购详情(AccessoriesProcurementDetail)表控制层

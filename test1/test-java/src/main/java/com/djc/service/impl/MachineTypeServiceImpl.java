@@ -16,7 +16,7 @@ import java.util.List;
  * (MachineType)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:28:53
+ * @since 2023-04-15 15:54:57
  */
 @Service("machineTypeService")
 public class MachineTypeServiceImpl implements MachineTypeService {

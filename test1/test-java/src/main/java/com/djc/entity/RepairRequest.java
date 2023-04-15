@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 维修请求(RepairRequest)实体类
  *
  * @author djc
- * @since 2023-04-15 15:28:56
+ * @since 2023-04-15 15:54:53
  */
 public class RepairRequest implements Serializable {
-    private static final long serialVersionUID = -54818765621501607L;
+    private static final long serialVersionUID = -82116859612509322L;
     /**
      * 维修请求id
      */

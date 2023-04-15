@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (Testtable)实体类
  *
  * @author djc
- * @since 2023-04-15 15:28:57
+ * @since 2023-04-15 15:54:55
  */
 public class Testtable implements Serializable {
-    private static final long serialVersionUID = 382595669329993881L;
+    private static final long serialVersionUID = 962958550233143733L;
 
     private Integer aaid;
 

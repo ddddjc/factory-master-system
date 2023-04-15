@@ -10,7 +10,7 @@ import java.util.List;
  * (InventoryChange)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:28:53
+ * @since 2023-04-15 15:55:00
  */
 public interface InventoryChangeMapper {
 
