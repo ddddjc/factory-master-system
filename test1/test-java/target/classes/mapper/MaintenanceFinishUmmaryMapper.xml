@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.MaintenanceFinishUmmaryMapper">
+
+    <resultMap type="com.djc.entity.MaintenanceFinishUmmary" id="MaintenanceFinishUmmaryMap">
+        <result property="ummmaryId" column="ummmary_id" jdbcType="INTEGER"/>
+        <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
+        <result property="machineName" column="machine_name" jdbcType="VARCHAR"/>
+        <result property="maintenanceDate" column="maintenance_date" jdbcType="TIMESTAMP"/>
+        <result property="startTime" column="start_time" jdbcType="VARCHAR"/>
+        <result property="endTime" column="end_time" jdbcType="VARCHAR"/>
+        <result property="finishRecording" column="finish_recording" jdbcType="VARCHAR"/>
+        <result property="maintenanceState" column="maintenance_state" jdbcType="VARCHAR"/>
+        <result property="importance" column="importance" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MaintenanceFinishUmmaryMap">
+        select ummmary_id,
+               machine_id,
+               machine_name,
+               maintenance_date,
+               start_time,
+               end_time,
+               finish_recording,
+               maintenance_state,
+               importance
+        from maintenance_finish_ummary
+        where ummmary_id = #{ummmaryId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MaintenanceFinishUmmaryMap">
+        select
+        ummmary_id, machine_id, machine_name, maintenance_date, start_time, end_time, finish_recording,
+        maintenance_state, importance
+        from maintenance_finish_ummary
+        <where>
+            <if test="ummmaryId != null">
+                and ummmary_id = #{ummmaryId}
+            </if>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+            <if test="machineName != null and machineName != ''">
+                and machine_name = #{machineName}
+            </if>
+            <if test="maintenanceDate != null">
+                and maintenance_date = #{maintenanceDate}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="finishRecording != null and finishRecording != ''">
+                and finish_recording = #{finishRecording}
+            </if>
+            <if test="maintenanceState != null and maintenanceState != ''">
+                and maintenance_state = #{maintenanceState}
+            </if>
+            <if test="importance != null and importance != ''">
+                and importance = #{importance}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="MaintenanceFinishUmmaryMap">
+        SELECT * FROM maintenance_finish_ummary
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from maintenance_finish_ummary
+        <where>
+            <if test="ummmaryId != null">
+                and ummmary_id = #{ummmaryId}
+            </if>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+            <if test="machineName != null and machineName != ''">
+                and machine_name = #{machineName}
+            </if>
+            <if test="maintenanceDate != null">
+                and maintenance_date = #{maintenanceDate}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="finishRecording != null and finishRecording != ''">
+                and finish_recording = #{finishRecording}
+            </if>
+            <if test="maintenanceState != null and maintenanceState != ''">
+                and maintenance_state = #{maintenanceState}
+            </if>
+            <if test="importance != null and importance != ''">
+                and importance = #{importance}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="ummmaryId" useGeneratedKeys="true">
+        insert into maintenance_finish_ummary(machine_id, machine_name, maintenance_date, start_time, end_time,
+                                              finish_recording, maintenance_state, importance)
+        values (#{machineId}, #{machineName}, #{maintenanceDate}, #{startTime}, #{endTime}, #{finishRecording},
+                #{maintenanceState}, #{importance})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="ummmaryId" useGeneratedKeys="true">
+        insert into maintenance_finish_ummary(machine_id, machine_name, maintenance_date, start_time, end_time,
+        finish_recording, maintenance_state, importance)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineId}, #{entity.machineName}, #{entity.maintenanceDate}, #{entity.startTime},
+            #{entity.endTime}, #{entity.finishRecording}, #{entity.maintenanceState}, #{entity.importance})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="ummmaryId" useGeneratedKeys="true">
+        insert into maintenance_finish_ummary(machine_id, machine_name, maintenance_date, start_time, end_time,
+        finish_recording, maintenance_state, importance)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineId}, #{entity.machineName}, #{entity.maintenanceDate}, #{entity.startTime},
+            #{entity.endTime}, #{entity.finishRecording}, #{entity.maintenanceState}, #{entity.importance})
+        </foreach>
+        on duplicate key update
+        machine_id = values(machine_id),
+        machine_name = values(machine_name),
+        maintenance_date = values(maintenance_date),
+        start_time = values(start_time),
+        end_time = values(end_time),
+        finish_recording = values(finish_recording),
+        maintenance_state = values(maintenance_state),
+        importance = values(importance)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update maintenance_finish_ummary
+        <set>
+            <if test="machineId != null">
+                machine_id = #{machineId},
+            </if>
+            <if test="machineName != null and machineName != ''">
+                machine_name = #{machineName},
+            </if>
+            <if test="maintenanceDate != null">
+                maintenance_date = #{maintenanceDate},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="finishRecording != null and finishRecording != ''">
+                finish_recording = #{finishRecording},
+            </if>
+            <if test="maintenanceState != null and maintenanceState != ''">
+                maintenance_state = #{maintenanceState},
+            </if>
+            <if test="importance != null and importance != ''">
+                importance = #{importance},
+            </if>
+        </set>
+        where ummmary_id = #{ummmaryId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from maintenance_finish_ummary
+        where ummmary_id = #{ummmaryId}
+    </delete>
+
+</mapper>
+

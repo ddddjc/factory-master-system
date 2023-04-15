@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.AccessoriesArrivalDetailMapper">
+
+    <resultMap type="com.djc.entity.AccessoriesArrivalDetail" id="AccessoriesArrivalDetailMap">
+        <result property="arrivalDetailId" column="arrival_detail_id" jdbcType="INTEGER"/>
+        <result property="arrivalId" column="arrival_id" jdbcType="INTEGER"/>
+        <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+        <result property="testWether" column="test_wether" jdbcType="INTEGER"/>
+        <result property="materialType" column="material_type" jdbcType="VARCHAR"/>
+        <result property="orderNumber" column="order_number" jdbcType="INTEGER"/>
+        <result property="lineNumber" column="line_number" jdbcType="INTEGER"/>
+        <result property="arrivalNum" column="arrival_num" jdbcType="INTEGER"/>
+        <result property="conversionRate" column="conversion_rate" jdbcType="VARCHAR"/>
+        <result property="priceWithTax" column="price_with_tax" jdbcType="INTEGER"/>
+        <result property="priceWithoutTax" column="price_without_tax" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AccessoriesArrivalDetailMap">
+        select arrival_detail_id,
+               arrival_id,
+               accessories_id,
+               test_wether,
+               material_type,
+               order_number,
+               line_number,
+               arrival_num,
+               conversion_rate,
+               price_with_tax,
+               price_without_tax
+        from accessories_arrival_detail
+        where arrival_detail_id = #{arrivalDetailId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesArrivalDetailMap">
+        select
+        arrival_detail_id, arrival_id, accessories_id, test_wether, material_type, order_number, line_number,
+        arrival_num, conversion_rate, price_with_tax, price_without_tax
+        from accessories_arrival_detail
+        <where>
+            <if test="arrivalDetailId != null">
+                and arrival_detail_id = #{arrivalDetailId}
+            </if>
+            <if test="arrivalId != null">
+                and arrival_id = #{arrivalId}
+            </if>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="testWether != null">
+                and test_wether = #{testWether}
+            </if>
+            <if test="materialType != null and materialType != ''">
+                and material_type = #{materialType}
+            </if>
+            <if test="orderNumber != null">
+                and order_number = #{orderNumber}
+            </if>
+            <if test="lineNumber != null">
+                and line_number = #{lineNumber}
+            </if>
+            <if test="arrivalNum != null">
+                and arrival_num = #{arrivalNum}
+            </if>
+            <if test="conversionRate != null and conversionRate != ''">
+                and conversion_rate = #{conversionRate}
+            </if>
+            <if test="priceWithTax != null">
+                and price_with_tax = #{priceWithTax}
+            </if>
+            <if test="priceWithoutTax != null">
+                and price_without_tax = #{priceWithoutTax}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="AccessoriesArrivalDetailMap">
+        SELECT * FROM accessories_arrival_detail
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from accessories_arrival_detail
+        <where>
+            <if test="arrivalDetailId != null">
+                and arrival_detail_id = #{arrivalDetailId}
+            </if>
+            <if test="arrivalId != null">
+                and arrival_id = #{arrivalId}
+            </if>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="testWether != null">
+                and test_wether = #{testWether}
+            </if>
+            <if test="materialType != null and materialType != ''">
+                and material_type = #{materialType}
+            </if>
+            <if test="orderNumber != null">
+                and order_number = #{orderNumber}
+            </if>
+            <if test="lineNumber != null">
+                and line_number = #{lineNumber}
+            </if>
+            <if test="arrivalNum != null">
+                and arrival_num = #{arrivalNum}
+            </if>
+            <if test="conversionRate != null and conversionRate != ''">
+                and conversion_rate = #{conversionRate}
+            </if>
+            <if test="priceWithTax != null">
+                and price_with_tax = #{priceWithTax}
+            </if>
+            <if test="priceWithoutTax != null">
+                and price_without_tax = #{priceWithoutTax}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="arrivalDetailId" useGeneratedKeys="true">
+        insert into accessories_arrival_detail(arrival_id, accessories_id, test_wether, material_type, order_number,
+                                               line_number, arrival_num, conversion_rate, price_with_tax,
+                                               price_without_tax)
+        values (#{arrivalId}, #{accessoriesId}, #{testWether}, #{materialType}, #{orderNumber}, #{lineNumber},
+                #{arrivalNum}, #{conversionRate}, #{priceWithTax}, #{priceWithoutTax})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="arrivalDetailId" useGeneratedKeys="true">
+        insert into accessories_arrival_detail(arrival_id, accessories_id, test_wether, material_type, order_number,
+        line_number, arrival_num, conversion_rate, price_with_tax, price_without_tax)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.arrivalId}, #{entity.accessoriesId}, #{entity.testWether}, #{entity.materialType},
+            #{entity.orderNumber}, #{entity.lineNumber}, #{entity.arrivalNum}, #{entity.conversionRate},
+            #{entity.priceWithTax}, #{entity.priceWithoutTax})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="arrivalDetailId" useGeneratedKeys="true">
+        insert into accessories_arrival_detail(arrival_id, accessories_id, test_wether, material_type, order_number,
+        line_number, arrival_num, conversion_rate, price_with_tax, price_without_tax)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.arrivalId}, #{entity.accessoriesId}, #{entity.testWether}, #{entity.materialType},
+            #{entity.orderNumber}, #{entity.lineNumber}, #{entity.arrivalNum}, #{entity.conversionRate},
+            #{entity.priceWithTax}, #{entity.priceWithoutTax})
+        </foreach>
+        on duplicate key update
+        arrival_id = values(arrival_id),
+        accessories_id = values(accessories_id),
+        test_wether = values(test_wether),
+        material_type = values(material_type),
+        order_number = values(order_number),
+        line_number = values(line_number),
+        arrival_num = values(arrival_num),
+        conversion_rate = values(conversion_rate),
+        price_with_tax = values(price_with_tax),
+        price_without_tax = values(price_without_tax)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update accessories_arrival_detail
+        <set>
+            <if test="arrivalId != null">
+                arrival_id = #{arrivalId},
+            </if>
+            <if test="accessoriesId != null">
+                accessories_id = #{accessoriesId},
+            </if>
+            <if test="testWether != null">
+                test_wether = #{testWether},
+            </if>
+            <if test="materialType != null and materialType != ''">
+                material_type = #{materialType},
+            </if>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber},
+            </if>
+            <if test="lineNumber != null">
+                line_number = #{lineNumber},
+            </if>
+            <if test="arrivalNum != null">
+                arrival_num = #{arrivalNum},
+            </if>
+            <if test="conversionRate != null and conversionRate != ''">
+                conversion_rate = #{conversionRate},
+            </if>
+            <if test="priceWithTax != null">
+                price_with_tax = #{priceWithTax},
+            </if>
+            <if test="priceWithoutTax != null">
+                price_without_tax = #{priceWithoutTax},
+            </if>
+        </set>
+        where arrival_detail_id = #{arrivalDetailId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from accessories_arrival_detail
+        where arrival_detail_id = #{arrivalDetailId}
+    </delete>
+
+</mapper>
+

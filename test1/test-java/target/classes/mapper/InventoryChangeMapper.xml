@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.InventoryChangeMapper">
+
+    <resultMap type="com.djc.entity.InventoryChange" id="InventoryChangeMap">
+        <result property="changeId" column="change_id" jdbcType="INTEGER"/>
+        <result property="inventoryId" column="inventory_id" jdbcType="VARCHAR"/>
+        <result property="accessoriesName" column="accessories_name" jdbcType="VARCHAR"/>
+        <result property="changeNum" column="change_num" jdbcType="INTEGER"/>
+        <result property="changeEmployeeId" column="change_employee_id" jdbcType="VARCHAR"/>
+        <result property="changeUnit" column="change_unit" jdbcType="VARCHAR"/>
+        <result property="changeEmployeeName" column="change_employee_name" jdbcType="VARCHAR"/>
+        <result property="changeType" column="change_type" jdbcType="VARCHAR"/>
+        <result property="changeDate" column="change_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="InventoryChangeMap">
+        select change_id,
+               inventory_id,
+               accessories_name,
+               change_num,
+               change_employee_id,
+               change_unit,
+               change_employee_name,
+               change_type,
+               change_date
+        from inventory_change
+        where change_id = #{changeId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="InventoryChangeMap">
+        select
+        change_id, inventory_id, accessories_name, change_num, change_employee_id, change_unit, change_employee_name,
+        change_type, change_date
+        from inventory_change
+        <where>
+            <if test="changeId != null">
+                and change_id = #{changeId}
+            </if>
+            <if test="inventoryId != null and inventoryId != ''">
+                and inventory_id = #{inventoryId}
+            </if>
+            <if test="accessoriesName != null and accessoriesName != ''">
+                and accessories_name = #{accessoriesName}
+            </if>
+            <if test="changeNum != null">
+                and change_num = #{changeNum}
+            </if>
+            <if test="changeEmployeeId != null and changeEmployeeId != ''">
+                and change_employee_id = #{changeEmployeeId}
+            </if>
+            <if test="changeUnit != null and changeUnit != ''">
+                and change_unit = #{changeUnit}
+            </if>
+            <if test="changeEmployeeName != null and changeEmployeeName != ''">
+                and change_employee_name = #{changeEmployeeName}
+            </if>
+            <if test="changeType != null and changeType != ''">
+                and change_type = #{changeType}
+            </if>
+            <if test="changeDate != null">
+                and change_date = #{changeDate}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="InventoryChangeMap">
+        SELECT * FROM inventory_change
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from inventory_change
+        <where>
+            <if test="changeId != null">
+                and change_id = #{changeId}
+            </if>
+            <if test="inventoryId != null and inventoryId != ''">
+                and inventory_id = #{inventoryId}
+            </if>
+            <if test="accessoriesName != null and accessoriesName != ''">
+                and accessories_name = #{accessoriesName}
+            </if>
+            <if test="changeNum != null">
+                and change_num = #{changeNum}
+            </if>
+            <if test="changeEmployeeId != null and changeEmployeeId != ''">
+                and change_employee_id = #{changeEmployeeId}
+            </if>
+            <if test="changeUnit != null and changeUnit != ''">
+                and change_unit = #{changeUnit}
+            </if>
+            <if test="changeEmployeeName != null and changeEmployeeName != ''">
+                and change_employee_name = #{changeEmployeeName}
+            </if>
+            <if test="changeType != null and changeType != ''">
+                and change_type = #{changeType}
+            </if>
+            <if test="changeDate != null">
+                and change_date = #{changeDate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="changeId" useGeneratedKeys="true">
+        insert into inventory_change(inventory_id, accessories_name, change_num, change_employee_id, change_unit,
+                                     change_employee_name, change_type, change_date)
+        values (#{inventoryId}, #{accessoriesName}, #{changeNum}, #{changeEmployeeId}, #{changeUnit},
+                #{changeEmployeeName}, #{changeType}, #{changeDate})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="changeId" useGeneratedKeys="true">
+        insert into inventory_change(inventory_id, accessories_name, change_num, change_employee_id, change_unit,
+        change_employee_name, change_type, change_date)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.inventoryId}, #{entity.accessoriesName}, #{entity.changeNum}, #{entity.changeEmployeeId},
+            #{entity.changeUnit}, #{entity.changeEmployeeName}, #{entity.changeType}, #{entity.changeDate})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="changeId" useGeneratedKeys="true">
+        insert into inventory_change(inventory_id, accessories_name, change_num, change_employee_id, change_unit,
+        change_employee_name, change_type, change_date)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.inventoryId}, #{entity.accessoriesName}, #{entity.changeNum}, #{entity.changeEmployeeId},
+            #{entity.changeUnit}, #{entity.changeEmployeeName}, #{entity.changeType}, #{entity.changeDate})
+        </foreach>
+        on duplicate key update
+        inventory_id = values(inventory_id),
+        accessories_name = values(accessories_name),
+        change_num = values(change_num),
+        change_employee_id = values(change_employee_id),
+        change_unit = values(change_unit),
+        change_employee_name = values(change_employee_name),
+        change_type = values(change_type),
+        change_date = values(change_date)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update inventory_change
+        <set>
+            <if test="inventoryId != null and inventoryId != ''">
+                inventory_id = #{inventoryId},
+            </if>
+            <if test="accessoriesName != null and accessoriesName != ''">
+                accessories_name = #{accessoriesName},
+            </if>
+            <if test="changeNum != null">
+                change_num = #{changeNum},
+            </if>
+            <if test="changeEmployeeId != null and changeEmployeeId != ''">
+                change_employee_id = #{changeEmployeeId},
+            </if>
+            <if test="changeUnit != null and changeUnit != ''">
+                change_unit = #{changeUnit},
+            </if>
+            <if test="changeEmployeeName != null and changeEmployeeName != ''">
+                change_employee_name = #{changeEmployeeName},
+            </if>
+            <if test="changeType != null and changeType != ''">
+                change_type = #{changeType},
+            </if>
+            <if test="changeDate != null">
+                change_date = #{changeDate},
+            </if>
+        </set>
+        where change_id = #{changeId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from inventory_change
+        where change_id = #{changeId}
+    </delete>
+
+</mapper>
+

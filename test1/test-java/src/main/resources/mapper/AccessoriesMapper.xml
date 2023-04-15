@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.AccessoriesMapper">
+
+    <resultMap type="com.djc.entity.Accessories" id="AccessoriesMap">
+        <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+        <result property="stockId" column="stock_id" jdbcType="VARCHAR"/>
+        <result property="stockCode" column="stock_code" jdbcType="VARCHAR"/>
+        <result property="accessoriesName" column="accessories_name" jdbcType="VARCHAR"/>
+        <result property="unit" column="unit" jdbcType="VARCHAR"/>
+        <result property="model" column="model" jdbcType="VARCHAR"/>
+        <result property="machineTypeId" column="machine_type_id" jdbcType="INTEGER"/>
+        <result property="importance" column="importance" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="importanceDescription" column="importance_description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AccessoriesMap">
+        select accessories_id,
+               stock_id,
+               stock_code,
+               accessories_name,
+               unit,
+               model,
+               machine_type_id,
+               importance,
+               employee_id,
+               type,
+               importance_description
+        from accessories
+        where accessories_id = #{accessoriesId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesMap">
+        select
+        accessories_id, stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance, employee_id,
+        type, importance_description
+        from accessories
+        <where>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="stockId != null and stockId != ''">
+                and stock_id = #{stockId}
+            </if>
+            <if test="stockCode != null and stockCode != ''">
+                and stock_code = #{stockCode}
+            </if>
+            <if test="accessoriesName != null and accessoriesName != ''">
+                and accessories_name = #{accessoriesName}
+            </if>
+            <if test="unit != null and unit != ''">
+                and unit = #{unit}
+            </if>
+            <if test="model != null and model != ''">
+                and model = #{model}
+            </if>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="importance != null">
+                and importance = #{importance}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="importanceDescription != null and importanceDescription != ''">
+                and importance_description = #{importanceDescription}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="AccessoriesMap">
+        SELECT * FROM accessories
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from accessories
+        <where>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="stockId != null and stockId != ''">
+                and stock_id = #{stockId}
+            </if>
+            <if test="stockCode != null and stockCode != ''">
+                and stock_code = #{stockCode}
+            </if>
+            <if test="accessoriesName != null and accessoriesName != ''">
+                and accessories_name = #{accessoriesName}
+            </if>
+            <if test="unit != null and unit != ''">
+                and unit = #{unit}
+            </if>
+            <if test="model != null and model != ''">
+                and model = #{model}
+            </if>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="importance != null">
+                and importance = #{importance}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="importanceDescription != null and importanceDescription != ''">
+                and importance_description = #{importanceDescription}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="accessoriesId" useGeneratedKeys="true">
+        insert into accessories(stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance,
+                                employee_id, type, importance_description)
+        values (#{stockId}, #{stockCode}, #{accessoriesName}, #{unit}, #{model}, #{machineTypeId}, #{importance},
+                #{employeeId}, #{type}, #{importanceDescription})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="accessoriesId" useGeneratedKeys="true">
+        insert into accessories(stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance,
+        employee_id, type, importance_description)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockId}, #{entity.stockCode}, #{entity.accessoriesName}, #{entity.unit}, #{entity.model},
+            #{entity.machineTypeId}, #{entity.importance}, #{entity.employeeId}, #{entity.type},
+            #{entity.importanceDescription})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="accessoriesId" useGeneratedKeys="true">
+        insert into accessories(stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance,
+        employee_id, type, importance_description)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockId}, #{entity.stockCode}, #{entity.accessoriesName}, #{entity.unit}, #{entity.model},
+            #{entity.machineTypeId}, #{entity.importance}, #{entity.employeeId}, #{entity.type},
+            #{entity.importanceDescription})
+        </foreach>
+        on duplicate key update
+        stock_id = values(stock_id),
+        stock_code = values(stock_code),
+        accessories_name = values(accessories_name),
+        unit = values(unit),
+        model = values(model),
+        machine_type_id = values(machine_type_id),
+        importance = values(importance),
+        employee_id = values(employee_id),
+        type = values(type),
+        importance_description = values(importance_description)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update accessories
+        <set>
+            <if test="stockId != null and stockId != ''">
+                stock_id = #{stockId},
+            </if>
+            <if test="stockCode != null and stockCode != ''">
+                stock_code = #{stockCode},
+            </if>
+            <if test="accessoriesName != null and accessoriesName != ''">
+                accessories_name = #{accessoriesName},
+            </if>
+            <if test="unit != null and unit != ''">
+                unit = #{unit},
+            </if>
+            <if test="model != null and model != ''">
+                model = #{model},
+            </if>
+            <if test="machineTypeId != null">
+                machine_type_id = #{machineTypeId},
+            </if>
+            <if test="importance != null">
+                importance = #{importance},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="importanceDescription != null and importanceDescription != ''">
+                importance_description = #{importanceDescription},
+            </if>
+        </set>
+        where accessories_id = #{accessoriesId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from accessories
+        where accessories_id = #{accessoriesId}
+    </delete>
+
+</mapper>
+
