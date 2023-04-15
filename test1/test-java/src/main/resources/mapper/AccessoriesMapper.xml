@@ -78,21 +78,11 @@
     </select>
 
     <!--关键字模糊查询-->
-    <select id="queryAll" resultMap="AccessoriesMap">
+    <!--<select id="queryAll" resultMap="AccessoriesMap">
         SELECT * FROM accessories
-        where accessories_id LIKE CONCAT('%', #{keyWord}, '%')
-            or stock_id LIKE CONCAT('%', #{keyWord}, '%')
-            or stock_code LIKE CONCAT('%', #{keyWord}, '%')
-            or accessories_name LIKE CONCAT('%', #{keyWord}, '%')
-            or unit LIKE CONCAT('%', #{keyWord}, '%')
-           or model LIKE CONCAT('%', #{keyWord}, '%')
-           or machine_type_id LIKE CONCAT('%', #{keyWord}, '%')
-           or importance LIKE CONCAT('%', #{keyWord}, '%')
-           or employee_id LIKE CONCAT('%', #{keyWord}, '%')
-           or type LIKE CONCAT('%', #{keyWord}, '%')
-           or importance_description LIKE CONCAT('%', #{keyWord}, '%')
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
         LIMIT #{page},#{num}
-    </select>
+    </select>-->
 
 
     <!--统计总行数-->
@@ -134,10 +124,6 @@
                 and importance_description = #{importanceDescription}
             </if>
         </where>
-    </select>
-    <select id="findByMachineType" resultType="com.djc.entity.Accessories">
-        select * from accessories where machine.accessories.machine_type_id =#{machineTypeId}
-            limit #{page},#{num}
     </select>
 
     <!--新增所有列-->

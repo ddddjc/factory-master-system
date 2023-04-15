@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.AccessoriesOutboundMapper">
+
+    <resultMap type="com.djc.entity.AccessoriesOutbound" id="AccessoriesOutboundMap">
+        <result property="outboundId" column="outbound_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="document" column="document" jdbcType="VARCHAR"/>
+        <result property="outboundDate" column="outbound_date" jdbcType="TIMESTAMP"/>
+        <result property="clerkName" column="clerk_name" jdbcType="VARCHAR"/>
+        <result property="outboudType" column="outboud_type" jdbcType="VARCHAR"/>
+        <result property="reviewDate" column="review_date" jdbcType="TIMESTAMP"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="outboundRemark" column="outbound_remark" jdbcType="VARCHAR"/>
+        <result property="outboundCreater" column="outbound_creater" jdbcType="VARCHAR"/>
+        <result property="outboundReviewer" column="outbound_reviewer" jdbcType="VARCHAR"/>
+        <result property="outboundApprover" column="outbound_approver" jdbcType="VARCHAR"/>
+        <result property="outboundCloser" column="outbound_closer" jdbcType="VARCHAR"/>
+        <result property="outboundState" column="outbound_state" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AccessoriesOutboundMap">
+        select outbound_id,
+               employee_id,
+               document,
+               outbound_date,
+               clerk_name,
+               outboud_type,
+               review_date,
+               department,
+               outbound_remark,
+               outbound_creater,
+               outbound_reviewer,
+               outbound_approver,
+               outbound_closer,
+               outbound_state,
+               create_date
+        from accessories_outbound
+        where outbound_id = #{outboundId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesOutboundMap">
+        select
+        outbound_id, employee_id, document, outbound_date, clerk_name, outboud_type, review_date, department,
+        outbound_remark, outbound_creater, outbound_reviewer, outbound_approver, outbound_closer, outbound_state,
+        create_date
+        from accessories_outbound
+        <where>
+            <if test="outboundId != null">
+                and outbound_id = #{outboundId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="document != null and document != ''">
+                and document = #{document}
+            </if>
+            <if test="outboundDate != null">
+                and outbound_date = #{outboundDate}
+            </if>
+            <if test="clerkName != null and clerkName != ''">
+                and clerk_name = #{clerkName}
+            </if>
+            <if test="outboudType != null and outboudType != ''">
+                and outboud_type = #{outboudType}
+            </if>
+            <if test="reviewDate != null">
+                and review_date = #{reviewDate}
+            </if>
+            <if test="department != null and department != ''">
+                and department = #{department}
+            </if>
+            <if test="outboundRemark != null and outboundRemark != ''">
+                and outbound_remark = #{outboundRemark}
+            </if>
+            <if test="outboundCreater != null and outboundCreater != ''">
+                and outbound_creater = #{outboundCreater}
+            </if>
+            <if test="outboundReviewer != null and outboundReviewer != ''">
+                and outbound_reviewer = #{outboundReviewer}
+            </if>
+            <if test="outboundApprover != null and outboundApprover != ''">
+                and outbound_approver = #{outboundApprover}
+            </if>
+            <if test="outboundCloser != null and outboundCloser != ''">
+                and outbound_closer = #{outboundCloser}
+            </if>
+            <if test="outboundState != null and outboundState != ''">
+                and outbound_state = #{outboundState}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="AccessoriesOutboundMap">
+        SELECT * FROM accessories_outbound
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from accessories_outbound
+        <where>
+            <if test="outboundId != null">
+                and outbound_id = #{outboundId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="document != null and document != ''">
+                and document = #{document}
+            </if>
+            <if test="outboundDate != null">
+                and outbound_date = #{outboundDate}
+            </if>
+            <if test="clerkName != null and clerkName != ''">
+                and clerk_name = #{clerkName}
+            </if>
+            <if test="outboudType != null and outboudType != ''">
+                and outboud_type = #{outboudType}
+            </if>
+            <if test="reviewDate != null">
+                and review_date = #{reviewDate}
+            </if>
+            <if test="department != null and department != ''">
+                and department = #{department}
+            </if>
+            <if test="outboundRemark != null and outboundRemark != ''">
+                and outbound_remark = #{outboundRemark}
+            </if>
+            <if test="outboundCreater != null and outboundCreater != ''">
+                and outbound_creater = #{outboundCreater}
+            </if>
+            <if test="outboundReviewer != null and outboundReviewer != ''">
+                and outbound_reviewer = #{outboundReviewer}
+            </if>
+            <if test="outboundApprover != null and outboundApprover != ''">
+                and outbound_approver = #{outboundApprover}
+            </if>
+            <if test="outboundCloser != null and outboundCloser != ''">
+                and outbound_closer = #{outboundCloser}
+            </if>
+            <if test="outboundState != null and outboundState != ''">
+                and outbound_state = #{outboundState}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="outboundId" useGeneratedKeys="true">
+        insert into accessories_outbound(employee_id, document, outbound_date, clerk_name, outboud_type, review_date,
+                                         department, outbound_remark, outbound_creater, outbound_reviewer,
+                                         outbound_approver, outbound_closer, outbound_state, create_date)
+        values (#{employeeId}, #{document}, #{outboundDate}, #{clerkName}, #{outboudType}, #{reviewDate}, #{department},
+                #{outboundRemark}, #{outboundCreater}, #{outboundReviewer}, #{outboundApprover}, #{outboundCloser},
+                #{outboundState}, #{createDate})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="outboundId" useGeneratedKeys="true">
+        insert into accessories_outbound(employee_id, document, outbound_date, clerk_name, outboud_type, review_date,
+        department, outbound_remark, outbound_creater, outbound_reviewer, outbound_approver, outbound_closer,
+        outbound_state, create_date)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.employeeId}, #{entity.document}, #{entity.outboundDate}, #{entity.clerkName},
+            #{entity.outboudType}, #{entity.reviewDate}, #{entity.department}, #{entity.outboundRemark},
+            #{entity.outboundCreater}, #{entity.outboundReviewer}, #{entity.outboundApprover}, #{entity.outboundCloser},
+            #{entity.outboundState}, #{entity.createDate})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="outboundId" useGeneratedKeys="true">
+        insert into accessories_outbound(employee_id, document, outbound_date, clerk_name, outboud_type, review_date,
+        department, outbound_remark, outbound_creater, outbound_reviewer, outbound_approver, outbound_closer,
+        outbound_state, create_date)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.employeeId}, #{entity.document}, #{entity.outboundDate}, #{entity.clerkName},
+            #{entity.outboudType}, #{entity.reviewDate}, #{entity.department}, #{entity.outboundRemark},
+            #{entity.outboundCreater}, #{entity.outboundReviewer}, #{entity.outboundApprover}, #{entity.outboundCloser},
+            #{entity.outboundState}, #{entity.createDate})
+        </foreach>
+        on duplicate key update
+        employee_id = values(employee_id),
+        document = values(document),
+        outbound_date = values(outbound_date),
+        clerk_name = values(clerk_name),
+        outboud_type = values(outboud_type),
+        review_date = values(review_date),
+        department = values(department),
+        outbound_remark = values(outbound_remark),
+        outbound_creater = values(outbound_creater),
+        outbound_reviewer = values(outbound_reviewer),
+        outbound_approver = values(outbound_approver),
+        outbound_closer = values(outbound_closer),
+        outbound_state = values(outbound_state),
+        create_date = values(create_date)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update accessories_outbound
+        <set>
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="document != null and document != ''">
+                document = #{document},
+            </if>
+            <if test="outboundDate != null">
+                outbound_date = #{outboundDate},
+            </if>
+            <if test="clerkName != null and clerkName != ''">
+                clerk_name = #{clerkName},
+            </if>
+            <if test="outboudType != null and outboudType != ''">
+                outboud_type = #{outboudType},
+            </if>
+            <if test="reviewDate != null">
+                review_date = #{reviewDate},
+            </if>
+            <if test="department != null and department != ''">
+                department = #{department},
+            </if>
+            <if test="outboundRemark != null and outboundRemark != ''">
+                outbound_remark = #{outboundRemark},
+            </if>
+            <if test="outboundCreater != null and outboundCreater != ''">
+                outbound_creater = #{outboundCreater},
+            </if>
+            <if test="outboundReviewer != null and outboundReviewer != ''">
+                outbound_reviewer = #{outboundReviewer},
+            </if>
+            <if test="outboundApprover != null and outboundApprover != ''">
+                outbound_approver = #{outboundApprover},
+            </if>
+            <if test="outboundCloser != null and outboundCloser != ''">
+                outbound_closer = #{outboundCloser},
+            </if>
+            <if test="outboundState != null and outboundState != ''">
+                outbound_state = #{outboundState},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate},
+            </if>
+        </set>
+        where outbound_id = #{outboundId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from accessories_outbound
+        where outbound_id = #{outboundId}
+    </delete>
+
+</mapper>
+

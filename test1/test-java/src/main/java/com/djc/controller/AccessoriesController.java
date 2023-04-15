@@ -70,7 +70,7 @@ public class AccessoriesController<E> {
      */
 
     @PostMapping
-    public JsonResult<Accessories> add(Accessories accessories) {
+    public JsonResult<Accessories> add(@RequestBody Accessories accessories) {
         return new JsonResult<>(200, "新增成功", this.accessoriesService.insert(accessories));
     }
 
@@ -81,7 +81,7 @@ public class AccessoriesController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<Accessories> edit(Accessories accessories) {
+    public JsonResult<Accessories> edit(@RequestBody Accessories accessories) {
         return new JsonResult<>(200, "修改成功", this.accessoriesService.update(accessories));
     }
 

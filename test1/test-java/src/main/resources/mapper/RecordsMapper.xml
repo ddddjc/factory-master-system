@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.RecordsMapper">
+
+    <resultMap type="com.djc.entity.Records" id="RecordsMap">
+        <result property="recordsId" column="records_id" jdbcType="INTEGER"/>
+        <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
+        <result property="machineName" column="machine_name" jdbcType="VARCHAR"/>
+        <result property="machineTypeId" column="machine_type_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="repaireEmployeesName" column="repaire_employees_name" jdbcType="VARCHAR"/>
+        <result property="faultDescription" column="fault_description" jdbcType="VARCHAR"/>
+        <result property="methodDescription" column="method_description" jdbcType="VARCHAR"/>
+        <result property="maintenanceTime" column="maintenance_time" jdbcType="TIMESTAMP"/>
+        <result property="urgencyLevel" column="urgency_level" jdbcType="VARCHAR"/>
+        <result property="recordType" column="record_type" jdbcType="INTEGER"/>
+        <result property="startTime" column="start_time" jdbcType="VARCHAR"/>
+        <result property="endTime" column="end_time" jdbcType="VARCHAR"/>
+        <result property="recordsState" column="records_state" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="RecordsMap">
+        select records_id,
+               machine_id,
+               machine_name,
+               machine_type_id,
+               employee_id,
+               repaire_employees_name,
+               fault_description,
+               method_description,
+               maintenance_time,
+               urgency_level,
+               record_type,
+               start_time,
+               end_time,
+               records_state
+        from records
+        where records_id = #{recordsId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="RecordsMap">
+        select
+        records_id, machine_id, machine_name, machine_type_id, employee_id, repaire_employees_name, fault_description,
+        method_description, maintenance_time, urgency_level, record_type, start_time, end_time, records_state
+        from records
+        <where>
+            <if test="recordsId != null">
+                and records_id = #{recordsId}
+            </if>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+            <if test="machineName != null and machineName != ''">
+                and machine_name = #{machineName}
+            </if>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="repaireEmployeesName != null and repaireEmployeesName != ''">
+                and repaire_employees_name = #{repaireEmployeesName}
+            </if>
+            <if test="faultDescription != null and faultDescription != ''">
+                and fault_description = #{faultDescription}
+            </if>
+            <if test="methodDescription != null and methodDescription != ''">
+                and method_description = #{methodDescription}
+            </if>
+            <if test="maintenanceTime != null">
+                and maintenance_time = #{maintenanceTime}
+            </if>
+            <if test="urgencyLevel != null and urgencyLevel != ''">
+                and urgency_level = #{urgencyLevel}
+            </if>
+            <if test="recordType != null">
+                and record_type = #{recordType}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="recordsState != null">
+                and records_state = #{recordsState}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="RecordsMap">
+        SELECT * FROM records
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from records
+        <where>
+            <if test="recordsId != null">
+                and records_id = #{recordsId}
+            </if>
+            <if test="machineId != null">
+                and machine_id = #{machineId}
+            </if>
+            <if test="machineName != null and machineName != ''">
+                and machine_name = #{machineName}
+            </if>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="repaireEmployeesName != null and repaireEmployeesName != ''">
+                and repaire_employees_name = #{repaireEmployeesName}
+            </if>
+            <if test="faultDescription != null and faultDescription != ''">
+                and fault_description = #{faultDescription}
+            </if>
+            <if test="methodDescription != null and methodDescription != ''">
+                and method_description = #{methodDescription}
+            </if>
+            <if test="maintenanceTime != null">
+                and maintenance_time = #{maintenanceTime}
+            </if>
+            <if test="urgencyLevel != null and urgencyLevel != ''">
+                and urgency_level = #{urgencyLevel}
+            </if>
+            <if test="recordType != null">
+                and record_type = #{recordType}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="recordsState != null">
+                and records_state = #{recordsState}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="recordsId" useGeneratedKeys="true">
+        insert into records(machine_id, machine_name, machine_type_id, employee_id, repaire_employees_name,
+                            fault_description, method_description, maintenance_time, urgency_level, record_type,
+                            start_time, end_time, records_state)
+        values (#{machineId}, #{machineName}, #{machineTypeId}, #{employeeId}, #{repaireEmployeesName},
+                #{faultDescription}, #{methodDescription}, #{maintenanceTime}, #{urgencyLevel}, #{recordType},
+                #{startTime}, #{endTime}, #{recordsState})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="recordsId" useGeneratedKeys="true">
+        insert into records(machine_id, machine_name, machine_type_id, employee_id, repaire_employees_name,
+        fault_description, method_description, maintenance_time, urgency_level, record_type, start_time, end_time,
+        records_state)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineId}, #{entity.machineName}, #{entity.machineTypeId}, #{entity.employeeId},
+            #{entity.repaireEmployeesName}, #{entity.faultDescription}, #{entity.methodDescription},
+            #{entity.maintenanceTime}, #{entity.urgencyLevel}, #{entity.recordType}, #{entity.startTime},
+            #{entity.endTime}, #{entity.recordsState})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="recordsId" useGeneratedKeys="true">
+        insert into records(machine_id, machine_name, machine_type_id, employee_id, repaire_employees_name,
+        fault_description, method_description, maintenance_time, urgency_level, record_type, start_time, end_time,
+        records_state)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.machineId}, #{entity.machineName}, #{entity.machineTypeId}, #{entity.employeeId},
+            #{entity.repaireEmployeesName}, #{entity.faultDescription}, #{entity.methodDescription},
+            #{entity.maintenanceTime}, #{entity.urgencyLevel}, #{entity.recordType}, #{entity.startTime},
+            #{entity.endTime}, #{entity.recordsState})
+        </foreach>
+        on duplicate key update
+        machine_id = values(machine_id),
+        machine_name = values(machine_name),
+        machine_type_id = values(machine_type_id),
+        employee_id = values(employee_id),
+        repaire_employees_name = values(repaire_employees_name),
+        fault_description = values(fault_description),
+        method_description = values(method_description),
+        maintenance_time = values(maintenance_time),
+        urgency_level = values(urgency_level),
+        record_type = values(record_type),
+        start_time = values(start_time),
+        end_time = values(end_time),
+        records_state = values(records_state)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update records
+        <set>
+            <if test="machineId != null">
+                machine_id = #{machineId},
+            </if>
+            <if test="machineName != null and machineName != ''">
+                machine_name = #{machineName},
+            </if>
+            <if test="machineTypeId != null">
+                machine_type_id = #{machineTypeId},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="repaireEmployeesName != null and repaireEmployeesName != ''">
+                repaire_employees_name = #{repaireEmployeesName},
+            </if>
+            <if test="faultDescription != null and faultDescription != ''">
+                fault_description = #{faultDescription},
+            </if>
+            <if test="methodDescription != null and methodDescription != ''">
+                method_description = #{methodDescription},
+            </if>
+            <if test="maintenanceTime != null">
+                maintenance_time = #{maintenanceTime},
+            </if>
+            <if test="urgencyLevel != null and urgencyLevel != ''">
+                urgency_level = #{urgencyLevel},
+            </if>
+            <if test="recordType != null">
+                record_type = #{recordType},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="recordsState != null">
+                records_state = #{recordsState},
+            </if>
+        </set>
+        where records_id = #{recordsId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from records
+        where records_id = #{recordsId}
+    </delete>
+
+</mapper>
+

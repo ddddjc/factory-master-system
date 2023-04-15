@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (Accessories)实体类
  *
  * @author djc
- * @since 2023-03-21 21:59:32
+ * @since 2023-04-15 13:28:49
  */
 public class Accessories implements Serializable {
-    private static final long serialVersionUID = -60498897074882976L;
+    private static final long serialVersionUID = -78430629206282762L;
     /**
      * 配件id
      */
@@ -48,7 +48,7 @@ public class Accessories implements Serializable {
      */
     private Integer employeeId;
     /**
-     * 配件类型
+     * 配件类型（excl表名）
      */
     private String type;
     /**

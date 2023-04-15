@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.EmployeeDutyMapper">
+
+    <resultMap type="com.djc.entity.EmployeeDuty" id="EmployeeDutyMap">
+        <result property="dutyId" column="duty_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="employeeName" column="employee_name" jdbcType="VARCHAR"/>
+        <result property="nachineLevel" column="nachine_level" jdbcType="VARCHAR"/>
+        <result property="machineTypeId" column="machine_type_id" jdbcType="INTEGER"/>
+        <result property="machineTypeName" column="machine_type_name" jdbcType="VARCHAR"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="usingNum" column="using_num" jdbcType="INTEGER"/>
+        <result property="usingRegion" column="using_region" jdbcType="VARCHAR"/>
+        <result property="deactivateNum" column="deactivate_num" jdbcType="INTEGER"/>
+        <result property="deactivateRegion" column="deactivate_region" jdbcType="VARCHAR"/>
+        <result property="sluggishNum" column="sluggish_num" jdbcType="INTEGER"/>
+        <result property="sluggishRegion" column="sluggish_region" jdbcType="VARCHAR"/>
+        <result property="dutyRemark" column="duty_remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="EmployeeDutyMap">
+        select duty_id,
+               employee_id,
+               employee_name,
+               nachine_level,
+               machine_type_id,
+               machine_type_name,
+               num,
+               using_num,
+               using_region,
+               deactivate_num,
+               deactivate_region,
+               sluggish_num,
+               sluggish_region,
+               duty_remark
+        from employee_duty
+        where duty_id = #{dutyId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="EmployeeDutyMap">
+        select
+        duty_id, employee_id, employee_name, nachine_level, machine_type_id, machine_type_name, num, using_num,
+        using_region, deactivate_num, deactivate_region, sluggish_num, sluggish_region, duty_remark
+        from employee_duty
+        <where>
+            <if test="dutyId != null">
+                and duty_id = #{dutyId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="employeeName != null and employeeName != ''">
+                and employee_name = #{employeeName}
+            </if>
+            <if test="nachineLevel != null and nachineLevel != ''">
+                and nachine_level = #{nachineLevel}
+            </if>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="machineTypeName != null and machineTypeName != ''">
+                and machine_type_name = #{machineTypeName}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="usingNum != null">
+                and using_num = #{usingNum}
+            </if>
+            <if test="usingRegion != null and usingRegion != ''">
+                and using_region = #{usingRegion}
+            </if>
+            <if test="deactivateNum != null">
+                and deactivate_num = #{deactivateNum}
+            </if>
+            <if test="deactivateRegion != null and deactivateRegion != ''">
+                and deactivate_region = #{deactivateRegion}
+            </if>
+            <if test="sluggishNum != null">
+                and sluggish_num = #{sluggishNum}
+            </if>
+            <if test="sluggishRegion != null and sluggishRegion != ''">
+                and sluggish_region = #{sluggishRegion}
+            </if>
+            <if test="dutyRemark != null and dutyRemark != ''">
+                and duty_remark = #{dutyRemark}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="EmployeeDutyMap">
+        SELECT * FROM employee_duty
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from employee_duty
+        <where>
+            <if test="dutyId != null">
+                and duty_id = #{dutyId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="employeeName != null and employeeName != ''">
+                and employee_name = #{employeeName}
+            </if>
+            <if test="nachineLevel != null and nachineLevel != ''">
+                and nachine_level = #{nachineLevel}
+            </if>
+            <if test="machineTypeId != null">
+                and machine_type_id = #{machineTypeId}
+            </if>
+            <if test="machineTypeName != null and machineTypeName != ''">
+                and machine_type_name = #{machineTypeName}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="usingNum != null">
+                and using_num = #{usingNum}
+            </if>
+            <if test="usingRegion != null and usingRegion != ''">
+                and using_region = #{usingRegion}
+            </if>
+            <if test="deactivateNum != null">
+                and deactivate_num = #{deactivateNum}
+            </if>
+            <if test="deactivateRegion != null and deactivateRegion != ''">
+                and deactivate_region = #{deactivateRegion}
+            </if>
+            <if test="sluggishNum != null">
+                and sluggish_num = #{sluggishNum}
+            </if>
+            <if test="sluggishRegion != null and sluggishRegion != ''">
+                and sluggish_region = #{sluggishRegion}
+            </if>
+            <if test="dutyRemark != null and dutyRemark != ''">
+                and duty_remark = #{dutyRemark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="dutyId" useGeneratedKeys="true">
+        insert into employee_duty(employee_id, employee_name, nachine_level, machine_type_id, machine_type_name, num,
+                                  using_num, using_region, deactivate_num, deactivate_region, sluggish_num,
+                                  sluggish_region, duty_remark)
+        values (#{employeeId}, #{employeeName}, #{nachineLevel}, #{machineTypeId}, #{machineTypeName}, #{num},
+                #{usingNum}, #{usingRegion}, #{deactivateNum}, #{deactivateRegion}, #{sluggishNum}, #{sluggishRegion},
+                #{dutyRemark})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="dutyId" useGeneratedKeys="true">
+        insert into employee_duty(employee_id, employee_name, nachine_level, machine_type_id, machine_type_name, num,
+        using_num, using_region, deactivate_num, deactivate_region, sluggish_num, sluggish_region, duty_remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.employeeId}, #{entity.employeeName}, #{entity.nachineLevel}, #{entity.machineTypeId},
+            #{entity.machineTypeName}, #{entity.num}, #{entity.usingNum}, #{entity.usingRegion},
+            #{entity.deactivateNum}, #{entity.deactivateRegion}, #{entity.sluggishNum}, #{entity.sluggishRegion},
+            #{entity.dutyRemark})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="dutyId" useGeneratedKeys="true">
+        insert into employee_duty(employee_id, employee_name, nachine_level, machine_type_id, machine_type_name, num,
+        using_num, using_region, deactivate_num, deactivate_region, sluggish_num, sluggish_region, duty_remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.employeeId}, #{entity.employeeName}, #{entity.nachineLevel}, #{entity.machineTypeId},
+            #{entity.machineTypeName}, #{entity.num}, #{entity.usingNum}, #{entity.usingRegion},
+            #{entity.deactivateNum}, #{entity.deactivateRegion}, #{entity.sluggishNum}, #{entity.sluggishRegion},
+            #{entity.dutyRemark})
+        </foreach>
+        on duplicate key update
+        employee_id = values(employee_id),
+        employee_name = values(employee_name),
+        nachine_level = values(nachine_level),
+        machine_type_id = values(machine_type_id),
+        machine_type_name = values(machine_type_name),
+        num = values(num),
+        using_num = values(using_num),
+        using_region = values(using_region),
+        deactivate_num = values(deactivate_num),
+        deactivate_region = values(deactivate_region),
+        sluggish_num = values(sluggish_num),
+        sluggish_region = values(sluggish_region),
+        duty_remark = values(duty_remark)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update employee_duty
+        <set>
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="employeeName != null and employeeName != ''">
+                employee_name = #{employeeName},
+            </if>
+            <if test="nachineLevel != null and nachineLevel != ''">
+                nachine_level = #{nachineLevel},
+            </if>
+            <if test="machineTypeId != null">
+                machine_type_id = #{machineTypeId},
+            </if>
+            <if test="machineTypeName != null and machineTypeName != ''">
+                machine_type_name = #{machineTypeName},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="usingNum != null">
+                using_num = #{usingNum},
+            </if>
+            <if test="usingRegion != null and usingRegion != ''">
+                using_region = #{usingRegion},
+            </if>
+            <if test="deactivateNum != null">
+                deactivate_num = #{deactivateNum},
+            </if>
+            <if test="deactivateRegion != null and deactivateRegion != ''">
+                deactivate_region = #{deactivateRegion},
+            </if>
+            <if test="sluggishNum != null">
+                sluggish_num = #{sluggishNum},
+            </if>
+            <if test="sluggishRegion != null and sluggishRegion != ''">
+                sluggish_region = #{sluggishRegion},
+            </if>
+            <if test="dutyRemark != null and dutyRemark != ''">
+                duty_remark = #{dutyRemark},
+            </if>
+        </set>
+        where duty_id = #{dutyId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from employee_duty
+        where duty_id = #{dutyId}
+    </delete>
+
+</mapper>
+

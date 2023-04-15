@@ -44,7 +44,7 @@ public class InventoryController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<Inventory> queryById(@PathVariable("id") Integer id) {
+    public JsonResult<Inventory> queryById(@PathVariable("id") Object id) {
         return new JsonResult<>(200, "查询成功", this.inventoryService.queryById(id));
     }
 
@@ -69,7 +69,7 @@ public class InventoryController<E> {
      */
 
     @PostMapping
-    public JsonResult<Inventory> add(Inventory inventory) {
+    public JsonResult<Inventory> add(@RequestBody Inventory inventory) {
         return new JsonResult<>(200, "新增成功", this.inventoryService.insert(inventory));
     }
 
@@ -80,7 +80,7 @@ public class InventoryController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<Inventory> edit(Inventory inventory) {
+    public JsonResult<Inventory> edit(@RequestBody Inventory inventory) {
         return new JsonResult<>(200, "修改成功", this.inventoryService.update(inventory));
     }
 
@@ -91,7 +91,7 @@ public class InventoryController<E> {
      * @return 删除是否成功
      */
     @DeleteMapping("{id}")
-    public JsonResult<Boolean> deleteById(@PathVariable("id") Integer id) {
+    public JsonResult<Boolean> deleteById(@PathVariable("id") Object id) {
         boolean isDeleted = this.inventoryService.deleteById(id);
         if (isDeleted) {
             return new JsonResult<>(200, "删除成功", true);

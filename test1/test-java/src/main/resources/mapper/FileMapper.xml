@@ -4,17 +4,19 @@
 
     <resultMap type="com.djc.entity.File" id="FileMap">
         <result property="fileId" column="file_id" jdbcType="INTEGER"/>
-        <result property="filePlace" column="file_place" jdbcType="VARCHAR"/>
         <result property="recordsId" column="records_id" jdbcType="INTEGER"/>
+        <result property="filePlace" column="file_place" jdbcType="VARCHAR"/>
         <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+        <result property="fileSize" column="file_size" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="FileMap">
         select file_id,
-               file_place,
                records_id,
-               file_type
+               file_place,
+               file_type,
+               file_size
         from file
         where file_id = #{fileId}
     </select>
@@ -22,20 +24,23 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="FileMap">
         select
-        file_id, file_place, records_id, file_type
+        file_id, records_id, file_place, file_type, file_size
         from file
         <where>
             <if test="fileId != null">
                 and file_id = #{fileId}
             </if>
-            <if test="filePlace != null and filePlace != ''">
-                and file_place = #{filePlace}
-            </if>
             <if test="recordsId != null">
                 and records_id = #{recordsId}
             </if>
+            <if test="filePlace != null and filePlace != ''">
+                and file_place = #{filePlace}
+            </if>
             <if test="fileType != null and fileType != ''">
                 and file_type = #{fileType}
+            </if>
+            <if test="fileSize != null">
+                and file_size = #{fileSize}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -57,59 +62,63 @@
             <if test="fileId != null">
                 and file_id = #{fileId}
             </if>
-            <if test="filePlace != null and filePlace != ''">
-                and file_place = #{filePlace}
-            </if>
             <if test="recordsId != null">
                 and records_id = #{recordsId}
+            </if>
+            <if test="filePlace != null and filePlace != ''">
+                and file_place = #{filePlace}
             </if>
             <if test="fileType != null and fileType != ''">
                 and file_type = #{fileType}
             </if>
+            <if test="fileSize != null">
+                and file_size = #{fileSize}
+            </if>
         </where>
-    </select>
-    <select id="findFile" resultType="java.lang.String">
-        select file_place from file where records_id=#{recoedId} and file_type=#{type};
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="fileId" useGeneratedKeys="true">
-        insert into file(file_place, records_id, file_type)
-        values (#{filePlace}, #{recordsId}, #{fileType})
+        insert into file(records_id, file_place, file_type, file_size)
+        values (#{recordsId}, #{filePlace}, #{fileType}, #{fileSize})
     </insert>
 
     <insert id="insertBatch" keyProperty="fileId" useGeneratedKeys="true">
-        insert into file(file_place, records_id, file_type)
+        insert into file(records_id, file_place, file_type, file_size)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.filePlace}, #{entity.recordsId}, #{entity.fileType})
+            (#{entity.recordsId}, #{entity.filePlace}, #{entity.fileType}, #{entity.fileSize})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="fileId" useGeneratedKeys="true">
-        insert into file(file_place, records_id, file_type)
+        insert into file(records_id, file_place, file_type, file_size)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.filePlace}, #{entity.recordsId}, #{entity.fileType})
+            (#{entity.recordsId}, #{entity.filePlace}, #{entity.fileType}, #{entity.fileSize})
         </foreach>
         on duplicate key update
-        file_place = values(file_place),
         records_id = values(records_id),
-        file_type = values(file_type)
+        file_place = values(file_place),
+        file_type = values(file_type),
+        file_size = values(file_size)
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update file
         <set>
-            <if test="filePlace != null and filePlace != ''">
-                file_place = #{filePlace},
-            </if>
             <if test="recordsId != null">
                 records_id = #{recordsId},
             </if>
+            <if test="filePlace != null and filePlace != ''">
+                file_place = #{filePlace},
+            </if>
             <if test="fileType != null and fileType != ''">
                 file_type = #{fileType},
+            </if>
+            <if test="fileSize != null">
+                file_size = #{fileSize},
             </if>
         </set>
         where file_id = #{fileId}

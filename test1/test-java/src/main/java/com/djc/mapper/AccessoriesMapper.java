@@ -11,7 +11,7 @@ import java.util.List;
  * (Accessories)表数据库访问层
  *
  * @author djc
- * @since 2023-03-21 21:59:32
+ * @since 2023-04-15 13:28:49
  */
 public interface AccessoriesMapper {
 
@@ -40,7 +40,7 @@ public interface AccessoriesMapper {
      * @param num     每页数量
      * @return 多条数据
      */
-    List<Accessories> queryAll(String keyWord, int page, int num);
+    List<Accessories> queryAll(@Param("keyWord") String keyWord, @Param("page") int page, @Param("num") int num);
 
     /**
      * 统计总行数
@@ -91,6 +91,5 @@ public interface AccessoriesMapper {
      */
     int deleteById(Integer accessoriesId);
 
-    List<Accessories> findByMachineType(@Param("machineTypeId") Integer machineTypeId, @Param("page") Integer page, @Param("num") Integer num);
 }
 

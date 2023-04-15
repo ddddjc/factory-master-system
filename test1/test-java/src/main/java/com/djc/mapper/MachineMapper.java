@@ -7,10 +7,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * 设备表(Machine)表数据库访问层
+ * 设备表(具体到台)(Machine)表数据库访问层
  *
  * @author djc
- * @since 2023-03-19 19:14:21
+ * @since 2023-04-15 13:28:50
  */
 public interface MachineMapper {
 
@@ -39,7 +39,7 @@ public interface MachineMapper {
      * @param num     每页数量
      * @return 多条数据
      */
-    List<Machine> queryAll(String keyWord, int page, int num);
+    List<Machine> queryAll(@Param("keyWord") String keyWord, @Param("page") int page, @Param("num") int num);
 
     /**
      * 统计总行数

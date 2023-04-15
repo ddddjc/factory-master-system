@@ -108,7 +108,7 @@
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
-        from team
+        from machine.team
         where group_id = #{groupId}
     </delete>
     <update id="deleteEmployee">

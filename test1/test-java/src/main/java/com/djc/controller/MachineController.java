@@ -1,10 +1,7 @@
 package com.djc.controller;
 
 import com.djc.entity.Machine;
-import com.djc.entity.MaintenanceRecords;
 import com.djc.service.MachineService;
-import com.djc.service.MaintenanceRecordsService;
-import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.djc.util.JsonResult;
+
 /**
- * 设备表(Machine)表控制层
+ * 设备表(具体到台)(Machine)表控制层
  *
  * @param <E> 响应数据的类型
  */
@@ -52,14 +51,14 @@ public class MachineController<E> {
     /**
      * 通过主键查询单条数据
      *
-     * @param keyWord 关键字
+     * @param keyword 关键字
      * @param page    页码
      * @param num     每页数量
      * @return 多条数据
      */
     @GetMapping("/findAll")
-    public JsonResult<List<Machine>> findAll(String keyWord, int page, int num) {
-        return new JsonResult<List<Machine>>(200, "查询成功", this.machineService.queryAll(keyWord, page, num));
+    public JsonResult<List<Machine>> findAll(String keyword, int page, int num) {
+        return new JsonResult<List<Machine>>(200, "查询成功", this.machineService.queryAll(keyword, page, num));
     }
 
     /**
@@ -99,12 +98,5 @@ public class MachineController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
-    }
-    @Autowired
-    MaintenanceRecordsService maintenanceRecordsService;
-    @GetMapping("/findReword/{id}")
-    public JsonResult findReword(@PathVariable("id") Integer id){
-        List<MaintenanceRecords> list=maintenanceRecordsService.quarryByMachineId(id);
-        return new JsonResult(200,"查询成功",list);
     }
 }

@@ -10,17 +10,17 @@ import java.util.List;
  * 库存(Inventory)表数据库访问层
  *
  * @author djc
- * @since 2023-03-21 21:59:31
+ * @since 2023-04-15 13:28:51
  */
 public interface InventoryMapper {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param employeeId 主键
+     * @param inventoryId 主键
      * @return 实例对象
      */
-    Inventory queryById(Integer employeeId);
+    Inventory queryById(Object inventoryId);
 
     /**
      * 查询指定行数据
@@ -39,7 +39,7 @@ public interface InventoryMapper {
      * @param num     每页数量
      * @return 多条数据
      */
-    List<Inventory> queryAll(String keyWord, int page, int num);
+    List<Inventory> queryAll(@Param("keyWord") String keyWord, @Param("page") int page, @Param("num") int num);
 
     /**
      * 统计总行数
@@ -85,10 +85,10 @@ public interface InventoryMapper {
     /**
      * 通过主键删除数据
      *
-     * @param employeeId 主键
+     * @param inventoryId 主键
      * @return 影响行数
      */
-    int deleteById(Integer employeeId);
+    int deleteById(Object inventoryId);
 
 }
 

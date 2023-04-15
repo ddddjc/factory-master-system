@@ -10,7 +10,7 @@ import java.util.List;
  * 文件表(File)表数据库访问层
  *
  * @author djc
- * @since 2023-03-25 13:06:07
+ * @since 2023-04-15 13:28:55
  */
 public interface FileMapper {
 
@@ -90,6 +90,5 @@ public interface FileMapper {
      */
     int deleteById(Integer fileId);
 
-    List<String> findFile(@Param("type") String type, @Param("recoedId") Integer recoedId);
 }
 

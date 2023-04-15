@@ -16,7 +16,7 @@ import java.util.List;
  * (Accessories)表服务实现类
  *
  * @author djc
- * @since 2023-03-21 21:59:32
+ * @since 2023-04-15 13:28:49
  */
 @Service("accessoriesService")
 public class AccessoriesServiceImpl implements AccessoriesService {
@@ -93,10 +93,5 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     @Override
     public boolean deleteById(Integer accessoriesId) {
         return this.accessoriesMapper.deleteById(accessoriesId) > 0;
-    }
-
-    @Override
-    public List<Accessories> findByMachineType(Integer machineTypeId, Integer page, Integer num) {
-        return accessoriesMapper.findByMachineType(machineTypeId,(page-1)*num,num);
     }
 }

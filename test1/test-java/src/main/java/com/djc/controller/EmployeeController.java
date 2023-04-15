@@ -1,9 +1,7 @@
 package com.djc.controller;
 
 import com.djc.entity.Employee;
-import com.djc.entity.MyList;
 import com.djc.service.EmployeeService;
-import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,13 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.djc.util.JsonResult;
+
 /**
  * 员工表(Employee)表控制层
  *
  * @param <E> 响应数据的类型
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("employee")
 public class EmployeeController<E> {
     /**
      * 服务对象
@@ -43,7 +43,7 @@ public class EmployeeController<E> {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("findUser/{id}")
+    @GetMapping("{id}")
     public JsonResult<Employee> queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.employeeService.queryById(id));
     }
@@ -56,11 +56,8 @@ public class EmployeeController<E> {
      * @param num     每页数量
      * @return 多条数据
      */
-    @GetMapping("/findAllUser")
+    @GetMapping("/findAll")
     public JsonResult<List<Employee>> findAll(String keyword, int page, int num) {
-        System.out.println(keyword);
-        System.out.println(page);
-        System.out.println(num);
         return new JsonResult<List<Employee>>(200, "查询成功", this.employeeService.queryAll(keyword, page, num));
     }
 
@@ -73,7 +70,6 @@ public class EmployeeController<E> {
 
     @PostMapping
     public JsonResult<Employee> add(@RequestBody Employee employee) {
-        System.out.println(employee.toString());
         return new JsonResult<>(200, "新增成功", this.employeeService.insert(employee));
     }
 
@@ -84,7 +80,7 @@ public class EmployeeController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<Employee> edit(Employee employee) {
+    public JsonResult<Employee> edit(@RequestBody Employee employee) {
         return new JsonResult<>(200, "修改成功", this.employeeService.update(employee));
     }
 
@@ -102,22 +98,5 @@ public class EmployeeController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
-    }
-    @PutMapping("setgroup")
-    public JsonResult setgroup(@RequestBody Employee employee){
-        Employee employee1=new Employee();
-        employee1.setEmployeeId(employee.getEmployeeId());
-        employee1.setGroupId(employee.getGroupId());
-        employeeService.update(employee1);
-        return new JsonResult(200,"设置修改",null);
-    }
-    @PostMapping("/addSome")
-    public JsonResult addSome(@RequestBody MyList<Employee> myList){
-        List list=myList.getList();
-        for (Object o: list) {
-            Employee e= (Employee) o;
-            employeeService.insert(e);
-        }
-        return new JsonResult(200,"添加成功",null);
     }
 }

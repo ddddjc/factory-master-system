@@ -1,20 +1,19 @@
 package com.djc.controller;
 
-import com.djc.entity.Accessories;
 import com.djc.entity.MachineType;
-import com.djc.service.AccessoriesService;
 import com.djc.service.MachineTypeService;
-import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.djc.util.JsonResult;
+
 /**
- * 机器类型(MachineType)表控制层
+ * 机器类型(按种类）
+ * (MachineType)表控制层
  *
  * @param <E> 响应数据的类型
  */
@@ -27,8 +26,6 @@ public class MachineTypeController<E> {
     @Autowired
     private MachineTypeService machineTypeService;
 
-    @Autowired
-    private AccessoriesService accessoriesService;
     /**
      * 分页查询
      *
@@ -47,7 +44,7 @@ public class MachineTypeController<E> {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("findOne/{id}")
+    @GetMapping("{id}")
     public JsonResult<MachineType> queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.machineTypeService.queryById(id));
     }
@@ -73,7 +70,7 @@ public class MachineTypeController<E> {
      */
 
     @PostMapping
-    public JsonResult<MachineType> add(MachineType machineType) {
+    public JsonResult<MachineType> add(@RequestBody MachineType machineType) {
         return new JsonResult<>(200, "新增成功", this.machineTypeService.insert(machineType));
     }
 
@@ -83,8 +80,8 @@ public class MachineTypeController<E> {
      * @param machineType 实体
      * @return 编辑结果
      */
-    @PutMapping("/update")
-    public JsonResult<MachineType> edit(MachineType machineType) {
+    @PutMapping
+    public JsonResult<MachineType> edit(@RequestBody MachineType machineType) {
         return new JsonResult<>(200, "修改成功", this.machineTypeService.update(machineType));
     }
 
@@ -102,10 +99,5 @@ public class MachineTypeController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
-    }
-    @GetMapping("/findAccessories/{machineTypeId}")
-    public JsonResult findAccessories(@PathVariable Integer machineTypeId, @Param("page") Integer page,@Param("num") Integer num){
-        List<Accessories> list=accessoriesService.findByMachineType(machineTypeId,page,num);
-        return new JsonResult(200,"查询成功",list);
     }
 }

@@ -7,10 +7,10 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 
 /**
- * 设备表(Machine)表服务接口
+ * 设备表(具体到台)(Machine)表服务接口
  *
  * @author djc
- * @since 2023-03-19 19:14:21
+ * @since 2023-04-15 13:28:51
  */
 public interface MachineService {
 

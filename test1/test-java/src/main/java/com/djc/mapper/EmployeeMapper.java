@@ -10,7 +10,7 @@ import java.util.List;
  * 员工表(Employee)表数据库访问层
  *
  * @author djc
- * @since 2023-03-19 19:14:20
+ * @since 2023-04-15 13:28:52
  */
 public interface EmployeeMapper {
 
@@ -39,7 +39,7 @@ public interface EmployeeMapper {
      * @param num     每页数量
      * @return 多条数据
      */
-    List<Employee> queryAll(@Param("keyWord") String keyWord,@Param("page") int page,@Param("num") int num);
+    List<Employee> queryAll(@Param("keyWord") String keyWord, @Param("page") int page, @Param("num") int num);
 
     /**
      * 统计总行数

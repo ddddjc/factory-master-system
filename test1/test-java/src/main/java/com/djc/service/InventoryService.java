@@ -10,17 +10,17 @@ import java.util.List;
  * 库存(Inventory)表服务接口
  *
  * @author djc
- * @since 2023-03-21 21:59:31
+ * @since 2023-04-15 13:28:52
  */
 public interface InventoryService {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param employeeId 主键
+     * @param inventoryId 主键
      * @return 实例对象
      */
-    Inventory queryById(Integer employeeId);
+    Inventory queryById(Object inventoryId);
 
     /**
      * 分页查询
@@ -60,9 +60,9 @@ public interface InventoryService {
     /**
      * 通过主键删除数据
      *
-     * @param employeeId 主键
+     * @param inventoryId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer employeeId);
+    boolean deleteById(Object inventoryId);
 
 }

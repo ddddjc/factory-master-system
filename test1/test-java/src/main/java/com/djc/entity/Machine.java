@@ -1,15 +1,16 @@
 package com.djc.entity;
 
+import java.util.Date;
 import java.io.Serializable;
 
 /**
- * 设备表(Machine)实体类
+ * 设备表(具体到台)(Machine)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:21
+ * @since 2023-04-15 13:28:50
  */
 public class Machine implements Serializable {
-    private static final long serialVersionUID = 948165319098374263L;
+    private static final long serialVersionUID = -32230104424840584L;
     /**
      * 设备id
      */
@@ -19,13 +20,29 @@ public class Machine implements Serializable {
      */
     private String machineTypeId;
     /**
-     * 设备详情信息
+     * 设备编号
      */
-    private String machineInformation;
+    private String machineSerialNumber;
     /**
-     * 负责员工id
+     * 机器具体位置
      */
-    private Integer employeeId;
+    private String machineLocation;
+    /**
+     * 进厂时间
+     */
+    private Date intoDate;
+    /**
+     * 资产编号
+     */
+    private String assetNumber;
+    /**
+     * 机器状态
+     */
+    private String machineState;
+    /**
+     * 备注
+     */
+    private String remark;
 
 
     public Integer getMachineId() {
@@ -44,20 +61,52 @@ public class Machine implements Serializable {
         this.machineTypeId = machineTypeId;
     }
 
-    public String getMachineInformation() {
-        return machineInformation;
+    public String getMachineSerialNumber() {
+        return machineSerialNumber;
     }
 
-    public void setMachineInformation(String machineInformation) {
-        this.machineInformation = machineInformation;
+    public void setMachineSerialNumber(String machineSerialNumber) {
+        this.machineSerialNumber = machineSerialNumber;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
+    public String getMachineLocation() {
+        return machineLocation;
     }
 
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setMachineLocation(String machineLocation) {
+        this.machineLocation = machineLocation;
+    }
+
+    public Date getIntoDate() {
+        return intoDate;
+    }
+
+    public void setIntoDate(Date intoDate) {
+        this.intoDate = intoDate;
+    }
+
+    public String getAssetNumber() {
+        return assetNumber;
+    }
+
+    public void setAssetNumber(String assetNumber) {
+        this.assetNumber = assetNumber;
+    }
+
+    public String getMachineState() {
+        return machineState;
+    }
+
+    public void setMachineState(String machineState) {
+        this.machineState = machineState;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

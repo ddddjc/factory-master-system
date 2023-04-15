@@ -12,10 +12,11 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 
 /**
- * 机器类型(MachineType)表服务实现类
+ * 机器类型(按种类）
+ * (MachineType)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-04-15 13:28:48
  */
 @Service("machineTypeService")
 public class MachineTypeServiceImpl implements MachineTypeService {
@@ -56,7 +57,7 @@ public class MachineTypeServiceImpl implements MachineTypeService {
      */
     @Override
     public List<MachineType> queryAll(String keyWord, int page, int num) {
-        return this.machineTypeMapper.queryAll(keyWord, (page-1)*num, num);
+        return this.machineTypeMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

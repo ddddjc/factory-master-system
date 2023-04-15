@@ -12,10 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 
 /**
- * 设备表(Machine)表服务实现类
+ * 设备表(具体到台)(Machine)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:21
+ * @since 2023-04-15 13:28:51
  */
 @Service("machineService")
 public class MachineServiceImpl implements MachineService {
@@ -56,7 +56,7 @@ public class MachineServiceImpl implements MachineService {
      */
     @Override
     public List<Machine> queryAll(String keyWord, int page, int num) {
-        return this.machineMapper.queryAll(keyWord, (page-1)*num, num);
+        return this.machineMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**

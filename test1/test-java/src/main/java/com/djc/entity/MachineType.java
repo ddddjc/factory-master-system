@@ -3,13 +3,14 @@ package com.djc.entity;
 import java.io.Serializable;
 
 /**
- * 机器类型(MachineType)实体类
+ * 机器类型(按种类）
+ * (MachineType)实体类
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-04-15 13:28:48
  */
 public class MachineType implements Serializable {
-    private static final long serialVersionUID = 652764534707239516L;
+    private static final long serialVersionUID = -44099103505450831L;
     /**
      * 设备种类id
      */
@@ -17,11 +18,35 @@ public class MachineType implements Serializable {
     /**
      * 设备种类
      */
-    private String machineType;
+    private String machineTypeName;
     /**
      * 设备详情
      */
     private String machineTypeInformation;
+    /**
+     * 设备型号
+     */
+    private String machineModel;
+    /**
+     * 制造商
+     */
+    private String machineManufacturer;
+    /**
+     * 定向位置
+     */
+    private String orientationPosition;
+    /**
+     * 电压
+     */
+    private String machineVoltage;
+    /**
+     * 功率
+     */
+    private String machinePower;
+    /**
+     * 备注
+     */
+    private String remark;
 
 
     public Integer getMachineTypeId() {
@@ -32,12 +57,12 @@ public class MachineType implements Serializable {
         this.machineTypeId = machineTypeId;
     }
 
-    public String getMachineType() {
-        return machineType;
+    public String getMachineTypeName() {
+        return machineTypeName;
     }
 
-    public void setMachineType(String machineType) {
-        this.machineType = machineType;
+    public void setMachineTypeName(String machineTypeName) {
+        this.machineTypeName = machineTypeName;
     }
 
     public String getMachineTypeInformation() {
@@ -46,6 +71,54 @@ public class MachineType implements Serializable {
 
     public void setMachineTypeInformation(String machineTypeInformation) {
         this.machineTypeInformation = machineTypeInformation;
+    }
+
+    public String getMachineModel() {
+        return machineModel;
+    }
+
+    public void setMachineModel(String machineModel) {
+        this.machineModel = machineModel;
+    }
+
+    public String getMachineManufacturer() {
+        return machineManufacturer;
+    }
+
+    public void setMachineManufacturer(String machineManufacturer) {
+        this.machineManufacturer = machineManufacturer;
+    }
+
+    public String getOrientationPosition() {
+        return orientationPosition;
+    }
+
+    public void setOrientationPosition(String orientationPosition) {
+        this.orientationPosition = orientationPosition;
+    }
+
+    public String getMachineVoltage() {
+        return machineVoltage;
+    }
+
+    public void setMachineVoltage(String machineVoltage) {
+        this.machineVoltage = machineVoltage;
+    }
+
+    public String getMachinePower() {
+        return machinePower;
+    }
+
+    public void setMachinePower(String machinePower) {
+        this.machinePower = machinePower;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

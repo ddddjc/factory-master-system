@@ -7,10 +7,11 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 
 /**
- * 机器类型(MachineType)表服务接口
+ * 机器类型(按种类）
+ * (MachineType)表服务接口
  *
  * @author djc
- * @since 2023-03-19 19:14:22
+ * @since 2023-04-15 13:28:48
  */
 public interface MachineTypeService {
 

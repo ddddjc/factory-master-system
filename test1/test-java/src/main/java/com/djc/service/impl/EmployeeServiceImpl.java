@@ -15,7 +15,7 @@ import java.util.List;
  * 员工表(Employee)表服务实现类
  *
  * @author djc
- * @since 2023-03-19 19:14:20
+ * @since 2023-04-15 13:28:52
  */
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public List<Employee> queryAll(String keyWord, int page, int num) {
-        return this.employeeMapper.queryAll(keyWord, (page-1)*num, num);
+        return this.employeeMapper.queryAll(keyWord, (page - 1) * num, num);
     }
 
     /**
