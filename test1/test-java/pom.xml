@@ -53,11 +53,11 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.2.16</version>
         </dependency>
-                <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>3.5.2</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus</artifactId>-->
+<!--            <version>3.5.2</version>-->
+<!--        </dependency>-->
 <!--        jwt依赖-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -85,6 +85,7 @@
             <artifactId>javacv-platform</artifactId>
             <version>1.5.7</version>
         </dependency>
+
     </dependencies>
 
     <build>

@@ -2,6 +2,7 @@ package com.djc.controller;
 
 import com.djc.entity.Employee;
 import com.djc.service.EmployeeService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,15 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import com.djc.util.JsonResult;
-
 /**
  * 员工表(Employee)表控制层
  *
  * @param <E> 响应数据的类型
  */
 @RestController
-@RequestMapping("employee")
+@RequestMapping("user")
 public class EmployeeController<E> {
     /**
      * 服务对象
