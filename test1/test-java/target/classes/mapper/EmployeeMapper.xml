@@ -19,74 +19,91 @@
         <result property="hireDate" column="hire_date" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap type="com.djc.entity.Vo.QueryEmployeeVo" id="QueryEmployeeVo">
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="employeeName" column="employee_name" jdbcType="VARCHAR"/>
+        <result property="employeeSex" column="employee_sex" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="teamId" column="team_id" jdbcType="INTEGER"/>
+        <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
+        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+        <result property="workPlace" column="work_place" jdbcType="VARCHAR"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="employeeEmail" column="employee_email" jdbcType="VARCHAR"/>
+        <result property="employeeStatus" column="employee_status" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="hireDate" column="hire_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
     <!--查询单个-->
-    <select id="queryById" resultMap="EmployeeMap">
-        select employee_id,
-               employee_name,
+    <select id="queryById" parameterType="employee" resultMap="QueryEmployeeVo">
+        select employee.employee_id,
+               employee.employee_name,
                employee_sex,
                age,
                role,
-               team_id,
+               employee.team_id,
                password,
                phone_number,
                work_place,
                department,
                employee_email,
                employee_status,
-               remark,
-               hire_date
-        from employee
-        where employee_id = #{employeeId}
+               employee.remark,
+               hire_date,
+               team_name
+        from employee join team t on employee.team_id = t.team_id
+        where employee.employee_id = #{employeeId}
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="EmployeeMap">
+    <select id="queryAllByLimit" resultMap="QueryEmployeeVo">
         select
-        employee_id, employee_name, employee_sex, age, role, team_id, password, phone_number, work_place, department,
-        employee_email, employee_status, remark, hire_date
-        from employee
+        employee.employee_id, employee.employee_name, employee_sex, age, role, employee.team_id, password, phone_number, work_place, department,
+        employee_email, employee_status, employee.remark, hire_date,team_name
+        from employee left join team t on employee.team_id = t.team_id
         <where>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="employee.employeeId != null">
+                and employee.employee_id = #{employee.employeeId}
             </if>
-            <if test="employeeName != null and employeeName != ''">
-                and employee_name = #{employeeName}
+            <if test="employee.employeeName != null and employee.employeeName != ''">
+                and employee.employee_name = #{employee.employeeName}
             </if>
-            <if test="employeeSex != null and employeeSex != ''">
-                and employee_sex = #{employeeSex}
+            <if test="employee.employeeSex != null and employee.employeeSex != ''">
+                and employee_sex = #{employee.employeeSex}
             </if>
-            <if test="age != null">
-                and age = #{age}
+            <if test="employee.age != null">
+                and age = #{employee.age}
             </if>
-            <if test="role != null and role != ''">
-                and role = #{role}
+            <if test="employee.role != null and employee.role != ''">
+                and role = #{employee.role}
             </if>
-            <if test="teamId != null">
-                and team_id = #{teamId}
+            <if test="employee.teamId != null">
+                and employee.team_id = #{employee.teamId}
             </if>
-            <if test="password != null and password != ''">
-                and password = #{password}
+            <if test="employee.password != null and employee.password != ''">
+                and password = #{employee.password}
             </if>
-            <if test="phoneNumber != null and phoneNumber != ''">
-                and phone_number = #{phoneNumber}
+            <if test="employee.phoneNumber != null and employee.phoneNumber != ''">
+                and phone_number = #{employee.phoneNumber}
             </if>
-            <if test="workPlace != null and workPlace != ''">
-                and work_place = #{workPlace}
+            <if test="employee.workPlace != null and employee.workPlace != ''">
+                and work_place = #{employee.workPlace}
             </if>
-            <if test="department != null and department != ''">
-                and department = #{department}
+            <if test="employee.department != null and employee.department != ''">
+                and department = #{employee.department}
             </if>
-            <if test="employeeEmail != null and employeeEmail != ''">
-                and employee_email = #{employeeEmail}
+            <if test="employee.employeeEmail != null and employee.employeeEmail != ''">
+                and employee_email = #{employee.employeeEmail}
             </if>
-            <if test="employeeStatus != null and employeeStatus != ''">
-                and employee_status = #{employeeStatus}
+            <if test="employee.employeeStatus != null and employee.employeeStatus != ''">
+                and employee_status = #{employee.employeeStatus}
             </if>
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="employee.remark != null and employee.remark != ''">
+                and employee.remark = #{employee.remark}
             </if>
-            <if test="hireDate != null">
-                and hire_date = #{hireDate}
+            <if test="employee.hireDate != null">
+                and hire_date = #{employee.hireDate}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -149,7 +166,6 @@
             </if>
         </where>
     </select>
-
     <!--新增所有列-->
     <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">
         insert into employee(employee_name, employee_sex, age, role, team_id, password, phone_number, work_place,
@@ -195,7 +211,7 @@
     </insert>
 
     <!--通过主键修改数据-->
-    <update id="update">
+    <update id="update" parameterType="employee">
         update employee
         <set>
             <if test="employeeName != null and employeeName != ''">
