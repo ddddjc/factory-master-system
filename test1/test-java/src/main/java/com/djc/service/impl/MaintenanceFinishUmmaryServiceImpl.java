@@ -15,7 +15,7 @@ import java.util.List;
  * 维护完成汇总(MaintenanceFinishUmmary)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:06
+ * @since 2023-04-16 14:02:14
  */
 @Service("maintenanceFinishUmmaryService")
 public class MaintenanceFinishUmmaryServiceImpl implements MaintenanceFinishUmmaryService {
@@ -31,19 +31,6 @@ public class MaintenanceFinishUmmaryServiceImpl implements MaintenanceFinishUmma
     @Override
     public MaintenanceFinishUmmary queryById(Integer ummmaryId) {
         return this.maintenanceFinishUmmaryMapper.queryById(ummmaryId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param maintenanceFinishUmmary 筛选条件
-     * @param pageRequest             分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<MaintenanceFinishUmmary> queryByPage(MaintenanceFinishUmmary maintenanceFinishUmmary, PageRequest pageRequest) {
-        long total = this.maintenanceFinishUmmaryMapper.count(maintenanceFinishUmmary);
-        return new PageImpl<>(this.maintenanceFinishUmmaryMapper.queryAllByLimit(maintenanceFinishUmmary, pageRequest), pageRequest, total);
     }
 
     /**

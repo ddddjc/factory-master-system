@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (InventoryChange)实体类
  *
  * @author djc
- * @since 2023-04-15 15:55:00
+ * @since 2023-04-16 14:02:15
  */
 public class InventoryChange implements Serializable {
-    private static final long serialVersionUID = 129320642772038768L;
+    private static final long serialVersionUID = 330079285832071985L;
     /**
      * id
      */

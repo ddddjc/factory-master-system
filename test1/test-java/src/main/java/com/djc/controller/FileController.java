@@ -25,17 +25,6 @@ public class FileController<E> {
     @Autowired
     private FileService fileService;
 
-    /**
-     * 分页查询
-     *
-     * @param file        筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<File>> queryByPage(File file, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.fileService.queryByPage(file, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

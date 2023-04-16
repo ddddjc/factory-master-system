@@ -15,7 +15,7 @@ import java.util.List;
  * 申购详情(AccessoriesProcurementDetail)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:54:59
+ * @since 2023-04-16 14:02:08
  */
 @Service("accessoriesProcurementDetailService")
 public class AccessoriesProcurementDetailServiceImpl implements AccessoriesProcurementDetailService {
@@ -31,19 +31,6 @@ public class AccessoriesProcurementDetailServiceImpl implements AccessoriesProcu
     @Override
     public AccessoriesProcurementDetail queryById(Integer procurementDetailId) {
         return this.accessoriesProcurementDetailMapper.queryById(procurementDetailId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param accessoriesProcurementDetail 筛选条件
-     * @param pageRequest                  分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<AccessoriesProcurementDetail> queryByPage(AccessoriesProcurementDetail accessoriesProcurementDetail, PageRequest pageRequest) {
-        long total = this.accessoriesProcurementDetailMapper.count(accessoriesProcurementDetail);
-        return new PageImpl<>(this.accessoriesProcurementDetailMapper.queryAllByLimit(accessoriesProcurementDetail, pageRequest), pageRequest, total);
     }
 
     /**

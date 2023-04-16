@@ -2,14 +2,11 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesArrival;
 import com.djc.service.AccessoriesArrivalService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 到货单(AccessoriesArrival)表控制层
@@ -25,17 +22,6 @@ public class AccessoriesArrivalController<E> {
     @Autowired
     private AccessoriesArrivalService accessoriesArrivalService;
 
-    /**
-     * 分页查询
-     *
-     * @param accessoriesArrival 筛选条件
-     * @param pageRequest        分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<AccessoriesArrival>> queryByPage(AccessoriesArrival accessoriesArrival, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.accessoriesArrivalService.queryByPage(accessoriesArrival, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

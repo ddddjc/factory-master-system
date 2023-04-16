@@ -15,7 +15,7 @@ import java.util.List;
  * 库存(Inventory)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:04
+ * @since 2023-04-16 14:02:11
  */
 @Service("inventoryService")
 public class InventoryServiceImpl implements InventoryService {
@@ -31,19 +31,6 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public Inventory queryById(Object inventoryId) {
         return this.inventoryMapper.queryById(inventoryId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param inventory   筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Inventory> queryByPage(Inventory inventory, PageRequest pageRequest) {
-        long total = this.inventoryMapper.count(inventory);
-        return new PageImpl<>(this.inventoryMapper.queryAllByLimit(inventory, pageRequest), pageRequest, total);
     }
 
     /**

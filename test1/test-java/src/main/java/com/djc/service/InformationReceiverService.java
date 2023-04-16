@@ -10,7 +10,7 @@ import java.util.List;
  * 消息接收者(InformationReceiver)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:54:52
+ * @since 2023-04-16 14:02:09
  */
 public interface InformationReceiverService {
 
@@ -22,14 +22,6 @@ public interface InformationReceiverService {
      */
     InformationReceiver queryById(Integer receiverId);
 
-    /**
-     * 分页查询
-     *
-     * @param informationReceiver 筛选条件
-     * @param pageRequest         分页对象
-     * @return 查询结果
-     */
-    Page<InformationReceiver> queryByPage(InformationReceiver informationReceiver, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

@@ -25,17 +25,6 @@ public class UpcomingController<E> {
     @Autowired
     private UpcomingService upcomingService;
 
-    /**
-     * 分页查询
-     *
-     * @param upcoming    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<Upcoming>> queryByPage(Upcoming upcoming, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.upcomingService.queryByPage(upcoming, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

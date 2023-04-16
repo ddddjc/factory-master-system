@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 设备表(具体到台)(Machine)实体类
  *
  * @author djc
- * @since 2023-04-15 15:55:08
+ * @since 2023-04-16 14:02:13
  */
 public class Machine implements Serializable {
-    private static final long serialVersionUID = 729802870171571526L;
+    private static final long serialVersionUID = 916537646240449819L;
     /**
      * 设备id
      */

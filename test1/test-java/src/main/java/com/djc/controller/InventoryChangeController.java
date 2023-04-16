@@ -25,17 +25,6 @@ public class InventoryChangeController<E> {
     @Autowired
     private InventoryChangeService inventoryChangeService;
 
-    /**
-     * 分页查询
-     *
-     * @param inventoryChange 筛选条件
-     * @param pageRequest     分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<InventoryChange>> queryByPage(InventoryChange inventoryChange, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.inventoryChangeService.queryByPage(inventoryChange, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

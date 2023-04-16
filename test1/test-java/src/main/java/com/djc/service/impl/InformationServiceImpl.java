@@ -15,7 +15,7 @@ import java.util.List;
  * 消息表(Information)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:03
+ * @since 2023-04-16 14:02:14
  */
 @Service("informationService")
 public class InformationServiceImpl implements InformationService {
@@ -31,19 +31,6 @@ public class InformationServiceImpl implements InformationService {
     @Override
     public Information queryById(Integer informationId) {
         return this.informationMapper.queryById(informationId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param information 筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Information> queryByPage(Information information, PageRequest pageRequest) {
-        long total = this.informationMapper.count(information);
-        return new PageImpl<>(this.informationMapper.queryAllByLimit(information, pageRequest), pageRequest, total);
     }
 
     /**

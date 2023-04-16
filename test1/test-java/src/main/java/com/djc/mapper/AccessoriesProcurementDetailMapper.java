@@ -10,7 +10,7 @@ import java.util.List;
  * 申购详情(AccessoriesProcurementDetail)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:54:58
+ * @since 2023-04-16 14:02:08
  */
 public interface AccessoriesProcurementDetailMapper {
 

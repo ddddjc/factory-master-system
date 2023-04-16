@@ -15,7 +15,7 @@ import java.util.List;
  * 维修请求(RepairRequest)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:54:53
+ * @since 2023-04-16 14:02:17
  */
 @Service("repairRequestService")
 public class RepairRequestServiceImpl implements RepairRequestService {
@@ -31,19 +31,6 @@ public class RepairRequestServiceImpl implements RepairRequestService {
     @Override
     public RepairRequest queryById(Integer requestId) {
         return this.repairRequestMapper.queryById(requestId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param repairRequest 筛选条件
-     * @param pageRequest   分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<RepairRequest> queryByPage(RepairRequest repairRequest, PageRequest pageRequest) {
-        long total = this.repairRequestMapper.count(repairRequest);
-        return new PageImpl<>(this.repairRequestMapper.queryAllByLimit(repairRequest, pageRequest), pageRequest, total);
     }
 
     /**

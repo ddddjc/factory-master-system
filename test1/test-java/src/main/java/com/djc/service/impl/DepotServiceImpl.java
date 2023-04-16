@@ -16,7 +16,7 @@ import java.util.List;
  * (Depot)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:14
+ * @since 2023-04-16 14:02:16
  */
 @Service("depotService")
 public class DepotServiceImpl implements DepotService {
@@ -32,19 +32,6 @@ public class DepotServiceImpl implements DepotService {
     @Override
     public Depot queryById(Integer depotId) {
         return this.depotMapper.queryById(depotId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param depot       筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Depot> queryByPage(Depot depot, PageRequest pageRequest) {
-        long total = this.depotMapper.count(depot);
-        return new PageImpl<>(this.depotMapper.queryAllByLimit(depot, pageRequest), pageRequest, total);
     }
 
     /**

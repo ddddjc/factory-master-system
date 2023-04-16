@@ -25,17 +25,6 @@ public class InventoryController<E> {
     @Autowired
     private InventoryService inventoryService;
 
-    /**
-     * 分页查询
-     *
-     * @param inventory   筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<Inventory>> queryByPage(Inventory inventory, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.inventoryService.queryByPage(inventory, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

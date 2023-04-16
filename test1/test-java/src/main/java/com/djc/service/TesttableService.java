@@ -10,7 +10,7 @@ import java.util.List;
  * (Testtable)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:54:56
+ * @since 2023-04-16 14:02:16
  */
 public interface TesttableService {
 
@@ -22,14 +22,6 @@ public interface TesttableService {
      */
     Testtable queryById(Integer aaid);
 
-    /**
-     * 分页查询
-     *
-     * @param testtable   筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Testtable> queryByPage(Testtable testtable, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

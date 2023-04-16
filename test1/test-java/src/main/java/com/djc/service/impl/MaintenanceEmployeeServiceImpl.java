@@ -16,7 +16,7 @@ import java.util.List;
  * (MaintenanceEmployee)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:54:55
+ * @since 2023-04-16 14:02:06
  */
 @Service("maintenanceEmployeeService")
 public class MaintenanceEmployeeServiceImpl implements MaintenanceEmployeeService {
@@ -32,19 +32,6 @@ public class MaintenanceEmployeeServiceImpl implements MaintenanceEmployeeServic
     @Override
     public MaintenanceEmployee queryById(Integer maintenanceEmployeeId) {
         return this.maintenanceEmployeeMapper.queryById(maintenanceEmployeeId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param maintenanceEmployee 筛选条件
-     * @param pageRequest         分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<MaintenanceEmployee> queryByPage(MaintenanceEmployee maintenanceEmployee, PageRequest pageRequest) {
-        long total = this.maintenanceEmployeeMapper.count(maintenanceEmployee);
-        return new PageImpl<>(this.maintenanceEmployeeMapper.queryAllByLimit(maintenanceEmployee, pageRequest), pageRequest, total);
     }
 
     /**

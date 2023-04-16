@@ -16,7 +16,7 @@ import java.util.List;
  * (Accessories)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:12
+ * @since 2023-04-16 14:02:16
  */
 @Service("accessoriesService")
 public class AccessoriesServiceImpl implements AccessoriesService {
@@ -32,19 +32,6 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     @Override
     public Accessories queryById(Integer accessoriesId) {
         return this.accessoriesMapper.queryById(accessoriesId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param accessories 筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Accessories> queryByPage(Accessories accessories, PageRequest pageRequest) {
-        long total = this.accessoriesMapper.count(accessories);
-        return new PageImpl<>(this.accessoriesMapper.queryAllByLimit(accessories, pageRequest), pageRequest, total);
     }
 
     /**

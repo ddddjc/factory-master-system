@@ -15,7 +15,7 @@ import java.util.List;
  * 消息接收者(InformationReceiver)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:54:52
+ * @since 2023-04-16 14:02:09
  */
 @Service("informationReceiverService")
 public class InformationReceiverServiceImpl implements InformationReceiverService {
@@ -31,19 +31,6 @@ public class InformationReceiverServiceImpl implements InformationReceiverServic
     @Override
     public InformationReceiver queryById(Integer receiverId) {
         return this.informationReceiverMapper.queryById(receiverId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param informationReceiver 筛选条件
-     * @param pageRequest         分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<InformationReceiver> queryByPage(InformationReceiver informationReceiver, PageRequest pageRequest) {
-        long total = this.informationReceiverMapper.count(informationReceiver);
-        return new PageImpl<>(this.informationReceiverMapper.queryAllByLimit(informationReceiver, pageRequest), pageRequest, total);
     }
 
     /**

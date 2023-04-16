@@ -16,7 +16,7 @@ import java.util.List;
  * (Records)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:08
+ * @since 2023-04-16 14:02:08
  */
 @Service("recordsService")
 public class RecordsServiceImpl implements RecordsService {
@@ -32,19 +32,6 @@ public class RecordsServiceImpl implements RecordsService {
     @Override
     public Records queryById(Integer recordsId) {
         return this.recordsMapper.queryById(recordsId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param records     筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Records> queryByPage(Records records, PageRequest pageRequest) {
-        long total = this.recordsMapper.count(records);
-        return new PageImpl<>(this.recordsMapper.queryAllByLimit(records, pageRequest), pageRequest, total);
     }
 
     /**

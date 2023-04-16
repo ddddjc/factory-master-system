@@ -1,8 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.Team;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.djc.entity.Vo.QurryTeamVo;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  * 小组表(Team)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:01
+ * @since 2023-04-16 14:02:07
  */
 public interface TeamService {
 
@@ -20,16 +19,8 @@ public interface TeamService {
      * @param teamId 主键
      * @return 实例对象
      */
-    Team queryById(Integer teamId);
+    QurryTeamVo queryById(Integer teamId);
 
-    /**
-     * 分页查询
-     *
-     * @param team        筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Team> queryByPage(Team team, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据
@@ -65,4 +56,7 @@ public interface TeamService {
      */
     boolean deleteById(Integer teamId);
 
+    List queryByLimit(Team team, Integer num, Integer page);
+
+    void setLeader(Team team);
 }

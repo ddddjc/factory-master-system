@@ -11,7 +11,7 @@ import java.util.List;
  * (Depot)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:14
+ * @since 2023-04-16 14:02:16
  */
 public interface DepotService {
 
@@ -23,14 +23,6 @@ public interface DepotService {
      */
     Depot queryById(Integer depotId);
 
-    /**
-     * 分页查询
-     *
-     * @param depot       筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Depot> queryByPage(Depot depot, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

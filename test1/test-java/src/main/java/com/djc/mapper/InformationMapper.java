@@ -10,7 +10,7 @@ import java.util.List;
  * 消息表(Information)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:55:03
+ * @since 2023-04-16 14:02:14
  */
 public interface InformationMapper {
 

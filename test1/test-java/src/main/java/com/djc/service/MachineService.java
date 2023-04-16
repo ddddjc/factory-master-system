@@ -10,7 +10,7 @@ import java.util.List;
  * 设备表(具体到台)(Machine)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:08
+ * @since 2023-04-16 14:02:13
  */
 public interface MachineService {
 
@@ -22,14 +22,6 @@ public interface MachineService {
      */
     Machine queryById(Integer machineId);
 
-    /**
-     * 分页查询
-     *
-     * @param machine     筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Machine> queryByPage(Machine machine, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

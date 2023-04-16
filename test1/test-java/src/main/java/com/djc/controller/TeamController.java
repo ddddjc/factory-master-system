@@ -1,15 +1,18 @@
 package com.djc.controller;
 
+import com.djc.entity.Employee;
 import com.djc.entity.Team;
+import com.djc.entity.Vo.QueryEmployeeVo;
+import com.djc.entity.Vo.QurryTeamVo;
+import com.djc.exception.CustomException;
+import com.djc.service.EmployeeService;
 import com.djc.service.TeamService;
+import com.djc.util.JsonResult;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 小组表(Team)表控制层
@@ -24,19 +27,8 @@ public class TeamController<E> {
      */
     @Autowired
     private TeamService teamService;
-
-    /**
-     * 分页查询
-     *
-     * @param team        筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<Team>> queryByPage(Team team, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.teamService.queryByPage(team, pageRequest));
-    }
-
+    @Autowired
+    private EmployeeService employeeService;
     /**
      * 通过主键查询单条数据
      *
@@ -44,7 +36,7 @@ public class TeamController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<Team> queryById(@PathVariable("id") Integer id) {
+    public JsonResult queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.teamService.queryById(id));
     }
 
@@ -96,7 +88,63 @@ public class TeamController<E> {
         if (isDeleted) {
             return new JsonResult<>(200, "删除成功", true);
         } else {
-            return new JsonResult<>(500, "删除失败", false);
+            return JsonResult.error(4004,"没有此小组");
         }
+    }
+
+    /**
+     * 查询小组员工
+     * @param id
+     * @return
+     */
+    @GetMapping("findEmployee/{teamId}")
+    public JsonResult findEmployee(@PathVariable("teamId") Integer id){
+        Employee employee=new Employee();
+        employee.setTeamId(id);
+        List<QueryEmployeeVo> queryEmployeeVos = employeeService.queryByCondition(employee, 1000, 0);
+        return new JsonResult(2000,"查询成功",queryEmployeeVos);
+    }
+
+    /**
+     * 条件查询
+     * @param team
+     * @param num
+     * @param page
+     * @return
+     */
+    @GetMapping()
+    public JsonResult findByLimit(@RequestBody Team team,@Param("num")Integer num,@Param("page")Integer page){
+        List list = teamService.queryByLimit(team, num, page);
+        return new JsonResult(2000,"查询成功",list);
+    }
+
+    /**
+     * 删除小组员工
+     * @param employee
+     * @return
+     */
+    @DeleteMapping("deleteEmployee")
+    public JsonResult deleteEmployee(@RequestBody Employee employee){
+        QurryTeamVo qurryTeamVo = teamService.queryById(employee.getTeamId());
+        if (null==qurryTeamVo)
+            throw new CustomException(4004,"没有此小组");
+        Team team=new Team();
+        team.setEmployeeNumber(qurryTeamVo.getEmployeeNumber()-1);
+        team.setTeamId(employee.getTeamId());
+        employee.setTeamId(0);
+        teamService.update(team);
+        employeeService.update(employee);
+        return new JsonResult(2000,"删除成功",null);
+    }
+
+    /**
+     * 设置小组长
+     * @param team
+     * @return
+     */
+    @PutMapping("/setLeader")
+    public JsonResult setLeader(@RequestBody Team team){
+        teamService.setLeader(team);
+        return new JsonResult(2000,"设置成功");
     }
 }

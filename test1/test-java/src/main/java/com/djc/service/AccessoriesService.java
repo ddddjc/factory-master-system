@@ -11,7 +11,7 @@ import java.util.List;
  * (Accessories)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:12
+ * @since 2023-04-16 14:02:16
  */
 public interface AccessoriesService {
 
@@ -23,14 +23,6 @@ public interface AccessoriesService {
      */
     Accessories queryById(Integer accessoriesId);
 
-    /**
-     * 分页查询
-     *
-     * @param accessories 筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Accessories> queryByPage(Accessories accessories, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

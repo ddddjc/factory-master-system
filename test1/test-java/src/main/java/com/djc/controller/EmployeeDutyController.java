@@ -25,17 +25,6 @@ public class EmployeeDutyController<E> {
     @Autowired
     private EmployeeDutyService employeeDutyService;
 
-    /**
-     * 分页查询
-     *
-     * @param employeeDuty 筛选条件
-     * @param pageRequest  分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<EmployeeDuty>> queryByPage(EmployeeDuty employeeDuty, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.employeeDutyService.queryByPage(employeeDuty, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

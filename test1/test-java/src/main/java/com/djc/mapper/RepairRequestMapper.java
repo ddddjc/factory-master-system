@@ -10,7 +10,7 @@ import java.util.List;
  * 维修请求(RepairRequest)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:54:53
+ * @since 2023-04-16 14:02:17
  */
 public interface RepairRequestMapper {
 

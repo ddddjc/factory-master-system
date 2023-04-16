@@ -1,8 +1,6 @@
 package com.djc.service;
 
 import com.djc.entity.AccessoriesArrival;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -10,7 +8,7 @@ import java.util.List;
  * 到货单(AccessoriesArrival)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:10
+ * @since 2023-04-16 14:02:15
  */
 public interface AccessoriesArrivalService {
 
@@ -22,14 +20,6 @@ public interface AccessoriesArrivalService {
      */
     AccessoriesArrival queryById(Integer arrivalId);
 
-    /**
-     * 分页查询
-     *
-     * @param accessoriesArrival 筛选条件
-     * @param pageRequest        分页对象
-     * @return 查询结果
-     */
-    Page<AccessoriesArrival> queryByPage(AccessoriesArrival accessoriesArrival, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

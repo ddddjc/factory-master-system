@@ -21,6 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public JsonResult<?> handleException(RuntimeException e) {
         // 这里可以根据实际情况进行处理，例如将异常信息记录到日志中
+        e.printStackTrace();
         return JsonResult.error(5000, e.getMessage());
     }
     /**
@@ -29,6 +30,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public JsonResult<?> handleException(Exception e) {
         // 这里可以根据实际情况进行处理，例如将异常信息记录到日志中
+        e.printStackTrace();
         return JsonResult.error(5000, e.getMessage());
     }
 }

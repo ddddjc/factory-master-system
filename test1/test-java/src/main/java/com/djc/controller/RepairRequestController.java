@@ -25,17 +25,6 @@ public class RepairRequestController<E> {
     @Autowired
     private RepairRequestService repairRequestService;
 
-    /**
-     * 分页查询
-     *
-     * @param repairRequest 筛选条件
-     * @param pageRequest   分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<RepairRequest>> queryByPage(RepairRequest repairRequest, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.repairRequestService.queryByPage(repairRequest, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

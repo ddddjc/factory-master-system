@@ -26,17 +26,6 @@ public class MaintenanceEmployeeController<E> {
     @Autowired
     private MaintenanceEmployeeService maintenanceEmployeeService;
 
-    /**
-     * 分页查询
-     *
-     * @param maintenanceEmployee 筛选条件
-     * @param pageRequest         分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<MaintenanceEmployee>> queryByPage(MaintenanceEmployee maintenanceEmployee, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.maintenanceEmployeeService.queryByPage(maintenanceEmployee, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

@@ -26,17 +26,6 @@ public class MachineTypeController<E> {
     @Autowired
     private MachineTypeService machineTypeService;
 
-    /**
-     * 分页查询
-     *
-     * @param machineType 筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<MachineType>> queryByPage(MachineType machineType, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.machineTypeService.queryByPage(machineType, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

@@ -15,7 +15,7 @@ import java.util.List;
  * 维护（保养）安排表(MaintenanceArrange)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:54:55
+ * @since 2023-04-16 14:02:13
  */
 @Service("maintenanceArrangeService")
 public class MaintenanceArrangeServiceImpl implements MaintenanceArrangeService {
@@ -31,19 +31,6 @@ public class MaintenanceArrangeServiceImpl implements MaintenanceArrangeService 
     @Override
     public MaintenanceArrange queryById(Integer maintenanceArrangeId) {
         return this.maintenanceArrangeMapper.queryById(maintenanceArrangeId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param maintenanceArrange 筛选条件
-     * @param pageRequest        分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<MaintenanceArrange> queryByPage(MaintenanceArrange maintenanceArrange, PageRequest pageRequest) {
-        long total = this.maintenanceArrangeMapper.count(maintenanceArrange);
-        return new PageImpl<>(this.maintenanceArrangeMapper.queryAllByLimit(maintenanceArrange, pageRequest), pageRequest, total);
     }
 
     /**

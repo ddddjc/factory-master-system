@@ -15,7 +15,7 @@ import java.util.List;
  * (Testtable)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:54:56
+ * @since 2023-04-16 14:02:16
  */
 @Service("testtableService")
 public class TesttableServiceImpl implements TesttableService {
@@ -31,19 +31,6 @@ public class TesttableServiceImpl implements TesttableService {
     @Override
     public Testtable queryById(Integer aaid) {
         return this.testtableMapper.queryById(aaid);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param testtable   筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Testtable> queryByPage(Testtable testtable, PageRequest pageRequest) {
-        long total = this.testtableMapper.count(testtable);
-        return new PageImpl<>(this.testtableMapper.queryAllByLimit(testtable, pageRequest), pageRequest, total);
     }
 
     /**

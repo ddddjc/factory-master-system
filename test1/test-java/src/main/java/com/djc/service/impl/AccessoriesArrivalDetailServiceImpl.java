@@ -15,7 +15,7 @@ import java.util.List;
  * 到货详情(AccessoriesArrivalDetail)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:11
+ * @since 2023-04-16 14:02:15
  */
 @Service("accessoriesArrivalDetailService")
 public class AccessoriesArrivalDetailServiceImpl implements AccessoriesArrivalDetailService {
@@ -31,19 +31,6 @@ public class AccessoriesArrivalDetailServiceImpl implements AccessoriesArrivalDe
     @Override
     public AccessoriesArrivalDetail queryById(Integer arrivalDetailId) {
         return this.accessoriesArrivalDetailMapper.queryById(arrivalDetailId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param accessoriesArrivalDetail 筛选条件
-     * @param pageRequest              分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<AccessoriesArrivalDetail> queryByPage(AccessoriesArrivalDetail accessoriesArrivalDetail, PageRequest pageRequest) {
-        long total = this.accessoriesArrivalDetailMapper.count(accessoriesArrivalDetail);
-        return new PageImpl<>(this.accessoriesArrivalDetailMapper.queryAllByLimit(accessoriesArrivalDetail, pageRequest), pageRequest, total);
     }
 
     /**

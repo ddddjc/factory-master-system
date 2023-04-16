@@ -10,7 +10,7 @@ import java.util.List;
  * 库存(Inventory)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:04
+ * @since 2023-04-16 14:02:11
  */
 public interface InventoryService {
 
@@ -22,14 +22,6 @@ public interface InventoryService {
      */
     Inventory queryById(Object inventoryId);
 
-    /**
-     * 分页查询
-     *
-     * @param inventory   筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Inventory> queryByPage(Inventory inventory, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

@@ -10,7 +10,7 @@ import java.util.List;
  * 文件表(File)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:02
+ * @since 2023-04-16 14:02:14
  */
 public interface FileService {
 
@@ -22,14 +22,6 @@ public interface FileService {
      */
     File queryById(Integer fileId);
 
-    /**
-     * 分页查询
-     *
-     * @param file        筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<File> queryByPage(File file, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

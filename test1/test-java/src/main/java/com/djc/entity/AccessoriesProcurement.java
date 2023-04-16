@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 采购信息(AccessoriesProcurement)实体类
  *
  * @author djc
- * @since 2023-04-15 15:55:13
+ * @since 2023-04-16 14:02:07
  */
 public class AccessoriesProcurement implements Serializable {
-    private static final long serialVersionUID = 851519249263867805L;
+    private static final long serialVersionUID = -49186878437645133L;
     /**
      * 采购id
      */

@@ -15,7 +15,7 @@ import java.util.List;
  * 小组值班分工(EmployeeDuty)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:10
+ * @since 2023-04-16 14:02:17
  */
 @Service("employeeDutyService")
 public class EmployeeDutyServiceImpl implements EmployeeDutyService {
@@ -31,19 +31,6 @@ public class EmployeeDutyServiceImpl implements EmployeeDutyService {
     @Override
     public EmployeeDuty queryById(Integer dutyId) {
         return this.employeeDutyMapper.queryById(dutyId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param employeeDuty 筛选条件
-     * @param pageRequest  分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<EmployeeDuty> queryByPage(EmployeeDuty employeeDuty, PageRequest pageRequest) {
-        long total = this.employeeDutyMapper.count(employeeDuty);
-        return new PageImpl<>(this.employeeDutyMapper.queryAllByLimit(employeeDuty, pageRequest), pageRequest, total);
     }
 
     /**

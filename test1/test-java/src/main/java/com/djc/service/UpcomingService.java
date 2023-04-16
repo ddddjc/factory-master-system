@@ -10,7 +10,7 @@ import java.util.List;
  * 待办信息表(Upcoming)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:14
+ * @since 2023-04-16 14:02:06
  */
 public interface UpcomingService {
 
@@ -22,14 +22,6 @@ public interface UpcomingService {
      */
     Upcoming queryById(Integer upcomingId);
 
-    /**
-     * 分页查询
-     *
-     * @param upcoming    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Upcoming> queryByPage(Upcoming upcoming, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

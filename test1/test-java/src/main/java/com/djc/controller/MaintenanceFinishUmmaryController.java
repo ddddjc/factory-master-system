@@ -25,17 +25,6 @@ public class MaintenanceFinishUmmaryController<E> {
     @Autowired
     private MaintenanceFinishUmmaryService maintenanceFinishUmmaryService;
 
-    /**
-     * 分页查询
-     *
-     * @param maintenanceFinishUmmary 筛选条件
-     * @param pageRequest             分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<MaintenanceFinishUmmary>> queryByPage(MaintenanceFinishUmmary maintenanceFinishUmmary, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.maintenanceFinishUmmaryService.queryByPage(maintenanceFinishUmmary, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

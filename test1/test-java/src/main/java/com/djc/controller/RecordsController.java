@@ -26,17 +26,6 @@ public class RecordsController<E> {
     @Autowired
     private RecordsService recordsService;
 
-    /**
-     * 分页查询
-     *
-     * @param records     筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<Records>> queryByPage(Records records, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.recordsService.queryByPage(records, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

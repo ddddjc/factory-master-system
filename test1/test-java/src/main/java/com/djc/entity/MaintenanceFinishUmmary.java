@@ -8,10 +8,10 @@ import java.io.Serializable;
  * 维护完成汇总(MaintenanceFinishUmmary)实体类
  *
  * @author djc
- * @since 2023-04-15 15:55:05
+ * @since 2023-04-16 14:02:14
  */
 public class MaintenanceFinishUmmary implements Serializable {
-    private static final long serialVersionUID = -83115502721382295L;
+    private static final long serialVersionUID = 254520215861587874L;
     /**
      * 汇总
      */

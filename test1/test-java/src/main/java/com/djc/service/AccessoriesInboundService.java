@@ -10,7 +10,7 @@ import java.util.List;
  * 入库信息(AccessoriesInbound)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:06
+ * @since 2023-04-16 14:02:08
  */
 public interface AccessoriesInboundService {
 
@@ -22,14 +22,6 @@ public interface AccessoriesInboundService {
      */
     AccessoriesInbound queryById(Integer inboundId);
 
-    /**
-     * 分页查询
-     *
-     * @param accessoriesInbound 筛选条件
-     * @param pageRequest        分页对象
-     * @return 查询结果
-     */
-    Page<AccessoriesInbound> queryByPage(AccessoriesInbound accessoriesInbound, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

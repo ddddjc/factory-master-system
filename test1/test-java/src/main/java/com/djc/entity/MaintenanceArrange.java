@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 维护（保养）安排表(MaintenanceArrange)实体类
  *
  * @author djc
- * @since 2023-04-15 15:54:55
+ * @since 2023-04-16 14:02:13
  */
 public class MaintenanceArrange implements Serializable {
-    private static final long serialVersionUID = -27653008287653970L;
+    private static final long serialVersionUID = -63732131261688686L;
     /**
      * 维护id
      */

@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 到货单(AccessoriesArrival)实体类
  *
  * @author djc
- * @since 2023-04-15 15:55:10
+ * @since 2023-04-16 14:02:15
  */
 public class AccessoriesArrival implements Serializable {
-    private static final long serialVersionUID = 796068120152860663L;
+    private static final long serialVersionUID = -95933074012257583L;
     /**
      * 到货表
      */

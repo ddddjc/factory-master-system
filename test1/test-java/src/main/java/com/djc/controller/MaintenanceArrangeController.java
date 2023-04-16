@@ -25,17 +25,6 @@ public class MaintenanceArrangeController<E> {
     @Autowired
     private MaintenanceArrangeService maintenanceArrangeService;
 
-    /**
-     * 分页查询
-     *
-     * @param maintenanceArrange 筛选条件
-     * @param pageRequest        分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<MaintenanceArrange>> queryByPage(MaintenanceArrange maintenanceArrange, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.maintenanceArrangeService.queryByPage(maintenanceArrange, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

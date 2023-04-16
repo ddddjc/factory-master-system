@@ -15,7 +15,7 @@ import java.util.List;
  * 文件表(File)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:02
+ * @since 2023-04-16 14:02:14
  */
 @Service("fileService")
 public class FileServiceImpl implements FileService {
@@ -31,19 +31,6 @@ public class FileServiceImpl implements FileService {
     @Override
     public File queryById(Integer fileId) {
         return this.fileMapper.queryById(fileId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param file        筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<File> queryByPage(File file, PageRequest pageRequest) {
-        long total = this.fileMapper.count(file);
-        return new PageImpl<>(this.fileMapper.queryAllByLimit(file, pageRequest), pageRequest, total);
     }
 
     /**

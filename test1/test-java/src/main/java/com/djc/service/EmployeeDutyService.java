@@ -10,7 +10,7 @@ import java.util.List;
  * 小组值班分工(EmployeeDuty)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:10
+ * @since 2023-04-16 14:02:17
  */
 public interface EmployeeDutyService {
 
@@ -22,14 +22,6 @@ public interface EmployeeDutyService {
      */
     EmployeeDuty queryById(Integer dutyId);
 
-    /**
-     * 分页查询
-     *
-     * @param employeeDuty 筛选条件
-     * @param pageRequest  分页对象
-     * @return 查询结果
-     */
-    Page<EmployeeDuty> queryByPage(EmployeeDuty employeeDuty, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

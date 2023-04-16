@@ -15,7 +15,7 @@ import java.util.List;
  * 待办信息表(Upcoming)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:14
+ * @since 2023-04-16 14:02:06
  */
 @Service("upcomingService")
 public class UpcomingServiceImpl implements UpcomingService {
@@ -31,19 +31,6 @@ public class UpcomingServiceImpl implements UpcomingService {
     @Override
     public Upcoming queryById(Integer upcomingId) {
         return this.upcomingMapper.queryById(upcomingId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param upcoming    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Upcoming> queryByPage(Upcoming upcoming, PageRequest pageRequest) {
-        long total = this.upcomingMapper.count(upcoming);
-        return new PageImpl<>(this.upcomingMapper.queryAllByLimit(upcoming, pageRequest), pageRequest, total);
     }
 
     /**

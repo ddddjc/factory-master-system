@@ -10,7 +10,7 @@ import java.util.List;
  * 维修请求(RepairRequest)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:54:53
+ * @since 2023-04-16 14:02:17
  */
 public interface RepairRequestService {
 
@@ -22,14 +22,6 @@ public interface RepairRequestService {
      */
     RepairRequest queryById(Integer requestId);
 
-    /**
-     * 分页查询
-     *
-     * @param repairRequest 筛选条件
-     * @param pageRequest   分页对象
-     * @return 查询结果
-     */
-    Page<RepairRequest> queryByPage(RepairRequest repairRequest, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

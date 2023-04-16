@@ -10,7 +10,7 @@ import java.util.List;
  * 采购信息(AccessoriesProcurement)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:13
+ * @since 2023-04-16 14:02:07
  */
 public interface AccessoriesProcurementService {
 
@@ -22,14 +22,6 @@ public interface AccessoriesProcurementService {
      */
     AccessoriesProcurement queryById(Integer procurementId);
 
-    /**
-     * 分页查询
-     *
-     * @param accessoriesProcurement 筛选条件
-     * @param pageRequest            分页对象
-     * @return 查询结果
-     */
-    Page<AccessoriesProcurement> queryByPage(AccessoriesProcurement accessoriesProcurement, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

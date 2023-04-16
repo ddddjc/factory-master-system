@@ -52,7 +52,7 @@
                employee.remark,
                hire_date,
                team_name
-        from employee join team t on employee.team_id = t.team_id
+        from employee left join team t on employee.team_id = t.team_id
         where employee.employee_id = #{employeeId}
     </select>
 

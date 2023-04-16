@@ -15,7 +15,7 @@ import java.util.List;
  * (InventoryChange)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:00
+ * @since 2023-04-16 14:02:15
  */
 @Service("inventoryChangeService")
 public class InventoryChangeServiceImpl implements InventoryChangeService {
@@ -31,19 +31,6 @@ public class InventoryChangeServiceImpl implements InventoryChangeService {
     @Override
     public InventoryChange queryById(Integer changeId) {
         return this.inventoryChangeMapper.queryById(changeId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param inventoryChange 筛选条件
-     * @param pageRequest     分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<InventoryChange> queryByPage(InventoryChange inventoryChange, PageRequest pageRequest) {
-        long total = this.inventoryChangeMapper.count(inventoryChange);
-        return new PageImpl<>(this.inventoryChangeMapper.queryAllByLimit(inventoryChange, pageRequest), pageRequest, total);
     }
 
     /**

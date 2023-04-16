@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 消息表(Information)实体类
  *
  * @author djc
- * @since 2023-04-15 15:55:03
+ * @since 2023-04-16 14:02:14
  */
 public class Information implements Serializable {
-    private static final long serialVersionUID = 225535058601332883L;
+    private static final long serialVersionUID = 106428929373746493L;
     /**
      * 消息id
      */

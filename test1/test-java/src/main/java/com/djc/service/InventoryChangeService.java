@@ -10,7 +10,7 @@ import java.util.List;
  * (InventoryChange)表服务接口
  *
  * @author djc
- * @since 2023-04-15 15:55:00
+ * @since 2023-04-16 14:02:15
  */
 public interface InventoryChangeService {
 
@@ -22,14 +22,6 @@ public interface InventoryChangeService {
      */
     InventoryChange queryById(Integer changeId);
 
-    /**
-     * 分页查询
-     *
-     * @param inventoryChange 筛选条件
-     * @param pageRequest     分页对象
-     * @return 查询结果
-     */
-    Page<InventoryChange> queryByPage(InventoryChange inventoryChange, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据

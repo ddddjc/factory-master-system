@@ -10,7 +10,7 @@ import java.util.List;
  * 消息接收者(InformationReceiver)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:54:51
+ * @since 2023-04-16 14:02:09
  */
 public interface InformationReceiverMapper {
 

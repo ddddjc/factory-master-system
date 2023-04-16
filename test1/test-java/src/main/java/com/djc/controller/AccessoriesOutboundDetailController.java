@@ -25,17 +25,6 @@ public class AccessoriesOutboundDetailController<E> {
     @Autowired
     private AccessoriesOutboundDetailService accessoriesOutboundDetailService;
 
-    /**
-     * 分页查询
-     *
-     * @param accessoriesOutboundDetail 筛选条件
-     * @param pageRequest               分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<AccessoriesOutboundDetail>> queryByPage(AccessoriesOutboundDetail accessoriesOutboundDetail, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.accessoriesOutboundDetailService.queryByPage(accessoriesOutboundDetail, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

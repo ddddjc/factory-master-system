@@ -15,7 +15,7 @@ import java.util.List;
  * 出库详情（材料申请表）(AccessoriesOutboundDetail)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:15
+ * @since 2023-04-16 14:02:07
  */
 @Service("accessoriesOutboundDetailService")
 public class AccessoriesOutboundDetailServiceImpl implements AccessoriesOutboundDetailService {
@@ -31,19 +31,6 @@ public class AccessoriesOutboundDetailServiceImpl implements AccessoriesOutbound
     @Override
     public AccessoriesOutboundDetail queryById(Integer outboundDetailId) {
         return this.accessoriesOutboundDetailMapper.queryById(outboundDetailId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param accessoriesOutboundDetail 筛选条件
-     * @param pageRequest               分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<AccessoriesOutboundDetail> queryByPage(AccessoriesOutboundDetail accessoriesOutboundDetail, PageRequest pageRequest) {
-        long total = this.accessoriesOutboundDetailMapper.count(accessoriesOutboundDetail);
-        return new PageImpl<>(this.accessoriesOutboundDetailMapper.queryAllByLimit(accessoriesOutboundDetail, pageRequest), pageRequest, total);
     }
 
     /**

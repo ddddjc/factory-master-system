@@ -25,17 +25,6 @@ public class TesttableController<E> {
     @Autowired
     private TesttableService testtableService;
 
-    /**
-     * 分页查询
-     *
-     * @param testtable   筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<Testtable>> queryByPage(Testtable testtable, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.testtableService.queryByPage(testtable, pageRequest));
-    }
 
     /**
      * 通过主键查询单条数据

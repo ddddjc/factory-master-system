@@ -15,7 +15,7 @@ import java.util.List;
  * 设备表(具体到台)(Machine)表服务实现类
  *
  * @author djc
- * @since 2023-04-15 15:55:08
+ * @since 2023-04-16 14:02:13
  */
 @Service("machineService")
 public class MachineServiceImpl implements MachineService {
@@ -31,19 +31,6 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public Machine queryById(Integer machineId) {
         return this.machineMapper.queryById(machineId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param machine     筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Machine> queryByPage(Machine machine, PageRequest pageRequest) {
-        long total = this.machineMapper.count(machine);
-        return new PageImpl<>(this.machineMapper.queryAllByLimit(machine, pageRequest), pageRequest, total);
     }
 
     /**

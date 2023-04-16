@@ -10,7 +10,7 @@ import java.util.List;
  * 入库详情信息(AccessoriesInboundDetail)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:55:00
+ * @since 2023-04-16 14:02:17
  */
 public interface AccessoriesInboundDetailMapper {
 

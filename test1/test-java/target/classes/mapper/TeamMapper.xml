@@ -33,29 +33,29 @@
         team_id, team_name, employee_id, employee_name, employee_number, team_number, team_place, remark
         from team
         <where>
-            <if test="teamId != null">
-                and team_id = #{teamId}
+            <if test="team.teamId != null">
+                and team_id = #{team.teamId}
             </if>
-            <if test="teamName != null and teamName != ''">
-                and team_name = #{teamName}
+            <if test="team.teamName != null and team.teamName != ''">
+                and team_name = #{team.teamName}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="team.employeeId != null">
+                and employee_id = #{team.employeeId}
             </if>
-            <if test="employeeName != null and employeeName != ''">
-                and employee_name = #{employeeName}
+            <if test="team.employeeName != null and team.employeeName != ''">
+                and employee_name = #{team.employeeName}
             </if>
-            <if test="employeeNumber != null">
-                and employee_number = #{employeeNumber}
+            <if test="team.employeeNumber != null">
+                and employee_number = #{team.employeeNumber}
             </if>
-            <if test="teamNumber != null and teamNumber != ''">
-                and team_number = #{teamNumber}
+            <if test="team.teamNumber != null and team.teamNumber != ''">
+                and team_number = #{team.teamNumber}
             </if>
-            <if test="teamPlace != null and teamPlace != ''">
-                and team_place = #{teamPlace}
+            <if test="team.teamPlace != null and team.teamPlace != ''">
+                and team_place = #{team.teamPlace}
             </if>
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="team.remark != null and team.remark != ''">
+                and remark = #{team.remark}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

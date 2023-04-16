@@ -10,7 +10,7 @@ import java.util.List;
  * 文件表(File)表数据库访问层
  *
  * @author djc
- * @since 2023-04-15 15:55:02
+ * @since 2023-04-16 14:02:13
  */
 public interface FileMapper {
 
