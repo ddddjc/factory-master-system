@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.Employee;
+import com.djc.entity.Vo.QueryEmployeeVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -20,7 +21,7 @@ public interface EmployeeMapper {
      * @param employeeId 主键
      * @return 实例对象
      */
-    Employee queryById(Integer employeeId);
+    QueryEmployeeVo queryById(Integer employeeId);
 
     /**
      * 查询指定行数据
@@ -29,8 +30,7 @@ public interface EmployeeMapper {
      * @param pageable 分页对象
      * @return 对象列表
      */
-    List<Employee> queryAllByLimit(Employee employee, @Param("pageable") Pageable pageable);
-
+    List<QueryEmployeeVo> queryAllByLimit(@Param("employee") Employee employee, @Param("pageable") Pageable pageable);
     /**
      * 通过主键查询单条数据
      *
@@ -89,6 +89,5 @@ public interface EmployeeMapper {
      * @return 影响行数
      */
     int deleteById(Integer employeeId);
-
 }
 

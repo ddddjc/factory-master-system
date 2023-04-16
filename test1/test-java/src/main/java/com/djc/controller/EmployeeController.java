@@ -1,15 +1,18 @@
 package com.djc.controller;
 
 import com.djc.entity.Employee;
+import com.djc.entity.Vo.QueryEmployeeVo;
 import com.djc.service.EmployeeService;
 import com.djc.util.JsonResult;
 import com.djc.util.JwtUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 员工表(Employee)表控制层
@@ -27,18 +30,29 @@ public class EmployeeController<E> {
     @Autowired
     private JwtUtil jwtUtil;
 
-    /**
-     * 分页查询
-     *
-     * @param employee    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public JsonResult<Page<Employee>> queryByPage(Employee employee, PageRequest pageRequest) {
-        return new JsonResult<>(200, "查询成功", this.employeeService.queryByPage(employee, pageRequest));
-    }
+//    /**
+//     * 分页查询
+//     *
+//     * @param employee    筛选条件
+//     * @param pageRequest 分页对象
+//     * @return 查询结果
+//     */
+//    @GetMapping("/useless")
+//    public JsonResult<Page<Employee>> queryByPage(Employee employee, PageRequest pageRequest) {
+//        return new JsonResult<>(200, "查询成功", this.employeeService.queryByPage(employee, pageRequest));
+//    }
 
+    /**
+     * 条件查询
+     * @param employee
+     * @param num
+     * @param page
+     * @return
+     */
+    @GetMapping()
+    public JsonResult<List<QueryEmployeeVo>> queryByCondition(@RequestBody Employee employee, @Param("num") Integer num,@Param("page") Integer page){
+        return new JsonResult<>(200,"查询成功",this.employeeService.queryByCondition(employee,num,page));
+    }
     /**
      * 通过主键查询单条数据
      *
@@ -46,7 +60,7 @@ public class EmployeeController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<Employee> queryById(@PathVariable("id") Integer id) {
+    public JsonResult<QueryEmployeeVo> queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.employeeService.queryById(id));
     }
 
@@ -70,7 +84,7 @@ public class EmployeeController<E> {
      * @return 新增结果
      */
 
-    @PostMapping
+    @PostMapping()
     public JsonResult<Employee> add(@RequestBody Employee employee) {
         return new JsonResult<>(200, "新增成功", this.employeeService.insert(employee));
     }
@@ -82,7 +96,7 @@ public class EmployeeController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<Employee> edit(@RequestBody Employee employee) {
+    public JsonResult edit(@RequestBody Employee employee) {
         return new JsonResult<>(200, "修改成功", this.employeeService.update(employee));
     }
 
@@ -100,5 +114,37 @@ public class EmployeeController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+
+    /**
+     * 设置小组
+     * @param employee
+     * @return
+     */
+    @PutMapping("setgroup")
+    public JsonResult setgroup(@RequestBody Employee employee){
+        Employee employee1=new Employee();
+        employee1.setEmployeeId(employee.getEmployeeId());
+        employee1.setTeamId(employee.getTeamId());
+        employeeService.update(employee1);
+        return new JsonResult(200,"设置修改",null);
+    }
+    @PostMapping("/aa")
+    public String hello(){
+        return "hello";
+    }
+
+    @PostMapping("/addSome")
+    public JsonResult addSome(@RequestBody Map<String, Object> map) {
+        List<Employee> employeeList = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        for (Object obj : (List<Object>) map.get("list")) {
+            Employee employee = objectMapper.convertValue(obj, Employee.class);
+            employeeList.add(employee);
+        }
+        for (Employee employee : employeeList) {
+            employeeService.insert(employee);
+        }
+        return new JsonResult(200, "添加成功", null);
     }
 }

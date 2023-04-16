@@ -1,13 +1,13 @@
 package com.djc.service.impl;
 
 import com.djc.entity.Employee;
+import com.djc.entity.Vo.QueryEmployeeVo;
 import com.djc.mapper.EmployeeMapper;
 import com.djc.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -29,22 +29,22 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return 实例对象
      */
     @Override
-    public Employee queryById(Integer employeeId) {
+    public QueryEmployeeVo queryById(Integer employeeId) {
         return this.employeeMapper.queryById(employeeId);
     }
 
-    /**
-     * 分页查询
-     *
-     * @param employee    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Employee> queryByPage(Employee employee, PageRequest pageRequest) {
-        long total = this.employeeMapper.count(employee);
-        return new PageImpl<>(this.employeeMapper.queryAllByLimit(employee, pageRequest), pageRequest, total);
-    }
+//    /**
+//     * 分页查询
+//     *
+//     * @param employee    筛选条件
+//     * @param pageRequest 分页对象
+//     * @return 查询结果
+//     */
+//    @Override
+//    public Page<Employee> queryByPage(Employee employee, PageRequest pageRequest) {
+//        long total = this.employeeMapper.count(employee);
+//        return new PageImpl<>(this.employeeMapper.queryAllByLimit(employee, pageRequest), pageRequest, total);
+//    }
 
     /**
      * 通过主键查询单条数据
@@ -78,7 +78,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return 实例对象
      */
     @Override
-    public Employee update(Employee employee) {
+    public QueryEmployeeVo update(Employee employee) {
         this.employeeMapper.update(employee);
         return this.queryById(employee.getEmployeeId());
     }
@@ -93,4 +93,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean deleteById(Integer employeeId) {
         return this.employeeMapper.deleteById(employeeId) > 0;
     }
+
+    /**
+     * 条件查询
+     * @param employee
+     * @param num
+     * @param page
+     * @return
+     */
+    @Override
+    public List<QueryEmployeeVo> queryByCondition(Employee employee, Integer num, Integer page) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "employeeId"); // 以 id 字段升序排序
+        System.out.println(sort.toString());
+        PageRequest pageRequest=PageRequest.of(page,num,sort);
+        System.out.println(pageRequest.toString());
+        List<QueryEmployeeVo> employees=employeeMapper.queryAllByLimit(employee,pageRequest);
+        return employees;
+    }
+
 }

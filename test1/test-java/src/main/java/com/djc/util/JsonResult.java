@@ -2,10 +2,6 @@ package com.djc.util;
 
 import java.io.Serializable;
 
-/**
- * 响应结果类
- * @param <E> 响应数据的类型
- */
 public class JsonResult<E> implements Serializable {
     /** 状态码 */
     private Integer code;
@@ -15,8 +11,6 @@ public class JsonResult<E> implements Serializable {
 
     /** 状态描述信息 */
     private String message;
-
-
 
     public JsonResult() {
         super();
@@ -30,20 +24,20 @@ public class JsonResult<E> implements Serializable {
     /** 出现异常时调用 */
     public JsonResult(Throwable e) {
         super();
-        // 获取异常对象中的异常信息
         this.message = e.getMessage();
     }
 
-    public JsonResult(Integer code, E data) {
+    public JsonResult(Integer code, String message) {
         super();
         this.code = code;
-        this.data = data;
+        this.message = message;
     }
 
-    public JsonResult(Integer code, String message, E tata) {
+    public JsonResult(Integer code, String message, E data) {
+        super();
         this.code = code;
         this.message = message;
-        this.data = tata;
+        this.data = data;
     }
 
     public Integer getCode() {
@@ -68,5 +62,15 @@ public class JsonResult<E> implements Serializable {
 
     public void setData(E data) {
         this.data = data;
+    }
+
+    /**
+     * 创建一个表示失败响应的实例
+     * @param code 状态码
+     * @param message 错误消息
+     * @return JsonResult 实例
+     */
+    public static <E> JsonResult<E> error(Integer code, String message) {
+        return new JsonResult<>(code, message, null);
     }
 }

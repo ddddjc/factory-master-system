@@ -1,6 +1,8 @@
 package com.djc.controller;
 
 import com.djc.entity.Employee;
+import com.djc.entity.Vo.QueryEmployeeVo;
+import com.djc.exception.CustomException;
 import com.djc.service.EmployeeService;
 import com.djc.util.JsonResult;
 import com.djc.util.JwtUtil;
@@ -26,9 +28,9 @@ public class Loginout {
     SessionUtil sessionUtil;
     @PostMapping("/login")
     public JsonResult login(@RequestBody Employee employee){
-        Employee employee1 = employeeService.queryById(employee.getEmployeeId());
+        QueryEmployeeVo employee1 = employeeService.queryById(employee.getEmployeeId());
         if (null==employee1){
-            return new JsonResult<>(441,"没有此用户",null);
+            throw new CustomException(4004,"没有此用户");
         }else if (null==employee.getPassword()||!employee.getPassword().equals(employee1.getPassword())){
             return new JsonResult<>(441,"密码错误",null);
         }else{

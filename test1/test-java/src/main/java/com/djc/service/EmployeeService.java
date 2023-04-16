@@ -1,8 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.Employee;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.djc.entity.Vo.QueryEmployeeVo;
 
 import java.util.List;
 
@@ -20,16 +19,16 @@ public interface EmployeeService {
      * @param employeeId 主键
      * @return 实例对象
      */
-    Employee queryById(Integer employeeId);
+    QueryEmployeeVo queryById(Integer employeeId);
 
-    /**
-     * 分页查询
-     *
-     * @param employee    筛选条件
-     * @param pageRequest 分页对象
-     * @return 查询结果
-     */
-    Page<Employee> queryByPage(Employee employee, PageRequest pageRequest);
+//    /**
+//     * 分页查询
+//     *
+//     * @param employee    筛选条件
+//     * @param pageRequest 分页对象
+//     * @return 查询结果
+//     */
+//    Page<Employee> queryByPage(Employee employee, PageRequest pageRequest);
 
     /**
      * 通过主键查询单条数据
@@ -55,7 +54,7 @@ public interface EmployeeService {
      * @param employee 实例对象
      * @return 实例对象
      */
-    Employee update(Employee employee);
+    QueryEmployeeVo update(Employee employee);
 
     /**
      * 通过主键删除数据
@@ -65,4 +64,12 @@ public interface EmployeeService {
      */
     boolean deleteById(Integer employeeId);
 
+    /**
+     * 条件查询
+     * @param employee
+     * @param num
+     * @param page
+     * @return
+     */
+    List<QueryEmployeeVo> queryByCondition(Employee employee, Integer num, Integer page);
 }
