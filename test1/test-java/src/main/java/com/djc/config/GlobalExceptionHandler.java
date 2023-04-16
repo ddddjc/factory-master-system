@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
         return JsonResult.error(e.getCode(), e.getMessage());
     }
     /**
-     * 处理其他未知异常
+     * 处理运行时异常
      */
     @ExceptionHandler(RuntimeException.class)
     public JsonResult<?> handleException(RuntimeException e) {
