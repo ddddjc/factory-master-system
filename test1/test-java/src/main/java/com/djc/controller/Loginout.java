@@ -28,6 +28,10 @@ public class Loginout {
     SessionUtil sessionUtil;
     @PostMapping("/login")
     public JsonResult login(@RequestBody Employee employee){
+        if (employee.getEmployeeId()==null)
+            throw new CustomException(4001,"请输入id");
+        if (employee.getPassword()==null)
+            throw new CustomException(4002,"请输入密码");
         QueryEmployeeVo employee1 = employeeService.queryById(employee.getEmployeeId());
         if (null==employee1){
             throw new CustomException(4004,"没有此用户");
