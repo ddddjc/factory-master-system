@@ -166,6 +166,12 @@
             </if>
         </where>
     </select>
+    <select id="selectMenus" resultType="java.lang.String">
+        select menu from permission_menus where role =#{role}
+    </select>
+    <select id="selectPoints" resultType="java.lang.String">
+        select point from permission_points where role=#{role}
+    </select>
     <!--新增所有列-->
     <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">
         insert into employee(employee_name, employee_sex, age, role, team_id, password, phone_number, work_place,

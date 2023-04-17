@@ -1,6 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.Employee;
+import com.djc.entity.Permission;
 import com.djc.entity.Vo.QueryEmployeeVo;
 
 import java.util.List;
@@ -72,4 +73,6 @@ public interface EmployeeService {
      * @return
      */
     List<QueryEmployeeVo> queryByCondition(Employee employee, Integer num, Integer page);
+
+    Permission queryPermission(String role);
 }

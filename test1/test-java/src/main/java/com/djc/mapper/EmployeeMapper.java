@@ -89,5 +89,9 @@ public interface EmployeeMapper {
      * @return 影响行数
      */
     int deleteById(Integer employeeId);
+
+    List<String> selectPoints(String role);
+
+    List<String> selectMenus(String role);
 }
 

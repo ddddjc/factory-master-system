@@ -1,6 +1,7 @@
 package com.djc.service.impl;
 
 import com.djc.entity.Employee;
+import com.djc.entity.Permission;
 import com.djc.entity.Vo.QueryEmployeeVo;
 import com.djc.mapper.EmployeeMapper;
 import com.djc.service.EmployeeService;
@@ -109,6 +110,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println(pageRequest.toString());
         List<QueryEmployeeVo> employees=employeeMapper.queryAllByLimit(employee,pageRequest);
         return employees;
+    }
+
+    @Override
+    public Permission queryPermission(String role) {
+        List<String> menus=employeeMapper.selectMenus(role);
+        List<String> points=employeeMapper.selectPoints(role);
+        Permission permission=new Permission();
+        permission.setMenus(menus);
+        permission.setPoints(points);
+        return permission;
     }
 
 }

@@ -147,4 +147,9 @@ public class EmployeeController<E> {
         }
         return new JsonResult(200, "添加成功", null);
     }
+
+    @GetMapping("/permission/{role}")
+    public JsonResult getPermission(@PathVariable("role") String role){
+        return new JsonResult(2000,"查询成功",employeeService.queryPermission(role));
+    }
 }
