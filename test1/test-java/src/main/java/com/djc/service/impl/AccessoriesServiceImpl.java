@@ -4,10 +4,9 @@ import com.djc.entity.Accessories;
 import com.djc.mapper.AccessoriesMapper;
 import com.djc.service.AccessoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -80,5 +79,11 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     @Override
     public boolean deleteById(Integer accessoriesId) {
         return this.accessoriesMapper.deleteById(accessoriesId) > 0;
+    }
+
+    @Override
+    public List<Accessories> queryByLimit(Accessories accessories, Integer num, Integer page) {
+        Sort sort=Sort.by(Sort.Direction.ASC,"accessoriesId");
+        return accessoriesMapper.queryAllByLimit(accessories, PageRequest.of(page,num,sort));
     }
 }

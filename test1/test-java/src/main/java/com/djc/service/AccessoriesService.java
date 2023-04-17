@@ -1,8 +1,6 @@
 package com.djc.service;
 
 import com.djc.entity.Accessories;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -58,4 +56,5 @@ public interface AccessoriesService {
      */
     boolean deleteById(Integer accessoriesId);
 
+    List<Accessories> queryByLimit(Accessories accessories, Integer num, Integer page);
 }

@@ -30,7 +30,7 @@ public interface MachineTypeMapper {
      * @param pageable    分页对象
      * @return 对象列表
      */
-    List<MachineType> queryAllByLimit(MachineType machineType, @Param("pageable") Pageable pageable);
+    List<MachineType> queryAllByLimit(@Param("machineType") MachineType machineType, @Param("pageable") Pageable pageable);
 
     /**
      * 通过主键查询单条数据

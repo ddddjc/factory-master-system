@@ -1,15 +1,15 @@
 package com.djc.controller;
 
 import com.djc.entity.MachineType;
+import com.djc.exception.CustomException;
+import com.djc.service.AccessoriesService;
 import com.djc.service.MachineTypeService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 机器类型(按种类）
@@ -26,6 +26,15 @@ public class MachineTypeController<E> {
     @Autowired
     private MachineTypeService machineTypeService;
 
+    @Autowired
+    AccessoriesService accessoriesService;
+    @GetMapping()
+    public JsonResult queryByLimit(@RequestBody MachineType machineType, @Param("page")Integer page,@Param("num")Integer num){
+        if (page==null||num==null)
+            throw new CustomException(4004,"请输入页码和容量");
+          List<MachineType> list= this.machineTypeService.queryByLimit(machineType,page,num);
+          return new JsonResult(200,"查询成功",list);
+    }
 
     /**
      * 通过主键查询单条数据
@@ -34,7 +43,7 @@ public class MachineTypeController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<MachineType> queryById(@PathVariable("id") Integer id) {
+    public JsonResult queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.machineTypeService.queryById(id));
     }
 
@@ -70,7 +79,7 @@ public class MachineTypeController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<MachineType> edit(@RequestBody MachineType machineType) {
+    public JsonResult edit(@RequestBody MachineType machineType) {
         return new JsonResult<>(200, "修改成功", this.machineTypeService.update(machineType));
     }
 
@@ -84,9 +93,14 @@ public class MachineTypeController<E> {
     public JsonResult<Boolean> deleteById(@PathVariable("id") Integer id) {
         boolean isDeleted = this.machineTypeService.deleteById(id);
         if (isDeleted) {
-            return new JsonResult<>(200, "删除成功", true);
+            return new JsonResult<>(2000, "删除成功", true);
         } else {
-            return new JsonResult<>(500, "删除失败", false);
+            return new JsonResult<>(5000, "删除失败", false);
         }
+    }
+    @GetMapping("/findAccessories/{machineTypeId}")
+    public JsonResult findAccessories(@PathVariable("machineTypeId") Integer machineTypeId,@Param("num")Integer num,@Param("page")Integer page){
+        return new JsonResult(200,"查询成功",machineTypeService.findAccessories(machineTypeId,num,page));
+
     }
 }

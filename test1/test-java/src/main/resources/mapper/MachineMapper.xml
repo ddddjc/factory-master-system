@@ -4,7 +4,7 @@
 
     <resultMap type="com.djc.entity.Machine" id="MachineMap">
         <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
-        <result property="machineTypeId" column="machine_type_id" jdbcType="VARCHAR"/>
+        <result property="machineTypeId" column="machine_type_id" jdbcType="INTEGER"/>
         <result property="machineSerialNumber" column="machine_serial_number" jdbcType="VARCHAR"/>
         <result property="machineLocation" column="machine_location" jdbcType="VARCHAR"/>
         <result property="intoDate" column="into_date" jdbcType="TIMESTAMP"/>
@@ -37,7 +37,7 @@
             <if test="machineId != null">
                 and machine_id = #{machineId}
             </if>
-            <if test="machineTypeId != null and machineTypeId != ''">
+            <if test="machineTypeId != null">
                 and machine_type_id = #{machineTypeId}
             </if>
             <if test="machineSerialNumber != null and machineSerialNumber != ''">
@@ -78,7 +78,7 @@
             <if test="machineId != null">
                 and machine_id = #{machineId}
             </if>
-            <if test="machineTypeId != null and machineTypeId != ''">
+            <if test="machineTypeId != null">
                 and machine_type_id = #{machineTypeId}
             </if>
             <if test="machineSerialNumber != null and machineSerialNumber != ''">
@@ -142,7 +142,7 @@
     <update id="update">
         update machine
         <set>
-            <if test="machineTypeId != null and machineTypeId != ''">
+            <if test="machineTypeId != null">
                 machine_type_id = #{machineTypeId},
             </if>
             <if test="machineSerialNumber != null and machineSerialNumber != ''">

@@ -1,13 +1,16 @@
 package com.djc.service.impl;
 
+import com.djc.entity.Accessories;
+import com.djc.entity.Machine;
 import com.djc.entity.MachineType;
+import com.djc.entity.Vo.MachineShowVo;
+import com.djc.mapper.MachineMapper;
 import com.djc.mapper.MachineTypeMapper;
 import com.djc.service.MachineTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -23,6 +26,9 @@ public class MachineTypeServiceImpl implements MachineTypeService {
     @Autowired
     private MachineTypeMapper machineTypeMapper;
 
+    @Autowired
+    private MachineMapper machineMapper;
+
     /**
      * 通过ID查询单条数据
      *
@@ -30,8 +36,15 @@ public class MachineTypeServiceImpl implements MachineTypeService {
      * @return 实例对象
      */
     @Override
-    public MachineType queryById(Integer machineTypeId) {
-        return this.machineTypeMapper.queryById(machineTypeId);
+    public MachineShowVo queryById(Integer machineTypeId) {
+        MachineType machineType = machineTypeMapper.queryById(machineTypeId);
+        MachineShowVo machineShowVo=new MachineShowVo();
+        machineShowVo.fillFromMachineType(machineType);
+        Machine machine=new Machine();
+        machine.setMachineTypeId(machineTypeId);
+        long count = machineMapper.count(machine);
+        machineShowVo.setMachineNum((int)count);
+        return machineShowVo;
     }
 
     /**
@@ -66,7 +79,7 @@ public class MachineTypeServiceImpl implements MachineTypeService {
      * @return 实例对象
      */
     @Override
-    public MachineType update(MachineType machineType) {
+    public MachineShowVo update(MachineType machineType) {
         this.machineTypeMapper.update(machineType);
         return this.queryById(machineType.getMachineTypeId());
     }
@@ -80,5 +93,24 @@ public class MachineTypeServiceImpl implements MachineTypeService {
     @Override
     public boolean deleteById(Integer machineTypeId) {
         return this.machineTypeMapper.deleteById(machineTypeId) > 0;
+    }
+
+    /**
+     * 条件查询
+     * @param machineType
+     * @param page
+     * @param num
+     * @return 查询集合
+     */
+    @Override
+    public List<MachineType> queryByLimit(MachineType machineType, Integer page, Integer num) {
+        Sort sort=Sort.by(Sort.Direction.ASC,"machineTypeId");
+        List<MachineType> list = machineTypeMapper.queryAllByLimit(machineType, PageRequest.of(page, num, sort));
+        return list;
+    }
+
+    @Override
+    public List<Accessories> findAccessories(Integer machineTypeId, Integer num, Integer page) {
+        return null;
     }
 }

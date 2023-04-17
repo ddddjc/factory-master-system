@@ -36,32 +36,32 @@
         orientation_position, machine_voltage, machine_power, remark
         from machine_type
         <where>
-            <if test="machineTypeId != null">
-                and machine_type_id = #{machineTypeId}
+            <if test="machineType.machineTypeId != null">
+                and machine_type_id = #{machineType.machineTypeId}
             </if>
-            <if test="machineTypeName != null and machineTypeName != ''">
-                and machine_type_name = #{machineTypeName}
+            <if test="machineType.machineTypeName != null and machineType.machineTypeName != ''">
+                and machine_type_name = #{machineType.machineTypeName}
             </if>
-            <if test="machineTypeInformation != null and machineTypeInformation != ''">
-                and machine_type_information = #{machineTypeInformation}
+            <if test="machineType.machineTypeInformation != null and machineType.machineTypeInformation != ''">
+                and machine_type_information = #{machineType.machineTypeInformation}
             </if>
-            <if test="machineModel != null and machineModel != ''">
-                and machine_model = #{machineModel}
+            <if test="machineType.machineModel != null and machineType.machineModel != ''">
+                and machine_model = #{machineType.machineModel}
             </if>
-            <if test="machineManufacturer != null and machineManufacturer != ''">
-                and machine_manufacturer = #{machineManufacturer}
+            <if test="machineType.machineManufacturer != null and machineType.machineManufacturer != ''">
+                and machine_manufacturer = #{machineType.machineManufacturer}
             </if>
-            <if test="orientationPosition != null and orientationPosition != ''">
-                and orientation_position = #{orientationPosition}
+            <if test="machineType.orientationPosition != null and machineType.orientationPosition != ''">
+                and orientation_position = #{machineType.orientationPosition}
             </if>
-            <if test="machineVoltage != null and machineVoltage != ''">
-                and machine_voltage = #{machineVoltage}
+            <if test="machineType.machineVoltage != null and machineType.machineVoltage != ''">
+                and machine_voltage = #{machineType.machineVoltage}
             </if>
-            <if test="machinePower != null and machinePower != ''">
-                and machine_power = #{machinePower}
+            <if test="machineType.machinePower != null and machineType.machinePower != ''">
+                and machine_power = #{machineType.machinePower}
             </if>
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="machineType.remark != null and machineType.remark != ''">
+                and remark = #{machineType.remark}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

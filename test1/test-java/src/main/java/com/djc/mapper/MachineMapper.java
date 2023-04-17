@@ -10,7 +10,7 @@ import java.util.List;
  * 设备表(具体到台)(Machine)表数据库访问层
  *
  * @author djc
- * @since 2023-04-16 14:02:13
+ * @since 2023-04-17 16:21:20
  */
 public interface MachineMapper {
 

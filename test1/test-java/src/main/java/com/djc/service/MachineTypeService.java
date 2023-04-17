@@ -1,8 +1,8 @@
 package com.djc.service;
 
+import com.djc.entity.Accessories;
 import com.djc.entity.MachineType;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.djc.entity.Vo.MachineShowVo;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface MachineTypeService {
      * @param machineTypeId 主键
      * @return 实例对象
      */
-    MachineType queryById(Integer machineTypeId);
+    MachineShowVo queryById(Integer machineTypeId);
 
 
     /**
@@ -48,7 +48,7 @@ public interface MachineTypeService {
      * @param machineType 实例对象
      * @return 实例对象
      */
-    MachineType update(MachineType machineType);
+    MachineShowVo update(MachineType machineType);
 
     /**
      * 通过主键删除数据
@@ -58,4 +58,7 @@ public interface MachineTypeService {
      */
     boolean deleteById(Integer machineTypeId);
 
+    List<MachineType> queryByLimit(MachineType machineType, Integer page, Integer num);
+
+    List<Accessories> findAccessories(Integer machineTypeId, Integer num, Integer page);
 }

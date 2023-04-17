@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 设备表(具体到台)(Machine)实体类
  *
  * @author djc
- * @since 2023-04-16 14:02:13
+ * @since 2023-04-17 16:21:20
  */
 public class Machine implements Serializable {
-    private static final long serialVersionUID = 916537646240449819L;
+    private static final long serialVersionUID = -95393418251278698L;
     /**
      * 设备id
      */
@@ -18,7 +18,7 @@ public class Machine implements Serializable {
     /**
      * 设备种类id
      */
-    private String machineTypeId;
+    private Integer machineTypeId;
     /**
      * 设备编号
      */
@@ -53,11 +53,11 @@ public class Machine implements Serializable {
         this.machineId = machineId;
     }
 
-    public String getMachineTypeId() {
+    public Integer getMachineTypeId() {
         return machineTypeId;
     }
 
-    public void setMachineTypeId(String machineTypeId) {
+    public void setMachineTypeId(Integer machineTypeId) {
         this.machineTypeId = machineTypeId;
     }
 
