@@ -2,14 +2,12 @@ package com.djc.controller;
 
 import com.djc.entity.Accessories;
 import com.djc.service.AccessoriesService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 配件表
@@ -26,6 +24,10 @@ public class AccessoriesController<E> {
     @Autowired
     private AccessoriesService accessoriesService;
 
+    @GetMapping("")
+    public JsonResult queryByLimit(@RequestBody Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
+        return new JsonResult(2000,"查询成功",accessoriesService.queryByLimit(accessories,page,num));
+    }
 
     /**
      * 通过主键查询单条数据
@@ -34,8 +36,8 @@ public class AccessoriesController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<Accessories> queryById(@PathVariable("id") Integer id) {
-        return new JsonResult<>(200, "查询成功", this.accessoriesService.queryById(id));
+    public JsonResult queryById(@PathVariable("id") Integer id) {
+        return new JsonResult<>(200, "查询成功", this.accessoriesService.queryVoById(id));
     }
 
     /**
@@ -86,7 +88,7 @@ public class AccessoriesController<E> {
         if (isDeleted) {
             return new JsonResult<>(200, "删除成功", true);
         } else {
-            return new JsonResult<>(500, "删除失败", false);
+            return new JsonResult<>(500, "删除失败，零件可能不存在", false);
         }
     }
 }

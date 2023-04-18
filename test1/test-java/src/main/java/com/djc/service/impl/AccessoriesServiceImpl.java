@@ -1,7 +1,10 @@
 package com.djc.service.impl;
 
 import com.djc.entity.Accessories;
+import com.djc.entity.Vo.AccessoriesVo;
+import com.djc.entity.Vo.QueryEmployeeVo;
 import com.djc.mapper.AccessoriesMapper;
+import com.djc.mapper.EmployeeMapper;
 import com.djc.service.AccessoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +24,8 @@ import java.util.List;
 public class AccessoriesServiceImpl implements AccessoriesService {
     @Autowired
     private AccessoriesMapper accessoriesMapper;
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     /**
      * 通过ID查询单条数据
@@ -85,5 +90,20 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     public List<Accessories> queryByLimit(Accessories accessories, Integer num, Integer page) {
         Sort sort=Sort.by(Sort.Direction.ASC,"accessoriesId");
         return accessoriesMapper.queryAllByLimit(accessories, PageRequest.of(page,num,sort));
+    }
+
+    /**
+     * 查询零件Vo
+     * @param id
+     * @return
+     */
+    @Override
+    public AccessoriesVo queryVoById(Integer id) {
+        Accessories accessories = accessoriesMapper.queryById(id);
+        AccessoriesVo accessoriesVo = accessories.toAccessoriesVo();
+        QueryEmployeeVo queryEmployeeVo = employeeMapper.queryById(accessories.getEmployeeId());
+        if (queryEmployeeVo!=null)
+            accessoriesVo.setEmployeeName(queryEmployeeVo.getEmployeeName());
+        return accessoriesVo;
     }
 }

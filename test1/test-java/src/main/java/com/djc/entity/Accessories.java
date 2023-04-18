@@ -1,5 +1,7 @@
 package com.djc.entity;
 
+import com.djc.entity.Vo.AccessoriesVo;
+
 import java.io.Serializable;
 
 /**
@@ -143,6 +145,26 @@ public class Accessories implements Serializable {
 
     public void setImportanceDescription(String importanceDescription) {
         this.importanceDescription = importanceDescription;
+    }
+
+    /**
+     * 生成对应的AccessoriesVo
+     * @return 新的AccessoriesVo
+     */
+    public AccessoriesVo toAccessoriesVo() {
+        AccessoriesVo accessoriesVo = new AccessoriesVo();
+        accessoriesVo.setAccessoriesId(this.accessoriesId);
+        accessoriesVo.setAccessoriesName(this.accessoriesName);
+        accessoriesVo.setEmployeeId(this.employeeId);
+        accessoriesVo.setImportance(this.importance);
+        accessoriesVo.setImportanceDescription(this.importanceDescription);
+        accessoriesVo.setMachineTypeId(this.machineTypeId);
+        accessoriesVo.setModel(this.model);
+        accessoriesVo.setStockCode(this.stockCode);
+        accessoriesVo.setStockId(this.stockId);
+        accessoriesVo.setType(this.type);
+        accessoriesVo.setUnit(this.unit);
+        return accessoriesVo;
     }
 
 }

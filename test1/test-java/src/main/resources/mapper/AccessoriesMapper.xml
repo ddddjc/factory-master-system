@@ -40,38 +40,38 @@
         type, importance_description
         from accessories
         <where>
-            <if test="accessoriesId != null">
-                and accessories_id = #{accessoriesId}
+            <if test="accessories.accessoriesId != null">
+                and accessories_id = #{accessories.accessoriesId}
             </if>
-            <if test="stockId != null and stockId != ''">
+            <if test="accessories.stockId != null and accessories.stockId != ''">
                 and stock_id = #{stockId}
             </if>
-            <if test="stockCode != null and stockCode != ''">
-                and stock_code = #{stockCode}
+            <if test="accessories.stockCode != null and accessories.stockCode != ''">
+                and stock_code = #{accessories.stockCode}
             </if>
-            <if test="accessoriesName != null and accessoriesName != ''">
-                and accessories_name = #{accessoriesName}
+            <if test="accessories.accessoriesName != null and accessories.accessoriesName != ''">
+                and accessories_name = #{accessories.accessoriesName}
             </if>
-            <if test="unit != null and unit != ''">
-                and unit = #{unit}
+            <if test="accessories.unit != null and accessories.unit != ''">
+                and unit = #{accessories.unit}
             </if>
-            <if test="model != null and model != ''">
-                and model = #{model}
+            <if test="accessories.model != null and accessories.model != ''">
+                and model = #{accessories.model}
             </if>
-            <if test="machineTypeId != null">
-                and machine_type_id = #{machineTypeId}
+            <if test="accessories.machineTypeId != null">
+                and machine_type_id = #{accessories.machineTypeId}
             </if>
-            <if test="importance != null">
-                and importance = #{importance}
+            <if test="accessories.importance != null">
+                and importance = #{accessories.importance}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="accessories.employeeId != null">
+                and employee_id = #{accessories.employeeId}
             </if>
-            <if test="type != null and type != ''">
-                and type = #{type}
+            <if test="accessories.type != null and accessories.type != ''">
+                and type = #{accessories.type}
             </if>
-            <if test="importanceDescription != null and importanceDescription != ''">
-                and importance_description = #{importanceDescription}
+            <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
+                and importance_description = #{accessories.importanceDescription}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
