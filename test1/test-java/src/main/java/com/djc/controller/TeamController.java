@@ -50,7 +50,7 @@ public class TeamController<E> {
      */
     @GetMapping("/findAll")
     public JsonResult<List<Team>> findAll(String keyword, int page, int num) {
-        return new JsonResult<List<Team>>(200, "查询成功", this.teamService.queryAll(keyword, page, num));
+        return new JsonResult<List<Team>>(200, "查询成功", this.teamService.queryAll(keyword, page-1, num));
     }
 
     /**
@@ -102,7 +102,7 @@ public class TeamController<E> {
         Employee employee=new Employee();
         employee.setTeamId(id);
         List<QueryEmployeeVo> queryEmployeeVos = employeeService.queryByCondition(employee, 1000, 0);
-        return new JsonResult(2000,"查询成功",queryEmployeeVos);
+        return new JsonResult(200,"查询成功",queryEmployeeVos);
     }
 
     /**
@@ -113,9 +113,9 @@ public class TeamController<E> {
      * @return
      */
     @GetMapping()
-    public JsonResult findByLimit(@RequestBody Team team,@Param("num")Integer num,@Param("page")Integer page){
-        List list = teamService.queryByLimit(team, num, page);
-        return new JsonResult(2000,"查询成功",list);
+    public JsonResult findByLimit(Team team,@Param("num")Integer num,@Param("page")Integer page){
+        List list = teamService.queryByLimit(team, num, page-1);
+        return new JsonResult(200,"查询成功",list);
     }
 
     /**
@@ -124,7 +124,7 @@ public class TeamController<E> {
      * @return
      */
     @DeleteMapping("deleteEmployee")
-    public JsonResult deleteEmployee(@RequestBody Employee employee){
+    public JsonResult deleteEmployee(Employee employee){
         QurryTeamVo qurryTeamVo = teamService.queryById(employee.getTeamId());
         if (null==qurryTeamVo)
             throw new CustomException(4004,"没有此小组");
@@ -134,7 +134,7 @@ public class TeamController<E> {
         employee.setTeamId(0);
         teamService.update(team);
         employeeService.update(employee);
-        return new JsonResult(2000,"删除成功",null);
+        return new JsonResult(200,"删除成功",null);
     }
 
     /**
@@ -145,6 +145,6 @@ public class TeamController<E> {
     @PutMapping("/setLeader")
     public JsonResult setLeader(@RequestBody Team team){
         teamService.setLeader(team);
-        return new JsonResult(2000,"设置成功");
+        return new JsonResult(200,"设置成功");
     }
 }

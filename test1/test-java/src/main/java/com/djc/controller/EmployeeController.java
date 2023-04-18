@@ -2,6 +2,7 @@ package com.djc.controller;
 
 import com.djc.entity.Employee;
 import com.djc.entity.Vo.QueryEmployeeVo;
+import com.djc.exception.CustomException;
 import com.djc.service.EmployeeService;
 import com.djc.util.JsonResult;
 import com.djc.util.JwtUtil;
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -50,8 +52,8 @@ public class EmployeeController<E> {
      * @return
      */
     @GetMapping()
-    public JsonResult<List<QueryEmployeeVo>> queryByCondition(@RequestBody Employee employee, @Param("num") Integer num,@Param("page") Integer page){
-        return new JsonResult<>(200,"查询成功",this.employeeService.queryByCondition(employee,num,page));
+    public JsonResult<List<QueryEmployeeVo>> queryByCondition(Employee employee, @Param("num") Integer num,@Param("page") Integer page){
+        return new JsonResult<>(200,"查询成功",this.employeeService.queryByCondition(employee,num,page-1));
     }
     /**
      * 通过主键查询单条数据
@@ -74,7 +76,7 @@ public class EmployeeController<E> {
      */
     @GetMapping("/findAll")
     public JsonResult<List<Employee>> findAll(String keyword, int page, int num) {
-        return new JsonResult<List<Employee>>(200, "查询成功", this.employeeService.queryAll(keyword, page, num));
+        return new JsonResult<List<Employee>>(200, "查询成功", this.employeeService.queryAll(keyword, page-1, num));
     }
 
     /**
@@ -148,8 +150,20 @@ public class EmployeeController<E> {
         return new JsonResult(200, "添加成功", null);
     }
 
+    /**
+     * 查询权限
+     * @param role
+     * @return
+     */
     @GetMapping("/permission/{role}")
     public JsonResult getPermission(@PathVariable("role") String role){
-        return new JsonResult(2000,"查询成功",employeeService.queryPermission(role));
+        return new JsonResult(200,"查询成功",employeeService.queryPermission(role));
+    }
+    @GetMapping("/findUser")
+    public JsonResult findUser(HttpServletRequest request){
+        String token = request.getHeader("token");
+        if (token==null||token=="") throw new CustomException(5001,"token为空");
+        Employee employee = jwtUtil.parseTokenToEmployee(token);
+        return queryById(employee.getEmployeeId());
     }
 }

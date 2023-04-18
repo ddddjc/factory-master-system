@@ -29,10 +29,10 @@ public class MachineTypeController<E> {
     @Autowired
     AccessoriesService accessoriesService;
     @GetMapping()
-    public JsonResult queryByLimit(@RequestBody MachineType machineType, @Param("page")Integer page,@Param("num")Integer num){
+    public JsonResult queryByLimit(MachineType machineType, @Param("page")Integer page,@Param("num")Integer num){
         if (page==null||num==null)
             throw new CustomException(4004,"请输入页码和容量");
-          List<MachineType> list= this.machineTypeService.queryByLimit(machineType,page,num);
+          List<MachineType> list= this.machineTypeService.queryByLimit(machineType,page-1,num);
           return new JsonResult(200,"查询成功",list);
     }
 
@@ -57,7 +57,7 @@ public class MachineTypeController<E> {
      */
     @GetMapping("/findAll")
     public JsonResult<List<MachineType>> findAll(String keyword, int page, int num) {
-        return new JsonResult<List<MachineType>>(200, "查询成功", this.machineTypeService.queryAll(keyword, page, num));
+        return new JsonResult<List<MachineType>>(200, "查询成功", this.machineTypeService.queryAll(keyword, page-1, num));
     }
 
     /**
@@ -93,14 +93,14 @@ public class MachineTypeController<E> {
     public JsonResult<Boolean> deleteById(@PathVariable("id") Integer id) {
         boolean isDeleted = this.machineTypeService.deleteById(id);
         if (isDeleted) {
-            return new JsonResult<>(2000, "删除成功", true);
+            return new JsonResult<>(200, "删除成功", true);
         } else {
             return new JsonResult<>(5000, "删除失败", false);
         }
     }
     @GetMapping("/findAccessories/{machineTypeId}")
     public JsonResult findAccessories(@PathVariable("machineTypeId") Integer machineTypeId,@Param("num")Integer num,@Param("page")Integer page){
-        return new JsonResult(200,"查询成功",machineTypeService.findAccessories(machineTypeId,num,page));
+        return new JsonResult(200,"查询成功",machineTypeService.findAccessories(machineTypeId,num,page-1));
 
     }
 }

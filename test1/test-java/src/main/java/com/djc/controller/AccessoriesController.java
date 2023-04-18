@@ -25,8 +25,8 @@ public class AccessoriesController<E> {
     private AccessoriesService accessoriesService;
 
     @GetMapping("")
-    public JsonResult queryByLimit(@RequestBody Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
-        return new JsonResult(2000,"查询成功",accessoriesService.queryByLimit(accessories,page,num));
+    public JsonResult queryByLimit(Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
+        return new JsonResult(200,"查询成功",accessoriesService.queryByLimit(accessories,page-1,num));
     }
 
     /**
@@ -50,7 +50,7 @@ public class AccessoriesController<E> {
      */
     @GetMapping("/findAll")
     public JsonResult<List<Accessories>> findAll(String keyword, int page, int num) {
-        return new JsonResult<List<Accessories>>(200, "查询成功", this.accessoriesService.queryAll(keyword, page, num));
+        return new JsonResult<List<Accessories>>(200, "查询成功", this.accessoriesService.queryAll(keyword, page-1, num));
     }
 
     /**

@@ -87,7 +87,7 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     }
 
     @Override
-    public List<Accessories> queryByLimit(Accessories accessories, Integer num, Integer page) {
+    public List<Accessories> queryByLimit(Accessories accessories, Integer page, Integer num) {
         Sort sort=Sort.by(Sort.Direction.ASC,"accessoriesId");
         return accessoriesMapper.queryAllByLimit(accessories, PageRequest.of(page,num,sort));
     }

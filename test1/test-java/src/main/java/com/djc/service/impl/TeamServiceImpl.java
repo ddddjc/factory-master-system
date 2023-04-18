@@ -108,7 +108,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List queryByLimit(Team team, Integer num, Integer page) {
         Sort sort=Sort.by(Sort.Direction.ASC,"teamId");
-        PageRequest pageRequest=PageRequest.of(num,page,sort);
+        PageRequest pageRequest=PageRequest.of(page,num,sort);
         List<Team> teams = teamMapper.queryAllByLimit(team, pageRequest);
         return teams;
     }

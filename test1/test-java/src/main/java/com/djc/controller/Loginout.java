@@ -36,7 +36,7 @@ public class Loginout {
         if (null==employee1){
             throw new CustomException(4004,"没有此用户");
         }else if (null==employee.getPassword()||!employee.getPassword().equals(employee1.getPassword())){
-            return new JsonResult<>(441,"密码错误",null);
+            return new JsonResult<>(4044,"密码错误",null);
         }else{
             sessionUtil.setAttribute(employee.getEmployeeId().toString(),true);
             System.out.println(sessionUtil.getAttribute(employee.getEmployeeId().toString()).toString());
@@ -57,9 +57,9 @@ public class Loginout {
         System.out.println("employee1 = " + employee1);
         System.out.println("employee = " + employee);
         if (null==employee1){
-            return new JsonResult(440,"没有该用户",null);
+            return new JsonResult(4400,"没有该用户",null);
         }if(!employee1.getEmployeeId().equals(employee.getEmployeeId())||employee1.getRole().equals("manager")){
-            return new JsonResult(559,"该用户权限不够",null);
+            return new JsonResult(5009,"该用户权限不够",null);
         }
         else{
             employeeService.update(employee);

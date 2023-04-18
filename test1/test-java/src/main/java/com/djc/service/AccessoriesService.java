@@ -57,7 +57,7 @@ public interface AccessoriesService {
      */
     boolean deleteById(Integer accessoriesId);
 
-    List<Accessories> queryByLimit(Accessories accessories, Integer num, Integer page);
+    List<Accessories> queryByLimit(Accessories accessories, Integer page, Integer num);
 
     AccessoriesVo queryVoById(Integer id);
 }
