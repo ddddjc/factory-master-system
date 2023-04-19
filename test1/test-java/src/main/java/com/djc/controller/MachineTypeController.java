@@ -1,5 +1,6 @@
 package com.djc.controller;
 
+import com.djc.entity.Accessories;
 import com.djc.entity.MachineType;
 import com.djc.exception.CustomException;
 import com.djc.service.AccessoriesService;
@@ -37,7 +38,7 @@ public class MachineTypeController<E> {
           List<MachineType> list= this.machineTypeService.queryByLike(machineType,page-1,num);
         Integer integer = list.size();
         Map map=new HashMap();
-        map.put("num",integer);
+        map.put("total",integer);
         map.put("machineTypes",list);
         return new JsonResult(200,"查询成功",map);
     }
@@ -106,7 +107,9 @@ public class MachineTypeController<E> {
     }
     @GetMapping("/findAccessories/{machineTypeId}")
     public JsonResult findAccessories(@PathVariable("machineTypeId") Integer machineTypeId,@Param("num")Integer num,@Param("page")Integer page){
-        return new JsonResult(200,"查询成功",machineTypeService.findAccessories(machineTypeId,num,page-1));
+        List<Accessories> accessories = machineTypeService.findAccessories(machineTypeId, num, page - 1);
+
+        return new JsonResult(200,"查询成功",null);
 
     }
 }

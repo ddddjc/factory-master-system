@@ -123,7 +123,7 @@ public class TeamController<E> {
         Integer integer = list.size();
         Map map=new HashMap();
         map.put("teams",list);
-        map.put("num",integer);
+        map.put("total",integer);
         return new JsonResult(200,"查询成功",map);
     }
 

@@ -228,7 +228,7 @@
         </where>
         limit #{page}, #{num}
     </select>
-    <select id="queryPassword" resultType="com.djc.entity.Employee">
+    <select id="queryPassword" resultMap="EmployeeMap">
         select * from employee where employee_id=#{employeeId}
     </select>
 

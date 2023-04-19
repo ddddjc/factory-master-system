@@ -60,7 +60,7 @@ public class EmployeeController<E> {
         Integer integer = employees.size();
         Map map=new HashMap();
         map.put("employees",employees);
-        map.put("num",integer);
+        map.put("total",integer);
         return new JsonResult<>(200,"查询成功",map);
     }
     /**

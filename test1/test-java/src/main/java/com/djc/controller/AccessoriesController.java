@@ -31,7 +31,7 @@ public class AccessoriesController<E> {
         List<Accessories> accessories1 = accessoriesService.queryByLike(accessories, page - 1, num);
         Integer integer = accessories1.size();
         Map map=new HashMap();
-        map.put("num",integer);
+        map.put("total",integer);
         map.put("accessories",accessories1);
         return new JsonResult(200,"查询成功",map);
     }

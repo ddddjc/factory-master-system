@@ -97,8 +97,8 @@ public class MachineController<E> {
         List list = machineService.queryByLike(machine, page-1, num);
         Integer integer = list.size();
         Map map=new HashMap();
-        map.put("num",integer);
-        map.put("macines",list);
+        map.put("total",integer);
+        map.put("machines",list);
         return new JsonResult(200,"查询成功",map);
     }
 }
