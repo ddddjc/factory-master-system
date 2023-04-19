@@ -1,9 +1,11 @@
 package com.djc.controller;
 
-import com.djc.entity.Accessories;
+import com.djc.entity.Machine;
 import com.djc.entity.MachineType;
+import com.djc.entity.Vo.AccessoriesOfMachineTypeVo;
 import com.djc.exception.CustomException;
 import com.djc.service.AccessoriesService;
+import com.djc.service.MachineService;
 import com.djc.service.MachineTypeService;
 import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,9 @@ public class MachineTypeController<E> {
     private MachineTypeService machineTypeService;
 
     @Autowired
-    AccessoriesService accessoriesService;
+    private AccessoriesService accessoriesService;
+    @Autowired
+    private MachineService machineService;
     @GetMapping()
     public JsonResult queryByLimit(MachineType machineType, @Param("page")Integer page,@Param("num")Integer num){
         if (page==null||num==null)
@@ -105,11 +109,31 @@ public class MachineTypeController<E> {
             return new JsonResult<>(5000, "删除失败", false);
         }
     }
+
+    /**
+     * 查询机器对应的零件
+     * @param machineTypeId
+     * @param num
+     * @param page
+     * @return
+     */
     @GetMapping("/findAccessories/{machineTypeId}")
     public JsonResult findAccessories(@PathVariable("machineTypeId") Integer machineTypeId,@Param("num")Integer num,@Param("page")Integer page){
-        List<Accessories> accessories = machineTypeService.findAccessories(machineTypeId, num, page - 1);
+        AccessoriesOfMachineTypeVo accessories = machineTypeService.findAccessories(machineTypeId, num, page - 1);
+        Integer total=accessories.getAccessoriesList().size();
+        Map map=new HashMap();
+        map.put("total",total);
+        map.put("accessories",accessories);
+        return new JsonResult(200,"查询成功",map);
+    }
 
-        return new JsonResult(200,"查询成功",null);
-
+    @GetMapping("/qurrymachine/{machineTypeId}")
+    public JsonResult findMachines(Machine machine,@Param("page") Integer page,@Param("num")Integer num){
+        List list = machineService.queryByLimit(machine, page - 1, num);
+        Integer total=list.size();
+        Map map=new HashMap();
+        map.put("total",total);
+        map.put("machineList",list);
+        return new JsonResult(200,"查询成功",map);
     }
 }

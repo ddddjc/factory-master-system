@@ -3,7 +3,9 @@ package com.djc.service.impl;
 import com.djc.entity.Accessories;
 import com.djc.entity.Machine;
 import com.djc.entity.MachineType;
+import com.djc.entity.Vo.AccessoriesOfMachineTypeVo;
 import com.djc.entity.Vo.MachineShowVo;
+import com.djc.mapper.AccessoriesMapper;
 import com.djc.mapper.MachineMapper;
 import com.djc.mapper.MachineTypeMapper;
 import com.djc.service.MachineTypeService;
@@ -28,6 +30,8 @@ public class MachineTypeServiceImpl implements MachineTypeService {
 
     @Autowired
     private MachineMapper machineMapper;
+    @Autowired
+    private AccessoriesMapper accessoriesMapper;
 
     /**
      * 通过ID查询单条数据
@@ -122,9 +126,14 @@ public class MachineTypeServiceImpl implements MachineTypeService {
      * @return
      */
     @Override
-    public List<Accessories> findAccessories(Integer machineTypeId, Integer num, Integer page) {
-
-        return null;
+    public AccessoriesOfMachineTypeVo findAccessories(Integer machineTypeId, Integer num, Integer page) {
+        Accessories accessories1=new Accessories();
+        accessories1.setMachineTypeId(machineTypeId);
+        List<Accessories> accessoriesList = accessoriesMapper.queryAllByLimit(accessories1, PageRequest.of(page,num));
+        MachineType machineType1 = machineTypeMapper.queryById(machineTypeId);
+        AccessoriesOfMachineTypeVo accessoriesOfMachineTypeVo = machineType1.convertToAccessoriesOfMachineTypeVo(machineType1);
+        accessoriesOfMachineTypeVo.setAccessoriesList(accessoriesList);
+        return accessoriesOfMachineTypeVo;
     }
 
     /**

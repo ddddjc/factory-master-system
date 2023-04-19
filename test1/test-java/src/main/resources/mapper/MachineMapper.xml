@@ -34,29 +34,29 @@
         remark
         from machine
         <where>
-            <if test="machineId != null">
-                and machine_id = #{machineId}
+            <if test="machine.machineId != null">
+                and machine_id = #{machine.machineId}
             </if>
-            <if test="machineTypeId != null">
-                and machine_type_id = #{machineTypeId}
+            <if test="machine.machineTypeId != null">
+                and machine_type_id = #{machine.machineTypeId}
             </if>
-            <if test="machineSerialNumber != null and machineSerialNumber != ''">
-                and machine_serial_number = #{machineSerialNumber}
+            <if test="machine.machineSerialNumber != null and machine.machineSerialNumber != ''">
+                and machine_serial_number = #{machine.machineSerialNumber}
             </if>
-            <if test="machineLocation != null and machineLocation != ''">
-                and machine_location = #{machineLocation}
+            <if test="machine.machineLocation != null and machine.machineLocation != ''">
+                and machine_location = #{machine.machineLocation}
             </if>
-            <if test="intoDate != null">
-                and into_date = #{intoDate}
+            <if test="machine.intoDate != null">
+                and into_date = #{machine.intoDate}
             </if>
-            <if test="assetNumber != null and assetNumber != ''">
-                and asset_number = #{assetNumber}
+            <if test="machine.assetNumber != null and machine.assetNumber != ''">
+                and asset_number = #{machine.assetNumber}
             </if>
-            <if test="machineState != null and machineState != ''">
-                and machine_state = #{machineState}
+            <if test="machine.machineState != null and machine.machineState != ''">
+                and machine_state = #{machine.machineState}
             </if>
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="machine.remark != null and machine.remark != ''">
+                and remark = #{machine.remark}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

@@ -1,7 +1,7 @@
 package com.djc.service;
 
-import com.djc.entity.Accessories;
 import com.djc.entity.MachineType;
+import com.djc.entity.Vo.AccessoriesOfMachineTypeVo;
 import com.djc.entity.Vo.MachineShowVo;
 
 import java.util.List;
@@ -68,7 +68,7 @@ public interface MachineTypeService {
      * @param page
      * @return
      */
-    List<Accessories> findAccessories(Integer machineTypeId, Integer num, Integer page);
+    AccessoriesOfMachineTypeVo findAccessories(Integer machineTypeId, Integer num, Integer page);
 
     Integer queryMachineTypeNum(MachineType machineType);
 }

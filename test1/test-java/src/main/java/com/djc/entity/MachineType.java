@@ -1,5 +1,7 @@
 package com.djc.entity;
 
+import com.djc.entity.Vo.AccessoriesOfMachineTypeVo;
+
 import java.io.Serializable;
 
 /**
@@ -121,5 +123,18 @@ public class MachineType implements Serializable {
         this.remark = remark;
     }
 
+    public AccessoriesOfMachineTypeVo convertToAccessoriesOfMachineTypeVo(MachineType machineType) {
+        AccessoriesOfMachineTypeVo accessoriesOfMachineTypeVo = new AccessoriesOfMachineTypeVo();
+        accessoriesOfMachineTypeVo.setMachineTypeId(machineType.getMachineTypeId());
+        accessoriesOfMachineTypeVo.setMachineTypeName(machineType.getMachineTypeName());
+        accessoriesOfMachineTypeVo.setMachineTypeInformation(machineType.getMachineTypeInformation());
+        accessoriesOfMachineTypeVo.setMachineModel(machineType.getMachineModel());
+        accessoriesOfMachineTypeVo.setMachineManufacturer(machineType.getMachineManufacturer());
+        accessoriesOfMachineTypeVo.setOrientationPosition(machineType.getOrientationPosition());
+        accessoriesOfMachineTypeVo.setMachineVoltage(machineType.getMachineVoltage());
+        accessoriesOfMachineTypeVo.setMachinePower(machineType.getMachinePower());
+        accessoriesOfMachineTypeVo.setRemark(machineType.getRemark());
+        return accessoriesOfMachineTypeVo;
+    }
 }
 
