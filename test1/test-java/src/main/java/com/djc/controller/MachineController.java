@@ -1,15 +1,16 @@
 package com.djc.controller;
 
 import com.djc.entity.Machine;
+import com.djc.exception.CustomException;
 import com.djc.service.MachineService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
-
-import com.djc.util.JsonResult;
+import java.util.Map;
 
 /**
  * 设备表(具体到台)(Machine)表控制层
@@ -87,5 +88,17 @@ public class MachineController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+
+    @GetMapping("")
+    public JsonResult queryByLimit(Machine machine, @Param("page")Integer page,@Param("num")Integer num){
+        if (page==null||num==null) throw new CustomException(4006,"page或num为空");
+        if (num<=0||page<=0) throw new CustomException(4007,"page<=0或num<=0");
+        List list = machineService.queryByLimit(machine, page, num);
+        Integer integer = list.size();
+        Map map=new HashMap();
+        map.put("num",integer);
+        map.put("macines",list);
+        return new JsonResult(200,"查询成功",map);
     }
 }

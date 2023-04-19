@@ -1,14 +1,16 @@
 package com.djc.service.impl;
 
 import com.djc.entity.Machine;
+import com.djc.entity.MachineType;
+import com.djc.entity.Vo.MachienVo;
 import com.djc.mapper.MachineMapper;
+import com.djc.mapper.MachineTypeMapper;
 import com.djc.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ public class MachineServiceImpl implements MachineService {
     @Autowired
     private MachineMapper machineMapper;
 
+    @Autowired
+    private MachineTypeMapper machineTypeMapper;
     /**
      * 通过ID查询单条数据
      *
@@ -79,5 +83,35 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public boolean deleteById(Integer machineId) {
         return this.machineMapper.deleteById(machineId) > 0;
+    }
+
+    /**
+     * 条件查询机器展示信息MachienVo
+     * @param machine
+     * @param page
+     * @param num
+     * @return
+     */
+    @Override
+    public List<MachienVo> queryByLimit(Machine machine, Integer page, Integer num) {
+        List<Machine> machines = machineMapper.queryAllByLimit(machine, PageRequest.of(page, num));
+        List<MachienVo> machienVos=new ArrayList<>();
+        for (Machine m:machines) {
+            MachienVo machienVo = Machine.toMachienVo(m);
+            MachineType machineType = machineTypeMapper.queryById(m.getMachineTypeId());
+            machienVo.mergeMachineType(machineType);
+            machienVos.add(machienVo);
+        }
+        return machienVos;
+    }
+
+    /**
+     * 查询符合条件的数量
+     * @param machineType
+     * @return
+     */
+    @Override
+    public Integer queryMachineNum(Machine machine) {
+        return (int) machineMapper.count(machine);
     }
 }

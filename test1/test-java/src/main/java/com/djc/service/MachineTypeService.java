@@ -60,5 +60,14 @@ public interface MachineTypeService {
 
     List<MachineType> queryByLimit(MachineType machineType, Integer page, Integer num);
 
+    /**
+     * 查询对应的零件
+     * @param machineTypeId
+     * @param num
+     * @param page
+     * @return
+     */
     List<Accessories> findAccessories(Integer machineTypeId, Integer num, Integer page);
+
+    Integer queryMachineTypeNum(MachineType machineType);
 }

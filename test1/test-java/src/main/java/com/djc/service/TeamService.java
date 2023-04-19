@@ -58,5 +58,8 @@ public interface TeamService {
 
     List queryByLimit(Team team, Integer num, Integer page);
 
+
     void setLeader(Team team);
+
+    Integer queryTeamNum(Team team);
 }

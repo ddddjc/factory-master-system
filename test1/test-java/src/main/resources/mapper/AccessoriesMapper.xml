@@ -41,37 +41,37 @@
         from accessories
         <where>
             <if test="accessories.accessoriesId != null">
-                and accessories_id = #{accessories.accessoriesId}
+                and accessories_id like concat('%',#{accessories.accessoriesId},'%')
             </if>
             <if test="accessories.stockId != null and accessories.stockId != ''">
-                and stock_id = #{stockId}
+                and stock_id like concat('%',#{accessories.stockId},'%')
             </if>
             <if test="accessories.stockCode != null and accessories.stockCode != ''">
-                and stock_code = #{accessories.stockCode}
+                and stock_code like concat('%',#{accessories.stockCode},'%')
             </if>
             <if test="accessories.accessoriesName != null and accessories.accessoriesName != ''">
-                and accessories_name = #{accessories.accessoriesName}
+                and accessories_name like concat('%',#{accessories.accessoriesName},'%')
             </if>
             <if test="accessories.unit != null and accessories.unit != ''">
-                and unit = #{accessories.unit}
+                and unit like concat('%',#{accessories.unit},'%')
             </if>
             <if test="accessories.model != null and accessories.model != ''">
-                and model = #{accessories.model}
+                and model like concat('%',#{accessories.model},'%')
             </if>
             <if test="accessories.machineTypeId != null">
-                and machine_type_id = #{accessories.machineTypeId}
+                and machine_type_id like concat('%',#{accessories.machineTypeId},'%')
             </if>
             <if test="accessories.importance != null">
-                and importance = #{accessories.importance}
+                and importance like concat('%',#{accessories.importance},'%')
             </if>
             <if test="accessories.employeeId != null">
-                and employee_id = #{accessories.employeeId}
+                and employee_id like concat('%',#{accessories.employeeId},'%')
             </if>
             <if test="accessories.type != null and accessories.type != ''">
-                and type = #{accessories.type}
+                and type like concat('%',#{accessories.type},'%')
             </if>
             <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
-                and importance_description = #{accessories.importanceDescription}
+                and importance_description concat('%',#{accessories.importanceDescription},'%')
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

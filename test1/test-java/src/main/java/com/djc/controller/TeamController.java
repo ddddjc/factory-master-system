@@ -12,7 +12,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 小组表(Team)表控制层
@@ -98,11 +100,14 @@ public class TeamController<E> {
      * @return
      */
     @GetMapping("findEmployee/{teamId}")
-    public JsonResult findEmployee(@PathVariable("teamId") Integer id){
-        Employee employee=new Employee();
-        employee.setTeamId(id);
-        List<QueryEmployeeVo> queryEmployeeVos = employeeService.queryByCondition(employee, 1000, 0);
-        return new JsonResult(200,"查询成功",queryEmployeeVos);
+    public JsonResult findEmployee(@PathVariable("teamId") Integer id,@Param("page")Integer page,@Param("num")Integer num){
+        if (page==null||num==null||page<=0||num<=0) throw new CustomException(4008,"页码和数量异常");;
+        List<QueryEmployeeVo> queryEmployeeVos = employeeService.queryByTeamId(id, page-1,num);
+        Map map=new HashMap();
+        Integer integer = queryEmployeeVos.size();
+        map.put("num",integer);
+        map.put("employees",queryEmployeeVos);
+        return new JsonResult(200,"查询成功",map);
     }
 
     /**
@@ -115,7 +120,11 @@ public class TeamController<E> {
     @GetMapping()
     public JsonResult findByLimit(Team team,@Param("num")Integer num,@Param("page")Integer page){
         List list = teamService.queryByLimit(team, num, page-1);
-        return new JsonResult(200,"查询成功",list);
+        Integer integer = list.size();
+        Map map=new HashMap();
+        map.put("teams",list);
+        map.put("num",integer);
+        return new JsonResult(200,"查询成功",map);
     }
 
     /**

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 机器类型(按种类）
@@ -33,7 +35,11 @@ public class MachineTypeController<E> {
         if (page==null||num==null)
             throw new CustomException(4004,"请输入页码和容量");
           List<MachineType> list= this.machineTypeService.queryByLimit(machineType,page-1,num);
-          return new JsonResult(200,"查询成功",list);
+        Integer integer = list.size();
+        Map map=new HashMap();
+        map.put("num",integer);
+        map.put("machineTypes",list);
+        return new JsonResult(200,"查询成功",map);
     }
 
     /**

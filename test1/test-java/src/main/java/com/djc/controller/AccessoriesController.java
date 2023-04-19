@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 配件表
@@ -26,7 +28,12 @@ public class AccessoriesController<E> {
 
     @GetMapping("")
     public JsonResult queryByLimit(Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
-        return new JsonResult(200,"查询成功",accessoriesService.queryByLimit(accessories,page-1,num));
+        List<Accessories> accessories1 = accessoriesService.queryByLimit(accessories, page - 1, num);
+        Integer integer = accessories1.size();
+        Map map=new HashMap();
+        map.put("num",integer);
+        map.put("accessories",accessories1);
+        return new JsonResult(200,"查询成功",map);
     }
 
     /**

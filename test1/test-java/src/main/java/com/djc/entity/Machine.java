@@ -1,7 +1,9 @@
 package com.djc.entity;
 
-import java.util.Date;
+import com.djc.entity.Vo.MachienVo;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 设备表(具体到台)(Machine)实体类
@@ -107,6 +109,29 @@ public class Machine implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public static MachienVo toMachienVo(Machine machine) {
+        MachienVo machienVo = new MachienVo();
+        machienVo.setAssetNumber(machine.getAssetNumber());
+        machienVo.setIntoDate(machine.getIntoDate());
+        machienVo.setMachineId(machine.getMachineId());
+        machienVo.setMachineLocation(machine.getMachineLocation());
+        machienVo.setMachineSerialNumber(machine.getMachineSerialNumber());
+        machienVo.setMachineState(machine.getMachineState());
+        machienVo.setMachineTypeId(machine.getMachineTypeId());
+        machienVo.setRemark(machine.getRemark());
+
+        // Set the remaining properties to null
+        machienVo.setMachineManufacturer(null);
+        machienVo.setMachineModel(null);
+        machienVo.setMachinePower(null);
+        machienVo.setMachineTypeInformation(null);
+        machienVo.setMachineTypeName(null);
+        machienVo.setMachineVoltage(null);
+        machienVo.setOrientationPosition(null);
+
+        return machienVo;
     }
 
 }

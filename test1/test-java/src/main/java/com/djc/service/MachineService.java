@@ -1,8 +1,6 @@
 package com.djc.service;
 
 import com.djc.entity.Machine;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -57,4 +55,7 @@ public interface MachineService {
      */
     boolean deleteById(Integer machineId);
 
+    List queryByLimit(Machine machine, Integer page, Integer num);
+
+    Integer queryMachineNum(Machine machine);
 }

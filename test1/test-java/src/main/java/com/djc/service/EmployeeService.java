@@ -75,4 +75,8 @@ public interface EmployeeService {
     List<QueryEmployeeVo> queryByCondition(Employee employee, Integer num, Integer page);
 
     Permission queryPermission(String role);
+
+    Integer queryNum(Employee employee);
+
+    List<QueryEmployeeVo> queryByTeamId(Integer id, int page, Integer num);
 }

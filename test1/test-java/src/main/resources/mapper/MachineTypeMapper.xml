@@ -37,31 +37,31 @@
         from machine_type
         <where>
             <if test="machineType.machineTypeId != null">
-                and machine_type_id = #{machineType.machineTypeId}
+                and machine_type_id like concat('%',#{machineType.machineTypeId},'#')
             </if>
             <if test="machineType.machineTypeName != null and machineType.machineTypeName != ''">
-                and machine_type_name = #{machineType.machineTypeName}
+                and machine_type_name like concat('%',#{machineType.machineTypeName})
             </if>
             <if test="machineType.machineTypeInformation != null and machineType.machineTypeInformation != ''">
-                and machine_type_information = #{machineType.machineTypeInformation}
+                and machine_type_information  like concat('%',#{machineType.machineTypeInformation},'%')
             </if>
             <if test="machineType.machineModel != null and machineType.machineModel != ''">
-                and machine_model = #{machineType.machineModel}
+                and machine_model like concat('%',#{machineType.machineModel},'%')
             </if>
             <if test="machineType.machineManufacturer != null and machineType.machineManufacturer != ''">
-                and machine_manufacturer = #{machineType.machineManufacturer}
+                and machine_manufacturer like concat('%',#{machineType.machineManufacturer},'%')
             </if>
             <if test="machineType.orientationPosition != null and machineType.orientationPosition != ''">
-                and orientation_position = #{machineType.orientationPosition}
+                and orientation_position like concat('%',#{machineType.orientationPosition},'%')
             </if>
             <if test="machineType.machineVoltage != null and machineType.machineVoltage != ''">
-                and machine_voltage = #{machineType.machineVoltage}
+                and machine_voltage like concat('%',#{machineType.machineVoltage},'%')
             </if>
             <if test="machineType.machinePower != null and machineType.machinePower != ''">
-                and machine_power = #{machineType.machinePower}
+                and machine_power like concat('%',#{machineType.machinePower},'%')
             </if>
             <if test="machineType.remark != null and machineType.remark != ''">
-                and remark = #{machineType.remark}
+                and remark = like concat('%',#{machineType.remark},'%')
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

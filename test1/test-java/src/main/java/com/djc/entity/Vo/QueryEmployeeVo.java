@@ -66,4 +66,8 @@ public class QueryEmployeeVo extends Employee {
      * 工作地方/办公室
      */
     private String workPlace;
+    /**
+     * 查询数量
+     */
+    private Integer allNum;
 }

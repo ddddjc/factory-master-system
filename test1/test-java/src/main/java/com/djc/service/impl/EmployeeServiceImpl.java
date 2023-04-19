@@ -122,4 +122,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return permission;
     }
 
+    @Override
+    public Integer queryNum(Employee employee) {
+        return (int)employeeMapper.count(employee);
+    }
+
+    @Override
+    public List<QueryEmployeeVo> queryByTeamId(Integer id, int page, Integer num) {
+        return employeeMapper.queryByTeam(id,page,num);
+    }
+
 }

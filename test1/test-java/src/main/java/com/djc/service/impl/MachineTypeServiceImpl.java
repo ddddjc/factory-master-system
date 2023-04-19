@@ -109,8 +109,25 @@ public class MachineTypeServiceImpl implements MachineTypeService {
         return list;
     }
 
+    /**
+     * 查询对应的机器
+     * @param machineTypeId
+     * @param num
+     * @param page
+     * @return
+     */
     @Override
     public List<Accessories> findAccessories(Integer machineTypeId, Integer num, Integer page) {
         return null;
+    }
+
+    /**
+     * 查询符合条件的机器数量
+     * @param machineType
+     * @return
+     */
+    @Override
+    public Integer queryMachineTypeNum(MachineType machineType) {
+        return (int) machineTypeMapper.count(machineType);
     }
 }

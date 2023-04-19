@@ -92,6 +92,11 @@ public class AccessoriesServiceImpl implements AccessoriesService {
         return accessoriesMapper.queryAllByLimit(accessories, PageRequest.of(page,num,sort));
     }
 
+    @Override
+    public Integer queryAccessoriesNum(Accessories accessories) {
+        return (int) accessoriesMapper.count(accessories);
+    }
+
     /**
      * 查询零件Vo
      * @param id

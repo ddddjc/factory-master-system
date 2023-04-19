@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 小组表(Team)表服务实现类
@@ -125,9 +126,9 @@ public class TeamServiceImpl implements TeamService {
         if (null==queryEmployeeVo) throw new CustomException(4004,"没有该员工");
         Team emTeam=teamMapper.queryById(queryEmployeeVo.getTeamId());
         if (emTeam!=null){//判断在别的地方是否为组长
-            if (emTeam.getEmployeeId()==queryEmployeeVo.getEmployeeId())
+            if (Objects.equals(emTeam.getEmployeeId(), queryEmployeeVo.getEmployeeId()))
                 throw new CustomException(5003,"该成员为"+emTeam.getTeamName()+"的组长");
-            else if(emTeam.getTeamId()!=team.getTeamId())
+            else if(!Objects.equals(emTeam.getTeamId(), team.getTeamId()))
                 team.setEmployeeNumber(team1.getEmployeeNumber()+1);
             else {
                 Team delTeam=new Team();
@@ -142,5 +143,15 @@ public class TeamServiceImpl implements TeamService {
         employee.setTeamId(team.getTeamId());
         employee.setEmployeeId(team.getEmployeeId());
         employeeMapper.update(employee);
+    }
+
+    /**
+     * 条件查询小组数
+     * @param team
+     * @return
+     */
+    @Override
+    public Integer queryTeamNum(Team team){
+        return (int) teamMapper.count(team);
     }
 }

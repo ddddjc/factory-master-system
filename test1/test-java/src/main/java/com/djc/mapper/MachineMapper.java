@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.Machine;
+import com.djc.entity.Vo.MachienVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -90,5 +91,6 @@ public interface MachineMapper {
      */
     int deleteById(Integer machineId);
 
+    List<MachienVo> queryMachineVo(@Param("machine") Machine machine, @Param("page") Integer page,@Param("page") Integer num);
 }
 

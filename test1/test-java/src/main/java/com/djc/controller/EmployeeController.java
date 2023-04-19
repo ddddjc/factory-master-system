@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +53,15 @@ public class EmployeeController<E> {
      * @return
      */
     @GetMapping()
-    public JsonResult<List<QueryEmployeeVo>> queryByCondition(Employee employee, @Param("num") Integer num,@Param("page") Integer page){
-        return new JsonResult<>(200,"查询成功",this.employeeService.queryByCondition(employee,num,page-1));
+    public JsonResult queryByCondition(Employee employee, @Param("num") Integer num,@Param("page") Integer page){
+        if (num==null||page==null) throw new CustomException(4002,"请输入页码和数量");
+        if (num<=0||page<=0) throw new CustomException(4006,"页码和数量不能小于0");
+        List<QueryEmployeeVo> employees = this.employeeService.queryByCondition(employee, num, page - 1);
+        Integer integer = employees.size();
+        Map map=new HashMap();
+        map.put("employees",employees);
+        map.put("num",integer);
+        return new JsonResult<>(200,"查询成功",map);
     }
     /**
      * 通过主键查询单条数据
@@ -88,6 +96,8 @@ public class EmployeeController<E> {
 
     @PostMapping()
     public JsonResult<Employee> add(@RequestBody Employee employee) {
+        employee.setEmployeeId(null);
+        employee.setPassword("12345678");
         return new JsonResult<>(200, "新增成功", this.employeeService.insert(employee));
     }
 

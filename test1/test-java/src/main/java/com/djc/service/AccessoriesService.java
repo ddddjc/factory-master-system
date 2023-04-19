@@ -59,5 +59,7 @@ public interface AccessoriesService {
 
     List<Accessories> queryByLimit(Accessories accessories, Integer page, Integer num);
 
+    Integer queryAccessoriesNum(Accessories accessories);
+
     AccessoriesVo queryVoById(Integer id);
 }

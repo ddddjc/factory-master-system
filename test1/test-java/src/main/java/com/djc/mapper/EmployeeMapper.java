@@ -93,5 +93,7 @@ public interface EmployeeMapper {
     List<String> selectPoints(String role);
 
     List<String> selectMenus(String role);
+
+    List<QueryEmployeeVo> queryByTeam(@Param("teamId") Integer id, @Param("page") int page,@Param("num") Integer num);
 }
 
