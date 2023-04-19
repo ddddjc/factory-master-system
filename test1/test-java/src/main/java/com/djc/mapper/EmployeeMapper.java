@@ -31,6 +31,15 @@ public interface EmployeeMapper {
      * @return 对象列表
      */
     List<QueryEmployeeVo> queryAllByLimit(@Param("employee") Employee employee, @Param("pageable") Pageable pageable);
+
+    /**
+     * 模糊查询
+     * @param employee
+     * @param pageable
+     * @return
+     */
+    List<QueryEmployeeVo> queryAllByLike(@Param("employee") Employee employee, @Param("pageable") Pageable pageable);
+
     /**
      * 通过主键查询单条数据
      *
@@ -95,5 +104,7 @@ public interface EmployeeMapper {
     List<String> selectMenus(String role);
 
     List<QueryEmployeeVo> queryByTeam(@Param("teamId") Integer id, @Param("page") int page,@Param("num") Integer num);
+
+    Employee queryPassword(@Param("employeeId") Integer employeeId);
 }
 

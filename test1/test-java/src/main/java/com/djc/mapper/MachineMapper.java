@@ -33,6 +33,14 @@ public interface MachineMapper {
     List<Machine> queryAllByLimit(Machine machine, @Param("pageable") Pageable pageable);
 
     /**
+     * 模糊查询
+     * @param machine
+     * @param pageable
+     * @return
+     */
+    List<Machine> queryAllByLike(Machine machine, @Param("pageable") Pageable pageable);
+
+    /**
      * 通过主键查询单条数据
      *
      * @param keyWord 关键字

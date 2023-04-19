@@ -54,9 +54,60 @@
         from employee left join team t on employee.team_id = t.team_id
         where employee.employee_id = #{employeeId}
     </select>
-
-    <!--查询指定行数据-->
+<!--    条件查询-->
     <select id="queryAllByLimit" resultMap="QueryEmployeeVo">
+        select
+        employee.employee_id, employee.employee_name, employee_sex, age, role, employee.team_id, password, phone_number, work_place, department,
+        employee_email, employee_status, employee.remark, hire_date,team_name
+        from employee left join team t on employee.team_id = t.team_id
+        <where>
+            <if test="employee.employeeId != null">
+                and employee.employee_id = #{employee.employeeId}
+            </if>
+            <if test="employee.employeeName != null and employee.employeeName != ''">
+                and employee.employee_name = #{employee.employeeName}
+            </if>
+            <if test="employee.employeeSex != null and employee.employeeSex != ''">
+                and employee_sex = #{employee.employeeSex}
+            </if>
+            <if test="employee.age != null">
+                and age = #{employee.age}
+            </if>
+            <if test="employee.role != null and employee.role != ''">
+                and role = #{employee.role}
+            </if>
+            <if test="employee.teamId != null">
+                and employee.team_id = #{employee.teamId}
+            </if>
+            <if test="employee.password != null and employee.password != ''">
+                and password = #{employee.password}
+            </if>
+            <if test="employee.phoneNumber != null and employee.phoneNumber != ''">
+                and phone_number = #{employee.phoneNumber}
+            </if>
+            <if test="employee.workPlace != null and employee.workPlace != ''">
+                and work_place = #{employee.workPlace}
+            </if>
+            <if test="employee.department != null and employee.department != ''">
+                and department = #{employee.department}
+            </if>
+            <if test="employee.employeeEmail != null and employee.employeeEmail != ''">
+                and employee_email = #{employee.employeeEmail}
+            </if>
+            <if test="employee.employeeStatus != null and employee.employeeStatus != ''">
+                and employee_status = #{employee.employeeStatus}
+            </if>
+            <if test="employee.remark != null and employee.remark != ''">
+                and employee.remark = #{employee.remark}
+            </if>
+            <if test="employee.hireDate != null">
+                and hire_date = #{employee.hireDate}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <!--模糊查询-->
+    <select id="queryAllByLike" resultMap="QueryEmployeeVo">
         select
         employee.employee_id, employee.employee_name, employee_sex, age, role, employee.team_id, phone_number, work_place, department,
         employee_email, employee_status, employee.remark, hire_date,team_name
@@ -177,6 +228,10 @@
         </where>
         limit #{page}, #{num}
     </select>
+    <select id="queryPassword" resultType="com.djc.entity.Employee">
+        select * from employee where employee_id=#{employeeId}
+    </select>
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">
         insert into employee(employee_name, employee_sex, age, role, team_id, phone_number, work_place,

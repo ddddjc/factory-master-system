@@ -86,12 +86,31 @@ public class AccessoriesServiceImpl implements AccessoriesService {
         return this.accessoriesMapper.deleteById(accessoriesId) > 0;
     }
 
+    /**
+     * 条件查询
+     * @param accessories
+     * @param page
+     * @param num
+     * @return
+     */
     @Override
     public List<Accessories> queryByLimit(Accessories accessories, Integer page, Integer num) {
         Sort sort=Sort.by(Sort.Direction.ASC,"accessoriesId");
         return accessoriesMapper.queryAllByLimit(accessories, PageRequest.of(page,num,sort));
     }
 
+    /**
+     * 模糊查询
+     * @param accessories
+     * @param page
+     * @param num
+     * @return
+     */
+    @Override
+    public List<Accessories> queryByLike(Accessories accessories, Integer page, Integer num) {
+        Sort sort=Sort.by(Sort.Direction.ASC,"accessoriesId");
+        return accessoriesMapper.queryAllByLike(accessories, PageRequest.of(page,num,sort));
+    }
     @Override
     public Integer queryAccessoriesNum(Accessories accessories) {
         return (int) accessoriesMapper.count(accessories);

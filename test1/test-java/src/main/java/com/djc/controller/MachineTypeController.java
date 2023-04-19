@@ -34,7 +34,7 @@ public class MachineTypeController<E> {
     public JsonResult queryByLimit(MachineType machineType, @Param("page")Integer page,@Param("num")Integer num){
         if (page==null||num==null)
             throw new CustomException(4004,"请输入页码和容量");
-          List<MachineType> list= this.machineTypeService.queryByLimit(machineType,page-1,num);
+          List<MachineType> list= this.machineTypeService.queryByLike(machineType,page-1,num);
         Integer integer = list.size();
         Map map=new HashMap();
         map.put("num",integer);

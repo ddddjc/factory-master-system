@@ -37,6 +37,43 @@
         from machine_type
         <where>
             <if test="machineType.machineTypeId != null">
+                and machine_type_id = #{machineType.machineTypeId}
+            </if>
+            <if test="machineType.machineTypeName != null and machineType.machineTypeName != ''">
+                and machine_type_name = #{machineType.machineTypeName}
+            </if>
+            <if test="machineType.machineTypeInformation != null and machineType.machineTypeInformation != ''">
+                and machine_type_information = #{machineType.machineTypeInformation}
+            </if>
+            <if test="machineType.machineModel != null and machineType.machineModel != ''">
+                and machine_model = #{machineType.machineModel}
+            </if>
+            <if test="machineType.machineManufacturer != null and machineType.machineManufacturer != ''">
+                and machine_manufacturer = #{machineType.machineManufacturer}
+            </if>
+            <if test="machineType.orientationPosition != null and machineType.orientationPosition != ''">
+                and orientation_position = #{machineType.orientationPosition}
+            </if>
+            <if test="machineType.machineVoltage != null and machineType.machineVoltage != ''">
+                and machine_voltage = #{machineType.machineVoltage}
+            </if>
+            <if test="machineType.machinePower != null and machineType.machinePower != ''">
+                and machine_power = #{machineType.machinePower}
+            </if>
+            <if test="machineType.remark != null and machineType.remark != ''">
+                and remark = #{machineType.remark}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <!--模糊查询-->
+    <select id="queryAllByLike" resultMap="MachineTypeMap">
+        select
+        machine_type_id, machine_type_name, machine_type_information, machine_model, machine_manufacturer,
+        orientation_position, machine_voltage, machine_power, remark
+        from machine_type
+        <where>
+            <if test="machineType.machineTypeId != null">
                 and machine_type_id like concat('%',#{machineType.machineTypeId},'#')
             </if>
             <if test="machineType.machineTypeName != null and machineType.machineTypeName != ''">

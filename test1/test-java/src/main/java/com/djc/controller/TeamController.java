@@ -119,7 +119,7 @@ public class TeamController<E> {
      */
     @GetMapping()
     public JsonResult findByLimit(Team team,@Param("num")Integer num,@Param("page")Integer page){
-        List list = teamService.queryByLimit(team, num, page-1);
+        List list = teamService.queryByLike(team, num, page-1);
         Integer integer = list.size();
         Map map=new HashMap();
         map.put("teams",list);

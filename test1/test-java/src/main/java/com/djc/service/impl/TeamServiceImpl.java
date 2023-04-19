@@ -115,6 +115,20 @@ public class TeamServiceImpl implements TeamService {
     }
 
     /**
+     * 模糊查询
+     * @param team
+     * @param num
+     * @param page
+     * @return
+     */
+    @Override
+    public List queryByLike(Team team, Integer num, Integer page) {
+        Sort sort=Sort.by(Sort.Direction.ASC,"teamId");
+        PageRequest pageRequest=PageRequest.of(page,num,sort);
+        List<Team> teams = teamMapper.queryAllByLike(team, pageRequest);
+        return teams;
+    }
+    /**
      * 修改小组长
      * @param team
      */

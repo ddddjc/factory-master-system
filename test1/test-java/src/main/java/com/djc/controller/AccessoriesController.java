@@ -28,7 +28,7 @@ public class AccessoriesController<E> {
 
     @GetMapping("")
     public JsonResult queryByLimit(Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
-        List<Accessories> accessories1 = accessoriesService.queryByLimit(accessories, page - 1, num);
+        List<Accessories> accessories1 = accessoriesService.queryByLike(accessories, page - 1, num);
         Integer integer = accessories1.size();
         Map map=new HashMap();
         map.put("num",integer);

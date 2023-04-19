@@ -94,7 +94,7 @@ public class MachineController<E> {
     public JsonResult queryByLimit(Machine machine, @Param("page")Integer page,@Param("num")Integer num){
         if (page==null||num==null) throw new CustomException(4006,"page或num为空");
         if (num<=0||page<=0) throw new CustomException(4007,"page<=0或num<=0");
-        List list = machineService.queryByLimit(machine, page, num);
+        List list = machineService.queryByLike(machine, page-1, num);
         Integer integer = list.size();
         Map map=new HashMap();
         map.put("num",integer);

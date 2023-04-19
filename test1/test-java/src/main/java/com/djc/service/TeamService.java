@@ -56,8 +56,23 @@ public interface TeamService {
      */
     boolean deleteById(Integer teamId);
 
+    /**
+     * 精确查询
+     * @param team
+     * @param num
+     * @param page
+     * @return
+     */
     List queryByLimit(Team team, Integer num, Integer page);
 
+    /**
+     * 模糊查询
+     * @param team
+     * @param num
+     * @param page
+     * @return
+     */
+    List queryByLike(Team team, Integer num, Integer page);
 
     void setLeader(Team team);
 

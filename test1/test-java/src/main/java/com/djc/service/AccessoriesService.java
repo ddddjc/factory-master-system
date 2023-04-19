@@ -57,9 +57,25 @@ public interface AccessoriesService {
      */
     boolean deleteById(Integer accessoriesId);
 
+    /**
+     * 条件查询
+     * @param accessories
+     * @param page
+     * @param num
+     * @return
+     */
     List<Accessories> queryByLimit(Accessories accessories, Integer page, Integer num);
 
     Integer queryAccessoriesNum(Accessories accessories);
 
     AccessoriesVo queryVoById(Integer id);
+
+    /**
+     * 模糊查询
+     * @param accessories
+     * @param page
+     * @param num
+     * @return
+     */
+    public List<Accessories> queryByLike(Accessories accessories, Integer page, Integer num);
 }

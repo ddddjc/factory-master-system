@@ -34,6 +34,39 @@
         from team
         <where>
             <if test="team.teamId != null">
+                and team_id = #{team.teamId}
+            </if>
+            <if test="team.teamName != null and team.teamName != ''">
+                and team_name = #{team.teamName}
+            </if>
+            <if test="team.employeeId != null">
+                and employee_id = #{team.employeeId}
+            </if>
+            <if test="team.employeeName != null and team.employeeName != ''">
+                and employee_name = #{team.employeeName}
+            </if>
+            <if test="team.employeeNumber != null">
+                and employee_number = #{team.employeeNumber}
+            </if>
+            <if test="team.teamNumber != null and team.teamNumber != ''">
+                and team_number = #{team.teamNumber}
+            </if>
+            <if test="team.teamPlace != null and team.teamPlace != ''">
+                and team_place = #{team.teamPlace}
+            </if>
+            <if test="team.remark != null and team.remark != ''">
+                and remark = #{team.remark}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <!--模糊查询-->
+    <select id="queryAllByLike" resultMap="TeamMap">
+        select
+        team_id, team_name, employee_id, employee_name, employee_number, team_number, team_place, remark
+        from team
+        <where>
+            <if test="team.teamId != null">
                 and team_id like concat('%',#{team.teamId},'%')
             </if>
             <if test="team.teamName != null and team.teamName != ''">

@@ -32,6 +32,14 @@ public interface TeamMapper {
     List<Team> queryAllByLimit(Team team, @Param("pageable") Pageable pageable);
 
     /**
+     * 模糊查询
+     * @param team
+     * @param pageable
+     * @return
+     */
+    List<Team> queryAllByLike(Team team, @Param("pageable") Pageable pageable);
+
+    /**
      * 通过主键查询单条数据
      *
      * @param keyWord 关键字

@@ -55,7 +55,23 @@ public interface MachineService {
      */
     boolean deleteById(Integer machineId);
 
+    /**
+     * 精确查询
+     * @param machine
+     * @param page
+     * @param num
+     * @return
+     */
     List queryByLimit(Machine machine, Integer page, Integer num);
+
+    /**
+     * 模糊查询
+     * @param machine
+     * @param page
+     * @param num
+     * @return
+     */
+    List queryByLike(Machine machine, Integer page, Integer num);
 
     Integer queryMachineNum(Machine machine);
 }

@@ -59,6 +59,7 @@ public interface MachineTypeService {
     boolean deleteById(Integer machineTypeId);
 
     List<MachineType> queryByLimit(MachineType machineType, Integer page, Integer num);
+    List<MachineType> queryByLike(MachineType machineType, Integer page, Integer num);
 
     /**
      * 查询对应的零件

@@ -32,6 +32,8 @@ public interface AccessoriesMapper {
      */
     List<Accessories> queryAllByLimit(Accessories accessories, @Param("pageable") Pageable pageable);
 
+    List<Accessories> queryAllByLike(Accessories accessories, @Param("pageable") Pageable pageable);
+
     /**
      * 通过主键查询单条数据
      *

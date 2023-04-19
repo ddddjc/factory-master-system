@@ -106,6 +106,25 @@ public class MachineServiceImpl implements MachineService {
     }
 
     /**
+     * 模糊查询
+     * @param machine
+     * @param page
+     * @param num
+     * @return
+     */
+    @Override
+    public List<MachienVo> queryByLike(Machine machine, Integer page, Integer num) {
+        List<Machine> machines = machineMapper.queryAllByLike(machine, PageRequest.of(page, num));
+        List<MachienVo> machienVos=new ArrayList<>();
+        for (Machine m:machines) {
+            MachienVo machienVo = Machine.toMachienVo(m);
+            MachineType machineType = machineTypeMapper.queryById(m.getMachineTypeId());
+            machienVo.mergeMachineType(machineType);
+            machienVos.add(machienVo);
+        }
+        return machienVos;
+    }
+    /**
      * 查询符合条件的数量
      * @param machineType
      * @return

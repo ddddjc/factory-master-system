@@ -112,6 +112,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
+    /**
+     * 模糊查询
+     * @param employee
+     * @param num
+     * @param page
+     * @return
+     */
+    @Override
+    public List<QueryEmployeeVo> queryByLike(Employee employee, Integer num, Integer page) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "employeeId"); // 以 id 字段升序排序
+        System.out.println(sort.toString());
+        PageRequest pageRequest=PageRequest.of(page,num,sort);
+        System.out.println(pageRequest.toString());
+        List<QueryEmployeeVo> employees=employeeMapper.queryAllByLike(employee,pageRequest);
+        return employees;
+    }
     @Override
     public Permission queryPermission(String role) {
         List<String> menus=employeeMapper.selectMenus(role);
@@ -130,6 +146,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<QueryEmployeeVo> queryByTeamId(Integer id, int page, Integer num) {
         return employeeMapper.queryByTeam(id,page,num);
+    }
+
+    @Override
+    public Employee queryPassword(Integer employeeId) {
+        return employeeMapper.queryPassword(employeeId);
     }
 
 }

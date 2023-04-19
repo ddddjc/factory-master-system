@@ -32,6 +32,7 @@ public interface MachineTypeMapper {
      */
     List<MachineType> queryAllByLimit(@Param("machineType") MachineType machineType, @Param("pageable") Pageable pageable);
 
+    List<MachineType> queryAllByLike(@Param("machineType") MachineType machineType, @Param("pageable") Pageable pageable);
     /**
      * 通过主键查询单条数据
      *

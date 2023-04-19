@@ -16,6 +16,49 @@
         <result property="importanceDescription" column="importance_description" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesMap">
+        select
+        accessories_id, stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance, employee_id,
+        type, importance_description
+        from accessories
+        <where>
+            <if test="accessories.accessoriesId != null">
+                and accessories_id = #{accessories.accessoriesId}
+            </if>
+            <if test="accessories.stockId != null and accessories.stockId != ''">
+                and stock_id = #{stockId}
+            </if>
+            <if test="accessories.stockCode != null and accessories.stockCode != ''">
+                and stock_code = #{accessories.stockCode}
+            </if>
+            <if test="accessories.accessoriesName != null and accessories.accessoriesName != ''">
+                and accessories_name = #{accessories.accessoriesName}
+            </if>
+            <if test="accessories.unit != null and accessories.unit != ''">
+                and unit = #{accessories.unit}
+            </if>
+            <if test="accessories.model != null and accessories.model != ''">
+                and model = #{accessories.model}
+            </if>
+            <if test="accessories.machineTypeId != null">
+                and machine_type_id = #{accessories.machineTypeId}
+            </if>
+            <if test="accessories.importance != null">
+                and importance = #{accessories.importance}
+            </if>
+            <if test="accessories.employeeId != null">
+                and employee_id = #{accessories.employeeId}
+            </if>
+            <if test="accessories.type != null and accessories.type != ''">
+                and type = #{accessories.type}
+            </if>
+            <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
+                and importance_description = #{accessories.importanceDescription}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesMap">
         select accessories_id,
@@ -33,8 +76,8 @@
         where accessories_id = #{accessoriesId}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="AccessoriesMap">
+    <!--模糊查询指定行数据-->
+    <select id="queryAllByLike" resultMap="AccessoriesMap">
         select
         accessories_id, stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance, employee_id,
         type, importance_description

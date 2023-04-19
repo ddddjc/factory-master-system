@@ -74,9 +74,25 @@ public interface EmployeeService {
      */
     List<QueryEmployeeVo> queryByCondition(Employee employee, Integer num, Integer page);
 
+    /**
+     * 模糊查询
+     * @param employee
+     * @param num
+     * @param page
+     * @return
+     */
+    List<QueryEmployeeVo> queryByLike(Employee employee, Integer num, Integer page);
+
     Permission queryPermission(String role);
 
     Integer queryNum(Employee employee);
 
     List<QueryEmployeeVo> queryByTeamId(Integer id, int page, Integer num);
+
+    /**
+     * 查询包括密码
+     * @param employeeId
+     * @return
+     */
+    Employee queryPassword(Integer employeeId);
 }

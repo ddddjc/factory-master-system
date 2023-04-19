@@ -56,7 +56,7 @@ public class EmployeeController<E> {
     public JsonResult queryByCondition(Employee employee, @Param("num") Integer num,@Param("page") Integer page){
         if (num==null||page==null) throw new CustomException(4002,"请输入页码和数量");
         if (num<=0||page<=0) throw new CustomException(4006,"页码和数量不能小于0");
-        List<QueryEmployeeVo> employees = this.employeeService.queryByCondition(employee, num, page - 1);
+        List<QueryEmployeeVo> employees = this.employeeService.queryByLike(employee, num, page - 1);
         Integer integer = employees.size();
         Map map=new HashMap();
         map.put("employees",employees);

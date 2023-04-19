@@ -32,7 +32,7 @@ public class Loginout {
             throw new CustomException(4001,"请输入id");
         if (employee.getPassword()==null)
             throw new CustomException(4002,"请输入密码");
-        QueryEmployeeVo employee1 = employeeService.queryById(employee.getEmployeeId());
+        Employee employee1 = employeeService.queryPassword(employee.getEmployeeId());
         if (null==employee1){
             throw new CustomException(4004,"没有此用户");
         }else if (null==employee.getPassword()||!employee.getPassword().equals(employee1.getPassword())){

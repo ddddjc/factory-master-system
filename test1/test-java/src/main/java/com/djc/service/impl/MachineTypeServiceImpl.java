@@ -108,7 +108,12 @@ public class MachineTypeServiceImpl implements MachineTypeService {
         List<MachineType> list = machineTypeMapper.queryAllByLimit(machineType, PageRequest.of(page, num, sort));
         return list;
     }
-
+    @Override
+    public List<MachineType> queryByLike(MachineType machineType, Integer page, Integer num) {
+        Sort sort=Sort.by(Sort.Direction.ASC,"machineTypeId");
+        List<MachineType> list = machineTypeMapper.queryAllByLike(machineType, PageRequest.of(page, num, sort));
+        return list;
+    }
     /**
      * 查询对应的机器
      * @param machineTypeId
