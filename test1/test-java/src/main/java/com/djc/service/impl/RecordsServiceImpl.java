@@ -1,13 +1,15 @@
 package com.djc.service.impl;
 
+import com.djc.entity.File;
 import com.djc.entity.Records;
+import com.djc.exception.CustomException;
+import com.djc.mapper.FileMapper;
 import com.djc.mapper.RecordsMapper;
 import com.djc.service.RecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -23,6 +25,8 @@ public class RecordsServiceImpl implements RecordsService {
     @Autowired
     private RecordsMapper recordsMapper;
 
+    @Autowired
+    private FileMapper fileMapper;
     /**
      * 通过ID查询单条数据
      *
@@ -31,6 +35,7 @@ public class RecordsServiceImpl implements RecordsService {
      */
     @Override
     public Records queryById(Integer recordsId) {
+
         return this.recordsMapper.queryById(recordsId);
     }
 
@@ -80,5 +85,44 @@ public class RecordsServiceImpl implements RecordsService {
     @Override
     public boolean deleteById(Integer recordsId) {
         return this.recordsMapper.deleteById(recordsId) > 0;
+    }
+
+    @Override
+    public void addFile(File myFile, Integer recordsId) {
+        Records records = recordsMapper.queryById(recordsId);
+        if (records==null) throw new CustomException(4006,"维修记录不存在");
+        int insert = fileMapper.insert(myFile);
+    }
+
+    @Value("${file.path}")
+    String directory;
+    @Override
+    public void delFile(Integer fileId) {
+        File file = fileMapper.queryById(fileId);
+        if (file==null) throw new CustomException(4006,"文件不存在");
+        String filePlace = directory+file.getFilePlace();
+        java.io.File file1=new java.io.File(filePlace);
+        if (!file1.delete()) throw new CustomException(4002,"删除失败");
+        fileMapper.deleteById(fileId);
+    }
+
+    @Override
+    public List<Records> queryAllByLike(Records records, Integer page, Integer num) {
+        return recordsMapper.queryAllByLike(records, PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer queryLikeCount(Records records) {
+        return recordsMapper.queryByLikeCount(records);
+    }
+
+    @Override
+    public List<Records> queryByLimit(Records records, Integer page, Integer num) {
+        return recordsMapper.queryAllByLimit(records,PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer queryCount(Records records) {
+        return (int) recordsMapper.count(records);
     }
 }

@@ -46,47 +46,47 @@
         method_description, maintenance_time, urgency_level, record_type, start_time, end_time, records_state
         from records
         <where>
-            <if test="recordsId != null">
-                and records_id = #{recordsId}
+            <if test="records.recordsId != null">
+                and records_id = #{records.recordsId}
             </if>
-            <if test="machineId != null">
-                and machine_id = #{machineId}
+            <if test="records.machineId != null">
+                and machine_id = #{records.machineId}
             </if>
-            <if test="machineName != null and machineName != ''">
-                and machine_name = #{machineName}
+            <if test="records.machineName != null and records.machineName != ''">
+                and machine_name = #{records.machineName}
             </if>
-            <if test="machineTypeId != null">
-                and machine_type_id = #{machineTypeId}
+            <if test="records.machineTypeId != null">
+                and machine_type_id = #{records.machineTypeId}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="records.employeeId != null">
+                and employee_id = #{records.employeeId}
             </if>
-            <if test="repaireEmployeesName != null and repaireEmployeesName != ''">
-                and repaire_employees_name = #{repaireEmployeesName}
+            <if test="records.repaireEmployeesName != null and records.repaireEmployeesName != ''">
+                and repaire_employees_name = #{records.repaireEmployeesName}
             </if>
-            <if test="faultDescription != null and faultDescription != ''">
-                and fault_description = #{faultDescription}
+            <if test="records.faultDescription != null and records.faultDescription != ''">
+                and fault_description = #{records.faultDescription}
             </if>
-            <if test="methodDescription != null and methodDescription != ''">
-                and method_description = #{methodDescription}
+            <if test="records.methodDescription != null and records.methodDescription != ''">
+                and method_description = #{records.methodDescription}
             </if>
-            <if test="maintenanceTime != null">
-                and maintenance_time = #{maintenanceTime}
+            <if test="records.maintenanceTime != null">
+                and maintenance_time = #{records.maintenanceTime}
             </if>
-            <if test="urgencyLevel != null and urgencyLevel != ''">
-                and urgency_level = #{urgencyLevel}
+            <if test="records.urgencyLevel != null and records.urgencyLevel != ''">
+                and urgency_level = #{records.urgencyLevel}
             </if>
-            <if test="recordType != null">
-                and record_type = #{recordType}
+            <if test="records.recordType != null">
+                and record_type = #{records.recordType}
             </if>
-            <if test="startTime != null">
-                and start_time = #{startTime}
+            <if test="records.startTime != null">
+                and start_time = #{records.startTime}
             </if>
-            <if test="endTime != null">
-                and end_time = #{endTime}
+            <if test="records.endTime != null">
+                and end_time = #{records.endTime}
             </if>
-            <if test="recordsState != null">
-                and records_state = #{recordsState}
+            <if test="records.recordsState != null">
+                and records_state = #{records.recordsState}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -146,6 +146,105 @@
             </if>
             <if test="recordsState != null">
                 and records_state = #{recordsState}
+            </if>
+        </where>
+    </select>
+    <select id="queryAllByLike" resultMap="RecordsMap">
+        select
+        records_id, machine_id, machine_name, machine_type_id, employee_id, repaire_employees_name, fault_description,
+        method_description, maintenance_time, urgency_level, record_type, start_time, end_time, records_state
+        from records
+        <where>
+            <if test="records.recordsId != null">
+                and records_id like concat('%',#{records.recordsId},'%')
+            </if>
+            <if test="records.machineId != null">
+                and machine_id like concat('%',#{records.machineId},'%')
+            </if>
+            <if test="records.machineName != null and records.machineName != ''">
+                and machine_name like concat('%',#{records.machineName},'%')
+            </if>
+            <if test="records.machineTypeId != null">
+                and machine_type_id like concat('%',#{records.machineTypeId},'%')
+            </if>
+            <if test="records.employeeId != null">
+                and employee_id like concat('%',#{records.employeeId},'%')
+            </if>
+            <if test="records.repaireEmployeesName != null and records.repaireEmployeesName != ''">
+                and repaire_employees_name like concat('%',#{records.repaireEmployeesName},'%')
+            </if>
+            <if test="records.faultDescription != null and records.faultDescription != ''">
+                and fault_description like concat('%',#{records.faultDescription},'%')
+            </if>
+            <if test="records.methodDescription != null and records.methodDescription != ''">
+                and method_description like concat('%',#{records.methodDescription},'%')
+            </if>
+            <if test="records.maintenanceTime != null">
+                and maintenance_time like concat('%',#{records.maintenanceTime},'%')
+            </if>
+            <if test="records.urgencyLevel != null and records.urgencyLevel != ''">
+                and urgency_level like concat('%',#{records.urgencyLevel},'%')
+            </if>
+            <if test="records.recordType != null">
+                and record_type like concat('%',#{records.recordType},'%')
+            </if>
+            <if test="records.startTime != null">
+                and start_time like concat('%',#{records.startTime},'%')
+            </if>
+            <if test="records.endTime != null">
+                and end_time like concat('%',#{records.endTime},'%')
+            </if>
+            <if test="records.recordsState != null">
+                and records_state like concat('%',#{records.recordsState},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="queryByLikeCount" resultType="java.lang.Integer">
+        select count(1)
+        from records
+        <where>
+            <if test="records.recordsId != null">
+                and records_id like concat('%',#{records.recordsId},'%')
+            </if>
+            <if test="records.machineId != null">
+                and machine_id like concat('%',#{records.machineId},'%')
+            </if>
+            <if test="records.machineName != null and records.machineName != ''">
+                and machine_name like concat('%',#{records.machineName},'%')
+            </if>
+            <if test="records.machineTypeId != null">
+                and machine_type_id like concat('%',#{records.machineTypeId},'%')
+            </if>
+            <if test="records.employeeId != null">
+                and employee_id like concat('%',#{records.employeeId},'%')
+            </if>
+            <if test="records.repaireEmployeesName != null and records.repaireEmployeesName != ''">
+                and repaire_employees_name like concat('%',#{records.repaireEmployeesName},'%')
+            </if>
+            <if test="records.faultDescription != null and records.faultDescription != ''">
+                and fault_description like concat('%',#{records.faultDescription},'%')
+            </if>
+            <if test="records.methodDescription != null and records.methodDescription != ''">
+                and method_description like concat('%',#{records.methodDescription},'%')
+            </if>
+            <if test="records.maintenanceTime != null">
+                and maintenance_time like concat('%',#{records.maintenanceTime},'%')
+            </if>
+            <if test="records.urgencyLevel != null and records.urgencyLevel != ''">
+                and urgency_level like concat('%',#{records.urgencyLevel},'%')
+            </if>
+            <if test="records.recordType != null">
+                and record_type like concat('%',#{records.recordType},'%')
+            </if>
+            <if test="records.startTime != null">
+                and start_time like concat('%',#{records.startTime},'%')
+            </if>
+            <if test="records.endTime != null">
+                and end_time = like concat('%',#{records.endTime},'%')
+            </if>
+            <if test="records.recordsState != null">
+                and records_state like concat('%',#{records.recordsState},'%')
             </if>
         </where>
     </select>

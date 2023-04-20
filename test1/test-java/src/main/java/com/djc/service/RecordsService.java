@@ -1,8 +1,7 @@
 package com.djc.service;
 
+import com.djc.entity.File;
 import com.djc.entity.Records;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -58,4 +57,15 @@ public interface RecordsService {
      */
     boolean deleteById(Integer recordsId);
 
+    void addFile(File myFile, Integer recordsId);
+
+    void delFile(Integer fileId);
+
+    List<Records> queryAllByLike(Records records, Integer page, Integer num);
+
+    Integer queryLikeCount(Records records);
+
+    List<Records> queryByLimit(Records records, Integer page, Integer num);
+
+    Integer queryCount(Records records);
 }

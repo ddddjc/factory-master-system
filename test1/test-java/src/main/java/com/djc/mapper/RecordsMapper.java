@@ -30,7 +30,15 @@ public interface RecordsMapper {
      * @param pageable 分页对象
      * @return 对象列表
      */
-    List<Records> queryAllByLimit(Records records, @Param("pageable") Pageable pageable);
+    List<Records> queryAllByLimit(@Param("records") Records records, @Param("pageable") Pageable pageable);
+
+    /**
+     * 模糊查询
+     * @param records
+     * @param pageable
+     * @return
+     */
+    List<Records> queryAllByLike(@Param("records") Records records,@Param("pageable") Pageable pageable);
 
     /**
      * 通过主键查询单条数据
@@ -91,5 +99,11 @@ public interface RecordsMapper {
      */
     int deleteById(Integer recordsId);
 
+    /**
+     * 模糊数量
+     * @param records
+     * @return
+     */
+    Integer queryByLikeCount(@Param("records") Records records);
 }
 

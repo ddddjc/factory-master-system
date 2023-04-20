@@ -7,7 +7,7 @@
         <result property="recordsId" column="records_id" jdbcType="INTEGER"/>
         <result property="filePlace" column="file_place" jdbcType="VARCHAR"/>
         <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
-        <result property="fileSize" column="file_size" jdbcType="NUMERIC"/>
+        <result property="fileSize" column="file_size" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -27,20 +27,20 @@
         file_id, records_id, file_place, file_type, file_size
         from file
         <where>
-            <if test="fileId != null">
-                and file_id = #{fileId}
+            <if test="file.fileId != null">
+                and file_id = #{file.fileId}
             </if>
-            <if test="recordsId != null">
-                and records_id = #{recordsId}
+            <if test="file.recordsId != null">
+                and records_id = #{file.recordsId}
             </if>
-            <if test="filePlace != null and filePlace != ''">
-                and file_place = #{filePlace}
+            <if test="file.filePlace != null and file.filePlace != ''">
+                and file_place = #{file.filePlace}
             </if>
-            <if test="fileType != null and fileType != ''">
-                and file_type = #{fileType}
+            <if test="file.fileType != null and file.fileType != ''">
+                and file_type = #{file.fileType}
             </if>
-            <if test="fileSize != null">
-                and file_size = #{fileSize}
+            <if test="file.fileSize != null">
+                and file_size = #{file.fileSize}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

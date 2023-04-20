@@ -1,8 +1,10 @@
 package com.djc.controller;
 
 import com.djc.entity.Machine;
+import com.djc.entity.Records;
 import com.djc.exception.CustomException;
 import com.djc.service.MachineService;
+import com.djc.service.RecordsService;
 import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -99,6 +101,19 @@ public class MachineController<E> {
         Map map=new HashMap();
         map.put("total",integer);
         map.put("machines",list);
+        return new JsonResult(200,"查询成功",map);
+    }
+    @Autowired
+    RecordsService recordsService;
+    @GetMapping("findReword/{machineId}")
+    public JsonResult findReword(@PathVariable("machineId") Integer machineId,@Param("page")Integer page,@Param("num")Integer num){
+        Records records=new Records();
+        records.setMachineId(machineId);
+        List<Records> recordsList = recordsService.queryByLimit(records, page - 1, num);
+        Integer integer = recordsService.queryCount(records);
+        Map map=new HashMap();
+        map.put("total",integer);
+        map.put("recordsList",recordsList);
         return new JsonResult(200,"查询成功",map);
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * 文件表(File)表数据库访问层
  *
  * @author djc
- * @since 2023-04-16 14:02:13
+ * @since 2023-04-20 11:10:08
  */
 public interface FileMapper {
 
@@ -29,7 +29,7 @@ public interface FileMapper {
      * @param pageable 分页对象
      * @return 对象列表
      */
-    List<File> queryAllByLimit(File file, @Param("pageable") Pageable pageable);
+    List<File> queryAllByLimit(@Param("file") File file, @Param("pageable") Pageable pageable);
 
     /**
      * 通过主键查询单条数据

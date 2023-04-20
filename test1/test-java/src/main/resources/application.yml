@@ -15,7 +15,7 @@ spring:
       port: 6379
   web:
     resources:
-      static-locations: file:D:testFile/
+      static-locations: file:/root/machine/testFile
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.djc.entity
@@ -26,4 +26,4 @@ jwt:
   expiration: 3600
 
 file:
-  path: E:\testFile\
+  path: /root/machine/testFile/

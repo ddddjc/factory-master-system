@@ -4,10 +4,8 @@ import com.djc.entity.File;
 import com.djc.mapper.FileMapper;
 import com.djc.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,7 +13,7 @@ import java.util.List;
  * 文件表(File)表服务实现类
  *
  * @author djc
- * @since 2023-04-16 14:02:14
+ * @since 2023-04-20 11:10:08
  */
 @Service("fileService")
 public class FileServiceImpl implements FileService {
@@ -79,5 +77,15 @@ public class FileServiceImpl implements FileService {
     @Override
     public boolean deleteById(Integer fileId) {
         return this.fileMapper.deleteById(fileId) > 0;
+    }
+
+    @Override
+    public List<File> queryByLimit(File file, int i, Integer num) {
+        return fileMapper.queryAllByLimit(file, PageRequest.of(i,num));
+    }
+
+    @Override
+    public Integer queryCount(File file) {
+        return (int) fileMapper.count(file);
     }
 }

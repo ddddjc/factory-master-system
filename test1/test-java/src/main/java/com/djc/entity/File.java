@@ -1,15 +1,20 @@
 package com.djc.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
  * 文件表(File)实体类
  *
  * @author djc
- * @since 2023-04-16 14:02:14
+ * @since 2023-04-20 11:10:08
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class File implements Serializable {
-    private static final long serialVersionUID = -58098367419866917L;
+    private static final long serialVersionUID = -33275929178959155L;
     /**
      * 文件id
      */
@@ -29,7 +34,7 @@ public class File implements Serializable {
     /**
      * 文件大小
      */
-    private Double fileSize;
+    private Integer fileSize;
 
 
     public Integer getFileId() {
@@ -64,11 +69,11 @@ public class File implements Serializable {
         this.fileType = fileType;
     }
 
-    public Double getFileSize() {
+    public Integer getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(Double fileSize) {
+    public void setFileSize(Integer fileSize) {
         this.fileSize = fileSize;
     }
 

@@ -1,8 +1,6 @@
 package com.djc.service;
 
 import com.djc.entity.File;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -10,7 +8,7 @@ import java.util.List;
  * 文件表(File)表服务接口
  *
  * @author djc
- * @since 2023-04-16 14:02:14
+ * @since 2023-04-20 11:10:08
  */
 public interface FileService {
 
@@ -57,4 +55,7 @@ public interface FileService {
      */
     boolean deleteById(Integer fileId);
 
+    List<File> queryByLimit(File file, int i, Integer num);
+
+    Integer queryCount(File file);
 }
