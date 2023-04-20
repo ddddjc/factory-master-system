@@ -95,4 +95,8 @@ public interface EmployeeService {
      * @return
      */
     Employee queryPassword(Integer employeeId);
+
+    public Integer queryByLikeCount(Employee employee);
+
+    void setGrup(Employee employee);
 }

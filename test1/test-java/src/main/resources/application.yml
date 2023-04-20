@@ -24,3 +24,6 @@ mybatis:
 jwt:
   secret: 52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain52FeiDain
   expiration: 3600
+
+file:
+  path: E:\testFile\

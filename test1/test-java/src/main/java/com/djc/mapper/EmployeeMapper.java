@@ -106,5 +106,7 @@ public interface EmployeeMapper {
     List<QueryEmployeeVo> queryByTeam(@Param("teamId") Integer id, @Param("page") int page,@Param("num") Integer num);
 
     Employee queryPassword(@Param("employeeId") Integer employeeId);
+
+    Integer queryByLikeCount(@Param("employee") Employee employee);
 }
 

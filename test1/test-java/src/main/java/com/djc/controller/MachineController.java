@@ -95,7 +95,7 @@ public class MachineController<E> {
         if (page==null||num==null) throw new CustomException(4006,"page或num为空");
         if (num<=0||page<=0) throw new CustomException(4007,"page<=0或num<=0");
         List list = machineService.queryByLike(machine, page-1, num);
-        Integer integer = list.size();
+        Integer integer = machineService.queryByLikeCount(machine);
         Map map=new HashMap();
         map.put("total",integer);
         map.put("machines",list);

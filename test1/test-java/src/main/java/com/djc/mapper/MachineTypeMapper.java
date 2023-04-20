@@ -92,5 +92,6 @@ public interface MachineTypeMapper {
      */
     int deleteById(Integer machineTypeId);
 
+    Integer queryByLikeCount(@Param("machineType") MachineType machineType);
 }
 

@@ -104,8 +104,10 @@ public class TeamController<E> {
         if (page==null||num==null||page<=0||num<=0) throw new CustomException(4008,"页码和数量异常");;
         List<QueryEmployeeVo> queryEmployeeVos = employeeService.queryByTeamId(id, page-1,num);
         Map map=new HashMap();
-        Integer integer = queryEmployeeVos.size();
-        map.put("num",integer);
+        Employee employee=new Employee();
+        employee.setTeamId(id);
+        Integer integer =employeeService.queryByLikeCount(employee);
+        map.put("total",integer);
         map.put("employees",queryEmployeeVos);
         return new JsonResult(200,"查询成功",map);
     }
@@ -120,7 +122,7 @@ public class TeamController<E> {
     @GetMapping()
     public JsonResult findByLimit(Team team,@Param("num")Integer num,@Param("page")Integer page){
         List list = teamService.queryByLike(team, num, page-1);
-        Integer integer = list.size();
+        Integer integer = teamService.queryByLikeCount(team);
         Map map=new HashMap();
         map.put("teams",list);
         map.put("total",integer);

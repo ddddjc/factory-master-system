@@ -1,6 +1,7 @@
 package com.djc.entity;
 
-import java.time.LocalTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,10 +10,10 @@ import java.io.Serializable;
  * (Records)实体类
  *
  * @author djc
- * @since 2023-04-16 14:02:08
+ * @since 2023-04-19 21:57:06
  */
 public class Records implements Serializable {
-    private static final long serialVersionUID = 815455329235279279L;
+    private static final long serialVersionUID = 177245142815487268L;
     /**
      * 记录id
      */
@@ -48,6 +49,7 @@ public class Records implements Serializable {
     /**
      * 维修日期
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss")
     private Date maintenanceTime;
     /**
      * 紧急程度
@@ -60,11 +62,13 @@ public class Records implements Serializable {
     /**
      * 开始时间
      */
-    private LocalTime startTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date startTime;
     /**
      * 结束时间
      */
-    private LocalTime endTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date endTime;
     /**
      * 判断是否通过审核（0通过，1不通过）
      */
@@ -159,19 +163,19 @@ public class Records implements Serializable {
         this.recordType = recordType;
     }
 
-    public LocalTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public LocalTime getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

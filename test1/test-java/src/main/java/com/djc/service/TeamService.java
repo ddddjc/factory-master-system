@@ -77,4 +77,6 @@ public interface TeamService {
     void setLeader(Team team);
 
     Integer queryTeamNum(Team team);
+
+    Integer queryByLikeCount(Team team);
 }

@@ -71,4 +71,6 @@ public interface MachineTypeService {
     AccessoriesOfMachineTypeVo findAccessories(Integer machineTypeId, Integer num, Integer page);
 
     Integer queryMachineTypeNum(MachineType machineType);
+
+    Integer queryBylikeCount(MachineType machineType);
 }

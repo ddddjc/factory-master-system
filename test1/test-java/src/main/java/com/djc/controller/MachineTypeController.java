@@ -1,5 +1,6 @@
 package com.djc.controller;
 
+import com.djc.entity.Accessories;
 import com.djc.entity.Machine;
 import com.djc.entity.MachineType;
 import com.djc.entity.Vo.AccessoriesOfMachineTypeVo;
@@ -40,7 +41,7 @@ public class MachineTypeController<E> {
         if (page==null||num==null)
             throw new CustomException(4004,"请输入页码和容量");
           List<MachineType> list= this.machineTypeService.queryByLike(machineType,page-1,num);
-        Integer integer = list.size();
+        Integer integer = machineTypeService.queryBylikeCount(machineType);
         Map map=new HashMap();
         map.put("total",integer);
         map.put("machineTypes",list);
@@ -120,7 +121,9 @@ public class MachineTypeController<E> {
     @GetMapping("/findAccessories/{machineTypeId}")
     public JsonResult findAccessories(@PathVariable("machineTypeId") Integer machineTypeId,@Param("num")Integer num,@Param("page")Integer page){
         AccessoriesOfMachineTypeVo accessories = machineTypeService.findAccessories(machineTypeId, num, page - 1);
-        Integer total=accessories.getAccessoriesList().size();
+        Accessories accessories1=new Accessories();
+        accessories1.setMachineTypeId(machineTypeId);
+        Integer total=accessoriesService.queryByLikeCount(accessories1);
         Map map=new HashMap();
         map.put("total",total);
         map.put("accessories",accessories);

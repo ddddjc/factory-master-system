@@ -78,4 +78,6 @@ public interface AccessoriesService {
      * @return
      */
     public List<Accessories> queryByLike(Accessories accessories, Integer page, Integer num);
+
+    public Integer queryByLikeCount(Accessories accessories);
 }

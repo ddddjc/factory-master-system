@@ -136,6 +136,36 @@
             </if>
         </where>
     </select>
+    <select id="queryByLikeCount" resultType="java.lang.Integer">
+        select count(1)
+        from machine
+        <where>
+            <if test="machine.machineId != null">
+                and machine_id like concat('%',#{machine.machineId},'%')
+            </if>
+            <if test="machine.machineTypeId != null">
+                and machine_type_id like concat('%',#{machine.machineTypeId},'%')
+            </if>
+            <if test="machine.machineSerialNumber != null and machine.machineSerialNumber != ''">
+                and machine_serial_number like concat('%',#{machine.machineSerialNumber},'%')
+            </if>
+            <if test="machine.machineLocation != null and machine.machineLocation != ''">
+                and machine_location like concat('%',#{machine.machineLocation},'%')
+            </if>
+            <if test="machine.intoDate != null">
+                and into_date = like concat('%',#{machine.intoDate},'%')
+            </if>
+            <if test="machine.assetNumber != null and machine.assetNumber != ''">
+                and asset_number like concat('%',#{machine.assetNumber},'#')
+            </if>
+            <if test="machine.machineState != null and machine.machineState != ''">
+                and machine_state like concat('%',#{machine.machineState},'%')
+            </if>
+            <if test="machine.remark != null and machine.remark != ''">
+                and remark like concat('%',{machine.remark}.'%')
+            </if>
+        </where>
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="machineId" useGeneratedKeys="true">

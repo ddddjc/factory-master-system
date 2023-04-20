@@ -100,5 +100,7 @@ public interface MachineMapper {
     int deleteById(Integer machineId);
 
     List<MachienVo> queryMachineVo(@Param("machine") Machine machine, @Param("page") Integer page,@Param("page") Integer num);
+
+    Integer queryByLikeCount(@Param("machine") Machine machine);
 }
 

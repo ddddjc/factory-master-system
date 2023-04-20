@@ -93,5 +93,7 @@ public interface AccessoriesMapper {
      */
     int deleteById(Integer accessoriesId);
 
+
+    Integer queryByLikeCount(@Param("accessories") Accessories accessories);
 }
 

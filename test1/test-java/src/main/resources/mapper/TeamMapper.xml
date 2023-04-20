@@ -133,6 +133,37 @@
             </if>
         </where>
     </select>
+<!--查询数量-->
+    <select id="queryByLikeCount" resultType="java.lang.Integer">
+        select count(1)
+        from team
+        <where>
+            <if test="team.teamId != null">
+                and team_id like concat('%',#{team.teamId},'%')
+            </if>
+            <if test="team.teamName != null and team.teamName != ''">
+                and team_name like concat('%',#{team.teamName},'%')
+            </if>
+            <if test="team.employeeId != null">
+                and employee_id like concat('%',#{team.employeeId},'%')
+            </if>
+            <if test="team.employeeName != null and team.employeeName != ''">
+                and employee_name like concat('%',#{team.employeeName}.'%')
+            </if>
+            <if test="team.employeeNumber != null">
+                and employee_number like concat('%',#{team.employeeNumber},'%')
+            </if>
+            <if test="team.teamNumber != null and team.teamNumber != ''">
+                and team_number like concat('%',#{team.teamNumber},'%')
+            </if>
+            <if test="team.teamPlace != null and team.teamPlace != ''">
+                and team_place like concat('%',#{team.teamPlace},'%')
+            </if>
+            <if test="team.remark != null and team.remark != ''">
+                and remark like concat('%',#{team.remark},'%')
+            </if>
+        </where>
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="teamId" useGeneratedKeys="true">

@@ -111,6 +111,12 @@ public class AccessoriesServiceImpl implements AccessoriesService {
         Sort sort=Sort.by(Sort.Direction.ASC,"accessoriesId");
         return accessoriesMapper.queryAllByLike(accessories, PageRequest.of(page,num,sort));
     }
+
+    @Override
+    public Integer queryByLikeCount(Accessories accessories) {
+        return accessoriesMapper.queryByLikeCount(accessories);
+    }
+
     @Override
     public Integer queryAccessoriesNum(Accessories accessories) {
         return (int) accessoriesMapper.count(accessories);

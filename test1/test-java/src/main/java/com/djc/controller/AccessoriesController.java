@@ -29,7 +29,7 @@ public class AccessoriesController<E> {
     @GetMapping("")
     public JsonResult queryByLimit(Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
         List<Accessories> accessories1 = accessoriesService.queryByLike(accessories, page - 1, num);
-        Integer integer = accessories1.size();
+        Integer integer = accessoriesService.queryByLikeCount(accessories);
         Map map=new HashMap();
         map.put("total",integer);
         map.put("accessories",accessories1);

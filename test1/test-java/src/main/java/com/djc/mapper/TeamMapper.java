@@ -98,5 +98,6 @@ public interface TeamMapper {
      */
     int deleteById(Integer teamId);
 
+    Integer queryByLikeCount(@Param("team") Team team);
 }
 

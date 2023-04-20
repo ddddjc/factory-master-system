@@ -14,8 +14,8 @@
         <result property="maintenanceTime" column="maintenance_time" jdbcType="TIMESTAMP"/>
         <result property="urgencyLevel" column="urgency_level" jdbcType="VARCHAR"/>
         <result property="recordType" column="record_type" jdbcType="INTEGER"/>
-        <result property="startTime" column="start_time" jdbcType="VARCHAR"/>
-        <result property="endTime" column="end_time" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
         <result property="recordsState" column="records_state" jdbcType="INTEGER"/>
     </resultMap>
 

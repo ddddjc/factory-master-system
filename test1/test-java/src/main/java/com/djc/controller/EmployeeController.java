@@ -57,10 +57,9 @@ public class EmployeeController<E> {
         if (num==null||page==null) throw new CustomException(4002,"请输入页码和数量");
         if (num<=0||page<=0) throw new CustomException(4006,"页码和数量不能小于0");
         List<QueryEmployeeVo> employees = this.employeeService.queryByLike(employee, num, page - 1);
-        Integer integer = employees.size();
         Map map=new HashMap();
         map.put("employees",employees);
-        map.put("total",integer);
+        map.put("total",employeeService.queryByLikeCount(employee));
         return new JsonResult<>(200,"查询成功",map);
     }
     /**
@@ -135,11 +134,8 @@ public class EmployeeController<E> {
      */
     @PutMapping("setgroup")
     public JsonResult setgroup(@RequestBody Employee employee){
-        Employee employee1=new Employee();
-        employee1.setEmployeeId(employee.getEmployeeId());
-        employee1.setTeamId(employee.getTeamId());
-        employeeService.update(employee1);
-        return new JsonResult(200,"设置修改",null);
+        employeeService.setGrup(employee);
+        return new JsonResult(200,"修改成功",null);
     }
     @PostMapping("/aa")
     public String hello(){

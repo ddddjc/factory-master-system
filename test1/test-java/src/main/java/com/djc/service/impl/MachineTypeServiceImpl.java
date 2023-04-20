@@ -145,4 +145,14 @@ public class MachineTypeServiceImpl implements MachineTypeService {
     public Integer queryMachineTypeNum(MachineType machineType) {
         return (int) machineTypeMapper.count(machineType);
     }
+
+    /**
+     * 查询总数
+     * @param machineType
+     * @return
+     */
+    @Override
+    public Integer queryBylikeCount(MachineType machineType) {
+        return machineTypeMapper.queryByLikeCount(machineType);
+    }
 }

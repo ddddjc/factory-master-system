@@ -168,4 +168,9 @@ public class TeamServiceImpl implements TeamService {
     public Integer queryTeamNum(Team team){
         return (int) teamMapper.count(team);
     }
+
+    @Override
+    public Integer queryByLikeCount(Team team) {
+        return teamMapper.queryByLikeCount(team);
+    }
 }

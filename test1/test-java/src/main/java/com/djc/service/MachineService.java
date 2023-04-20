@@ -74,4 +74,6 @@ public interface MachineService {
     List queryByLike(Machine machine, Integer page, Integer num);
 
     Integer queryMachineNum(Machine machine);
+
+    Integer queryByLikeCount(Machine machine);
 }

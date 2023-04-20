@@ -133,4 +133,14 @@ public class MachineServiceImpl implements MachineService {
     public Integer queryMachineNum(Machine machine) {
         return (int) machineMapper.count(machine);
     }
+
+    /**
+     * 查询模糊对应总数
+     * @param machine
+     * @return
+     */
+    @Override
+    public Integer queryByLikeCount(Machine machine) {
+        return machineMapper.queryByLikeCount(machine);
+    }
 }

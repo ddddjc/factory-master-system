@@ -2,14 +2,16 @@ package com.djc.controller;
 
 import com.djc.entity.Records;
 import com.djc.service.RecordsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 import com.djc.util.JsonResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * 维修(维修)记录表
@@ -88,5 +90,21 @@ public class RecordsController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+
+    /**
+     * 上传文件
+     * @param file
+     * @param recordsId
+     * @return
+     */
+    @Value("${file.path}")
+    private String fileLocation;
+    @PostMapping("/file")
+    public JsonResult addfile(@RequestPart("file")MultipartFile file, @Param("recordsId")Integer recordsId) throws IOException {
+        String name = file.getName();
+        String originalFilename = file.getOriginalFilename();
+        file.transferTo(new File(fileLocation+ file.getOriginalFilename()));
+        return null;
     }
 }
