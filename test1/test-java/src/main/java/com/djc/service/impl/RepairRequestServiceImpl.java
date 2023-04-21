@@ -4,10 +4,8 @@ import com.djc.entity.RepairRequest;
 import com.djc.mapper.RepairRequestMapper;
 import com.djc.service.RepairRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -79,5 +77,15 @@ public class RepairRequestServiceImpl implements RepairRequestService {
     @Override
     public boolean deleteById(Integer requestId) {
         return this.repairRequestMapper.deleteById(requestId) > 0;
+    }
+
+    @Override
+    public List<RepairRequest> queryByLike(RepairRequest repairRequest, Integer num, Integer page) {
+        return repairRequestMapper.queryByLike(repairRequest, PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer queryLikeCount(RepairRequest repairRequest) {
+        return repairRequestMapper.queryLikeCount(repairRequest);
     }
 }

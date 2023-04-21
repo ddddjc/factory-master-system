@@ -38,35 +38,35 @@
         specific_position, progress
         from repair_request
         <where>
-            <if test="requestId != null">
-                and request_id = #{requestId}
+            <if test="repairRequest.requestId != null">
+                and request_id = #{repairRequest.requestId}
             </if>
-            <if test="machineId != null">
-                and machine_id = #{machineId}
+            <if test="repairRequest.machineId != null">
+                and machine_id = #{repairRequest.machineId}
             </if>
-            <if test="machineName != null and machineName != ''">
-                and machine_name = #{machineName}
+            <if test="repairRequest.machineName != null and repairRequest.machineName != ''">
+                and machine_name = #{repairRequest.machineName}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="repairRequest.employeeId != null">
+                and employee_id = #{repairRequest.employeeId}
             </if>
-            <if test="employeeName != null and employeeName != ''">
-                and employee_name = #{employeeName}
+            <if test="repairRequest.employeeName != null and repairRequest.employeeName != ''">
+                and employee_name = #{repairRequest.employeeName}
             </if>
-            <if test="degreeUrgency != null and degreeUrgency != ''">
-                and degree_urgency = #{degreeUrgency}
+            <if test="repairRequest.degreeUrgency != null and repairRequest.degreeUrgency != ''">
+                and degree_urgency = #{repairRequest.degreeUrgency}
             </if>
-            <if test="description != null and description != ''">
-                and description = #{description}
+            <if test="repairRequest.description != null and repairRequest.description != ''">
+                and description = #{repairRequest.description}
             </if>
-            <if test="telephoneNumber != null and telephoneNumber != ''">
-                and telephone_number = #{telephoneNumber}
+            <if test="repairRequest.telephoneNumber != null and repairRequest.telephoneNumber != ''">
+                and telephone_number = #{repairRequest.telephoneNumber}
             </if>
-            <if test="specificPosition != null and specificPosition != ''">
-                and specific_position = #{specificPosition}
+            <if test="repairRequest.specificPosition != null and repairRequest.specificPosition != ''">
+                and specific_position = #{repairRequest.specificPosition}
             </if>
-            <if test="progress != null and progress != ''">
-                and progress = #{progress}
+            <if test="repairRequest.progress != null and repairRequest.progress != ''">
+                and progress = #{repairRequest.progress}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -114,6 +114,81 @@
             </if>
             <if test="progress != null and progress != ''">
                 and progress = #{progress}
+            </if>
+        </where>
+    </select>
+    <select id="queryByLike" resultMap="RepairRequestMap">
+        select
+        request_id, machine_id, machine_name, employee_id, employee_name, degree_urgency, description, telephone_number,
+        specific_position, progress
+        from repair_request
+        <where>
+            <if test="repairRequest.requestId != null">
+                and request_id like concat('%',#{repairRequest.requestId},'%')
+            </if>
+            <if test="repairRequest.machineId != null">
+                and machine_id like concat('%',#{repairRequest.machineId},'%')
+            </if>
+            <if test="repairRequest.machineName != null and repairRequest.machineName != ''">
+                and machine_name like concat('%',#{repairRequest.machineName},'%')
+            </if>
+            <if test="repairRequest.employeeId != null">
+                and employee_id like concat('%',#{repairRequest.employeeId},'%')
+            </if>
+            <if test="repairRequest.employeeName != null and repairRequest.employeeName != ''">
+                and employee_name like concat('%',#{repairRequest.employeeName},'%')
+            </if>
+            <if test="repairRequest.degreeUrgency != null and repairRequest.degreeUrgency != ''">
+                and degree_urgency like concat('%',#{repairRequest.degreeUrgency},'%')
+            </if>
+            <if test="repairRequest.description != null and repairRequest.description != ''">
+                and description like concat('%',#{repairRequest.description},'%')
+            </if>
+            <if test="repairRequest.telephoneNumber != null and repairRequest.telephoneNumber != ''">
+                and telephone_number like concat('%',#{repairRequest.telephoneNumber},'%')
+            </if>
+            <if test="repairRequest.specificPosition != null and repairRequest.specificPosition != ''">
+                and specific_position like concat('%',#{repairRequest.specificPosition},'%')
+            </if>
+            <if test="repairRequest.progress != null and repairRequest.progress != ''">
+                and progress like concat('%',#{repairRequest.progress},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="queryLikeCount" resultType="java.lang.Integer">
+        select count(1)
+        from repair_request
+        <where>
+            <if test="repairRequest.requestId != null">
+                and request_id like concat('%',#{repairRequest.requestId},'%')
+            </if>
+            <if test="repairRequest.machineId != null">
+                and machine_id like concat('%',#{repairRequest.machineId},'%')
+            </if>
+            <if test="repairRequest.machineName != null and repairRequest.machineName != ''">
+                and machine_name like concat('%',#{repairRequest.machineName},'%')
+            </if>
+            <if test="repairRequest.employeeId != null">
+                and employee_id like concat('%',#{repairRequest.employeeId},'%')
+            </if>
+            <if test="repairRequest.employeeName != null and repairRequest.employeeName != ''">
+                and employee_name like concat('%',#{repairRequest.employeeName},'%')
+            </if>
+            <if test="repairRequest.degreeUrgency != null and repairRequest.degreeUrgency != ''">
+                and degree_urgency like concat('%',#{repairRequest.degreeUrgency},'%')
+            </if>
+            <if test="repairRequest.description != null and repairRequest.description != ''">
+                and description like concat('%',#{repairRequest.description},'%')
+            </if>
+            <if test="repairRequest.telephoneNumber != null and repairRequest.telephoneNumber != ''">
+                and telephone_number like concat('%',#{repairRequest.telephoneNumber},'%')
+            </if>
+            <if test="repairRequest.specificPosition != null and repairRequest.specificPosition != ''">
+                and specific_position like concat('%',#{repairRequest.specificPosition},'%')
+            </if>
+            <if test="repairRequest.progress != null and repairRequest.progress != ''">
+                and progress like concat('%',#{repairRequest.progress},'%')
             </if>
         </where>
     </select>

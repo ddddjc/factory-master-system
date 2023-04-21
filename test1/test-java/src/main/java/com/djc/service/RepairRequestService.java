@@ -1,8 +1,6 @@
 package com.djc.service;
 
 import com.djc.entity.RepairRequest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -57,4 +55,7 @@ public interface RepairRequestService {
      */
     boolean deleteById(Integer requestId);
 
+    List<RepairRequest> queryByLike(RepairRequest repairRequest, Integer num, Integer page);
+
+    Integer queryLikeCount(RepairRequest repairRequest);
 }
