@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.djc.mapper.MaintenanceArrangeMapper">
-
     <resultMap type="com.djc.entity.MaintenanceArrange" id="MaintenanceArrangeMap">
         <result property="maintenanceArrangeId" column="maintenance_arrange_id" jdbcType="INTEGER"/>
         <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
@@ -20,8 +19,8 @@
         <result property="maintenanceDate" column="maintenance_date" jdbcType="TIMESTAMP"/>
         <result property="maintenanceState" column="maintenance_state" jdbcType="VARCHAR"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
-        <collection property="employeeList" ofType="com.djc.entity.Vo.MaintenanceEmployeeVo"
-                    column="maintenanceArrangeId" select="com.djc.mapper.MaintenanceEmployeeMapper.queryMaintenanceEmployeeVo"/>
+        <collection property="employeeList" javaType="ArrayList" ofType="com.djc.entity.Vo.MaintenanceEmployeeVo"
+                    column="maintenance_arrange_id" select="com.djc.mapper.MaintenanceEmployeeMapper.queryMaintenanceEmployeeVo"/>
     </resultMap>
 
     <!--查询单个-->
@@ -105,7 +104,10 @@
         </where>
     </select>
 <!--    模糊查询-->
-    <select id="queryByLike" resultType="java.util.List">
+    <select id="queryByLike" resultMap="MaintenanceArrangeMap">
+        select
+        maintenance_arrange_id, machine_id, machine_name, employees_name, maintenance_date, maintenance_state, remark
+        from maintenance_arrange
         <where>
             <if test="maintenanceArrange.maintenanceArrangeId != null">
                 and maintenance_arrange_id like concat('%',#{maintenanceArrange.maintenanceArrangeId},'%')

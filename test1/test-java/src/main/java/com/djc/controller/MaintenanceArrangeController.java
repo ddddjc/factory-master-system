@@ -2,6 +2,7 @@ package com.djc.controller;
 
 import com.djc.entity.MaintenanceArrange;
 import com.djc.entity.MaintenanceEmployee;
+import com.djc.exception.CustomException;
 import com.djc.service.MaintenanceArrangeService;
 import com.djc.service.MaintenanceEmployeeService;
 import com.djc.util.JsonResult;
@@ -108,12 +109,15 @@ public class MaintenanceArrangeController<E> {
      */
     @PutMapping("addEmployee")
     public JsonResult addEmployee(MaintenanceEmployee maintenanceEmployee){
+        if (maintenanceEmployee.getMaintenanceArrangeId()==null||maintenanceEmployee.getEmployeeId()==null) throw new CustomException(4001,"请输入EmployeeId和MaintenanceArrangeId");
         maintenanceEmployeeService.insert(maintenanceEmployee);
-        return null;
+        return new JsonResult(200,"添加成功",maintenanceArrangeService.queryVoById(maintenanceEmployee.getMaintenanceArrangeId()));
     }
     @DeleteMapping("delEmployee/{maintenanceEmployeeId}")
     public JsonResult delEmployee(@PathVariable("maintenanceEmployeeId")Integer maintenanceEmployeeId){
+        MaintenanceEmployee maintenanceEmployee = maintenanceEmployeeService.queryById(maintenanceEmployeeId);
+        if (maintenanceEmployee==null) return new JsonResult(200,"该用户不存在");
         maintenanceEmployeeService.deleteById(maintenanceEmployeeId);
-        return null;
+        return new JsonResult(200,"删除成功",maintenanceArrangeService.queryVoById(maintenanceEmployee.getMaintenanceArrangeId()));
     }
 }

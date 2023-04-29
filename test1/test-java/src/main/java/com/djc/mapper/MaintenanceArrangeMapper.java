@@ -92,7 +92,7 @@ public interface MaintenanceArrangeMapper {
      */
     int deleteById(Integer maintenanceArrangeId);
 
-    List queryByLike(@Param("maintenanceArrange") MaintenanceArrange maintenanceArrange, @Param("of") PageRequest of);
+    List queryByLike(@Param("maintenanceArrange") MaintenanceArrange maintenanceArrange, @Param("pageable") PageRequest pageable);
 
     Integer likeNum(@Param("maintenanceArrange") MaintenanceArrange maintenanceArrange);
 
