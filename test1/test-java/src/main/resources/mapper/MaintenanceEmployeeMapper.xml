@@ -10,6 +10,26 @@
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap type="com.djc.entity.Vo.MaintenanceEmployeeVo" id="MaintenanceEmployeeVoMap">
+        <result property="maintenanceEmployeeId" column="maintenance_employee_id" jdbcType="INTEGER"/>
+        <result property="maintenanceArrangeId" column="maintenance_arrange_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="importance" column="importance" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="employeeName" column="employee_name" jdbcType="VARCHAR"/>
+        <result property="employeeSex" column="employee_sex" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="teamId" column="team_id" jdbcType="INTEGER"/>
+        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+        <result property="workPlace" column="work_place" jdbcType="VARCHAR"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="employeeEmail" column="employee_email" jdbcType="VARCHAR"/>
+        <result property="employeeStatus" column="employee_status" jdbcType="VARCHAR"/>
+        <result property="hireDate" column="hire_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
     <!--查询单个-->
     <select id="queryById" resultMap="MaintenanceEmployeeMap">
         select maintenance_employee_id,
@@ -75,6 +95,13 @@
                 and remark = #{remark}
             </if>
         </where>
+    </select>
+    <select id="queryMaintenanceEmployeeVo" resultType="com.djc.entity.Vo.MaintenanceEmployeeVo">
+        select maintenance_employee.maintenance_employee_id, maintenance_employee.maintenance_arrange_id, maintenance_employee.employee_id, maintenance_employee.importance, maintenance_employee.remark,
+               employee.employee_id, employee_name, employee_sex, age, role, team_id, phone_number, work_place, department, employee_email, employee_status,  hire_date
+            from maintenance_employee,employee
+        where employee.employee_id=maintenance_employee.employee_id
+        and maintenance_arrange_id=#{maintenanceArrangeId}
     </select>
 
     <!--新增所有列-->

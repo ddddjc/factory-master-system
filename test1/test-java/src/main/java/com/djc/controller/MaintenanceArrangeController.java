@@ -1,15 +1,17 @@
 package com.djc.controller;
 
 import com.djc.entity.MaintenanceArrange;
+import com.djc.entity.MaintenanceEmployee;
 import com.djc.service.MaintenanceArrangeService;
+import com.djc.service.MaintenanceEmployeeService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
-
-import com.djc.util.JsonResult;
+import java.util.Map;
 
 /**
  * 维护（保养）安排表(MaintenanceArrange)表控制层
@@ -24,7 +26,8 @@ public class MaintenanceArrangeController<E> {
      */
     @Autowired
     private MaintenanceArrangeService maintenanceArrangeService;
-
+    @Autowired
+    private MaintenanceEmployeeService maintenanceEmployeeService;
 
     /**
      * 通过主键查询单条数据
@@ -33,10 +36,19 @@ public class MaintenanceArrangeController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<MaintenanceArrange> queryById(@PathVariable("id") Integer id) {
-        return new JsonResult<>(200, "查询成功", this.maintenanceArrangeService.queryById(id));
+    public JsonResult queryByVoId(@PathVariable("id") Integer id) {
+        return new JsonResult<>(200, "查询成功", this.maintenanceArrangeService.queryVoById(id));
     }
 
+    @GetMapping()
+    public JsonResult queryByLike(MaintenanceArrange maintenanceArrange ,@Param("page") Integer page,@Param("num")Integer num){
+        List list=maintenanceArrangeService.queryByLike(maintenanceArrange,page-1,num);
+        Integer total=maintenanceArrangeService.LikeNum(maintenanceArrange);
+        Map map=new HashMap();
+        map.put("maintenanceArrangeList",list);
+        map.put("total",total);
+        return new JsonResult(200,"查询成功",map);
+    }
     /**
      * 通过主键查询单条数据
      *
@@ -87,5 +99,21 @@ public class MaintenanceArrangeController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+
+    /**
+     * 给维护计划添加员工
+     * @param maintenanceEmployee
+     * @return
+     */
+    @PutMapping("addEmployee")
+    public JsonResult addEmployee(MaintenanceEmployee maintenanceEmployee){
+        maintenanceEmployeeService.insert(maintenanceEmployee);
+        return null;
+    }
+    @DeleteMapping("delEmployee/{maintenanceEmployeeId}")
+    public JsonResult delEmployee(@PathVariable("maintenanceEmployeeId")Integer maintenanceEmployeeId){
+        maintenanceEmployeeService.deleteById(maintenanceEmployeeId);
+        return null;
     }
 }

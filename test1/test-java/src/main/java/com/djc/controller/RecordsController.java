@@ -98,7 +98,7 @@ public class RecordsController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<Records> edit(Records records) {
+    public JsonResult<Records> edit(@RequestBody Records records) {
         return new JsonResult<>(200, "修改成功", this.recordsService.update(records));
     }
 
@@ -149,7 +149,6 @@ public class RecordsController<E> {
         recordsService.delFile(fileId);
         return new JsonResult(200,"删除成功");
     }
-
     /**
      * 查询机器类型对应的维修记录
      * @param machineTypeId

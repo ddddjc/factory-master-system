@@ -1,8 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.MaintenanceArrange;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.djc.entity.Vo.MaintenanceArrangeVo;
 
 import java.util.List;
 
@@ -57,4 +56,21 @@ public interface MaintenanceArrangeService {
      */
     boolean deleteById(Integer maintenanceArrangeId);
 
+    /**
+     * 模糊查询
+     * @param maintenanceArrange
+     * @param i
+     * @param num
+     * @return
+     */
+    List queryByLike(MaintenanceArrange maintenanceArrange, int i, Integer num);
+
+    /**
+     * 查询人数
+     * @param maintenanceArrange
+     * @return
+     */
+    Integer LikeNum(MaintenanceArrange maintenanceArrange);
+
+    MaintenanceArrangeVo queryVoById(Integer id);
 }

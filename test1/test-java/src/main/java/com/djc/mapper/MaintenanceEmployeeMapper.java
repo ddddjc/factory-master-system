@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.MaintenanceEmployee;
+import com.djc.entity.Vo.MaintenanceEmployeeVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public interface MaintenanceEmployeeMapper {
 
+    List<MaintenanceEmployeeVo> queryMaintenanceEmployeeVo(Integer maintenanceArrangeId);
     /**
      * 通过ID查询单条数据
      *

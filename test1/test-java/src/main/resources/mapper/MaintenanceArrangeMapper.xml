@@ -11,6 +11,18 @@
         <result property="maintenanceState" column="maintenance_state" jdbcType="VARCHAR"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
+<!--   联结映射-->
+    <resultMap id="MaintenanceArrangeVoMap" type="com.djc.entity.Vo.MaintenanceArrangeVo" autoMapping="true">
+        <result property="maintenanceArrangeId" column="maintenance_arrange_id" jdbcType="INTEGER"/>
+        <result property="machineId" column="machine_id" jdbcType="INTEGER"/>
+        <result property="machineName" column="machine_name" jdbcType="VARCHAR"/>
+        <result property="employeesName" column="employees_name" jdbcType="VARCHAR"/>
+        <result property="maintenanceDate" column="maintenance_date" jdbcType="TIMESTAMP"/>
+        <result property="maintenanceState" column="maintenance_state" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <collection property="employeeList" ofType="com.djc.entity.Vo.MaintenanceEmployeeVo"
+                    column="maintenanceArrangeId" select="com.djc.mapper.MaintenanceEmployeeMapper.queryMaintenanceEmployeeVo"/>
+    </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="MaintenanceArrangeMap">
@@ -31,26 +43,26 @@
         maintenance_arrange_id, machine_id, machine_name, employees_name, maintenance_date, maintenance_state, remark
         from maintenance_arrange
         <where>
-            <if test="maintenanceArrangeId != null">
-                and maintenance_arrange_id = #{maintenanceArrangeId}
+            <if test="maintenanceArrange.maintenanceArrangeId != null">
+                and maintenance_arrange_id = #{maintenanceArrange.maintenanceArrangeId}
             </if>
-            <if test="machineId != null">
-                and machine_id = #{machineId}
+            <if test="maintenanceArrange.machineId != null">
+                and machine_id = #{maintenanceArrange.machineId}
             </if>
-            <if test="machineName != null and machineName != ''">
-                and machine_name = #{machineName}
+            <if test="maintenanceArrange.machineName != null and maintenanceArrange.machineName != ''">
+                and machine_name = #{maintenanceArrange.machineName}
             </if>
-            <if test="employeesName != null and employeesName != ''">
-                and employees_name = #{employeesName}
+            <if test="maintenanceArrange.employeesName != null and maintenanceArrange.employeesName != ''">
+                and employees_name = #{maintenanceArrange.employeesName}
             </if>
-            <if test="maintenanceDate != null">
-                and maintenance_date = #{maintenanceDate}
+            <if test="maintenanceArrange.maintenanceDate != null">
+                and maintenance_date = #{maintenanceArrange.maintenanceDate}
             </if>
-            <if test="maintenanceState != null and maintenanceState != ''">
-                and maintenance_state = #{maintenanceState}
+            <if test="maintenanceArrange.maintenanceState != null and maintenanceArrange.maintenanceState != ''">
+                and maintenance_state = #{maintenanceArrange.maintenanceState}
             </if>
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="maintenanceArrange.remark != null and maintenanceArrange.remark != ''">
+                and remark = #{maintenanceArrange.remark}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -91,6 +103,65 @@
                 and remark = #{remark}
             </if>
         </where>
+    </select>
+<!--    模糊查询-->
+    <select id="queryByLike" resultType="java.util.List">
+        <where>
+            <if test="maintenanceArrange.maintenanceArrangeId != null">
+                and maintenance_arrange_id like concat('%',#{maintenanceArrange.maintenanceArrangeId},'%')
+            </if>
+            <if test="maintenanceArrange.machineId != null">
+                and machine_id like concat('%',#{maintenanceArrange.machineId},'%')
+            </if>
+            <if test="maintenanceArrange.machineName != null and maintenanceArrange.machineName != ''">
+                and machine_name like concat('%',#{maintenanceArrange.machineName},'%')
+            </if>
+            <if test="maintenanceArrange.employeesName != null and maintenanceArrange.employeesName != ''">
+                and employees_name like concat('%',#{maintenanceArrange.employeesName},'%')
+            </if>
+            <if test="maintenanceArrange.maintenanceDate != null">
+                and maintenance_date like concat('%',#{maintenanceArrange.maintenanceDate},'%')
+            </if>
+            <if test="maintenanceArrange.maintenanceState != null and maintenanceArrange.maintenanceState != ''">
+                and maintenance_state like concat('%',#{maintenanceArrange.maintenanceState},'%')
+            </if>
+            <if test="maintenanceArrange.remark != null and maintenanceArrange.remark != ''">
+                and remark like concat('%',#{maintenanceArrange.remark},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="likeNum" resultType="java.lang.Integer">
+        select count(1)
+        from maintenance_arrange
+        <where>
+            <if test="maintenanceArrange.maintenanceArrangeId != null">
+                and maintenance_arrange_id like concat('%',#{maintenanceArrange.maintenanceArrangeId},'%')
+            </if>
+            <if test="maintenanceArrange.machineId != null">
+                and machine_id like concat('%',#{maintenanceArrange.machineId},'%')
+            </if>
+            <if test="maintenanceArrange.machineName != null and maintenanceArrange.machineName != ''">
+                and machine_name like concat('%',#{maintenanceArrange.machineName},'%')
+            </if>
+            <if test="maintenanceArrange.employeesName != null and maintenanceArrange.employeesName != ''">
+                and employees_name like concat('%',#{maintenanceArrange.employeesName},'%')
+            </if>
+            <if test="maintenanceArrange.maintenanceDate != null">
+                and maintenance_date like concat('%',#{maintenanceArrange.maintenanceDate},'%')
+            </if>
+            <if test="maintenanceArrange.maintenanceState != null and maintenanceArrange.maintenanceState != ''">
+                and maintenance_state like concat('%',#{maintenanceArrange.maintenanceState},'%')
+            </if>
+            <if test="maintenanceArrange.remark != null and maintenanceArrange.remark != ''">
+                and remark like concat('%',#{maintenanceArrange.remark},'%')
+            </if>
+        </where>
+    </select>
+    
+<!--    查询综合信息-->
+    <select id="queryVoById" resultMap="MaintenanceArrangeVoMap">
+        select * from maintenance_arrange where maintenance_arrange_id=#{id}
     </select>
 
     <!--新增所有列-->

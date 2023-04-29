@@ -1,7 +1,9 @@
 package com.djc.mapper;
 
 import com.djc.entity.MaintenanceArrange;
+import com.djc.entity.Vo.MaintenanceArrangeVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -89,6 +91,12 @@ public interface MaintenanceArrangeMapper {
      * @return 影响行数
      */
     int deleteById(Integer maintenanceArrangeId);
+
+    List queryByLike(@Param("maintenanceArrange") MaintenanceArrange maintenanceArrange, @Param("of") PageRequest of);
+
+    Integer likeNum(@Param("maintenanceArrange") MaintenanceArrange maintenanceArrange);
+
+    MaintenanceArrangeVo queryVoById(Integer id);
 
 }
 

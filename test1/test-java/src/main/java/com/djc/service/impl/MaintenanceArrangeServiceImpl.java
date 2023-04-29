@@ -1,13 +1,12 @@
 package com.djc.service.impl;
 
 import com.djc.entity.MaintenanceArrange;
+import com.djc.entity.Vo.MaintenanceArrangeVo;
 import com.djc.mapper.MaintenanceArrangeMapper;
 import com.djc.service.MaintenanceArrangeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -79,5 +78,32 @@ public class MaintenanceArrangeServiceImpl implements MaintenanceArrangeService 
     @Override
     public boolean deleteById(Integer maintenanceArrangeId) {
         return this.maintenanceArrangeMapper.deleteById(maintenanceArrangeId) > 0;
+    }
+
+    /**
+     * 模糊查询
+     * @param maintenanceArrange
+     * @param i
+     * @param num
+     * @return
+     */
+    @Override
+    public List queryByLike(MaintenanceArrange maintenanceArrange, int i, Integer num) {
+        return maintenanceArrangeMapper.queryByLike(maintenanceArrange, PageRequest.of(i,num));
+    }
+
+    /**
+     * 查询人数
+     * @param maintenanceArrange
+     * @return
+     */
+    @Override
+    public Integer LikeNum(MaintenanceArrange maintenanceArrange) {
+        return maintenanceArrangeMapper.likeNum(maintenanceArrange);
+    }
+
+    @Override
+    public MaintenanceArrangeVo queryVoById(Integer id) {
+        return maintenanceArrangeMapper.queryVoById(id);
     }
 }
