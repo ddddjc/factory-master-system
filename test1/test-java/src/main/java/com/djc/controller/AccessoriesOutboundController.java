@@ -2,6 +2,7 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesOutbound;
 import com.djc.entity.AccessoriesOutboundDetail;
+import com.djc.entity.Vo.AccessoriesOutboundVo;
 import com.djc.service.AccessoriesOutboundDetailService;
 import com.djc.service.AccessoriesOutboundService;
 import com.djc.util.JsonResult;
@@ -36,8 +37,8 @@ public class AccessoriesOutboundController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<AccessoriesOutbound> queryById(@PathVariable("id") Integer id) {
-        return new JsonResult<>(200, "查询成功", this.accessoriesOutboundService.queryById(id));
+    public JsonResult<AccessoriesOutboundVo> queryById(@PathVariable("id") Integer id) {
+        return new JsonResult<>(200, "查询成功", this.accessoriesOutboundService.queryVoById(id));
     }
 
     @GetMapping()

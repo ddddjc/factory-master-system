@@ -2,14 +2,11 @@ package com.djc.controller;
 
 import com.djc.entity.Inventory;
 import com.djc.service.InventoryService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import com.djc.util.JsonResult;
 
 /**
  * 库存(Inventory)表控制层
@@ -33,7 +30,7 @@ public class InventoryController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<Inventory> queryById(@PathVariable("id") Object id) {
+    public JsonResult<Inventory> queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.inventoryService.queryById(id));
     }
 
@@ -80,7 +77,7 @@ public class InventoryController<E> {
      * @return 删除是否成功
      */
     @DeleteMapping("{id}")
-    public JsonResult<Boolean> deleteById(@PathVariable("id") Object id) {
+    public JsonResult<Boolean> deleteById(@PathVariable("id") Integer id) {
         boolean isDeleted = this.inventoryService.deleteById(id);
         if (isDeleted) {
             return new JsonResult<>(200, "删除成功", true);

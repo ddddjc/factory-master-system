@@ -20,6 +20,25 @@
         <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="AccessoriesInboundVoMap" type="accessoriesInboundVo">
+        <result property="inboundId" column="inbound_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="document" column="document" jdbcType="VARCHAR"/>
+        <result property="inboundDate" column="inbound_date" jdbcType="TIMESTAMP"/>
+        <result property="clerkName" column="clerk_name" jdbcType="VARCHAR"/>
+        <result property="inboundType" column="inbound_type" jdbcType="VARCHAR"/>
+        <result property="reviewDate" column="review_date" jdbcType="TIMESTAMP"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="inboundRemark" column="inbound_remark" jdbcType="VARCHAR"/>
+        <result property="inboundCreater" column="inbound_creater" jdbcType="VARCHAR"/>
+        <result property="inboundReviewer" column="inbound_reviewer" jdbcType="VARCHAR"/>
+        <result property="inboundApprover" column="inbound_approver" jdbcType="VARCHAR"/>
+        <result property="inboundCloser" column="inbound_closer" jdbcType="VARCHAR"/>
+        <result property="inboundState" column="inbound_state" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <collection property="inboundDetailVoList" ofType="accessoriesInboundDetailVo" column="inbound_id"
+                     select="com.djc.mapper.AccessoriesInboundDetailMapper.queryVoByInboundId"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesInboundMap">
         select inbound_id,
@@ -261,6 +280,9 @@
                 and create_date like concat('%',#{accessoriesInbound.createDate},'%')
             </if>
         </where>
+    </select>
+    <select id="queryVoById" resultMap="AccessoriesInboundVoMap">
+        select * from accessories_inbound where inbound_id=#{inboundId}
     </select>
 
     <!--新增所有列-->

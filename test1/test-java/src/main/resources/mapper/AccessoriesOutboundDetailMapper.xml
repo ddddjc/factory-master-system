@@ -11,6 +11,22 @@
         <result property="needDate" column="need_date" jdbcType="TIMESTAMP"/>
         <result property="depotId" column="depot_id" jdbcType="INTEGER"/>
     </resultMap>
+    <resultMap id="OutboundVoMap" type="com.djc.entity.Vo.AccessoriesOutboundDetailVo">
+        <association property="outboundDetail" javaType="accessoriesOutboundDetail">
+            <result property="outboundDetailId" column="outbound_detail_id" jdbcType="INTEGER"/>
+            <result property="outboundId" column="outbound_id" jdbcType="INTEGER"/>
+            <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+            <result property="materialType" column="material_type" jdbcType="VARCHAR"/>
+            <result property="needNum" column="need_num" jdbcType="INTEGER"/>
+            <result property="needDate" column="need_date" jdbcType="TIMESTAMP"/>
+        </association>
+        <association property="accessories" javaType="accessories" column="accessories_id"
+                     select="com.djc.mapper.AccessoriesMapper.queryById"/>
+        <association property="inventory" javaType="com.djc.entity.Inventory" column="accessories_id"
+                     select="com.djc.mapper.InventoryMapper.queryByAccessoriesId"/>
+        <association property="depot" javaType="com.djc.entity.Depot" column="depot_id"
+                     select="com.djc.mapper.DepotMapper.queryById"/>
+    </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesOutboundDetailMap">
@@ -24,7 +40,19 @@
         from accessories_outbound_detail
         where outbound_detail_id = #{outboundDetailId}
     </select>
-
+<!--  多表查询-->
+    <select id="queryVoById" resultMap="OutboundVoMap">
+        select outbound_detail_id,
+               outbound_id,
+               accessories_outbound_detail.accessories_id,
+               material_type,
+               need_num,
+               need_date,
+               d.depot_id
+        from accessories_outbound_detail left join inventory i on accessories_outbound_detail.accessories_id = i.accessories_id
+        left join depot d on i.depot_id = d.depot_id
+        where outbound_id = #{outboundId}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AccessoriesOutboundDetailMap">
         select
@@ -92,6 +120,7 @@
             </if>
         </where>
     </select>
+
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="outboundDetailId" useGeneratedKeys="true">

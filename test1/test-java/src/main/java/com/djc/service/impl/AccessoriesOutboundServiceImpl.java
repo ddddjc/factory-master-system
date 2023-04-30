@@ -1,6 +1,7 @@
 package com.djc.service.impl;
 
 import com.djc.entity.AccessoriesOutbound;
+import com.djc.entity.Vo.AccessoriesOutboundVo;
 import com.djc.mapper.AccessoriesOutboundMapper;
 import com.djc.service.AccessoriesOutboundService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,10 @@ public class AccessoriesOutboundServiceImpl implements AccessoriesOutboundServic
     @Override
     public Integer likeNum(AccessoriesOutbound accessoriesOutbound) {
         return accessoriesOutboundMapper.likeNum(accessoriesOutbound);
+    }
+
+    @Override
+    public AccessoriesOutboundVo queryVoById(Integer id) {
+        return accessoriesOutboundMapper.queryVoById(id);
     }
 }

@@ -6,14 +6,14 @@ import java.io.Serializable;
  * 库存(Inventory)实体类
  *
  * @author djc
- * @since 2023-04-16 14:02:11
+ * @since 2023-04-30 23:06:17
  */
 public class Inventory implements Serializable {
-    private static final long serialVersionUID = 126792797182963070L;
+    private static final long serialVersionUID = 600168804214590580L;
     /**
      * 库存id
      */
-    private Object inventoryId;
+    private Integer inventoryId;
     /**
      * 仓库id
      */
@@ -44,11 +44,11 @@ public class Inventory implements Serializable {
     private String remark;
 
 
-    public Object getInventoryId() {
+    public Integer getInventoryId() {
         return inventoryId;
     }
 
-    public void setInventoryId(Object inventoryId) {
+    public void setInventoryId(Integer inventoryId) {
         this.inventoryId = inventoryId;
     }
 

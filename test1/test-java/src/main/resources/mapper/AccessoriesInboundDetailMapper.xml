@@ -12,6 +12,15 @@
         <result property="depotId" column="depot_id" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="AccessoriesInboundDetailVoMap" type="com.djc.entity.Vo.AccessoriesInboundDetailVo">
+        <association property="accessoriesInboundDetail" javaType="accessoriesInboundDetail"  resultMap="AccessoriesInboundDetailMap"/>
+        <association property="accessories" javaType="com.djc.entity.Accessories" column="accessories_id"
+                     select="com.djc.mapper.AccessoriesMapper.queryById"/>
+        <association property="inventory" javaType="inventory" column="accessories_id"
+                     select="com.djc.mapper.InventoryMapper.queryByAccessoriesId"/>
+        <association property="depot" javaType="depot" column="depot_id"
+                     select="com.djc.mapper.DepotMapper.queryById"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesInboundDetailMap">
         select inbound_detial_id,
@@ -91,6 +100,13 @@
                 and depot_id = #{depotId}
             </if>
         </where>
+    </select>
+    <select id="queryVoByInboundId" resultMap="AccessoriesInboundDetailVoMap">
+            select accessories_inbound_detail.inbound_detial_id, accessories_inbound_detail.inbound_id, accessories_inbound_detail.accessories_id, accessories_inbound_detail.material_type, accessories_inbound_detail.inbound_sum, accessories_inbound_detail.inbound_date
+            ,i.depot_id
+                from accessories_inbound_detail left join accessories a on accessories_inbound_detail.accessories_id = a.accessories_id
+                left join inventory i on accessories_inbound_detail.accessories_id = i.accessories_id
+            where accessories_inbound_detail.inbound_id=#{inboundId}
     </select>
 
     <!--新增所有列-->

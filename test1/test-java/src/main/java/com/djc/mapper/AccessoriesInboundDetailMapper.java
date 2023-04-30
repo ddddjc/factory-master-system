@@ -22,6 +22,8 @@ public interface AccessoriesInboundDetailMapper {
      */
     AccessoriesInboundDetail queryById(Integer inboundDetialId);
 
+    List<AccessoriesInboundDetail> queryVoByInboundId(Integer inboundId);
+
     /**
      * 查询指定行数据
      *

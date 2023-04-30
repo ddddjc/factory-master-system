@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.AccessoriesOutboundDetail;
+import com.djc.entity.Vo.AccessoriesOutboundDetailVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -21,6 +22,8 @@ public interface AccessoriesOutboundDetailMapper {
      * @return 实例对象
      */
     AccessoriesOutboundDetail queryById(Integer outboundDetailId);
+
+    List<AccessoriesOutboundDetailVo> queryVoById(Integer outboundId);
 
     /**
      * 查询指定行数据

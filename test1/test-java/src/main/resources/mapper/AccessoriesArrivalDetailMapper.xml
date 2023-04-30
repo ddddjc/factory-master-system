@@ -144,7 +144,7 @@
     </select>
 
     <select id="queryVoById" resultMap="DetailVoMap">
-        select * from accessories_arrival_detail where accessories_id=#{arrivalDetailId}
+        select * from accessories_arrival_detail where arrival_id=#{arrivalDetailId}
     </select>
 
     <!--新增所有列-->

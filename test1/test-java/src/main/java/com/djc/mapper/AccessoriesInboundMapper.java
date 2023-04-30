@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.AccessoriesInbound;
+import com.djc.entity.Vo.AccessoriesInboundVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -21,6 +22,8 @@ public interface AccessoriesInboundMapper {
      * @return 实例对象
      */
     AccessoriesInbound queryById(Integer inboundId);
+
+    AccessoriesInboundVo queryVoById(Integer inbound);
 
     /**
      * 查询指定行数据

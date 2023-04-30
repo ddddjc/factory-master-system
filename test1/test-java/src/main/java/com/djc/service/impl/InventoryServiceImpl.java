@@ -15,7 +15,7 @@ import java.util.List;
  * 库存(Inventory)表服务实现类
  *
  * @author djc
- * @since 2023-04-16 14:02:11
+ * @since 2023-04-30 23:06:17
  */
 @Service("inventoryService")
 public class InventoryServiceImpl implements InventoryService {
@@ -29,7 +29,7 @@ public class InventoryServiceImpl implements InventoryService {
      * @return 实例对象
      */
     @Override
-    public Inventory queryById(Object inventoryId) {
+    public Inventory queryById(Integer inventoryId) {
         return this.inventoryMapper.queryById(inventoryId);
     }
 
@@ -77,7 +77,7 @@ public class InventoryServiceImpl implements InventoryService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Object inventoryId) {
+    public boolean deleteById(Integer inventoryId) {
         return this.inventoryMapper.deleteById(inventoryId) > 0;
     }
 }

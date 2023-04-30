@@ -20,6 +20,26 @@
         <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="AccessoriesOutboundVoMap" type="com.djc.entity.Vo.AccessoriesOutboundVo">
+        <result property="outboundId" column="outbound_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="document" column="document" jdbcType="VARCHAR"/>
+        <result property="outboundDate" column="outbound_date" jdbcType="TIMESTAMP"/>
+        <result property="clerkName" column="clerk_name" jdbcType="VARCHAR"/>
+        <result property="outboudType" column="outboud_type" jdbcType="VARCHAR"/>
+        <result property="reviewDate" column="review_date" jdbcType="TIMESTAMP"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="outboundRemark" column="outbound_remark" jdbcType="VARCHAR"/>
+        <result property="outboundCreater" column="outbound_creater" jdbcType="VARCHAR"/>
+        <result property="outboundReviewer" column="outbound_reviewer" jdbcType="VARCHAR"/>
+        <result property="outboundApprover" column="outbound_approver" jdbcType="VARCHAR"/>
+        <result property="outboundCloser" column="outbound_closer" jdbcType="VARCHAR"/>
+        <result property="outboundState" column="outbound_state" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <collection property="outboundList" ofType="accessoriesArrivalDetailVo" column="outbound_id"
+                    select="com.djc.mapper.AccessoriesOutboundDetailMapper.queryVoById"/>
+    </resultMap>
+
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesOutboundMap">
         select outbound_id,
@@ -263,6 +283,10 @@
                 and create_date like concat('%',#{accessoriesOutbound.createDate},'%')
             </if>
         </where>
+    </select>
+<!--  多表·查询-->
+    <select id="queryVoById" resultMap="AccessoriesOutboundVoMap">
+        select * from accessories_outbound where outbound_id=#{outbound_id}
     </select>
 
     <!--新增所有列-->

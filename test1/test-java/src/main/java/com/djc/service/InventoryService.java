@@ -10,7 +10,7 @@ import java.util.List;
  * 库存(Inventory)表服务接口
  *
  * @author djc
- * @since 2023-04-16 14:02:11
+ * @since 2023-04-30 23:06:17
  */
 public interface InventoryService {
 
@@ -20,7 +20,7 @@ public interface InventoryService {
      * @param inventoryId 主键
      * @return 实例对象
      */
-    Inventory queryById(Object inventoryId);
+    Inventory queryById(Integer inventoryId);
 
 
     /**
@@ -55,6 +55,6 @@ public interface InventoryService {
      * @param inventoryId 主键
      * @return 是否成功
      */
-    boolean deleteById(Object inventoryId);
+    boolean deleteById(Integer inventoryId);
 
 }

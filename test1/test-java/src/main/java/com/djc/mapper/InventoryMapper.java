@@ -10,7 +10,7 @@ import java.util.List;
  * 库存(Inventory)表数据库访问层
  *
  * @author djc
- * @since 2023-04-16 14:02:11
+ * @since 2023-04-30 23:06:17
  */
 public interface InventoryMapper {
 
@@ -20,8 +20,14 @@ public interface InventoryMapper {
      * @param inventoryId 主键
      * @return 实例对象
      */
-    Inventory queryById(Object inventoryId);
+    Inventory queryById(Integer inventoryId);
 
+    /**
+     * 根据零件id查询
+     * @param accessoriesId
+     * @return
+     */
+    Inventory queryByAccessoriesId(Integer accessoriesId);
     /**
      * 查询指定行数据
      *
@@ -88,7 +94,7 @@ public interface InventoryMapper {
      * @param inventoryId 主键
      * @return 影响行数
      */
-    int deleteById(Object inventoryId);
+    int deleteById(Integer inventoryId);
 
 }
 

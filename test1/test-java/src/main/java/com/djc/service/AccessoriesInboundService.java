@@ -1,6 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.AccessoriesInbound;
+import com.djc.entity.Vo.AccessoriesInboundVo;
 
 import java.util.List;
 
@@ -58,4 +59,6 @@ public interface AccessoriesInboundService {
     List<AccessoriesInbound> queryByLike(AccessoriesInbound accessoriesInbound, Integer page, Integer num);
 
     Integer LikeNum(AccessoriesInbound accessoriesInbound);
+
+    AccessoriesInboundVo queryVoById(Integer id);
 }
