@@ -1,8 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.AccessoriesProcurement;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.djc.entity.Vo.AccessoriesProcurementVo;
 
 import java.util.List;
 
@@ -57,4 +56,9 @@ public interface AccessoriesProcurementService {
      */
     boolean deleteById(Integer procurementId);
 
+    List<AccessoriesProcurement> queryByLike(AccessoriesProcurement accessoriesProcurement, Integer page, Integer num);
+
+    Integer likeNum(AccessoriesProcurement accessoriesProcurement);
+
+    AccessoriesProcurementVo queryVoById(Integer id);
 }

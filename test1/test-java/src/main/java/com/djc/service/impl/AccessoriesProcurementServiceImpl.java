@@ -1,13 +1,12 @@
 package com.djc.service.impl;
 
 import com.djc.entity.AccessoriesProcurement;
+import com.djc.entity.Vo.AccessoriesProcurementVo;
 import com.djc.mapper.AccessoriesProcurementMapper;
 import com.djc.service.AccessoriesProcurementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -79,5 +78,20 @@ public class AccessoriesProcurementServiceImpl implements AccessoriesProcurement
     @Override
     public boolean deleteById(Integer procurementId) {
         return this.accessoriesProcurementMapper.deleteById(procurementId) > 0;
+    }
+
+    @Override
+    public List<AccessoriesProcurement> queryByLike(AccessoriesProcurement accessoriesProcurement, Integer page, Integer num) {
+        return accessoriesProcurementMapper.queryByLike(accessoriesProcurement, PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer likeNum(AccessoriesProcurement accessoriesProcurement) {
+        return accessoriesProcurementMapper.LikeNum(accessoriesProcurement);
+    }
+
+    @Override
+    public AccessoriesProcurementVo queryVoById(Integer id) {
+        return accessoriesProcurementMapper.queryVoById(id);
     }
 }

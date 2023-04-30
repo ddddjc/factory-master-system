@@ -27,6 +27,32 @@
         <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="queryVo" type="com.djc.entity.Vo.AccessoriesProcurementVo">
+        <result property="procurementId" column="procurement_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="businessType" column="business_type" jdbcType="VARCHAR"/>
+        <result property="procurementDate" column="procurement_date" jdbcType="TIMESTAMP"/>
+        <result property="document" column="document" jdbcType="VARCHAR"/>
+        <result property="purchaseType" column="purchase_type" jdbcType="VARCHAR"/>
+        <result property="vendor" column="vendor" jdbcType="VARCHAR"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="clerkName" column="clerk_name" jdbcType="VARCHAR"/>
+        <result property="currency" column="currency" jdbcType="VARCHAR"/>
+        <result property="exchangeRate" column="exchange_rate" jdbcType="VARCHAR"/>
+        <result property="taxRate" column="tax_rate" jdbcType="VARCHAR"/>
+        <result property="paymentTerms" column="payment_terms" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="invoiceNumber" column="invoice_number" jdbcType="VARCHAR"/>
+        <result property="procurementCreater" column="procurement_creater" jdbcType="VARCHAR"/>
+        <result property="procurementReviewer" column="procurement_reviewer" jdbcType="VARCHAR"/>
+        <result property="procurementChanger" column="procurement_changer" jdbcType="VARCHAR"/>
+        <result property="procurementApprover" column="procurement_approver" jdbcType="VARCHAR"/>
+        <result property="nowNumber" column="now_number" jdbcType="INTEGER"/>
+        <result property="procurementState" column="procurement_state" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <collection property="detailList" ofType="accessoriesProcurementDetialVo" column="procurement_id"
+                    select="com.djc.mapper.AccessoriesProcurementDetailMapper.queryDetailVo"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesProcurementMap">
         select procurement_id,
@@ -63,71 +89,71 @@
         procurement_reviewer, procurement_changer, procurement_approver, now_number, procurement_state, create_date
         from accessories_procurement
         <where>
-            <if test="procurementId != null">
-                and procurement_id = #{procurementId}
+            <if test="accessoriesProcurement.procurementId != null">
+                and procurement_id = #{accessoriesProcurement.procurementId}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="accessoriesProcurement.employeeId != null">
+                and employee_id = #{accessoriesProcurement.employeeId}
             </if>
-            <if test="businessType != null and businessType != ''">
-                and business_type = #{businessType}
+            <if test="accessoriesProcurement.businessType != null and accessoriesProcurement.businessType != ''">
+                and business_type = #{accessoriesProcurement.businessType}
             </if>
-            <if test="procurementDate != null">
-                and procurement_date = #{procurementDate}
+            <if test="accessoriesProcurement.procurementDate != null">
+                and procurement_date = #{accessoriesProcurement.procurementDate}
             </if>
-            <if test="document != null and document != ''">
-                and document = #{document}
+            <if test="accessoriesProcurement.document != null and accessoriesProcurement.document != ''">
+                and document = #{accessoriesProcurement.document}
             </if>
-            <if test="purchaseType != null and purchaseType != ''">
-                and purchase_type = #{purchaseType}
+            <if test="accessoriesProcurement.purchaseType != null and accessoriesProcurement.purchaseType != ''">
+                and purchase_type = #{accessoriesProcurement.purchaseType}
             </if>
-            <if test="vendor != null and vendor != ''">
-                and vendor = #{vendor}
+            <if test="accessoriesProcurement.vendor != null and accessoriesProcurement.vendor != ''">
+                and vendor = #{accessoriesProcurement.vendor}
             </if>
-            <if test="department != null and department != ''">
-                and department = #{department}
+            <if test="accessoriesProcurement.department != null and accessoriesProcurement.department != ''">
+                and department = #{accessoriesProcurement.department}
             </if>
-            <if test="clerkName != null and clerkName != ''">
-                and clerk_name = #{clerkName}
+            <if test="accessoriesProcurement.clerkName != null and accessoriesProcurement.clerkName != ''">
+                and clerk_name = #{accessoriesProcurement.clerkName}
             </if>
-            <if test="currency != null and currency != ''">
-                and currency = #{currency}
+            <if test="accessoriesProcurement.currency != null and accessoriesProcurement.currency != ''">
+                and currency = #{accessoriesProcurement.currency}
             </if>
-            <if test="exchangeRate != null and exchangeRate != ''">
-                and exchange_rate = #{exchangeRate}
+            <if test="accessoriesProcurement.exchangeRate != null and accessoriesProcurement.exchangeRate != ''">
+                and exchange_rate = #{accessoriesProcurement.exchangeRate}
             </if>
-            <if test="taxRate != null and taxRate != ''">
-                and tax_rate = #{taxRate}
+            <if test="accessoriesProcurement.taxRate != null and accessoriesProcurement.taxRate != ''">
+                and tax_rate = #{accessoriesProcurement.taxRate}
             </if>
-            <if test="paymentTerms != null and paymentTerms != ''">
-                and payment_terms = #{paymentTerms}
+            <if test="accessoriesProcurement.paymentTerms != null and accessoriesProcurement.paymentTerms != ''">
+                and payment_terms = #{accessoriesProcurement.paymentTerms}
             </if>
-            <if test="remark != null and remark != ''">
-                and remark = #{remark}
+            <if test="accessoriesProcurement.remark != null and accessoriesProcurement.remark != ''">
+                and remark = #{accessoriesProcurement.remark}
             </if>
-            <if test="invoiceNumber != null and invoiceNumber != ''">
-                and invoice_number = #{invoiceNumber}
+            <if test="accessoriesProcurement.invoiceNumber != null and accessoriesProcurement.invoiceNumber != ''">
+                and invoice_number = #{accessoriesProcurement.invoiceNumber}
             </if>
-            <if test="procurementCreater != null and procurementCreater != ''">
-                and procurement_creater = #{procurementCreater}
+            <if test="accessoriesProcurement.procurementCreater != null and accessoriesProcurement.procurementCreater != ''">
+                and procurement_creater = #{accessoriesProcurement.procurementCreater}
             </if>
-            <if test="procurementReviewer != null and procurementReviewer != ''">
-                and procurement_reviewer = #{procurementReviewer}
+            <if test="accessoriesProcurement.procurementReviewer != null and accessoriesProcurement.procurementReviewer != ''">
+                and procurement_reviewer = #{accessoriesProcurement.procurementReviewer}
             </if>
-            <if test="procurementChanger != null and procurementChanger != ''">
-                and procurement_changer = #{procurementChanger}
+            <if test="accessoriesProcurement.procurementChanger != null and accessoriesProcurement.procurementChanger != ''">
+                and procurement_changer = #{accessoriesProcurement.procurementChanger}
             </if>
-            <if test="procurementApprover != null and procurementApprover != ''">
-                and procurement_approver = #{procurementApprover}
+            <if test="accessoriesProcurement.procurementApprover != null and accessoriesProcurement.procurementApprover != ''">
+                and procurement_approver = #{accessoriesProcurement.procurementApprover}
             </if>
-            <if test="nowNumber != null">
-                and now_number = #{nowNumber}
+            <if test="accessoriesProcurement.nowNumber != null">
+                and now_number = #{accessoriesProcurement.nowNumber}
             </if>
-            <if test="procurementState != null and procurementState != ''">
-                and procurement_state = #{procurementState}
+            <if test="accessoriesProcurement.procurementState != null and accessoriesProcurement.procurementState != ''">
+                and procurement_state = #{accessoriesProcurement.procurementState}
             </if>
-            <if test="createDate != null">
-                and create_date = #{createDate}
+            <if test="accessoriesProcurement.createDate != null">
+                and create_date = #{accessoriesProcurement.createDate}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -213,6 +239,158 @@
                 and create_date = #{createDate}
             </if>
         </where>
+    </select>
+    <select id="queryByLike" resultMap="AccessoriesProcurementMap">
+        select
+        procurement_id, employee_id, business_type, procurement_date, document, purchase_type, vendor, department,
+        clerk_name, currency, exchange_rate, tax_rate, payment_terms, remark, invoice_number, procurement_creater,
+        procurement_reviewer, procurement_changer, procurement_approver, now_number, procurement_state, create_date
+        from accessories_procurement
+        <where>
+            <if test="accessoriesProcurement.procurementId != null">
+                and procurement_id like concat('%',#{accessoriesProcurement.procurementId},'%')
+            </if>
+            <if test="accessoriesProcurement.employeeId != null">
+                and employee_id like concat('%',#{accessoriesProcurement.employeeId},'%')
+            </if>
+            <if test="accessoriesProcurement.businessType != null and accessoriesProcurement.businessType != ''">
+                and business_type like concat('%',#{accessoriesProcurement.businessType},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementDate != null">
+                and procurement_date like concat('%',#{accessoriesProcurement.procurementDate},'%')
+            </if>
+            <if test="accessoriesProcurement.document != null and accessoriesProcurement.document != ''">
+                and document like concat('%',#{accessoriesProcurement.document},'%')
+            </if>
+            <if test="accessoriesProcurement.purchaseType != null and accessoriesProcurement.purchaseType != ''">
+                and purchase_type like concat('%',#{accessoriesProcurement.purchaseType},'%')
+            </if>
+            <if test="accessoriesProcurement.vendor != null and accessoriesProcurement.vendor != ''">
+                and vendor like concat('%',#{accessoriesProcurement.vendor},'%')
+            </if>
+            <if test="accessoriesProcurement.department != null and accessoriesProcurement.department != ''">
+                and department like concat('%',#{accessoriesProcurement.department},'%')
+            </if>
+            <if test="accessoriesProcurement.clerkName != null and accessoriesProcurement.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesProcurement.clerkName},'%')
+            </if>
+            <if test="accessoriesProcurement.currency != null and accessoriesProcurement.currency != ''">
+                and currency like concat('%',#{accessoriesProcurement.currency},'%')
+            </if>
+            <if test="accessoriesProcurement.exchangeRate != null and accessoriesProcurement.exchangeRate != ''">
+                and exchange_rate like concat('%',#{accessoriesProcurement.exchangeRate},'%')
+            </if>
+            <if test="accessoriesProcurement.taxRate != null and accessoriesProcurement.taxRate != ''">
+                and tax_rate like concat('%',#{accessoriesProcurement.taxRate},'%')
+            </if>
+            <if test="accessoriesProcurement.paymentTerms != null and accessoriesProcurement.paymentTerms != ''">
+                and payment_terms like concat('%',#{accessoriesProcurement.paymentTerms},'%')
+            </if>
+            <if test="accessoriesProcurement.remark != null and accessoriesProcurement.remark != ''">
+                and remark like concat('%',#{accessoriesProcurement.remark},'%')
+            </if>
+            <if test="accessoriesProcurement.invoiceNumber != null and accessoriesProcurement.invoiceNumber != ''">
+                and invoice_number like concat('%',#{accessoriesProcurement.invoiceNumber},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementCreater != null and accessoriesProcurement.procurementCreater != ''">
+                and procurement_creater like concat('%',#{accessoriesProcurement.procurementCreater},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementReviewer != null and accessoriesProcurement.procurementReviewer != ''">
+                and procurement_reviewer like concat('%',#{accessoriesProcurement.procurementReviewer},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementChanger != null and accessoriesProcurement.procurementChanger != ''">
+                and procurement_changer like concat('%',#{accessoriesProcurement.procurementChanger},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementApprover != null and accessoriesProcurement.procurementApprover != ''">
+                and procurement_approver like concat('%',#{accessoriesProcurement.procurementApprover},'%')
+            </if>
+            <if test="accessoriesProcurement.nowNumber != null">
+                and now_number like concat('%',#{accessoriesProcurement.nowNumber},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementState != null and accessoriesProcurement.procurementState != ''">
+                and procurement_state like concat('%',#{accessoriesProcurement.procurementState},'%')
+            </if>
+            <if test="accessoriesProcurement.createDate != null">
+                and create_date like concat('%',#{accessoriesProcurement.createDate},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="LikeNum" resultType="java.lang.Integer">
+        select count(1)
+        from accessories_procurement
+        <where>
+            <if test="accessoriesProcurement.procurementId != null">
+                and procurement_id like concat('%',#{accessoriesProcurement.procurementId},'%')
+            </if>
+            <if test="accessoriesProcurement.employeeId != null">
+                and employee_id like concat('%',#{accessoriesProcurement.employeeId},'%')
+            </if>
+            <if test="accessoriesProcurement.businessType != null and accessoriesProcurement.businessType != ''">
+                and business_type like concat('%',#{accessoriesProcurement.businessType},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementDate != null">
+                and procurement_date like concat('%',#{accessoriesProcurement.procurementDate},'%')
+            </if>
+            <if test="accessoriesProcurement.document != null and accessoriesProcurement.document != ''">
+                and document like concat('%',#{accessoriesProcurement.document},'%')
+            </if>
+            <if test="accessoriesProcurement.purchaseType != null and accessoriesProcurement.purchaseType != ''">
+                and purchase_type like concat('%',#{accessoriesProcurement.purchaseType},'%')
+            </if>
+            <if test="accessoriesProcurement.vendor != null and accessoriesProcurement.vendor != ''">
+                and vendor like concat('%',#{accessoriesProcurement.vendor},'%')
+            </if>
+            <if test="accessoriesProcurement.department != null and accessoriesProcurement.department != ''">
+                and department like concat('%',#{accessoriesProcurement.department},'%')
+            </if>
+            <if test="accessoriesProcurement.clerkName != null and accessoriesProcurement.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesProcurement.clerkName},'%')
+            </if>
+            <if test="accessoriesProcurement.currency != null and accessoriesProcurement.currency != ''">
+                and currency like concat('%',#{accessoriesProcurement.currency},'%')
+            </if>
+            <if test="accessoriesProcurement.exchangeRate != null and accessoriesProcurement.exchangeRate != ''">
+                and exchange_rate like concat('%',#{accessoriesProcurement.exchangeRate},'%')
+            </if>
+            <if test="accessoriesProcurement.taxRate != null and accessoriesProcurement.taxRate != ''">
+                and tax_rate like concat('%',#{accessoriesProcurement.taxRate},'%')
+            </if>
+            <if test="accessoriesProcurement.paymentTerms != null and accessoriesProcurement.paymentTerms != ''">
+                and payment_terms like concat('%',#{accessoriesProcurement.paymentTerms},'%')
+            </if>
+            <if test="accessoriesProcurement.remark != null and accessoriesProcurement.remark != ''">
+                and remark like concat('%',#{accessoriesProcurement.remark},'%')
+            </if>
+            <if test="accessoriesProcurement.invoiceNumber != null and accessoriesProcurement.invoiceNumber != ''">
+                and invoice_number like concat('%',#{accessoriesProcurement.invoiceNumber},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementCreater != null and accessoriesProcurement.procurementCreater != ''">
+                and procurement_creater like concat('%',#{accessoriesProcurement.procurementCreater},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementReviewer != null and accessoriesProcurement.procurementReviewer != ''">
+                and procurement_reviewer like concat('%',#{accessoriesProcurement.procurementReviewer},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementChanger != null and accessoriesProcurement.procurementChanger != ''">
+                and procurement_changer like concat('%',#{accessoriesProcurement.procurementChanger},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementApprover != null and accessoriesProcurement.procurementApprover != ''">
+                and procurement_approver like concat('%',#{accessoriesProcurement.procurementApprover},'%')
+            </if>
+            <if test="accessoriesProcurement.nowNumber != null">
+                and now_number like concat('%',#{accessoriesProcurement.nowNumber},'%')
+            </if>
+            <if test="accessoriesProcurement.procurementState != null and accessoriesProcurement.procurementState != ''">
+                and procurement_state like concat('%',#{accessoriesProcurement.procurementState},'%')
+            </if>
+            <if test="accessoriesProcurement.createDate != null">
+                and create_date like concat('%',#{accessoriesProcurement.createDate},'%')
+            </if>
+        </where>
+    </select>
+<!--查询结合信息-->
+    <select id="queryVoById" resultMap="queryVo">
+        select * from accessories_procurement where procurement_id=#{procurement}
     </select>
 
     <!--新增所有列-->

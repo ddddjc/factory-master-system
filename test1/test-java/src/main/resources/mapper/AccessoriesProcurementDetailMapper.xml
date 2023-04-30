@@ -18,7 +18,26 @@
                 jdbcType="VARCHAR"/>
         <result property="taxRate" column="tax_rate" jdbcType="VARCHAR"/>
     </resultMap>
-
+    <resultMap id="queryDetail" type="com.djc.entity.Vo.AccessoriesProcurementDetialVo">
+        <association property="accessoriesProcurementDetail" column="procurement_id" javaType="accessoriesProcurementDetail">
+            <result property="procurementDetailId" column="procurement_detail_id" jdbcType="INTEGER"/>
+            <result property="procurementId" column="procurement_id" jdbcType="INTEGER"/>
+            <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+            <result property="testWhether" column="test_whether" jdbcType="VARCHAR"/>
+            <result property="materialType" column="material_type" jdbcType="VARCHAR"/>
+            <result property="procurementNum" column="procurement_num" jdbcType="INTEGER"/>
+            <result property="conversionRate" column="conversion_rate" jdbcType="VARCHAR"/>
+            <result property="purchasingUnit" column="purchasing_unit" jdbcType="VARCHAR"/>
+            <result property="originalPriceWithTax" column="original_price_with_tax" jdbcType="NUMERIC"/>
+            <result property="originalCurrency" column="original_currency" jdbcType="NUMERIC"/>
+            <result property="originalCurrencyTax" column="original_currency_tax" jdbcType="VARCHAR"/>
+            <result property="totalTaxPriceInOriginalCurrency" column="total_tax_price_in_original_currency"
+                    jdbcType="VARCHAR"/>
+            <result property="taxRate" column="tax_rate" jdbcType="VARCHAR"/>
+        </association>
+        <association property="accessories" column="accessories_id" javaType="accessories"
+                     select="com.djc.mapper.AccessoriesMapper.queryById" />
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesProcurementDetailMap">
         select procurement_detail_id,
@@ -142,6 +161,9 @@
                 and tax_rate = #{taxRate}
             </if>
         </where>
+    </select>
+    <select id="queryDetailVo" resultMap="queryDetail">
+        select * from accessories_procurement_detail where procurement_id=#{procurementId}
     </select>
 
     <!--新增所有列-->
