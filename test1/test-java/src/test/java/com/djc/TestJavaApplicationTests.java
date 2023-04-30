@@ -1,10 +1,6 @@
 package com.djc;
 
-import com.djc.entity.Vo.AccessoriesArrivalDetailVo;
-import com.djc.entity.Vo.AccessoriesArrivalVo;
 import com.djc.mapper.AccessoriesArrivalDetailMapper;
-import com.djc.mapper.AccessoriesArrivalMapper;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,16 +16,5 @@ public class TestJavaApplicationTests {
 
     @Autowired
     AccessoriesArrivalDetailMapper accessoriesArrivalDetailMapper;
-    @Test
-    public void a(){
-        AccessoriesArrivalDetailVo accessoriesArrivalDetailVo = accessoriesArrivalDetailMapper.queryVoById(1);
-        System.out.println(accessoriesArrivalDetailVo);
-    }
-    @Autowired
-    AccessoriesArrivalMapper accessoriesArrivalMapper;
-    @Test
-    public void b(){
-        AccessoriesArrivalVo accessoriesArrivalVo = accessoriesArrivalMapper.queryVoById(1);
-        System.out.println(accessoriesArrivalVo);
-    }
+
 }

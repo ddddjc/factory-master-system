@@ -49,50 +49,50 @@
         create_date
         from accessories_outbound
         <where>
-            <if test="outboundId != null">
-                and outbound_id = #{outboundId}
+            <if test="accessoriesOutbound.outboundId != null">
+                and outbound_id = #{accessoriesOutbound.outboundId}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="accessoriesOutbound.employeeId != null">
+                and employee_id = #{accessoriesOutbound.employeeId}
             </if>
-            <if test="document != null and document != ''">
-                and document = #{document}
+            <if test="accessoriesOutbound.document != null and accessoriesOutbound.document != ''">
+                and document = #{accessoriesOutbound.document}
             </if>
-            <if test="outboundDate != null">
-                and outbound_date = #{outboundDate}
+            <if test="accessoriesOutbound.outboundDate != null">
+                and outbound_date = #{accessoriesOutbound.outboundDate}
             </if>
-            <if test="clerkName != null and clerkName != ''">
-                and clerk_name = #{clerkName}
+            <if test="accessoriesOutbound.clerkName != null and accessoriesOutbound.clerkName != ''">
+                and clerk_name = #{accessoriesOutbound.clerkName}
             </if>
-            <if test="outboudType != null and outboudType != ''">
-                and outboud_type = #{outboudType}
+            <if test="accessoriesOutbound.outboudType != null and accessoriesOutbound.outboudType != ''">
+                and outboud_type = #{accessoriesOutbound.outboudType}
             </if>
-            <if test="reviewDate != null">
-                and review_date = #{reviewDate}
+            <if test="accessoriesOutbound.reviewDate != null">
+                and review_date = #{accessoriesOutbound.reviewDate}
             </if>
-            <if test="department != null and department != ''">
-                and department = #{department}
+            <if test="accessoriesOutbound.department != null and accessoriesOutbound.department != ''">
+                and department = #{accessoriesOutbound.department}
             </if>
-            <if test="outboundRemark != null and outboundRemark != ''">
-                and outbound_remark = #{outboundRemark}
+            <if test="accessoriesOutbound.outboundRemark != null and accessoriesOutbound.outboundRemark != ''">
+                and outbound_remark = #{accessoriesOutbound.outboundRemark}
             </if>
-            <if test="outboundCreater != null and outboundCreater != ''">
-                and outbound_creater = #{outboundCreater}
+            <if test="accessoriesOutbound.outboundCreater != null and accessoriesOutbound.outboundCreater != ''">
+                and outbound_creater = #{accessoriesOutbound.outboundCreater}
             </if>
-            <if test="outboundReviewer != null and outboundReviewer != ''">
-                and outbound_reviewer = #{outboundReviewer}
+            <if test="accessoriesOutbound.outboundReviewer != null and accessoriesOutbound.outboundReviewer != ''">
+                and outbound_reviewer = #{accessoriesOutbound.outboundReviewer}
             </if>
-            <if test="outboundApprover != null and outboundApprover != ''">
-                and outbound_approver = #{outboundApprover}
+            <if test="accessoriesOutbound.outboundApprover != null and accessoriesOutbound.outboundApprover != ''">
+                and outbound_approver = #{accessoriesOutbound.outboundApprover}
             </if>
-            <if test="outboundCloser != null and outboundCloser != ''">
-                and outbound_closer = #{outboundCloser}
+            <if test="accessoriesOutbound.outboundCloser != null and accessoriesOutbound.outboundCloser != ''">
+                and outbound_closer = #{accessoriesOutbound.outboundCloser}
             </if>
-            <if test="outboundState != null and outboundState != ''">
-                and outbound_state = #{outboundState}
+            <if test="accessoriesOutbound.outboundState != null and accessoriesOutbound.outboundState != ''">
+                and outbound_state = #{accessoriesOutbound.outboundState}
             </if>
-            <if test="createDate != null">
-                and create_date = #{createDate}
+            <if test="accessoriesOutbound.createDate != null">
+                and create_date = #{accessoriesOutbound.createDate}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -155,6 +155,112 @@
             </if>
             <if test="createDate != null">
                 and create_date = #{createDate}
+            </if>
+        </where>
+    </select>
+    <select id="queryByLike" resultMap="AccessoriesOutboundMap">
+        select
+        outbound_id, employee_id, document, outbound_date, clerk_name, outboud_type, review_date, department,
+        outbound_remark, outbound_creater, outbound_reviewer, outbound_approver, outbound_closer, outbound_state,
+        create_date
+        from accessories_outbound
+        <where>
+            <if test="accessoriesOutbound.outboundId != null">
+                and outbound_id like concat('%',#{accessoriesOutbound.outboundId},'%')
+            </if>
+            <if test="accessoriesOutbound.employeeId != null">
+                and employee_id like concat('%',#{accessoriesOutbound.employeeId},'%')
+            </if>
+            <if test="accessoriesOutbound.document != null and accessoriesOutbound.document != ''">
+                and document like concat('%',#{accessoriesOutbound.document},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundDate != null">
+                and outbound_date like concat('%',#{accessoriesOutbound.outboundDate},'%')
+            </if>
+            <if test="accessoriesOutbound.clerkName != null and accessoriesOutbound.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesOutbound.clerkName},'%')
+            </if>
+            <if test="accessoriesOutbound.outboudType != null and accessoriesOutbound.outboudType != ''">
+                and outboud_type like concat('%',#{accessoriesOutbound.outboudType},'%')
+            </if>
+            <if test="accessoriesOutbound.reviewDate != null">
+                and review_date like concat('%',#{accessoriesOutbound.reviewDate},'%')
+            </if>
+            <if test="accessoriesOutbound.department != null and accessoriesOutbound.department != ''">
+                and department like concat('%',#{accessoriesOutbound.department},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundRemark != null and accessoriesOutbound.outboundRemark != ''">
+                and outbound_remark like concat('%',#{accessoriesOutbound.outboundRemark},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundCreater != null and accessoriesOutbound.outboundCreater != ''">
+                and outbound_creater like concat('%',#{accessoriesOutbound.outboundCreater},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundReviewer != null and accessoriesOutbound.outboundReviewer != ''">
+                and outbound_reviewer like concat('%',#{accessoriesOutbound.outboundReviewer},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundApprover != null and accessoriesOutbound.outboundApprover != ''">
+                and outbound_approver like concat('%',#{accessoriesOutbound.outboundApprover},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundCloser != null and accessoriesOutbound.outboundCloser != ''">
+                and outbound_closer like concat('%',#{accessoriesOutbound.outboundCloser},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundState != null and accessoriesOutbound.outboundState != ''">
+                and outbound_state like concat('%',#{accessoriesOutbound.outboundState},'%')
+            </if>
+            <if test="accessoriesOutbound.createDate != null">
+                and create_date like concat('%',#{accessoriesOutbound.createDate},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="likeNum" resultType="java.lang.Integer">
+        select count(1)
+        from accessories_outbound
+        <where>
+            <if test="accessoriesOutbound.outboundId != null">
+                and outbound_id like concat('%',#{accessoriesOutbound.outboundId},'%')
+            </if>
+            <if test="accessoriesOutbound.employeeId != null">
+                and employee_id like concat('%',#{accessoriesOutbound.employeeId},'%')
+            </if>
+            <if test="accessoriesOutbound.document != null and accessoriesOutbound.document != ''">
+                and document like concat('%',#{accessoriesOutbound.document},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundDate != null">
+                and outbound_date like concat('%',#{accessoriesOutbound.outboundDate},'%')
+            </if>
+            <if test="accessoriesOutbound.clerkName != null and accessoriesOutbound.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesOutbound.clerkName},'%')
+            </if>
+            <if test="accessoriesOutbound.outboudType != null and accessoriesOutbound.outboudType != ''">
+                and outboud_type like concat('%',#{accessoriesOutbound.outboudType},'%')
+            </if>
+            <if test="accessoriesOutbound.reviewDate != null">
+                and review_date like concat('%',#{accessoriesOutbound.reviewDate},'%')
+            </if>
+            <if test="accessoriesOutbound.department != null and accessoriesOutbound.department != ''">
+                and department like concat('%',#{accessoriesOutbound.department},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundRemark != null and accessoriesOutbound.outboundRemark != ''">
+                and outbound_remark like concat('%',#{accessoriesOutbound.outboundRemark},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundCreater != null and accessoriesOutbound.outboundCreater != ''">
+                and outbound_creater like concat('%',#{accessoriesOutbound.outboundCreater},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundReviewer != null and accessoriesOutbound.outboundReviewer != ''">
+                and outbound_reviewer like concat('%',#{accessoriesOutbound.outboundReviewer},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundApprover != null and accessoriesOutbound.outboundApprover != ''">
+                and outbound_approver like concat('%',#{accessoriesOutbound.outboundApprover},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundCloser != null and accessoriesOutbound.outboundCloser != ''">
+                and outbound_closer like concat('%',#{accessoriesOutbound.outboundCloser},'%')
+            </if>
+            <if test="accessoriesOutbound.outboundState != null and accessoriesOutbound.outboundState != ''">
+                and outbound_state like concat('%',#{accessoriesOutbound.outboundState},'%')
+            </if>
+            <if test="accessoriesOutbound.createDate != null">
+                and create_date like concat('%',#{accessoriesOutbound.createDate},'%')
             </if>
         </where>
     </select>

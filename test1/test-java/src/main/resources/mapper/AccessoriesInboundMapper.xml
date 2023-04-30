@@ -48,50 +48,50 @@
         inbound_remark, inbound_creater, inbound_reviewer, inbound_approver, inbound_closer, inbound_state, create_date
         from accessories_inbound
         <where>
-            <if test="inboundId != null">
-                and inbound_id = #{inboundId}
+            <if test="accessoriesInbound.inboundId != null">
+                and inbound_id = #{accessoriesInbound.inboundId}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="accessoriesInbound.employeeId != null">
+                and employee_id = #{accessoriesInbound.employeeId}
             </if>
-            <if test="document != null and document != ''">
-                and document = #{document}
+            <if test="accessoriesInbound.document != null and accessoriesInbound.document != ''">
+                and document = #{accessoriesInbound.document}
             </if>
-            <if test="inboundDate != null">
-                and inbound_date = #{inboundDate}
+            <if test="accessoriesInbound.inboundDate != null">
+                and inbound_date = #{accessoriesInbound.inboundDate}
             </if>
-            <if test="clerkName != null and clerkName != ''">
-                and clerk_name = #{clerkName}
+            <if test="accessoriesInbound.clerkName != null and accessoriesInbound.clerkName != ''">
+                and clerk_name = #{accessoriesInbound.clerkName}
             </if>
-            <if test="inboundType != null and inboundType != ''">
-                and inbound_type = #{inboundType}
+            <if test="accessoriesInbound.inboundType != null and accessoriesInbound.inboundType != ''">
+                and inbound_type = #{accessoriesInbound.inboundType}
             </if>
-            <if test="reviewDate != null">
-                and review_date = #{reviewDate}
+            <if test="accessoriesInbound.reviewDate != null">
+                and review_date = #{accessoriesInbound.reviewDate}
             </if>
-            <if test="department != null and department != ''">
-                and department = #{department}
+            <if test="accessoriesInbound.department != null and accessoriesInbound.department != ''">
+                and department = #{accessoriesInbound.department}
             </if>
-            <if test="inboundRemark != null and inboundRemark != ''">
-                and inbound_remark = #{inboundRemark}
+            <if test="accessoriesInbound.inboundRemark != null and accessoriesInbound.inboundRemark != ''">
+                and inbound_remark = #{accessoriesInbound.inboundRemark}
             </if>
-            <if test="inboundCreater != null and inboundCreater != ''">
-                and inbound_creater = #{inboundCreater}
+            <if test="accessoriesInbound.inboundCreater != null and accessoriesInbound.inboundCreater != ''">
+                and inbound_creater = #{accessoriesInbound.inboundCreater}
             </if>
-            <if test="inboundReviewer != null and inboundReviewer != ''">
-                and inbound_reviewer = #{inboundReviewer}
+            <if test="accessoriesInbound.inboundReviewer != null and accessoriesInbound.inboundReviewer != ''">
+                and inbound_reviewer = #{accessoriesInbound.inboundReviewer}
             </if>
-            <if test="inboundApprover != null and inboundApprover != ''">
-                and inbound_approver = #{inboundApprover}
+            <if test="accessoriesInbound.inboundApprover != null and accessoriesInbound.inboundApprover != ''">
+                and inbound_approver = #{accessoriesInbound.inboundApprover}
             </if>
-            <if test="inboundCloser != null and inboundCloser != ''">
-                and inbound_closer = #{inboundCloser}
+            <if test="accessoriesInbound.inboundCloser != null and accessoriesInbound.inboundCloser != ''">
+                and inbound_closer = #{accessoriesInbound.inboundCloser}
             </if>
-            <if test="inboundState != null and inboundState != ''">
-                and inbound_state = #{inboundState}
+            <if test="accessoriesInbound.inboundState != null and accessoriesInbound.inboundState != ''">
+                and inbound_state = #{accessoriesInbound.inboundState}
             </if>
-            <if test="createDate != null">
-                and create_date = #{createDate}
+            <if test="accessoriesInbound.createDate != null">
+                and create_date = #{accessoriesInbound.createDate}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -154,6 +154,111 @@
             </if>
             <if test="createDate != null">
                 and create_date = #{createDate}
+            </if>
+        </where>
+    </select>
+    <select id="queryByLike" resultType="com.djc.entity.AccessoriesInbound">
+        select
+        inbound_id, employee_id, document, inbound_date, clerk_name, inbound_type, review_date, department,
+        inbound_remark, inbound_creater, inbound_reviewer, inbound_approver, inbound_closer, inbound_state, create_date
+        from accessories_inbound
+        <where>
+            <if test="accessoriesInbound.inboundId != null">
+                and inbound_id like concat('%',#{accessoriesInbound.inboundId},'%')
+            </if>
+            <if test="accessoriesInbound.employeeId != null">
+                and employee_id like concat('%',#{accessoriesInbound.employeeId},'%')
+            </if>
+            <if test="accessoriesInbound.document != null and accessoriesInbound.document != ''">
+                and document like concat('%',#{accessoriesInbound.document},'%')
+            </if>
+            <if test="accessoriesInbound.inboundDate != null">
+                and inbound_date like concat('%',#{accessoriesInbound.inboundDate},'%')
+            </if>
+            <if test="accessoriesInbound.clerkName != null and accessoriesInbound.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesInbound.clerkName},'%')
+            </if>
+            <if test="accessoriesInbound.inboundType != null and accessoriesInbound.inboundType != ''">
+                and inbound_type like concat('%',#{accessoriesInbound.inboundType},'%')
+            </if>
+            <if test="accessoriesInbound.reviewDate != null">
+                and review_date like concat('%',#{accessoriesInbound.reviewDate},'%')
+            </if>
+            <if test="accessoriesInbound.department != null and accessoriesInbound.department != ''">
+                and department like concat('%',#{accessoriesInbound.department},'%')
+            </if>
+            <if test="accessoriesInbound.inboundRemark != null and accessoriesInbound.inboundRemark != ''">
+                and inbound_remark like concat('%',#{accessoriesInbound.inboundRemark},'%')
+            </if>
+            <if test="accessoriesInbound.inboundCreater != null and accessoriesInbound.inboundCreater != ''">
+                and inbound_creater like concat('%',#{accessoriesInbound.inboundCreater},'%')
+            </if>
+            <if test="accessoriesInbound.inboundReviewer != null and accessoriesInbound.inboundReviewer != ''">
+                and inbound_reviewer like concat('%',#{accessoriesInbound.inboundReviewer},'%')
+            </if>
+            <if test="accessoriesInbound.inboundApprover != null and accessoriesInbound.inboundApprover != ''">
+                and inbound_approver like concat('%',#{accessoriesInbound.inboundApprover},'%')
+            </if>
+            <if test="accessoriesInbound.inboundCloser != null and accessoriesInbound.inboundCloser != ''">
+                and inbound_closer like concat('%',#{accessoriesInbound.inboundCloser},'%')
+            </if>
+            <if test="accessoriesInbound.inboundState != null and accessoriesInbound.inboundState != ''">
+                and inbound_state like concat('%',#{accessoriesInbound.inboundState},'%')
+            </if>
+            <if test="accessoriesInbound.createDate != null">
+                and create_date like concat('%',#{accessoriesInbound.createDate},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="LikeNum" resultType="java.lang.Integer">
+        select count(1)
+        from accessories_inbound
+        <where>
+            <if test="accessoriesInbound.inboundId != null">
+                and inbound_id like concat('%',#{accessoriesInbound.inboundId},'%')
+            </if>
+            <if test="accessoriesInbound.employeeId != null">
+                and employee_id like concat('%',#{accessoriesInbound.employeeId},'%')
+            </if>
+            <if test="accessoriesInbound.document != null and accessoriesInbound.document != ''">
+                and document like concat('%',#{accessoriesInbound.document},'%')
+            </if>
+            <if test="accessoriesInbound.inboundDate != null">
+                and inbound_date like concat('%',#{accessoriesInbound.inboundDate},'%')
+            </if>
+            <if test="accessoriesInbound.clerkName != null and accessoriesInbound.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesInbound.clerkName},'%')
+            </if>
+            <if test="accessoriesInbound.inboundType != null and accessoriesInbound.inboundType != ''">
+                and inbound_type like concat('%',#{accessoriesInbound.inboundType},'%')
+            </if>
+            <if test="accessoriesInbound.reviewDate != null">
+                and review_date like concat('%',#{accessoriesInbound.reviewDate},'%')
+            </if>
+            <if test="accessoriesInbound.department != null and accessoriesInbound.department != ''">
+                and department like concat('%',#{accessoriesInbound.department},'%')
+            </if>
+            <if test="accessoriesInbound.inboundRemark != null and accessoriesInbound.inboundRemark != ''">
+                and inbound_remark like concat('%',#{accessoriesInbound.inboundRemark},'%')
+            </if>
+            <if test="accessoriesInbound.inboundCreater != null and accessoriesInbound.inboundCreater != ''">
+                and inbound_creater like concat('%',#{accessoriesInbound.inboundCreater},'%')
+            </if>
+            <if test="accessoriesInbound.inboundReviewer != null and accessoriesInbound.inboundReviewer != ''">
+                and inbound_reviewer like concat('%',#{accessoriesInbound.inboundReviewer},'%')
+            </if>
+            <if test="accessoriesInbound.inboundApprover != null and accessoriesInbound.inboundApprover != ''">
+                and inbound_approver like concat('%',#{accessoriesInbound.inboundApprover},'%')
+            </if>
+            <if test="accessoriesInbound.inboundCloser != null and accessoriesInbound.inboundCloser != ''">
+                and inbound_closer like concat('%',#{accessoriesInbound.inboundCloser},'%')
+            </if>
+            <if test="accessoriesInbound.inboundState != null and accessoriesInbound.inboundState != ''">
+                and inbound_state like concat('%',#{accessoriesInbound.inboundState},'%')
+            </if>
+            <if test="accessoriesInbound.createDate != null">
+                and create_date like concat('%',#{accessoriesInbound.createDate},'%')
             </if>
         </where>
     </select>

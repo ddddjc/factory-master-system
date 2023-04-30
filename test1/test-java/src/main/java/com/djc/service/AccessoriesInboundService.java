@@ -1,8 +1,6 @@
 package com.djc.service;
 
 import com.djc.entity.AccessoriesInbound;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -57,4 +55,7 @@ public interface AccessoriesInboundService {
      */
     boolean deleteById(Integer inboundId);
 
+    List<AccessoriesInbound> queryByLike(AccessoriesInbound accessoriesInbound, Integer page, Integer num);
+
+    Integer LikeNum(AccessoriesInbound accessoriesInbound);
 }

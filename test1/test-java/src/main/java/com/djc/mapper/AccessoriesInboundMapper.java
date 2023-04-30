@@ -90,5 +90,8 @@ public interface AccessoriesInboundMapper {
      */
     int deleteById(Integer inboundId);
 
+    List<AccessoriesInbound> queryByLike(@Param("accessoriesInbound") AccessoriesInbound accessoriesInbound, @Param("pageable") Pageable pageable);
+
+    Integer LikeNum(@Param("accessoriesInbound") AccessoriesInbound accessoriesInbound);
 }
 

@@ -4,10 +4,8 @@ import com.djc.entity.AccessoriesInbound;
 import com.djc.mapper.AccessoriesInboundMapper;
 import com.djc.service.AccessoriesInboundService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -79,5 +77,15 @@ public class AccessoriesInboundServiceImpl implements AccessoriesInboundService 
     @Override
     public boolean deleteById(Integer inboundId) {
         return this.accessoriesInboundMapper.deleteById(inboundId) > 0;
+    }
+
+    @Override
+    public List<AccessoriesInbound> queryByLike(AccessoriesInbound accessoriesInbound, Integer page, Integer num) {
+        return accessoriesInboundMapper.queryByLike(accessoriesInbound, PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer LikeNum(AccessoriesInbound accessoriesInbound) {
+        return accessoriesInboundMapper.LikeNum(accessoriesInbound);
     }
 }

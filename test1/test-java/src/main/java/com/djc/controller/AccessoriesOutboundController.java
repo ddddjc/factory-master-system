@@ -1,15 +1,17 @@
 package com.djc.controller;
 
 import com.djc.entity.AccessoriesOutbound;
+import com.djc.entity.AccessoriesOutboundDetail;
+import com.djc.service.AccessoriesOutboundDetailService;
 import com.djc.service.AccessoriesOutboundService;
+import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
-
-import com.djc.util.JsonResult;
+import java.util.Map;
 
 /**
  * 出库申请（领材料申请单）(AccessoriesOutbound)表控制层
@@ -17,7 +19,7 @@ import com.djc.util.JsonResult;
  * @param <E> 响应数据的类型
  */
 @RestController
-@RequestMapping("accessoriesOutbound")
+@RequestMapping("outbound")
 public class AccessoriesOutboundController<E> {
     /**
      * 服务对象
@@ -25,7 +27,8 @@ public class AccessoriesOutboundController<E> {
     @Autowired
     private AccessoriesOutboundService accessoriesOutboundService;
 
-
+    @Autowired
+    private AccessoriesOutboundDetailService accessoriesOutboundDetailService;
     /**
      * 通过主键查询单条数据
      *
@@ -35,6 +38,16 @@ public class AccessoriesOutboundController<E> {
     @GetMapping("{id}")
     public JsonResult<AccessoriesOutbound> queryById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200, "查询成功", this.accessoriesOutboundService.queryById(id));
+    }
+
+    @GetMapping()
+    public JsonResult queryByLike(AccessoriesOutbound accessoriesOutbound, @Param("page")Integer page, @Param("num")Integer num){
+        List<AccessoriesOutbound> outboundList=accessoriesOutboundService.queryByLike(accessoriesOutbound,page-1,num);
+        Integer total=accessoriesOutboundService.likeNum(accessoriesOutbound);
+        Map map=new HashMap<>();
+        map.put("total",total);
+        map.put("outboundList",outboundList);
+        return new JsonResult(200,"查询成功",map);
     }
 
     /**
@@ -87,5 +100,31 @@ public class AccessoriesOutboundController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+
+    /**
+     * 给入库单新增详情
+     * @param accessoriesOutboundDetail
+     * @return
+     */
+    @PostMapping("addAccessories")
+    public JsonResult addAccessories(@RequestBody AccessoriesOutboundDetail accessoriesOutboundDetail){
+        accessoriesOutboundDetailService.insert(accessoriesOutboundDetail);
+        return new JsonResult(200,"新增成功");
+    }
+    @DeleteMapping("delAccessories/{outboundDetailId}")
+    public JsonResult delAccessories(@PathVariable("outboundDetailId")Integer id){
+        accessoriesOutboundDetailService.deleteById(id);
+        return new JsonResult(200,"删除成功");
+    }
+    /**
+     * 设置审核状态
+     * @param accessoriesOutbound
+     * @return
+     */
+    @PutMapping("state")
+    public JsonResult setState(@RequestBody AccessoriesOutbound accessoriesOutbound){
+        accessoriesOutboundService.update(accessoriesOutbound);
+        return new JsonResult<>(200,"设置成功");
     }
 }

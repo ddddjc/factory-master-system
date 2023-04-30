@@ -4,10 +4,8 @@ import com.djc.entity.AccessoriesOutbound;
 import com.djc.mapper.AccessoriesOutboundMapper;
 import com.djc.service.AccessoriesOutboundService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -79,5 +77,15 @@ public class AccessoriesOutboundServiceImpl implements AccessoriesOutboundServic
     @Override
     public boolean deleteById(Integer outboundId) {
         return this.accessoriesOutboundMapper.deleteById(outboundId) > 0;
+    }
+
+    @Override
+    public List<AccessoriesOutbound> queryByLike(AccessoriesOutbound accessoriesOutbound, Integer page, Integer num) {
+        return accessoriesOutboundMapper.queryByLike(accessoriesOutbound, PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer likeNum(AccessoriesOutbound accessoriesOutbound) {
+        return accessoriesOutboundMapper.likeNum(accessoriesOutbound);
     }
 }
