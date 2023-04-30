@@ -16,6 +16,23 @@
         <result property="priceWithoutTax" column="price_without_tax" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="DetailVoMap" type="com.djc.entity.Vo.AccessoriesArrivalDetailVo">
+        <association property="accessoriesArrivalDetail" javaType="accessoriesArrivalDetail">
+            <result property="arrivalDetailId" column="arrival_detail_id" jdbcType="INTEGER"/>
+            <result property="arrivalId" column="arrival_id" jdbcType="INTEGER"/>
+            <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+            <result property="testWether" column="test_wether" jdbcType="INTEGER"/>
+            <result property="materialType" column="material_type" jdbcType="VARCHAR"/>
+            <result property="orderNumber" column="order_number" jdbcType="INTEGER"/>
+            <result property="lineNumber" column="line_number" jdbcType="INTEGER"/>
+            <result property="arrivalNum" column="arrival_num" jdbcType="INTEGER"/>
+            <result property="conversionRate" column="conversion_rate" jdbcType="VARCHAR"/>
+            <result property="priceWithTax" column="price_with_tax" jdbcType="INTEGER"/>
+            <result property="priceWithoutTax" column="price_without_tax" jdbcType="INTEGER"/>
+        </association>
+        <association property="accessories" javaType="accessories" column="accessories_id"
+                     select="com.djc.mapper.AccessoriesMapper.queryById"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesArrivalDetailMap">
         select arrival_detail_id,
@@ -124,6 +141,10 @@
                 and price_without_tax = #{priceWithoutTax}
             </if>
         </where>
+    </select>
+
+    <select id="queryVoById" resultMap="DetailVoMap">
+        select * from accessories_arrival_detail where accessories_id=#{arrivalDetailId}
     </select>
 
     <!--新增所有列-->

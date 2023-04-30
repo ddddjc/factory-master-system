@@ -13,7 +13,6 @@
         <result property="sate" column="sate" jdbcType="VARCHAR"/>
         <result property="creater" column="creater" jdbcType="VARCHAR"/>
     </resultMap>
-
     <!--查询单个-->
     <select id="queryById" resultMap="UpcomingMap">
         select upcoming_id,

@@ -1,5 +1,10 @@
 package com.djc.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +13,10 @@ import java.io.Serializable;
  * @author djc
  * @since 2023-04-16 14:02:08
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AccessoriesProcurementDetail implements Serializable {
     private static final long serialVersionUID = 181972447674427025L;
     /**

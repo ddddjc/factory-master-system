@@ -25,6 +25,30 @@
         <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="ArrivalVo" type="accessoriesArrivalVo">
+        <result property="arrivalId" column="arrival_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="businessType" column="business_type" jdbcType="VARCHAR"/>
+        <result property="document" column="document" jdbcType="VARCHAR"/>
+        <result property="arrivalDate" column="arrival_date" jdbcType="TIMESTAMP"/>
+        <result property="purchaseType" column="purchase_type" jdbcType="VARCHAR"/>
+        <result property="vendor" column="vendor" jdbcType="VARCHAR"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="clerkName" column="clerk_name" jdbcType="VARCHAR"/>
+        <result property="currency" column="currency" jdbcType="VARCHAR"/>
+        <result property="exchangeRate" column="exchange_rate" jdbcType="VARCHAR"/>
+        <result property="transportationType" column="transportation_type" jdbcType="VARCHAR"/>
+        <result property="taxRate" column="tax_rate" jdbcType="VARCHAR"/>
+        <result property="arrivalRemark" column="arrival_remark" jdbcType="VARCHAR"/>
+        <result property="invoiceNumber" column="invoice_number" jdbcType="VARCHAR"/>
+        <result property="arrivalCreater" column="arrival_creater" jdbcType="VARCHAR"/>
+        <result property="nowNum" column="now_num" jdbcType="INTEGER"/>
+        <result property="reviewer" column="reviewer" jdbcType="VARCHAR"/>
+        <result property="arrivalState" column="arrival_state" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <collection property="detailList" column="arrival_id" ofType="accessoriesArrivalDetailVo"
+                    select="com.djc.mapper.AccessoriesArrivalDetailMapper.queryVoById"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="AccessoriesArrivalMap">
         select arrival_id,
@@ -59,65 +83,65 @@
         now_num, reviewer, arrival_state, create_date
         from accessories_arrival
         <where>
-            <if test="arrivalId != null">
-                and arrival_id = #{arrivalId}
+            <if test="accessoriesArrival.arrivalId != null">
+                and arrival_id = #{accessoriesArrival.arrivalId}
             </if>
-            <if test="employeeId != null">
-                and employee_id = #{employeeId}
+            <if test="accessoriesArrival.employeeId != null">
+                and employee_id = #{accessoriesArrival.employeeId}
             </if>
-            <if test="businessType != null and businessType != ''">
-                and business_type = #{businessType}
+            <if test="accessoriesArrival.businessType != null and accessoriesArrival.businessType != ''">
+                and business_type = #{accessoriesArrival.businessType}
             </if>
-            <if test="document != null and document != ''">
-                and document = #{document}
+            <if test="accessoriesArrival.document != null and accessoriesArrival.document != ''">
+                and document = #{accessoriesArrival.document}
             </if>
-            <if test="arrivalDate != null">
-                and arrival_date = #{arrivalDate}
+            <if test="accessoriesArrival.arrivalDate != null">
+                and arrival_date = #{accessoriesArrival.arrivalDate}
             </if>
-            <if test="purchaseType != null and purchaseType != ''">
-                and purchase_type = #{purchaseType}
+            <if test="accessoriesArrival.purchaseType != null and accessoriesArrival.purchaseType != ''">
+                and purchase_type = #{accessoriesArrival.purchaseType}
             </if>
-            <if test="vendor != null and vendor != ''">
-                and vendor = #{vendor}
+            <if test="accessoriesArrival.vendor != null and accessoriesArrival.vendor != ''">
+                and vendor = #{accessoriesArrival.vendor}
             </if>
-            <if test="department != null and department != ''">
-                and department = #{department}
+            <if test="accessoriesArrival.department != null and accessoriesArrival.department != ''">
+                and department = #{accessoriesArrival.department}
             </if>
-            <if test="clerkName != null and clerkName != ''">
-                and clerk_name = #{clerkName}
+            <if test="accessoriesArrival.clerkName != null and accessoriesArrival.clerkName != ''">
+                and clerk_name = #{accessoriesArrival.clerkName}
             </if>
-            <if test="currency != null and currency != ''">
-                and currency = #{currency}
+            <if test="accessoriesArrival.currency != null and accessoriesArrival.currency != ''">
+                and currency = #{accessoriesArrival.currency}
             </if>
-            <if test="exchangeRate != null and exchangeRate != ''">
-                and exchange_rate = #{exchangeRate}
+            <if test="accessoriesArrival.exchangeRate != null and accessoriesArrival.exchangeRate != ''">
+                and exchange_rate = #{accessoriesArrival.exchangeRate}
             </if>
-            <if test="transportationType != null and transportationType != ''">
-                and transportation_type = #{transportationType}
+            <if test="accessoriesArrival.transportationType != null and accessoriesArrival.transportationType != ''">
+                and transportation_type = #{accessoriesArrival.transportationType}
             </if>
-            <if test="taxRate != null and taxRate != ''">
-                and tax_rate = #{taxRate}
+            <if test="accessoriesArrival.taxRate != null and accessoriesArrival.taxRate != ''">
+                and tax_rate = #{accessoriesArrival.taxRate}
             </if>
-            <if test="arrivalRemark != null and arrivalRemark != ''">
-                and arrival_remark = #{arrivalRemark}
+            <if test="accessoriesArrival.arrivalRemark != null and accessoriesArrival.arrivalRemark != ''">
+                and arrival_remark = #{accessoriesArrival.arrivalRemark}
             </if>
-            <if test="invoiceNumber != null and invoiceNumber != ''">
-                and invoice_number = #{invoiceNumber}
+            <if test="accessoriesArrival.invoiceNumber != null and accessoriesArrival.invoiceNumber != ''">
+                and invoice_number = #{accessoriesArrival.invoiceNumber}
             </if>
-            <if test="arrivalCreater != null and arrivalCreater != ''">
-                and arrival_creater = #{arrivalCreater}
+            <if test="accessoriesArrival.arrivalCreater != null and accessoriesArrival.arrivalCreater != ''">
+                and arrival_creater = #{accessoriesArrival.arrivalCreater}
             </if>
-            <if test="nowNum != null">
-                and now_num = #{nowNum}
+            <if test="accessoriesArrival.nowNum != null">
+                and now_num = #{accessoriesArrival.nowNum}
             </if>
-            <if test="reviewer != null and reviewer != ''">
-                and reviewer = #{reviewer}
+            <if test="accessoriesArrival.reviewer != null and accessoriesArrival.reviewer != ''">
+                and reviewer = #{accessoriesArrival.reviewer}
             </if>
-            <if test="arrivalState != null and arrivalState != ''">
-                and arrival_state = #{arrivalState}
+            <if test="accessoriesArrival.arrivalState != null and accessoriesArrival.arrivalState != ''">
+                and arrival_state = #{accessoriesArrival.arrivalState}
             </if>
-            <if test="createDate != null">
-                and create_date = #{createDate}
+            <if test="accessoriesArrival.createDate != null">
+                and create_date = #{accessoriesArrival.createDate}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -197,6 +221,146 @@
                 and create_date = #{createDate}
             </if>
         </where>
+    </select>
+    <select id="queryByLike" resultMap="AccessoriesArrivalMap">
+        select
+        arrival_id, employee_id, business_type, document, arrival_date, purchase_type, vendor, department, clerk_name,
+        currency, exchange_rate, transportation_type, tax_rate, arrival_remark, invoice_number, arrival_creater,
+        now_num, reviewer, arrival_state, create_date
+        from accessories_arrival
+        <where>
+            <if test="accessoriesArrival.arrivalId != null">
+                and arrival_id like concat('%',#{accessoriesArrival.arrivalId},'%')
+            </if>
+            <if test="accessoriesArrival.employeeId != null">
+                and employee_id like concat('%',#{accessoriesArrival.employeeId},'%')
+            </if>
+            <if test="accessoriesArrival.businessType != null and accessoriesArrival.businessType != ''">
+                and business_type like concat('%',#{accessoriesArrival.businessType},'%')
+            </if>
+            <if test="accessoriesArrival.document != null and accessoriesArrival.document != ''">
+                and document like concat('%',#{accessoriesArrival.document},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalDate != null">
+                and arrival_date like concat('%',#{accessoriesArrival.arrivalDate},'%')
+            </if>
+            <if test="accessoriesArrival.purchaseType != null and accessoriesArrival.purchaseType != ''">
+                and purchase_type like concat('%',#{accessoriesArrival.purchaseType},'%')
+            </if>
+            <if test="accessoriesArrival.vendor != null and accessoriesArrival.vendor != ''">
+                and vendor like concat('%',#{accessoriesArrival.vendor},'%')
+            </if>
+            <if test="accessoriesArrival.department != null and accessoriesArrival.department != ''">
+                and department like concat('%',#{accessoriesArrival.department},'%')
+            </if>
+            <if test="accessoriesArrival.clerkName != null and accessoriesArrival.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesArrival.clerkName},'%')
+            </if>
+            <if test="accessoriesArrival.currency != null and accessoriesArrival.currency != ''">
+                and currency like concat('%',#{accessoriesArrival.currency},'%')
+            </if>
+            <if test="accessoriesArrival.exchangeRate != null and accessoriesArrival.exchangeRate != ''">
+                and exchange_rate like concat('%',#{accessoriesArrival.exchangeRate},'%')
+            </if>
+            <if test="accessoriesArrival.transportationType != null and accessoriesArrival.transportationType != ''">
+                and transportation_type like concat('%',#{accessoriesArrival.transportationType},'%')
+            </if>
+            <if test="accessoriesArrival.taxRate != null and accessoriesArrival.taxRate != ''">
+                and tax_rate like concat('%',#{accessoriesArrival.taxRate},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalRemark != null and accessoriesArrival.arrivalRemark != ''">
+                and arrival_remark like concat('%',#{accessoriesArrival.arrivalRemark},'%')
+            </if>
+            <if test="accessoriesArrival.invoiceNumber != null and accessoriesArrival.invoiceNumber != ''">
+                and invoice_number like concat('%',#{accessoriesArrival.invoiceNumber},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalCreater != null and accessoriesArrival.arrivalCreater != ''">
+                and arrival_creater like concat('%',#{accessoriesArrival.arrivalCreater},'%')
+            </if>
+            <if test="accessoriesArrival.nowNum != null">
+                and now_num like concat('%',#{accessoriesArrival.nowNum},'%')
+            </if>
+            <if test="accessoriesArrival.reviewer != null and accessoriesArrival.reviewer != ''">
+                and reviewer like concat('%',#{accessoriesArrival.reviewer},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalState != null and accessoriesArrival.arrivalState != ''">
+                and arrival_state like concat('%',#{accessoriesArrival.arrivalState},'%')
+            </if>
+            <if test="accessoriesArrival.createDate != null">
+                and create_date like concat('%',#{accessoriesArrival.createDate},'%')
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="likeNum" resultType="java.lang.Integer">
+        select count(1)
+        from accessories_arrival
+        <where>
+            <if test="accessoriesArrival.arrivalId != null">
+                and arrival_id like concat('%',#{accessoriesArrival.arrivalId},'%')
+            </if>
+            <if test="accessoriesArrival.employeeId != null">
+                and employee_id like concat('%',#{accessoriesArrival.employeeId},'%')
+            </if>
+            <if test="accessoriesArrival.businessType != null and accessoriesArrival.businessType != ''">
+                and business_type like concat('%',#{accessoriesArrival.businessType},'%')
+            </if>
+            <if test="accessoriesArrival.document != null and accessoriesArrival.document != ''">
+                and document like concat('%',#{accessoriesArrival.document},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalDate != null">
+                and arrival_date like concat('%',#{accessoriesArrival.arrivalDate},'%')
+            </if>
+            <if test="accessoriesArrival.purchaseType != null and accessoriesArrival.purchaseType != ''">
+                and purchase_type like concat('%',#{accessoriesArrival.purchaseType},'%')
+            </if>
+            <if test="accessoriesArrival.vendor != null and accessoriesArrival.vendor != ''">
+                and vendor like concat('%',#{accessoriesArrival.vendor},'%')
+            </if>
+            <if test="accessoriesArrival.department != null and accessoriesArrival.department != ''">
+                and department like concat('%',#{accessoriesArrival.department},'%')
+            </if>
+            <if test="accessoriesArrival.clerkName != null and accessoriesArrival.clerkName != ''">
+                and clerk_name like concat('%',#{accessoriesArrival.clerkName},'%')
+            </if>
+            <if test="accessoriesArrival.currency != null and accessoriesArrival.currency != ''">
+                and currency like concat('%',#{accessoriesArrival.currency},'%')
+            </if>
+            <if test="accessoriesArrival.exchangeRate != null and accessoriesArrival.exchangeRate != ''">
+                and exchange_rate like concat('%',#{accessoriesArrival.exchangeRate},'%')
+            </if>
+            <if test="accessoriesArrival.transportationType != null and accessoriesArrival.transportationType != ''">
+                and transportation_type like concat('%',#{accessoriesArrival.transportationType},'%')
+            </if>
+            <if test="accessoriesArrival.taxRate != null and accessoriesArrival.taxRate != ''">
+                and tax_rate like concat('%',#{accessoriesArrival.taxRate},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalRemark != null and accessoriesArrival.arrivalRemark != ''">
+                and arrival_remark like concat('%',#{accessoriesArrival.arrivalRemark},'%')
+            </if>
+            <if test="accessoriesArrival.invoiceNumber != null and accessoriesArrival.invoiceNumber != ''">
+                and invoice_number like concat('%',#{accessoriesArrival.invoiceNumber},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalCreater != null and accessoriesArrival.arrivalCreater != ''">
+                and arrival_creater like concat('%',#{accessoriesArrival.arrivalCreater},'%')
+            </if>
+            <if test="accessoriesArrival.nowNum != null">
+                and now_num like concat('%',#{accessoriesArrival.nowNum},'%')
+            </if>
+            <if test="accessoriesArrival.reviewer != null and accessoriesArrival.reviewer != ''">
+                and reviewer like concat('%',#{accessoriesArrival.reviewer},'%')
+            </if>
+            <if test="accessoriesArrival.arrivalState != null and accessoriesArrival.arrivalState != ''">
+                and arrival_state like concat('%',#{accessoriesArrival.arrivalState},'%')
+            </if>
+            <if test="accessoriesArrival.createDate != null">
+                and create_date like concat('%',#{accessoriesArrival.createDate},'%')
+            </if>
+        </where>
+    </select>
+<!--  连接查询-->
+    <select id="queryVoById" resultMap="ArrivalVo">
+        select * from accessories_arrival where arrival_id=#{arrivalId}
     </select>
 
     <!--新增所有列-->

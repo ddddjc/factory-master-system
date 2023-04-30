@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.AccessoriesArrival;
+import com.djc.entity.Vo.AccessoriesArrivalVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -22,6 +23,7 @@ public interface AccessoriesArrivalMapper {
      */
     AccessoriesArrival queryById(Integer arrivalId);
 
+    AccessoriesArrivalVo queryVoById(Integer arrivalId);
     /**
      * 查询指定行数据
      *
@@ -90,5 +92,19 @@ public interface AccessoriesArrivalMapper {
      */
     int deleteById(Integer arrivalId);
 
+    /**
+     * 模糊查询
+     * @param accessoriesArrival
+     * @param pageable
+     * @return
+     */
+    List<AccessoriesArrival> queryByLike(@Param("accessoriesArrival") AccessoriesArrival accessoriesArrival, @Param("pageable") Pageable pageable);
+
+    /**
+     * 查询模糊数量
+     * @param accessoriesArrival
+     * @return
+     */
+    Integer likeNum(@Param("accessoriesArrival") AccessoriesArrival accessoriesArrival);
 }
 

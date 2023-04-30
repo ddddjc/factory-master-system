@@ -1,13 +1,12 @@
 package com.djc.service.impl;
 
 import com.djc.entity.AccessoriesArrival;
+import com.djc.entity.Vo.AccessoriesArrivalVo;
 import com.djc.mapper.AccessoriesArrivalMapper;
 import com.djc.service.AccessoriesArrivalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -79,5 +78,20 @@ public class AccessoriesArrivalServiceImpl implements AccessoriesArrivalService 
     @Override
     public boolean deleteById(Integer arrivalId) {
         return this.accessoriesArrivalMapper.deleteById(arrivalId) > 0;
+    }
+
+    @Override
+    public List<AccessoriesArrival> queryByLike(AccessoriesArrival accessoriesArrival, Integer page, Integer num) {
+        return accessoriesArrivalMapper.queryByLike(accessoriesArrival, PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer likeNum(AccessoriesArrival accessoriesArrival) {
+        return accessoriesArrivalMapper.likeNum(accessoriesArrival);
+    }
+
+    @Override
+    public AccessoriesArrivalVo queryVoById(Integer id) {
+        return accessoriesArrivalMapper.queryVoById(id);
     }
 }

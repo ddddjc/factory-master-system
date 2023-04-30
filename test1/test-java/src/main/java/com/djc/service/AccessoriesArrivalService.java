@@ -1,6 +1,7 @@
 package com.djc.service;
 
 import com.djc.entity.AccessoriesArrival;
+import com.djc.entity.Vo.AccessoriesArrivalVo;
 
 import java.util.List;
 
@@ -55,4 +56,9 @@ public interface AccessoriesArrivalService {
      */
     boolean deleteById(Integer arrivalId);
 
+    List<AccessoriesArrival> queryByLike(AccessoriesArrival accessoriesArrival, Integer page, Integer num);
+
+    Integer likeNum(AccessoriesArrival accessoriesArrival);
+
+    AccessoriesArrivalVo queryVoById(Integer id);
 }

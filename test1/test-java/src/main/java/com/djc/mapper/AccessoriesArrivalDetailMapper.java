@@ -1,6 +1,7 @@
 package com.djc.mapper;
 
 import com.djc.entity.AccessoriesArrivalDetail;
+import com.djc.entity.Vo.AccessoriesArrivalDetailVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
@@ -21,6 +22,14 @@ public interface AccessoriesArrivalDetailMapper {
      * @return 实例对象
      */
     AccessoriesArrivalDetail queryById(Integer arrivalDetailId);
+
+    /**
+     * 查询结合信息
+     * @param arrivalDetailId
+     * @return
+     */
+
+    AccessoriesArrivalDetailVo queryVoById(Integer arrivalDetailId);
 
     /**
      * 查询指定行数据

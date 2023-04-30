@@ -1,12 +1,18 @@
 package com.djc.controller;
 
 import com.djc.entity.AccessoriesArrival;
+import com.djc.entity.AccessoriesArrivalDetail;
+import com.djc.entity.Vo.AccessoriesArrivalVo;
+import com.djc.service.AccessoriesArrivalDetailService;
 import com.djc.service.AccessoriesArrivalService;
 import com.djc.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 到货单(AccessoriesArrival)表控制层
@@ -14,7 +20,7 @@ import java.util.List;
  * @param <E> 响应数据的类型
  */
 @RestController
-@RequestMapping("accessoriesArrival")
+@RequestMapping("arrival")
 public class AccessoriesArrivalController<E> {
     /**
      * 服务对象
@@ -22,6 +28,8 @@ public class AccessoriesArrivalController<E> {
     @Autowired
     private AccessoriesArrivalService accessoriesArrivalService;
 
+    @Autowired
+    private AccessoriesArrivalDetailService accessoriesArrivalDetailService;
 
     /**
      * 通过主键查询单条数据
@@ -30,10 +38,19 @@ public class AccessoriesArrivalController<E> {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public JsonResult<AccessoriesArrival> queryById(@PathVariable("id") Integer id) {
-        return new JsonResult<>(200, "查询成功", this.accessoriesArrivalService.queryById(id));
+    public JsonResult<AccessoriesArrivalVo> queryById(@PathVariable("id") Integer id) {
+        return new JsonResult<>(200, "查询成功", this.accessoriesArrivalService.queryVoById(id));
     }
 
+    @GetMapping()
+    public JsonResult queryByLike(AccessoriesArrival accessoriesArrival, @Param("page")Integer page,@Param("num") Integer num){
+        List<AccessoriesArrival> list=accessoriesArrivalService.queryByLike(accessoriesArrival,page-1,num);
+        Integer total=accessoriesArrivalService.likeNum(accessoriesArrival);
+        Map map=new HashMap();
+        map.put("accessoriesArrivalList",list);
+        map.put("total",total);
+        return new JsonResult(200,"查询成功",map);
+    }
     /**
      * 通过主键查询单条数据
      *
@@ -84,5 +101,32 @@ public class AccessoriesArrivalController<E> {
         } else {
             return new JsonResult<>(500, "删除失败", false);
         }
+    }
+
+    /**
+     * 给到货单新增详情
+     * @param accessoriesArrivalDetail
+     * @return
+     */
+    @PostMapping("/addAccessories")
+    public JsonResult addAccessories(@RequestBody AccessoriesArrivalDetail accessoriesArrivalDetail){
+        accessoriesArrivalDetailService.insert(accessoriesArrivalDetail);
+        return new JsonResult(200,"新增成功");
+    }
+
+    /**
+     * 给到货单删除详情
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/delAccessories/{id}")
+    public JsonResult delAccessories(@PathVariable("id")Integer id){
+        accessoriesArrivalDetailService.deleteById(id);
+        return new JsonResult(200,"删除成功");
+    }
+    @PutMapping("state")
+    public JsonResult setState(@RequestBody AccessoriesArrival accessoriesArrival){
+        accessoriesArrivalService.update(accessoriesArrival);
+        return new JsonResult(200,"查询成功");
     }
 }
