@@ -51,6 +51,7 @@ public class AccessoriesArrivalController<E> {
         map.put("total",total);
         return new JsonResult(200,"查询成功",map);
     }
+
     /**
      * 通过主键查询单条数据
      *
