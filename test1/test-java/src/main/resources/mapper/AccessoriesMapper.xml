@@ -84,10 +84,10 @@
         from accessories
         <where>
             <if test="accessories.accessoriesId != null">
-                and accessories_id like concat('%',#{accessories.accessoriesId},'%')
+                and accessories_id = #{accessories.accessoriesId}
             </if>
             <if test="accessories.stockId != null and accessories.stockId != ''">
-                and stock_id like concat('%',#{accessories.stockId},'%')
+                and stock_id = #{accessories.stockId}
             </if>
             <if test="accessories.stockCode != null and accessories.stockCode != ''">
                 and stock_code like concat('%',#{accessories.stockCode},'%')
@@ -108,7 +108,7 @@
                 and importance like concat('%',#{accessories.importance},'%')
             </if>
             <if test="accessories.employeeId != null">
-                and employee_id like concat('%',#{accessories.employeeId},'%')
+                and employee_id = #{accessories.employeeId}
             </if>
             <if test="accessories.type != null and accessories.type != ''">
                 and type like concat('%',#{accessories.type},'%')

@@ -248,10 +248,10 @@
         from accessories_procurement
         <where>
             <if test="accessoriesProcurement.procurementId != null">
-                and procurement_id like concat('%',#{accessoriesProcurement.procurementId},'%')
+                and procurement_id = #{accessoriesProcurement.procurementId}
             </if>
             <if test="accessoriesProcurement.employeeId != null">
-                and employee_id like concat('%',#{accessoriesProcurement.employeeId},'%')
+                and employee_id  = #{accessoriesProcurement.employeeId}
             </if>
             <if test="accessoriesProcurement.businessType != null and accessoriesProcurement.businessType != ''">
                 and business_type like concat('%',#{accessoriesProcurement.businessType},'%')

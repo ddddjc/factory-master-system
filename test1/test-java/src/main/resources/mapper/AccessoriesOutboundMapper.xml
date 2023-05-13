@@ -186,10 +186,10 @@
         from accessories_outbound
         <where>
             <if test="accessoriesOutbound.outboundId != null">
-                and outbound_id like concat('%',#{accessoriesOutbound.outboundId},'%')
+                and outbound_id =#{accessoriesOutbound.outboundId}
             </if>
             <if test="accessoriesOutbound.employeeId != null">
-                and employee_id like concat('%',#{accessoriesOutbound.employeeId},'%')
+                and employee_id =#{accessoriesOutbound.employeeId}
             </if>
             <if test="accessoriesOutbound.document != null and accessoriesOutbound.document != ''">
                 and document like concat('%',#{accessoriesOutbound.document},'%')
@@ -238,10 +238,10 @@
         from accessories_outbound
         <where>
             <if test="accessoriesOutbound.outboundId != null">
-                and outbound_id like concat('%',#{accessoriesOutbound.outboundId},'%')
+                and outbound_id =#{accessoriesOutbound.outboundId}
             </if>
             <if test="accessoriesOutbound.employeeId != null">
-                and employee_id like concat('%',#{accessoriesOutbound.employeeId},'%')
+                and employee_id =#{accessoriesOutbound.employeeId}
             </if>
             <if test="accessoriesOutbound.document != null and accessoriesOutbound.document != ''">
                 and document like concat('%',#{accessoriesOutbound.document},'%')

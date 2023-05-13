@@ -156,19 +156,19 @@
         from records
         <where>
             <if test="records.recordsId != null">
-                and records_id like concat('%',#{records.recordsId},'%')
+                and records_id =#{records.recordsId}
             </if>
             <if test="records.machineId != null">
-                and machine_id like concat('%',#{records.machineId},'%')
+                and machine_id =#{records.machineId}
             </if>
             <if test="records.machineName != null and records.machineName != ''">
                 and machine_name like concat('%',#{records.machineName},'%')
             </if>
             <if test="records.machineTypeId != null">
-                and machine_type_id like concat('%',#{records.machineTypeId},'%')
+                and machine_type_id =#{records.machineTypeId}
             </if>
             <if test="records.employeeId != null">
-                and employee_id like concat('%',#{records.employeeId},'%')
+                and employee_id =#{records.employeeId}
             </if>
             <if test="records.repaireEmployeesName != null and records.repaireEmployeesName != ''">
                 and repaire_employees_name like concat('%',#{records.repaireEmployeesName},'%')
@@ -205,19 +205,19 @@
         from records
         <where>
             <if test="records.recordsId != null">
-                and records_id like concat('%',#{records.recordsId},'%')
+                and records_id =#{records.recordsId}
             </if>
             <if test="records.machineId != null">
-                and machine_id like concat('%',#{records.machineId},'%')
+                and machine_id =#{records.machineId}
             </if>
             <if test="records.machineName != null and records.machineName != ''">
                 and machine_name like concat('%',#{records.machineName},'%')
             </if>
             <if test="records.machineTypeId != null">
-                and machine_type_id like concat('%',#{records.machineTypeId},'%')
+                and machine_type_id =#{records.machineTypeId}
             </if>
             <if test="records.employeeId != null">
-                and employee_id like concat('%',#{records.employeeId},'%')
+                and employee_id =#{records.employeeId}
             </if>
             <if test="records.repaireEmployeesName != null and records.repaireEmployeesName != ''">
                 and repaire_employees_name like concat('%',#{records.repaireEmployeesName},'%')

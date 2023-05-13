@@ -74,7 +74,7 @@
         from machine_type
         <where>
             <if test="machineType.machineTypeId != null">
-                and machine_type_id like concat('%',#{machineType.machineTypeId},'#')
+                and machine_type_id =#{machineType.machineTypeId}
             </if>
             <if test="machineType.machineTypeName != null and machineType.machineTypeName != ''">
                 and machine_type_name like concat('%',#{machineType.machineTypeName})
@@ -152,7 +152,7 @@
         from machine_type
         <where>
             <if test="machineType.machineTypeId != null">
-                and machine_type_id like concat('%',#{machineType.machineTypeId},'#')
+                and machine_type_id =#{machineType.machineTypeId}
             </if>
             <if test="machineType.machineTypeName != null and machineType.machineTypeName != ''">
                 and machine_type_name like concat('%',#{machineType.machineTypeName})
