@@ -3,6 +3,7 @@ package com.djc.controller;
 import com.djc.entity.Accessories;
 import com.djc.service.AccessoriesService;
 import com.djc.util.JsonResult;
+import com.djc.service.impl.WebSocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class AccessoriesController<E> {
     @Autowired
     private AccessoriesService accessoriesService;
 
+    @Autowired
+    private WebSocket webSocket;
     @GetMapping("")
     public JsonResult queryByLimit(Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
         List<Accessories> accessories1 = accessoriesService.queryByLike(accessories, page - 1, num);
@@ -33,6 +36,7 @@ public class AccessoriesController<E> {
         Map map=new HashMap();
         map.put("total",integer);
         map.put("accessories",accessories1);
+        webSocket.sendAllMessage("webwebwebsocket");
         return new JsonResult(200,"查询成功",map);
     }
 

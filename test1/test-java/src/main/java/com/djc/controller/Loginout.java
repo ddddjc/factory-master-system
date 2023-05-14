@@ -1,9 +1,9 @@
 package com.djc.controller;
 
 import com.djc.entity.Employee;
-import com.djc.entity.Vo.QueryEmployeeVo;
 import com.djc.exception.CustomException;
 import com.djc.service.EmployeeService;
+import com.djc.service.impl.WebSocket;
 import com.djc.util.JsonResult;
 import com.djc.util.JwtUtil;
 import com.djc.util.SessionUtil;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * {@code @Author:} djc
@@ -26,6 +27,8 @@ public class Loginout {
     JwtUtil jwtUtil;
     @Autowired
     SessionUtil sessionUtil;
+    @Autowired
+    private WebSocket webSocket;
     @PostMapping("/login")
     public JsonResult login(@RequestBody Employee employee){
         if (employee.getEmployeeId()==null)
@@ -47,6 +50,12 @@ public class Loginout {
     public JsonResult logout(@PathVariable Integer employeeId){
         System.out.println(employeeId);
         System.out.println(sessionUtil.getAttribute(employeeId.toString()).toString());
+        CopyOnWriteArraySet<WebSocket> webSockets = WebSocket.getWebSockets();
+        for (WebSocket w:webSockets){
+            if (w!=null||w.getEmployeeId()==null||w.getEmployeeId()==employeeId){
+                webSockets.remove(w);
+            }
+        }
         sessionUtil.removeAttribute(employeeId.toString());
         return new JsonResult(200,"登出成功",null);
     }

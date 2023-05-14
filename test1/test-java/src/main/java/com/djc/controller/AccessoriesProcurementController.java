@@ -3,6 +3,7 @@ package com.djc.controller;
 import com.djc.entity.AccessoriesProcurement;
 import com.djc.entity.AccessoriesProcurementDetail;
 import com.djc.entity.Vo.AccessoriesProcurementVo;
+import com.djc.exception.CustomException;
 import com.djc.service.AccessoriesProcurementDetailService;
 import com.djc.service.AccessoriesProcurementService;
 import com.djc.util.JsonResult;
@@ -83,6 +84,7 @@ public class AccessoriesProcurementController<E> {
      */
     @PutMapping
     public JsonResult<AccessoriesProcurement> edit(@RequestBody AccessoriesProcurement accessoriesProcurement) {
+        if (accessoriesProcurement.getProcurementId()==null) throw new CustomException(4005,"请输入正确的采购单id");
         return new JsonResult<>(200, "修改成功", this.accessoriesProcurementService.update(accessoriesProcurement));
     }
 
