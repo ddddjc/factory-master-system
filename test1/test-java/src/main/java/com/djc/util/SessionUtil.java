@@ -33,6 +33,7 @@ public class SessionUtil {
         HttpSession session = request.getSession(false); // 获取HttpSession（不创建新的）
         if (session != null) {
             session.removeAttribute(name); // 删除属性
+            System.out.println(session.getAttribute("117"));
         }
     }
 
@@ -42,5 +43,9 @@ public class SessionUtil {
         if (session != null) {
             session.invalidate(); // 使会话无效
         }
+    }
+
+    public HttpSession getSession() {
+        return request.getSession();
     }
 }
