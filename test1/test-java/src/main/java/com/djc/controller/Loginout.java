@@ -64,7 +64,6 @@ public class Loginout {
                 webSockets.remove(w);
             }
         }
-
         sessionUtil.removeAttribute(employeeId.toString());
         return new JsonResult(200,"登出成功",null);
     }

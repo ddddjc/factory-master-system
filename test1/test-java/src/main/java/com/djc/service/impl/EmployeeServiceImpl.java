@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 员工表(Employee)表服务实现类
@@ -73,6 +74,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public Employee insert(Employee employee) {
+        if (employee.getRole()==null|| Objects.equals(employee.getRole(), ""))
+            employee.setRole("staff");
         this.employeeMapper.insert(employee);
         return employee;
     }

@@ -125,6 +125,24 @@ public class AccessoriesArrivalController<E> {
         accessoriesArrivalDetailService.deleteById(id);
         return new JsonResult(200,"删除成功");
     }
+
+    /**
+     * 提交到货单
+     * @param id
+     * @return
+     */
+    @PutMapping("submit/{id}")
+    public JsonResult submitArrival(@PathVariable("id")Integer id){
+        AccessoriesArrival accessoriesArrival = accessoriesArrivalService.queryById(id);
+        accessoriesArrival.setArrivalState("Submitted");
+        accessoriesArrivalService.update(accessoriesArrival);
+        return new JsonResult(200,"提交成功");
+    }
+    /**
+     * 审核
+     * @param accessoriesArrival
+     * @return
+     */
     @PutMapping("state")
     public JsonResult setState(@RequestBody AccessoriesArrival accessoriesArrival){
         accessoriesArrivalService.update(accessoriesArrival);

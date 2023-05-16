@@ -128,6 +128,22 @@ public class AccessoriesProcurementController<E> {
     }
 
     /**
+     * 提交申购单
+     * 同时发送WebSocket消息
+     * @param id
+     * @return
+     */
+    @PutMapping("submit/{id}")
+    public JsonResult submitProcuement(@PathVariable("id") Integer id){
+        AccessoriesProcurement accessoriesProcurement = accessoriesProcurementService.queryById(id);
+        accessoriesProcurement.setProcurementState("Submitted");
+        accessoriesProcurementService.update(accessoriesProcurement);
+
+        return new JsonResult(200,"提交成功");
+    }
+
+
+    /**
      * 审核申请
      * @param accessoriesProcurement
      * @return
@@ -137,4 +153,5 @@ public class AccessoriesProcurementController<E> {
         accessoriesProcurementService.update(accessoriesProcurement);
         return new JsonResult(200,"修改成功");
     }
+
 }
