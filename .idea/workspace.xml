@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.TestApplication">
+    <configuration name="TestJavaApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.djc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.djc" />
+      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJavaApplicationTests.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.djc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.djc" />
+      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJavaApplicationTests.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.djc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.djc" />
+      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJavaApplicationTests.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.djc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.djc" />
+      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
+      <option name="METHOD_NAME" value="test3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJavaApplicationTests.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.djc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.djc" />
+      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
+      <option name="METHOD_NAME" value="test4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="test-java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="test-java" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="test-java" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.djc.TestApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.TestJavaApplicationTests.test" />
+      <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
+      <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
+      <item itemvalue="JUnit.TestJavaApplicationTests.test3" />
+      <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
+      <item itemvalue="Spring Boot.TestApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test3" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.djc.entity.Vo.AccessoriesInboundDetailVo" memberName="depot" />
+        <PinnedItemInfo parentTag="com.djc.entity.Vo.AccessoriesInboundDetailVo" memberName="inventory" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>
