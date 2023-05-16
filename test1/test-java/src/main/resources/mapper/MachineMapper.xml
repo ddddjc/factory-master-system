@@ -70,10 +70,10 @@
         from machine
         <where>
             <if test="machine.machineId != null">
-                and machine_id like concat('%',#{machine.machineId},'%')
+                and machine_id =#{machine.machineId}
             </if>
             <if test="machine.machineTypeId != null">
-                and machine_type_id like concat('%',#{machine.machineTypeId},'%')
+                and machine_type_id =#{machine.machineTypeId}
             </if>
             <if test="machine.machineSerialNumber != null and machine.machineSerialNumber != ''">
                 and machine_serial_number like concat('%',#{machine.machineSerialNumber},'%')

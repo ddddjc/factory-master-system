@@ -118,6 +118,12 @@ public class AccessoriesOutboundController<E> {
         accessoriesOutboundDetailService.deleteById(id);
         return new JsonResult(200,"删除成功");
     }
+    @PutMapping("submit/{id}")
+    public JsonResult submitOutbound(@PathVariable("id")Integer id){
+        AccessoriesOutbound accessoriesOutbound = accessoriesOutboundService.queryById(id);
+        accessoriesOutbound.setOutboundState("Submitted");
+        return new JsonResult(200,"提交成功");
+    }
     /**
      * 设置审核状态
      * @param accessoriesOutbound

@@ -3,6 +3,7 @@ package com.djc.controller;
 import com.djc.entity.AccessoriesProcurement;
 import com.djc.entity.AccessoriesProcurementDetail;
 import com.djc.entity.Vo.AccessoriesProcurementVo;
+import com.djc.exception.CustomException;
 import com.djc.service.AccessoriesProcurementDetailService;
 import com.djc.service.AccessoriesProcurementService;
 import com.djc.util.JsonResult;
@@ -83,6 +84,7 @@ public class AccessoriesProcurementController<E> {
      */
     @PutMapping
     public JsonResult<AccessoriesProcurement> edit(@RequestBody AccessoriesProcurement accessoriesProcurement) {
+        if (accessoriesProcurement.getProcurementId()==null) throw new CustomException(4005,"请输入正确的采购单id");
         return new JsonResult<>(200, "修改成功", this.accessoriesProcurementService.update(accessoriesProcurement));
     }
 
@@ -126,6 +128,22 @@ public class AccessoriesProcurementController<E> {
     }
 
     /**
+     * 提交申购单
+     * 同时发送WebSocket消息
+     * @param id
+     * @return
+     */
+    @PutMapping("submit/{id}")
+    public JsonResult submitProcuement(@PathVariable("id") Integer id){
+        AccessoriesProcurement accessoriesProcurement = accessoriesProcurementService.queryById(id);
+        accessoriesProcurement.setProcurementState("Submitted");
+        accessoriesProcurementService.update(accessoriesProcurement);
+
+        return new JsonResult(200,"提交成功");
+    }
+
+
+    /**
      * 审核申请
      * @param accessoriesProcurement
      * @return
@@ -135,4 +153,5 @@ public class AccessoriesProcurementController<E> {
         accessoriesProcurementService.update(accessoriesProcurement);
         return new JsonResult(200,"修改成功");
     }
+
 }

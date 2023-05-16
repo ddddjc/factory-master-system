@@ -126,6 +126,18 @@ public class AccessoriesInboundController<E> {
     }
 
     /**
+     * 提交入库单
+     * @param id
+     * @return
+     */
+    @PutMapping("submit/{id}")
+    public JsonResult submitInbound(@PathVariable("id")Integer id){
+        AccessoriesInbound accessoriesInbound = accessoriesInboundService.queryById(id);
+        accessoriesInbound.setInboundState("Submitted");
+        accessoriesInboundService.update(accessoriesInbound);
+        return new JsonResult(200,"提交成功");
+    }
+    /**
      * 修改审核状态
      * @param accessoriesInbound
      * @return

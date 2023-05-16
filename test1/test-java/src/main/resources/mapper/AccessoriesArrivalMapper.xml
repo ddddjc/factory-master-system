@@ -230,10 +230,10 @@
         from accessories_arrival
         <where>
             <if test="accessoriesArrival.arrivalId != null">
-                and arrival_id like concat('%',#{accessoriesArrival.arrivalId},'%')
+                and arrival_id =#{accessoriesArrival.arrivalId}
             </if>
             <if test="accessoriesArrival.employeeId != null">
-                and employee_id like concat('%',#{accessoriesArrival.employeeId},'%')
+                and employee_id =#{accessoriesArrival.employeeId}
             </if>
             <if test="accessoriesArrival.businessType != null and accessoriesArrival.businessType != ''">
                 and business_type like concat('%',#{accessoriesArrival.businessType},'%')

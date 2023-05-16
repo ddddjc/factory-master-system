@@ -114,7 +114,7 @@
         from employee left join team t on employee.team_id = t.team_id
         <where>
             <if test="employee.employeeId != null">
-                and employee.employee_id like concat('%',#{employee.employeeId},'%')
+                and employee.employee_id =#{employee.employeeId}
             </if>
             <if test="employee.employeeName != null and employee.employeeName != ''">
                 and employee.employee_name like concat('%',#{employee.employeeName},'%')
@@ -129,7 +129,7 @@
                 and role = #{employee.role}
             </if>
             <if test="employee.teamId != null">
-                and employee.team_id like concat('%',#{employee.teamId},'%')
+                and employee.team_id =#{employee.teamId}
             </if>
             <if test="employee.phoneNumber != null and employee.phoneNumber != ''">
                 and phone_number like concat('%',#{employee.phoneNumber},'%')
