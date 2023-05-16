@@ -2,14 +2,21 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesArrival;
 import com.djc.entity.AccessoriesArrivalDetail;
+import com.djc.entity.Employee;
+import com.djc.entity.Information;
 import com.djc.entity.Vo.AccessoriesArrivalVo;
 import com.djc.service.AccessoriesArrivalDetailService;
 import com.djc.service.AccessoriesArrivalService;
+import com.djc.service.EmployeeService;
+import com.djc.util.InformationUtils;
 import com.djc.util.JsonResult;
+import com.djc.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +38,14 @@ public class AccessoriesArrivalController<E> {
     @Autowired
     private AccessoriesArrivalDetailService accessoriesArrivalDetailService;
 
+    @Autowired
+    private InformationUtils informationUtils;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
     /**
      * 通过主键查询单条数据
      *
@@ -132,11 +147,16 @@ public class AccessoriesArrivalController<E> {
      * @return
      */
     @PutMapping("submit/{id}")
-    public JsonResult submitArrival(@PathVariable("id")Integer id){
+    public JsonResult submitArrival(@PathVariable("id")Integer id, HttpServletRequest request) throws ParseException {
+        String token = request.getHeader("token");
         AccessoriesArrival accessoriesArrival = accessoriesArrivalService.queryById(id);
         accessoriesArrival.setArrivalState("Submitted");
         accessoriesArrivalService.update(accessoriesArrival);
-
+        List<Employee> employees = employeeService.queryByRole("admin");
+        List<Employee> employees1 = employeeService.queryByRole("manager");
+        employees.addAll(employees1);
+        Employee employee = jwtUtil.parseTokenToEmployee(token);
+        informationUtils.sendInformation(employee.getEmployeeId(),employees,"有人提交了到货单","","一般");
         return new JsonResult(200,"提交成功");
     }
     /**

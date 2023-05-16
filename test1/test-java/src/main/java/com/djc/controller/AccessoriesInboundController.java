@@ -2,14 +2,20 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesInbound;
 import com.djc.entity.AccessoriesInboundDetail;
+import com.djc.entity.Employee;
 import com.djc.entity.Vo.AccessoriesInboundVo;
 import com.djc.service.AccessoriesInboundDetailService;
 import com.djc.service.AccessoriesInboundService;
+import com.djc.service.EmployeeService;
+import com.djc.util.InformationUtils;
 import com.djc.util.JsonResult;
+import com.djc.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +35,13 @@ public class AccessoriesInboundController<E> {
     private AccessoriesInboundService accessoriesInboundService;
     @Autowired
     private AccessoriesInboundDetailService accessoriesInboundDetailService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+    @Autowired
+    EmployeeService employeeService;
+    @Autowired
+    InformationUtils informationUtils;
     /**
      * 通过主键查询单条数据
      *
@@ -131,10 +144,14 @@ public class AccessoriesInboundController<E> {
      * @return
      */
     @PutMapping("submit/{id}")
-    public JsonResult submitInbound(@PathVariable("id")Integer id){
+    public JsonResult submitInbound(@PathVariable("id")Integer id, HttpServletRequest request) throws ParseException {
         AccessoriesInbound accessoriesInbound = accessoriesInboundService.queryById(id);
         accessoriesInbound.setInboundState("Submitted");
         accessoriesInboundService.update(accessoriesInbound);
+        String token = request.getHeader("token");
+        Employee employee = jwtUtil.parseTokenToEmployee(token);
+        List<Employee> employees = employeeService.queryByRole("manager");
+        informationUtils.sendInformation(employee.getEmployeeId(),employees,"有人提交了入库单","","一般");
         return new JsonResult(200,"提交成功");
     }
     /**

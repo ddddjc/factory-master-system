@@ -2,15 +2,21 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesProcurement;
 import com.djc.entity.AccessoriesProcurementDetail;
+import com.djc.entity.Employee;
 import com.djc.entity.Vo.AccessoriesProcurementVo;
 import com.djc.exception.CustomException;
 import com.djc.service.AccessoriesProcurementDetailService;
 import com.djc.service.AccessoriesProcurementService;
+import com.djc.service.EmployeeService;
+import com.djc.util.InformationUtils;
 import com.djc.util.JsonResult;
+import com.djc.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +38,12 @@ public class AccessoriesProcurementController<E> {
     @Autowired
     private AccessoriesProcurementDetailService accessoriesProcurementDetailService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private InformationUtils informationUtils;
     /**
      * 通过主键查询单条数据
      *
@@ -134,11 +146,14 @@ public class AccessoriesProcurementController<E> {
      * @return
      */
     @PutMapping("submit/{id}")
-    public JsonResult submitProcuement(@PathVariable("id") Integer id){
+    public JsonResult submitProcuement(@PathVariable("id") Integer id, HttpServletRequest request) throws ParseException {
         AccessoriesProcurement accessoriesProcurement = accessoriesProcurementService.queryById(id);
         accessoriesProcurement.setProcurementState("Submitted");
         accessoriesProcurementService.update(accessoriesProcurement);
-
+        String token = request.getHeader("token");
+        Employee employee = jwtUtil.parseTokenToEmployee(token);
+        List<Employee> employees = employeeService.queryByRole("manager");
+        informationUtils.sendInformation(employee.getEmployeeId(),employees,"有人提交了出库单","","一般");
         return new JsonResult(200,"提交成功");
     }
 

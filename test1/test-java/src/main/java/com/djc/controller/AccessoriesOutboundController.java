@@ -2,14 +2,20 @@ package com.djc.controller;
 
 import com.djc.entity.AccessoriesOutbound;
 import com.djc.entity.AccessoriesOutboundDetail;
+import com.djc.entity.Employee;
 import com.djc.entity.Vo.AccessoriesOutboundVo;
 import com.djc.service.AccessoriesOutboundDetailService;
 import com.djc.service.AccessoriesOutboundService;
+import com.djc.service.EmployeeService;
+import com.djc.util.InformationUtils;
 import com.djc.util.JsonResult;
+import com.djc.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +36,13 @@ public class AccessoriesOutboundController<E> {
 
     @Autowired
     private AccessoriesOutboundDetailService accessoriesOutboundDetailService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private InformationUtils informationUtils;
     /**
      * 通过主键查询单条数据
      *
@@ -119,9 +132,13 @@ public class AccessoriesOutboundController<E> {
         return new JsonResult(200,"删除成功");
     }
     @PutMapping("submit/{id}")
-    public JsonResult submitOutbound(@PathVariable("id")Integer id){
+    public JsonResult submitOutbound(@PathVariable("id")Integer id, HttpServletRequest request) throws ParseException {
         AccessoriesOutbound accessoriesOutbound = accessoriesOutboundService.queryById(id);
         accessoriesOutbound.setOutboundState("Submitted");
+        String token = request.getHeader("token");
+        Employee employee = jwtUtil.parseTokenToEmployee(token);
+        List<Employee> employees = employeeService.queryByRole("manager");
+        informationUtils.sendInformation(employee.getEmployeeId(),employees,"有人提交了出库单","","一般");
         return new JsonResult(200,"提交成功");
     }
     /**

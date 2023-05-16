@@ -97,6 +97,7 @@ public class EmployeeController<E> {
     public JsonResult<Employee> add(@RequestBody Employee employee) {
         employee.setEmployeeId(null);
         employee.setPassword("12345678");
+        if (employee.getRole()==null||employee.getRole().equals("")) employee.setRole("staff");
         return new JsonResult<>(200, "新增成功", this.employeeService.insert(employee));
     }
 
