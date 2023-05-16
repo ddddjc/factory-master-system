@@ -4,14 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="" />
+    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="idea">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesArrivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesArrivalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Information.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/InformationReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/InformationReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/mapper/EmployeeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/mapper/EmployeeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/EmployeeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/EmployeeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/test-java.iml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -20,10 +47,44 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectId" id="2PsAgLhui8tSOld0B6F9vrVJqQx" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="RunManager" selected="Spring Boot.TestApplication">
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "spring.configuration.checksum": "3dfd291099725ec191a719181ee7858f",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunManager" selected="JUnit.TestJavaApplicationTests.test3">
     <configuration name="TestJavaApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="test-java" />
       <extension name="coverage">
@@ -104,19 +165,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="test-java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="test-java" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="test-java" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.djc.TestApplication" />
@@ -134,20 +182,75 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test3" />
-        <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="idea">
+      <created>1684233793466</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684233793466</updated>
+    </task>
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="idea" />
+      <created>1684235531364</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684235531364</updated>
+      <workItem from="1684235532484" duration="136000" />
+      <workItem from="1684235684394" duration="3167000" />
+      <workItem from="1684238872293" duration="1869000" />
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="github/申购流程" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="9a06c550-a64c-4853-9f7a-401e5b0421bc">
+          <value>
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="79" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="90" />
+                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="45" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -156,12 +259,149 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea" />
+  </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLSyntaxErrorException" package="java.sql" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesProcurementController.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesProcurementController.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesProcurementController.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesProcurementController.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/SessionUtil.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/SessionUtil.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/SessionUtil.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>
+          <line>46</line>
+          <properties class="com.djc.util.JwtUtil" method="parseTokenToEmployee">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>84</line>
+          <properties class="com.djc.service.impl.WebSocket" method="sendAllMessage">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>98</line>
+          <properties class="com.djc.service.impl.WebSocket" method="sendOneMessage">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>35</line>
+          <properties class="com.djc.service.impl.WebSocket" method="onOpen">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
+          <line>52</line>
+          <properties class="com.djc.service.impl.WebSocket" method="onClose">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.djc.entity.Vo.AccessoriesInboundDetailVo" memberName="depot" />
         <PinnedItemInfo parentTag="com.djc.entity.Vo.AccessoriesInboundDetailVo" memberName="inventory" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="session" />
+        <watch expression="session" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

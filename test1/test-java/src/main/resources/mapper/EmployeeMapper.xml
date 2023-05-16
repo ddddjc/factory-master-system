@@ -276,6 +276,9 @@
             </if>
         </where>
     </select>
+    <select id="queryByRole" resultMap="EmployeeMap">
+        select * from employee where role =#{role}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="employeeId" useGeneratedKeys="true">

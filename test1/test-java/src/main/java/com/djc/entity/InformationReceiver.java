@@ -1,5 +1,7 @@
 package com.djc.entity;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author djc
  * @since 2023-04-16 14:02:09
  */
+@AllArgsConstructor
 public class InformationReceiver implements Serializable {
     private static final long serialVersionUID = 881246614439330812L;
     /**

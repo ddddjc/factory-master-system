@@ -190,4 +190,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.update(employee);
     }
 
+    @Override
+    public List<Employee> queryByRole(String role) {
+        return employeeMapper.queryByRole(role);
+    }
+
 }

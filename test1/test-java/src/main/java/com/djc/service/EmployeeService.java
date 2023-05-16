@@ -99,4 +99,6 @@ public interface EmployeeService {
     public Integer queryByLikeCount(Employee employee);
 
     void setGrup(Employee employee);
+
+    List<Employee> queryByRole(String role);
 }

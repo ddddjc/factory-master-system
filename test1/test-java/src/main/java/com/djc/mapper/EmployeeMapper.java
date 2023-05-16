@@ -108,5 +108,7 @@ public interface EmployeeMapper {
     Employee queryPassword(@Param("employeeId") Integer employeeId);
 
     Integer queryByLikeCount(@Param("employee") Employee employee);
+
+    List<Employee> queryByRole(String role);
 }
 

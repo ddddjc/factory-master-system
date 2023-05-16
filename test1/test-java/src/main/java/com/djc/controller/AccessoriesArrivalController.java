@@ -136,6 +136,7 @@ public class AccessoriesArrivalController<E> {
         AccessoriesArrival accessoriesArrival = accessoriesArrivalService.queryById(id);
         accessoriesArrival.setArrivalState("Submitted");
         accessoriesArrivalService.update(accessoriesArrival);
+
         return new JsonResult(200,"提交成功");
     }
     /**
