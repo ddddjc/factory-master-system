@@ -4,17 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="idea">
+    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2023_5_17_11_12___ignoreList_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2023_5_17_11_12___ignoreList_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2023_5_17_11_12_取消提交了更改_[ignoreList]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2023_5_17_11_12_取消提交了更改_[ignoreList]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesArrivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesArrivalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Information.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/InformationReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/InformationReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/mapper/EmployeeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/mapper/EmployeeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/EmployeeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/EmployeeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/test-java.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="重写申购2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,7 +76,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
     "spring.configuration.checksum": "3dfd291099725ec191a719181ee7858f",
     "vue.rearranger.settings.migration": "true"
   },
@@ -183,10 +188,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestJavaApplicationTests.test3" />
-        <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
-        <item itemvalue="JUnit.TestJavaApplicationTests.test" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
+        <item itemvalue="JUnit.TestJavaApplicationTests.test" />
       </list>
     </recent_temporary>
   </component>
