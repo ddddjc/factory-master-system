@@ -42,8 +42,8 @@ public class AccessoriesOrderDetailController {
         return new JsonResult<>(200,"查询成功",this.accessoriesOrderDetailService.queryByPage(accessoriesOrderDetail, pageRequest));
     }
     @GetMapping()
-    public JsonResult queryByLike(AccessoriesOrderDetail accessoriesOrderDetail, @Param("page")Integer page,@Param("num")Integer num){
-        List<AccessoriesOrderDetail> orderDetails=accessoriesOrderDetailService.queryByLike(accessoriesOrderDetail,page-1,num);
+    public JsonResult queryByLike(AccessoriesOrderDetail accessoriesOrderDetail, @Param("page")Integer page,@Param("size")Integer size){
+        List<AccessoriesOrderDetail> orderDetails=accessoriesOrderDetailService.queryByLike(accessoriesOrderDetail,page-1,size);
         Integer total=accessoriesOrderDetailService.queryNumByLike(accessoriesOrderDetail);
         Map orderDetailList = new HashMap();
         orderDetailList.put("orderDetails",orderDetails);

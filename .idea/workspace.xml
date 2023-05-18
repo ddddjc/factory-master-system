@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="idea">
-      <change beforePath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOutboundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOutboundController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOrderDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOrderDetailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/AccessoriesOrderDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/AccessoriesOrderDetailMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +206,7 @@
       <workItem from="1684235532484" duration="136000" />
       <workItem from="1684235684394" duration="3167000" />
       <workItem from="1684238872293" duration="1869000" />
-      <workItem from="1684299928463" duration="15004000" />
+      <workItem from="1684299928463" duration="16238000" />
     </task>
     <task id="LOCAL-00002" summary="idea">
       <created>1684295877695</created>
@@ -230,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684295919933</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="idea">
+      <created>1684400384319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684400384319</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,6 +396,11 @@
           <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/AccessoriesOrderDetailServiceImpl.java</url>
           <line>46</line>
           <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOrderDetailController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>

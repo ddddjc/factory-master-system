@@ -234,7 +234,7 @@
                 and is_approved = #{accessoriesOrderDetail.isApproved}
             </if>
             <if test="accessoriesOrderDetail.approvedDate != null">
-                and approved_date = #{accessoriesOrderDetail.approvedDate}
+                and approved_date LIKE CONCAT('%', #{accessoriesOrderDetail.approvedDate}, '%')
             </if>
             <if test="accessoriesOrderDetail.approveManagerName != null and accessoriesOrderDetail.approveManagerName != ''">
                 and approve_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.approveManagerName}, '%')
@@ -243,7 +243,7 @@
                 and is_arrival = #{accessoriesOrderDetail.isArrival}
             </if>
             <if test="accessoriesOrderDetail.arrivalDate != null">
-                and arrival_date = #{accessoriesOrderDetail.arrivalDate}
+                and arrival_date LIKE CONCAT('%', #{accessoriesOrderDetail.arrivalDate}, '%')
             </if>
             <if test="accessoriesOrderDetail.arrivalManagerName != null and accessoriesOrderDetail.arrivalManagerName != ''">
                 and arrival_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.arrivalManagerName}, '%')
@@ -255,19 +255,19 @@
                 and is_inbound = #{accessoriesOrderDetail.isInbound}
             </if>
             <if test="accessoriesOrderDetail.inboundDate != null">
-                and inbound_date = #{accessoriesOrderDetail.inboundDate}
+                and inbound_date LIKE CONCAT('%', #{accessoriesOrderDetail.inboundDate}, '%')
             </if>
             <if test="accessoriesOrderDetail.inboundManagerName != null and accessoriesOrderDetail.inboundManagerName != ''">
                 and inbound_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.inboundManagerName}, '%')
             </if>
             <if test="accessoriesOrderDetail.returnableDate != null">
-                and returnable_date = #{accessoriesOrderDetail.returnableDate}
+                and returnable_date LIKE CONCAT('%', #{accessoriesOrderDetail.returnableDate}, '%')
             </if>
             <if test="accessoriesOrderDetail.remark != null and accessoriesOrderDetail.remark != ''">
                 and remark LIKE CONCAT('%', #{accessoriesOrderDetail.remark}, '%')
             </if>
         </where>
-
+        limit #{pageable.offset}, #{pageable.pageSize}
     </select>
     <select id="queryNumByLike" resultType="java.lang.Integer">
         select count(1)
