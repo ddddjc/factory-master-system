@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.AccessoriesOrderDetailMapper">
+
+    <resultMap type="com.djc.entity.AccessoriesOrderDetail" id="AccessoriesOrderDetailMap">
+        <result property="orderDetailId" column="order_detail_id" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="INTEGER"/>
+        <result property="accessoriesId" column="accessories_id" jdbcType="INTEGER"/>
+        <result property="materialType" column="material_type" jdbcType="VARCHAR"/>
+        <result property="orderNumber" column="order_number" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="conversionRate" column="conversion_rate" jdbcType="VARCHAR"/>
+        <result property="priceWithTax" column="price_with_tax" jdbcType="INTEGER"/>
+        <result property="priceWithoutTax" column="price_without_tax" jdbcType="INTEGER"/>
+        <result property="isApproved" column="is_approved" jdbcType="INTEGER"/>
+        <result property="approvedDate" column="approved_date" jdbcType="TIMESTAMP"/>
+        <result property="approveManagerName" column="approve_manager_name" jdbcType="VARCHAR"/>
+        <result property="isArrival" column="is_arrival" jdbcType="INTEGER"/>
+        <result property="arrivalDate" column="arrival_date" jdbcType="TIMESTAMP"/>
+        <result property="arrivalManagerName" column="arrival_manager_name" jdbcType="VARCHAR"/>
+        <result property="isReturnable" column="is_returnable" jdbcType="INTEGER"/>
+        <result property="isInbound" column="is_inbound" jdbcType="INTEGER"/>
+        <result property="inboundDate" column="inbound_date" jdbcType="TIMESTAMP"/>
+        <result property="inboundManagerName" column="inbound_manager_name" jdbcType="VARCHAR"/>
+        <result property="returnableDate" column="returnable_date" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AccessoriesOrderDetailMap">
+        select order_detail_id,
+               order_id,
+               accessories_id,
+               material_type,
+               order_number,
+               num,
+               conversion_rate,
+               price_with_tax,
+               price_without_tax,
+               is_approved,
+               approved_date,
+               approve_manager_name,
+               is_arrival,
+               arrival_date,
+               arrival_manager_name,
+               is_returnable,
+               is_inbound,
+               inbound_date,
+               inbound_manager_name,
+               returnable_date,
+               remark
+        from accessories_order_detail
+        where order_detail_id = #{orderDetailId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesOrderDetailMap">
+        select
+        order_detail_id, order_id, accessories_id, material_type, order_number, num, conversion_rate, price_with_tax,
+        price_without_tax, is_approved, approved_date, approve_manager_name, is_arrival, arrival_date,
+        arrival_manager_name, is_returnable, is_inbound, inbound_date, inbound_manager_name, returnable_date, remark
+        from accessories_order_detail
+        <where>
+            <if test="accessoriesOrderDetail.orderDetailId != null">
+                and order_detail_id = #{accessoriesOrderDetail.orderDetailId}
+            </if>
+            <if test="accessoriesOrderDetail.orderId != null">
+                and order_id = #{accessoriesOrderDetail.orderId}
+            </if>
+            <if test="accessoriesOrderDetail.accessoriesId != null">
+                and accessories_id = #{accessoriesOrderDetail.accessoriesId}
+            </if>
+            <if test="accessoriesOrderDetail.materialType != null and accessoriesOrderDetail.materialType != ''">
+                and material_type = #{accessoriesOrderDetail.materialType}
+            </if>
+            <if test="accessoriesOrderDetail.orderNumber != null">
+                and order_number = #{accessoriesOrderDetail.orderNumber}
+            </if>
+            <if test="accessoriesOrderDetail.num != null">
+                and num = #{accessoriesOrderDetail.num}
+            </if>
+            <if test="accessoriesOrderDetail.conversionRate != null and accessoriesOrderDetail.conversionRate != ''">
+                and conversion_rate = #{accessoriesOrderDetail.conversionRate}
+            </if>
+            <if test="accessoriesOrderDetail.priceWithTax != null">
+                and price_with_tax = #{accessoriesOrderDetail.priceWithTax}
+            </if>
+            <if test="accessoriesOrderDetail.priceWithoutTax != null">
+                and price_without_tax = #{accessoriesOrderDetail.priceWithoutTax}
+            </if>
+            <if test="accessoriesOrderDetail.isApproved != null">
+                and is_approved = #{accessoriesOrderDetail.isApproved}
+            </if>
+            <if test="accessoriesOrderDetail.approvedDate != null">
+                and approved_date = #{accessoriesOrderDetail.approvedDate}
+            </if>
+            <if test="accessoriesOrderDetail.approveManagerName != null and accessoriesOrderDetail.approveManagerName != ''">
+                and approve_manager_name = #{accessoriesOrderDetail.approveManagerName}
+            </if>
+            <if test="accessoriesOrderDetail.isArrival != null">
+                and is_arrival = #{accessoriesOrderDetail.isArrival}
+            </if>
+            <if test="accessoriesOrderDetail.arrivalDate != null">
+                and arrival_date = #{accessoriesOrderDetail.arrivalDate}
+            </if>
+            <if test="accessoriesOrderDetail.arrivalManagerName != null and accessoriesOrderDetail.arrivalManagerName != ''">
+                and arrival_manager_name = #{accessoriesOrderDetail.arrivalManagerName}
+            </if>
+            <if test="accessoriesOrderDetail.isReturnable != null">
+                and is_returnable = #{accessoriesOrderDetail.isReturnable}
+            </if>
+            <if test="accessoriesOrderDetail.isInbound != null">
+                and is_inbound = #{accessoriesOrderDetail.isInbound}
+            </if>
+            <if test="accessoriesOrderDetail.inboundDate != null">
+                and inbound_date = #{accessoriesOrderDetail.inboundDate}
+            </if>
+            <if test="accessoriesOrderDetail.inboundManagerName != null and accessoriesOrderDetail.inboundManagerName != ''">
+                and inbound_manager_name = #{accessoriesOrderDetail.inboundManagerName}
+            </if>
+            <if test="accessoriesOrderDetail.returnableDate != null">
+                and returnable_date = #{accessoriesOrderDetail.returnableDate}
+            </if>
+            <if test="accessoriesOrderDetail.remark != null and accessoriesOrderDetail.remark != ''">
+                and remark = #{accessoriesOrderDetail.remark}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from accessories_order_detail
+        <where>
+            <if test="orderDetailId != null">
+                and order_detail_id = #{orderDetailId}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="accessoriesId != null">
+                and accessories_id = #{accessoriesId}
+            </if>
+            <if test="materialType != null and materialType != ''">
+                and material_type = #{materialType}
+            </if>
+            <if test="orderNumber != null">
+                and order_number = #{orderNumber}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="conversionRate != null and conversionRate != ''">
+                and conversion_rate = #{conversionRate}
+            </if>
+            <if test="priceWithTax != null">
+                and price_with_tax = #{priceWithTax}
+            </if>
+            <if test="priceWithoutTax != null">
+                and price_without_tax = #{priceWithoutTax}
+            </if>
+            <if test="isApproved != null">
+                and is_approved = #{isApproved}
+            </if>
+            <if test="approvedDate != null">
+                and approved_date = #{approvedDate}
+            </if>
+            <if test="approveManagerName != null and approveManagerName != ''">
+                and approve_manager_name = #{approveManagerName}
+            </if>
+            <if test="isArrival != null">
+                and is_arrival = #{isArrival}
+            </if>
+            <if test="arrivalDate != null">
+                and arrival_date = #{arrivalDate}
+            </if>
+            <if test="arrivalManagerName != null and arrivalManagerName != ''">
+                and arrival_manager_name = #{arrivalManagerName}
+            </if>
+            <if test="isReturnable != null">
+                and is_returnable = #{isReturnable}
+            </if>
+            <if test="isInbound != null">
+                and is_inbound = #{isInbound}
+            </if>
+            <if test="inboundDate != null">
+                and inbound_date = #{inboundDate}
+            </if>
+            <if test="inboundManagerName != null and inboundManagerName != ''">
+                and inbound_manager_name = #{inboundManagerName}
+            </if>
+            <if test="returnableDate != null">
+                and returnable_date = #{returnableDate}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByLimit" resultMap="AccessoriesOrderDetailMap">
+        select * from
+            accessories_order_detail
+        <where>
+            <if test="accessoriesOrderDetail.orderDetailId != null">
+                and order_detail_id = #{accessoriesOrderDetail.orderDetailId}
+            </if>
+            <if test="accessoriesOrderDetail.orderId != null">
+                and order_id = #{accessoriesOrderDetail.orderId}
+            </if>
+            <if test="accessoriesOrderDetail.accessoriesId != null">
+                and accessories_id = #{accessoriesOrderDetail.accessoriesId}
+            </if>
+            <if test="accessoriesOrderDetail.materialType != null and accessoriesOrderDetail.materialType != ''">
+                and material_type LIKE CONCAT('%', #{accessoriesOrderDetail.materialType}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.orderNumber != null">
+                and order_number LIKE CONCAT('%', #{accessoriesOrderDetail.orderNumber}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.num != null">
+                and num = #{accessoriesOrderDetail.num}
+            </if>
+            <if test="accessoriesOrderDetail.conversionRate != null and accessoriesOrderDetail.conversionRate != ''">
+                and conversion_rate LIKE CONCAT('%', #{accessoriesOrderDetail.conversionRate}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.priceWithTax != null">
+                and price_with_tax = #{accessoriesOrderDetail.priceWithTax}
+            </if>
+            <if test="accessoriesOrderDetail.priceWithoutTax != null">
+                and price_without_tax = #{accessoriesOrderDetail.priceWithoutTax}
+            </if>
+            <if test="accessoriesOrderDetail.isApproved != null">
+                and is_approved = #{accessoriesOrderDetail.isApproved}
+            </if>
+            <if test="accessoriesOrderDetail.approvedDate != null">
+                and approved_date = #{accessoriesOrderDetail.approvedDate}
+            </if>
+            <if test="accessoriesOrderDetail.approveManagerName != null and accessoriesOrderDetail.approveManagerName != ''">
+                and approve_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.approveManagerName}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.isArrival != null">
+                and is_arrival = #{accessoriesOrderDetail.isArrival}
+            </if>
+            <if test="accessoriesOrderDetail.arrivalDate != null">
+                and arrival_date = #{accessoriesOrderDetail.arrivalDate}
+            </if>
+            <if test="accessoriesOrderDetail.arrivalManagerName != null and accessoriesOrderDetail.arrivalManagerName != ''">
+                and arrival_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.arrivalManagerName}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.isReturnable != null">
+                and is_returnable = #{accessoriesOrderDetail.isReturnable}
+            </if>
+            <if test="accessoriesOrderDetail.isInbound != null">
+                and is_inbound = #{accessoriesOrderDetail.isInbound}
+            </if>
+            <if test="accessoriesOrderDetail.inboundDate != null">
+                and inbound_date = #{accessoriesOrderDetail.inboundDate}
+            </if>
+            <if test="accessoriesOrderDetail.inboundManagerName != null and accessoriesOrderDetail.inboundManagerName != ''">
+                and inbound_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.inboundManagerName}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.returnableDate != null">
+                and returnable_date = #{accessoriesOrderDetail.returnableDate}
+            </if>
+            <if test="accessoriesOrderDetail.remark != null and accessoriesOrderDetail.remark != ''">
+                and remark LIKE CONCAT('%', #{accessoriesOrderDetail.remark}, '%')
+            </if>
+        </where>
+
+    </select>
+    <select id="queryNumByLike" resultType="java.lang.Integer">
+        select count(1)
+        from accessories_order_detail
+                <where>
+            <if test="accessoriesOrderDetail.orderDetailId != null">
+                and order_detail_id = #{accessoriesOrderDetail.orderDetailId}
+            </if>
+            <if test="accessoriesOrderDetail.orderId != null">
+                and order_id = #{accessoriesOrderDetail.orderId}
+            </if>
+            <if test="accessoriesOrderDetail.accessoriesId != null">
+                and accessories_id = #{accessoriesOrderDetail.accessoriesId}
+            </if>
+            <if test="accessoriesOrderDetail.materialType != null and accessoriesOrderDetail.materialType != ''">
+                and material_type LIKE CONCAT('%', #{accessoriesOrderDetail.materialType}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.orderNumber != null">
+                and order_number LIKE CONCAT('%', #{accessoriesOrderDetail.orderNumber}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.num != null">
+                and num = #{accessoriesOrderDetail.num}
+            </if>
+            <if test="accessoriesOrderDetail.conversionRate != null and accessoriesOrderDetail.conversionRate != ''">
+                and conversion_rate LIKE CONCAT('%', #{accessoriesOrderDetail.conversionRate}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.priceWithTax != null">
+                and price_with_tax = #{accessoriesOrderDetail.priceWithTax}
+            </if>
+            <if test="accessoriesOrderDetail.priceWithoutTax != null">
+                and price_without_tax = #{accessoriesOrderDetail.priceWithoutTax}
+            </if>
+            <if test="accessoriesOrderDetail.isApproved != null">
+                and is_approved = #{accessoriesOrderDetail.isApproved}
+            </if>
+            <if test="accessoriesOrderDetail.approvedDate != null">
+                and approved_date = #{accessoriesOrderDetail.approvedDate}
+            </if>
+            <if test="accessoriesOrderDetail.approveManagerName != null and accessoriesOrderDetail.approveManagerName != ''">
+                and approve_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.approveManagerName}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.isArrival != null">
+                and is_arrival = #{accessoriesOrderDetail.isArrival}
+            </if>
+            <if test="accessoriesOrderDetail.arrivalDate != null">
+                and arrival_date = #{accessoriesOrderDetail.arrivalDate}
+            </if>
+            <if test="accessoriesOrderDetail.arrivalManagerName != null and accessoriesOrderDetail.arrivalManagerName != ''">
+                and arrival_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.arrivalManagerName}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.isReturnable != null">
+                and is_returnable = #{accessoriesOrderDetail.isReturnable}
+            </if>
+            <if test="accessoriesOrderDetail.isInbound != null">
+                and is_inbound = #{accessoriesOrderDetail.isInbound}
+            </if>
+            <if test="accessoriesOrderDetail.inboundDate != null">
+                and inbound_date = #{accessoriesOrderDetail.inboundDate}
+            </if>
+            <if test="accessoriesOrderDetail.inboundManagerName != null and accessoriesOrderDetail.inboundManagerName != ''">
+                and inbound_manager_name LIKE CONCAT('%', #{accessoriesOrderDetail.inboundManagerName}, '%')
+            </if>
+            <if test="accessoriesOrderDetail.returnableDate != null">
+                and returnable_date = #{accessoriesOrderDetail.returnableDate}
+            </if>
+            <if test="accessoriesOrderDetail.remark != null and accessoriesOrderDetail.remark != ''">
+                and remark LIKE CONCAT('%', #{accessoriesOrderDetail.remark}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="orderDetailId" useGeneratedKeys="true">
+        insert into accessories_order_detail(order_id, accessories_id, material_type, order_number, num,
+                                             conversion_rate, price_with_tax, price_without_tax, is_approved,
+                                             approved_date, approve_manager_name, is_arrival, arrival_date,
+                                             arrival_manager_name, is_returnable, is_inbound, inbound_date,
+                                             inbound_manager_name, returnable_date, remark)
+        values (#{orderId}, #{accessoriesId}, #{materialType}, #{orderNumber}, #{num}, #{conversionRate},
+                #{priceWithTax}, #{priceWithoutTax}, #{isApproved}, #{approvedDate}, #{approveManagerName},
+                #{isArrival}, #{arrivalDate}, #{arrivalManagerName}, #{isReturnable}, #{isInbound}, #{inboundDate},
+                #{inboundManagerName}, #{returnableDate}, #{remark})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="orderDetailId" useGeneratedKeys="true">
+        insert into accessories_order_detail(order_id, accessories_id, material_type, order_number, num,
+        conversion_rate, price_with_tax, price_without_tax, is_approved, approved_date, approve_manager_name,
+        is_arrival, arrival_date, arrival_manager_name, is_returnable, is_inbound, inbound_date, inbound_manager_name,
+        returnable_date, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.orderId}, #{entity.accessoriesId}, #{entity.materialType}, #{entity.orderNumber}, #{entity.num},
+            #{entity.conversionRate}, #{entity.priceWithTax}, #{entity.priceWithoutTax}, #{entity.isApproved},
+            #{entity.approvedDate}, #{entity.approveManagerName}, #{entity.isArrival}, #{entity.arrivalDate},
+            #{entity.arrivalManagerName}, #{entity.isReturnable}, #{entity.isInbound}, #{entity.inboundDate},
+            #{entity.inboundManagerName}, #{entity.returnableDate}, #{entity.remark})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="orderDetailId" useGeneratedKeys="true">
+        insert into accessories_order_detail(order_id, accessories_id, material_type, order_number, num,
+        conversion_rate, price_with_tax, price_without_tax, is_approved, approved_date, approve_manager_name,
+        is_arrival, arrival_date, arrival_manager_name, is_returnable, is_inbound, inbound_date, inbound_manager_name,
+        returnable_date, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.orderId}, #{entity.accessoriesId}, #{entity.materialType}, #{entity.orderNumber}, #{entity.num},
+            #{entity.conversionRate}, #{entity.priceWithTax}, #{entity.priceWithoutTax}, #{entity.isApproved},
+            #{entity.approvedDate}, #{entity.approveManagerName}, #{entity.isArrival}, #{entity.arrivalDate},
+            #{entity.arrivalManagerName}, #{entity.isReturnable}, #{entity.isInbound}, #{entity.inboundDate},
+            #{entity.inboundManagerName}, #{entity.returnableDate}, #{entity.remark})
+        </foreach>
+        on duplicate key update
+        order_id = values(order_id),
+        accessories_id = values(accessories_id),
+        material_type = values(material_type),
+        order_number = values(order_number),
+        num = values(num),
+        conversion_rate = values(conversion_rate),
+        price_with_tax = values(price_with_tax),
+        price_without_tax = values(price_without_tax),
+        is_approved = values(is_approved),
+        approved_date = values(approved_date),
+        approve_manager_name = values(approve_manager_name),
+        is_arrival = values(is_arrival),
+        arrival_date = values(arrival_date),
+        arrival_manager_name = values(arrival_manager_name),
+        is_returnable = values(is_returnable),
+        is_inbound = values(is_inbound),
+        inbound_date = values(inbound_date),
+        inbound_manager_name = values(inbound_manager_name),
+        returnable_date = values(returnable_date),
+        remark = values(remark)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update accessories_order_detail
+        <set>
+            <if test="orderId != null">
+                order_id = #{orderId},
+            </if>
+            <if test="accessoriesId != null">
+                accessories_id = #{accessoriesId},
+            </if>
+            <if test="materialType != null and materialType != ''">
+                material_type = #{materialType},
+            </if>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="conversionRate != null and conversionRate != ''">
+                conversion_rate = #{conversionRate},
+            </if>
+            <if test="priceWithTax != null">
+                price_with_tax = #{priceWithTax},
+            </if>
+            <if test="priceWithoutTax != null">
+                price_without_tax = #{priceWithoutTax},
+            </if>
+            <if test="isApproved != null">
+                is_approved = #{isApproved},
+            </if>
+            <if test="approvedDate != null">
+                approved_date = #{approvedDate},
+            </if>
+            <if test="approveManagerName != null and approveManagerName != ''">
+                approve_manager_name = #{approveManagerName},
+            </if>
+            <if test="isArrival != null">
+                is_arrival = #{isArrival},
+            </if>
+            <if test="arrivalDate != null">
+                arrival_date = #{arrivalDate},
+            </if>
+            <if test="arrivalManagerName != null and arrivalManagerName != ''">
+                arrival_manager_name = #{arrivalManagerName},
+            </if>
+            <if test="isReturnable != null">
+                is_returnable = #{isReturnable},
+            </if>
+            <if test="isInbound != null">
+                is_inbound = #{isInbound},
+            </if>
+            <if test="inboundDate != null">
+                inbound_date = #{inboundDate},
+            </if>
+            <if test="inboundManagerName != null and inboundManagerName != ''">
+                inbound_manager_name = #{inboundManagerName},
+            </if>
+            <if test="returnableDate != null">
+                returnable_date = #{returnableDate},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where order_detail_id = #{orderDetailId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from accessories_order_detail
+        where order_detail_id = #{orderDetailId}
+    </delete>
+
+</mapper>
+

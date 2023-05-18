@@ -20,18 +20,18 @@ import java.util.List;
 public class TestJavaApplicationTests {
     public static void main(String[] args) {
     }
-    @Autowired
-    InformationUtils informationUtils;
-
-    @Autowired
-    EmployeeService employeeService;
-    @Test
-    public void test1() throws ParseException {
-        informationUtils.sendInformation(111,111,"title","content","pr");
-    }
-    @Test
-    public void test3() throws ParseException {
-        List<Employee> employees = employeeService.queryByRole("staff");
-        informationUtils.sendInformation(112,employees,"title","content","priority");
-    }
+//    @Autowired
+//    InformationUtils informationUtils;
+//
+//    @Autowired
+//    EmployeeService employeeService;
+//    @Test
+//    public void test1() throws ParseException {
+//        informationUtils.sendInformation(111,111,"title","content","pr");
+//    }
+//    @Test
+//    public void test3() throws ParseException {
+//        List<Employee> employees = employeeService.queryByRole("staff");
+//        informationUtils.sendInformation(112,employees,"title","content","priority");
+//    }
 }

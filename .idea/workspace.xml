@@ -4,22 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2023_5_17_11_12___ignoreList_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2023_5_17_11_12___ignoreList_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2023_5_17_11_12_取消提交了更改_[ignoreList]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2023_5_17_11_12_取消提交了更改_[ignoreList]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="idea">
+      <change beforePath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOutboundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOutboundController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/test/java/com/djc/TestJavaApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="重写申购2" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -76,6 +72,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.fileTypes",
     "spring.configuration.checksum": "3dfd291099725ec191a719181ee7858f",
     "vue.rearranger.settings.migration": "true"
@@ -89,8 +88,14 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.TestJavaApplicationTests.test3">
-    <configuration name="TestJavaApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\程序\设备管理\test\test1\test-java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.TestApplication">
+    <configuration name="TestJavaApplicationTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
       <module name="test-java" />
       <extension name="coverage">
         <pattern>
@@ -98,10 +103,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.djc" />
-      <option name="MAIN_CLASS_NAME" value="com.djc.TestJavaApplicationTests" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -178,20 +179,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.TestJavaApplicationTests.test" />
       <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
       <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
       <item itemvalue="JUnit.TestJavaApplicationTests.test3" />
       <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
       <item itemvalue="Spring Boot.TestApplication" />
+      <item itemvalue="应用程序.TestJavaApplicationTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.TestJavaApplicationTests" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test4" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test3" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test2" />
         <item itemvalue="JUnit.TestJavaApplicationTests.test1" />
-        <item itemvalue="JUnit.TestJavaApplicationTests.test" />
       </list>
     </recent_temporary>
   </component>
@@ -213,8 +214,23 @@
       <workItem from="1684235532484" duration="136000" />
       <workItem from="1684235684394" duration="3167000" />
       <workItem from="1684238872293" duration="1869000" />
+      <workItem from="1684299928463" duration="15004000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="idea">
+      <created>1684295877695</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684295877695</updated>
+    </task>
+    <task id="LOCAL-00003" summary="idea">
+      <created>1684295919933</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684295919933</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +274,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="重写申购" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -344,6 +372,31 @@
           <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/WebSocket.java</url>
           <line>41</line>
           <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOutboundController.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOutboundController.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOrderDetailController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/AccessoriesOrderDetailServiceImpl.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/AccessoriesOrderDetailServiceImpl.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>

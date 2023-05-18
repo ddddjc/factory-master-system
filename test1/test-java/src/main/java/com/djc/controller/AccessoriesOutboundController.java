@@ -10,6 +10,7 @@ import com.djc.service.EmployeeService;
 import com.djc.util.InformationUtils;
 import com.djc.util.JsonResult;
 import com.djc.util.JwtUtil;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
@@ -85,7 +86,10 @@ public class AccessoriesOutboundController<E> {
      */
 
     @PostMapping
-    public JsonResult<AccessoriesOutbound> add(@RequestBody AccessoriesOutbound accessoriesOutbound) {
+    public JsonResult<AccessoriesOutbound> add(@RequestBody AccessoriesOutbound accessoriesOutbound,HttpServletRequest request) {
+        Employee employee = jwtUtil.parseTokenToEmployee(request.getHeader("token"));
+        System.out.println(employee.getEmployeeId());
+        accessoriesOutbound.setEmployeeId(employee.getEmployeeId());
         return new JsonResult<>(200, "新增成功", this.accessoriesOutboundService.insert(accessoriesOutbound));
     }
 
@@ -96,7 +100,10 @@ public class AccessoriesOutboundController<E> {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<AccessoriesOutbound> edit(@RequestBody AccessoriesOutbound accessoriesOutbound) {
+    public JsonResult<AccessoriesOutbound> edit(@RequestBody AccessoriesOutbound accessoriesOutbound,HttpServletRequest request) {
+        Employee employee = jwtUtil.parseTokenToEmployee(request.getHeader("token"));
+        System.out.println(employee.getEmployeeId());
+        accessoriesOutbound.setEmployeeId(employee.getEmployeeId());
         return new JsonResult<>(200, "修改成功", this.accessoriesOutboundService.update(accessoriesOutbound));
     }
 

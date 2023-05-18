@@ -1,6 +1,7 @@
 package com.djc.controller;
 
 import com.djc.entity.Accessories;
+import com.djc.exception.CustomException;
 import com.djc.service.AccessoriesService;
 import com.djc.util.JsonResult;
 import com.djc.service.impl.WebSocket;
@@ -31,6 +32,7 @@ public class AccessoriesController<E> {
     private WebSocket webSocket;
     @GetMapping("")
     public JsonResult queryByLimit(Accessories accessories, @Param("page")Integer page,@Param("num")Integer num){
+        if (page==null||num==null) throw new CustomException(4002,"请输入页码和");
         List<Accessories> accessories1 = accessoriesService.queryByLike(accessories, page - 1, num);
         Integer integer = accessoriesService.queryByLikeCount(accessories);
         Map map=new HashMap();

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.AccessoriesOrderMapper">
+
+    <resultMap type="com.djc.entity.AccessoriesOrder" id="AccessoriesOrderMap">
+        <result property="orderId" column="order_id" jdbcType="INTEGER"/>
+        <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+        <result property="businessType" column="business_type" jdbcType="VARCHAR"/>
+        <result property="document" column="document" jdbcType="VARCHAR"/>
+        <result property="orderDate" column="order_date" jdbcType="TIMESTAMP"/>
+        <result property="purchaseType" column="purchase_type" jdbcType="VARCHAR"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="clerkName" column="clerk_name" jdbcType="VARCHAR"/>
+        <result property="currency" column="currency" jdbcType="VARCHAR"/>
+        <result property="exchangeRate" column="exchange_rate" jdbcType="VARCHAR"/>
+        <result property="transportationType" column="transportation_type" jdbcType="VARCHAR"/>
+        <result property="taxRate" column="tax_rate" jdbcType="VARCHAR"/>
+        <result property="orderRemark" column="order_remark" jdbcType="VARCHAR"/>
+        <result property="orderCreater" column="order_creater" jdbcType="VARCHAR"/>
+        <result property="reviewer" column="reviewer" jdbcType="VARCHAR"/>
+        <result property="orderState" column="order_state" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AccessoriesOrderMap">
+        select order_id,
+               employee_id,
+               business_type,
+               document,
+               order_date,
+               purchase_type,
+               department,
+               clerk_name,
+               currency,
+               exchange_rate,
+               transportation_type,
+               tax_rate,
+               order_remark,
+               order_creater,
+               reviewer,
+               order_state,
+               create_date
+        from accessories_order
+        where order_id = #{orderId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesOrderMap">
+        select
+        order_id, employee_id, business_type, document, order_date, purchase_type, department, clerk_name, currency,
+        exchange_rate, transportation_type, tax_rate, order_remark, order_creater, reviewer, order_state, create_date
+        from accessories_order
+        <where>
+            <if test="accessoriesOrder.orderId != null">
+                and order_id = #{accessoriesOrder.orderId}
+            </if>
+            <if test="accessoriesOrder.employeeId != null">
+                and employee_id = #{accessoriesOrder.employeeId}
+            </if>
+            <if test="accessoriesOrder.businessType != null and accessoriesOrder.businessType != ''">
+                and business_type = #{accessoriesOrder.businessType}
+            </if>
+            <if test="accessoriesOrder.document != null and accessoriesOrder.document != ''">
+                and document = #{accessoriesOrder.document}
+            </if>
+            <if test="accessoriesOrder.orderDate != null">
+                and order_date = #{accessoriesOrder.orderDate}
+            </if>
+            <if test="accessoriesOrder.purchaseType != null and accessoriesOrder.purchaseType != ''">
+                and purchase_type = #{accessoriesOrder.purchaseType}
+            </if>
+            <if test="accessoriesOrder.department != null and accessoriesOrder.department != ''">
+                and department = #{accessoriesOrder.department}
+            </if>
+            <if test="accessoriesOrder.clerkName != null and accessoriesOrder.clerkName != ''">
+                and clerk_name = #{accessoriesOrder.clerkName}
+            </if>
+            <if test="accessoriesOrder.currency != null and accessoriesOrder.currency != ''">
+                and currency = #{accessoriesOrder.currency}
+            </if>
+            <if test="accessoriesOrder.exchangeRate != null and accessoriesOrder.exchangeRate != ''">
+                and exchange_rate = #{accessoriesOrder.exchangeRate}
+            </if>
+            <if test="accessoriesOrder.transportationType != null and accessoriesOrder.transportationType != ''">
+                and transportation_type = #{accessoriesOrder.transportationType}
+            </if>
+            <if test="accessoriesOrder.taxRate != null and accessoriesOrder.taxRate != ''">
+                and tax_rate = #{accessoriesOrder.taxRate}
+            </if>
+            <if test="accessoriesOrder.orderRemark != null and accessoriesOrder.orderRemark != ''">
+                and order_remark = #{accessoriesOrder.orderRemark}
+            </if>
+            <if test="accessoriesOrder.orderCreater != null and accessoriesOrder.orderCreater != ''">
+                and order_creater = #{accessoriesOrder.orderCreater}
+            </if>
+            <if test="accessoriesOrder.reviewer != null and accessoriesOrder.reviewer != ''">
+                and reviewer = #{accessoriesOrder.reviewer}
+            </if>
+            <if test="accessoriesOrder.orderState != null and accessoriesOrder.orderState != ''">
+                and order_state = #{accessoriesOrder.orderState}
+            </if>
+            <if test="accessoriesOrder.createDate != null">
+                and create_date = #{accessoriesOrder.createDate}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from accessories_order
+        <where>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="employeeId != null">
+                and employee_id = #{employeeId}
+            </if>
+            <if test="businessType != null and businessType != ''">
+                and business_type = #{businessType}
+            </if>
+            <if test="document != null and document != ''">
+                and document = #{document}
+            </if>
+            <if test="orderDate != null">
+                and order_date = #{orderDate}
+            </if>
+            <if test="purchaseType != null and purchaseType != ''">
+                and purchase_type = #{purchaseType}
+            </if>
+            <if test="department != null and department != ''">
+                and department = #{department}
+            </if>
+            <if test="clerkName != null and clerkName != ''">
+                and clerk_name = #{clerkName}
+            </if>
+            <if test="currency != null and currency != ''">
+                and currency = #{currency}
+            </if>
+            <if test="exchangeRate != null and exchangeRate != ''">
+                and exchange_rate = #{exchangeRate}
+            </if>
+            <if test="transportationType != null and transportationType != ''">
+                and transportation_type = #{transportationType}
+            </if>
+            <if test="taxRate != null and taxRate != ''">
+                and tax_rate = #{taxRate}
+            </if>
+            <if test="orderRemark != null and orderRemark != ''">
+                and order_remark = #{orderRemark}
+            </if>
+            <if test="orderCreater != null and orderCreater != ''">
+                and order_creater = #{orderCreater}
+            </if>
+            <if test="reviewer != null and reviewer != ''">
+                and reviewer = #{reviewer}
+            </if>
+            <if test="orderState != null and orderState != ''">
+                and order_state = #{orderState}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+        </where>
+    </select>
+    <select id="queryByLikeLimit" resultMap="AccessoriesOrderMap">
+        select
+        order_id, employee_id, business_type, document, order_date, purchase_type, department, clerk_name, currency,
+        exchange_rate, transportation_type, tax_rate, order_remark, order_creater, reviewer, order_state, create_date
+        from accessories_order
+        <where>
+            <if test="accessoriesOrder.orderId != null">
+                and order_id LIKE CONCAT('%', #{accessoriesOrder.orderId}, '%')
+            </if>
+            <if test="accessoriesOrder.employeeId != null">
+                and employee_id LIKE CONCAT('%', #{accessoriesOrder.employeeId}, '%')
+            </if>
+            <if test="accessoriesOrder.businessType != null and accessoriesOrder.businessType != ''">
+                and business_type LIKE CONCAT('%', #{accessoriesOrder.businessType}, '%')
+            </if>
+            <if test="accessoriesOrder.document != null and accessoriesOrder.document != ''">
+                and document LIKE CONCAT('%', #{accessoriesOrder.document}, '%')
+            </if>
+            <if test="accessoriesOrder.orderDate != null">
+                and order_date LIKE CONCAT('%', #{accessoriesOrder.orderDate}, '%')
+            </if>
+            <if test="accessoriesOrder.purchaseType != null and accessoriesOrder.purchaseType != ''">
+                and purchase_type LIKE CONCAT('%', #{accessoriesOrder.purchaseType}, '%')
+            </if>
+            <if test="accessoriesOrder.department != null and accessoriesOrder.department != ''">
+                and department LIKE CONCAT('%', #{accessoriesOrder.department}, '%')
+            </if>
+            <if test="accessoriesOrder.clerkName != null and accessoriesOrder.clerkName != ''">
+                and clerk_name LIKE CONCAT('%', #{accessoriesOrder.clerkName}, '%')
+            </if>
+            <if test="accessoriesOrder.currency != null and accessoriesOrder.currency != ''">
+                and currency LIKE CONCAT('%', #{accessoriesOrder.currency}, '%')
+            </if>
+            <if test="accessoriesOrder.exchangeRate != null and accessoriesOrder.exchangeRate != ''">
+                and exchange_rate LIKE CONCAT('%', #{accessoriesOrder.exchangeRate}, '%')
+            </if>
+            <if test="accessoriesOrder.transportationType != null and accessoriesOrder.transportationType != ''">
+                and transportation_type LIKE CONCAT('%', #{accessoriesOrder.transportationType}, '%')
+            </if>
+            <if test="accessoriesOrder.taxRate != null and accessoriesOrder.taxRate != ''">
+                and tax_rate LIKE CONCAT('%', #{accessoriesOrder.taxRate}, '%')
+            </if>
+            <if test="accessoriesOrder.orderRemark != null and accessoriesOrder.orderRemark != ''">
+                and order_remark LIKE CONCAT('%', #{accessoriesOrder.orderRemark}, '%')
+            </if>
+            <if test="accessoriesOrder.orderCreater != null and accessoriesOrder.orderCreater != ''">
+                and order_creater LIKE CONCAT('%', #{accessoriesOrder.orderCreater}, '%')
+            </if>
+            <if test="accessoriesOrder.reviewer != null and accessoriesOrder.reviewer != ''">
+                and reviewer LIKE CONCAT('%', #{accessoriesOrder.reviewer}, '%')
+            </if>
+            <if test="accessoriesOrder.orderState != null and accessoriesOrder.orderState != ''">
+                and order_state LIKE CONCAT('%', #{accessoriesOrder.orderState}, '%')
+            </if>
+            <if test="accessoriesOrder.createDate != null">
+                and create_date LIKE CONCAT('%', #{accessoriesOrder.createDate}, '%')
+            </if>
+            </where>
+        </select>
+    <select id="queryNumByLike" resultType="java.lang.Integer">
+        select count(1)
+        from accessories_order
+        <where>
+            <if test="accessoriesOrder.orderId != null">
+                and order_id LIKE CONCAT('%', #{accessoriesOrder.orderId}, '%')
+            </if>
+            <if test="accessoriesOrder.employeeId != null">
+                and employee_id LIKE CONCAT('%', #{accessoriesOrder.employeeId}, '%')
+            </if>
+            <if test="accessoriesOrder.businessType != null and accessoriesOrder.businessType != ''">
+                and business_type LIKE CONCAT('%', #{accessoriesOrder.businessType}, '%')
+            </if>
+            <if test="accessoriesOrder.document != null and accessoriesOrder.document != ''">
+                and document LIKE CONCAT('%', #{accessoriesOrder.document}, '%')
+            </if>
+            <if test="accessoriesOrder.orderDate != null">
+                and order_date LIKE CONCAT('%', #{accessoriesOrder.orderDate}, '%')
+            </if>
+            <if test="accessoriesOrder.purchaseType != null and accessoriesOrder.purchaseType != ''">
+                and purchase_type LIKE CONCAT('%', #{accessoriesOrder.purchaseType}, '%')
+            </if>
+            <if test="accessoriesOrder.department != null and accessoriesOrder.department != ''">
+                and department LIKE CONCAT('%', #{accessoriesOrder.department}, '%')
+            </if>
+            <if test="accessoriesOrder.clerkName != null and accessoriesOrder.clerkName != ''">
+                and clerk_name LIKE CONCAT('%', #{accessoriesOrder.clerkName}, '%')
+            </if>
+            <if test="accessoriesOrder.currency != null and accessoriesOrder.currency != ''">
+                and currency LIKE CONCAT('%', #{accessoriesOrder.currency}, '%')
+            </if>
+            <if test="accessoriesOrder.exchangeRate != null and accessoriesOrder.exchangeRate != ''">
+                and exchange_rate LIKE CONCAT('%', #{accessoriesOrder.exchangeRate}, '%')
+            </if>
+            <if test="accessoriesOrder.transportationType != null and accessoriesOrder.transportationType != ''">
+                and transportation_type LIKE CONCAT('%', #{accessoriesOrder.transportationType}, '%')
+            </if>
+            <if test="accessoriesOrder.taxRate != null and accessoriesOrder.taxRate != ''">
+                and tax_rate LIKE CONCAT('%', #{accessoriesOrder.taxRate}, '%')
+            </if>
+            <if test="accessoriesOrder.orderRemark != null and accessoriesOrder.orderRemark != ''">
+                and order_remark LIKE CONCAT('%', #{accessoriesOrder.orderRemark}, '%')
+            </if>
+            <if test="accessoriesOrder.orderCreater != null and accessoriesOrder.orderCreater != ''">
+                and order_creater LIKE CONCAT('%', #{accessoriesOrder.orderCreater}, '%')
+            </if>
+            <if test="accessoriesOrder.reviewer != null and accessoriesOrder.reviewer != ''">
+                and reviewer LIKE CONCAT('%', #{accessoriesOrder.reviewer}, '%')
+            </if>
+            <if test="accessoriesOrder.orderState != null and accessoriesOrder.orderState != ''">
+                and order_state LIKE CONCAT('%', #{accessoriesOrder.orderState}, '%')
+            </if>
+            <if test="accessoriesOrder.createDate != null">
+                and create_date LIKE CONCAT('%', #{accessoriesOrder.createDate}, '%')
+            </if>
+            </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="orderId" useGeneratedKeys="true">
+        insert into accessories_order(employee_id, business_type, document, order_date, purchase_type, department,
+                                      clerk_name, currency, exchange_rate, transportation_type, tax_rate, order_remark,
+                                      order_creater, reviewer, order_state, create_date)
+        values (#{employeeId}, #{businessType}, #{document}, #{orderDate}, #{purchaseType}, #{department}, #{clerkName},
+                #{currency}, #{exchangeRate}, #{transportationType}, #{taxRate}, #{orderRemark}, #{orderCreater},
+                #{reviewer}, #{orderState}, #{createDate})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="orderId" useGeneratedKeys="true">
+        insert into accessories_order(employee_id, business_type, document, order_date, purchase_type, department,
+        clerk_name, currency, exchange_rate, transportation_type, tax_rate, order_remark, order_creater, reviewer,
+        order_state, create_date)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.employeeId}, #{entity.businessType}, #{entity.document}, #{entity.orderDate},
+            #{entity.purchaseType}, #{entity.department}, #{entity.clerkName}, #{entity.currency},
+            #{entity.exchangeRate}, #{entity.transportationType}, #{entity.taxRate}, #{entity.orderRemark},
+            #{entity.orderCreater}, #{entity.reviewer}, #{entity.orderState}, #{entity.createDate})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="orderId" useGeneratedKeys="true">
+        insert into accessories_order(employee_id, business_type, document, order_date, purchase_type, department,
+        clerk_name, currency, exchange_rate, transportation_type, tax_rate, order_remark, order_creater, reviewer,
+        order_state, create_date)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.employeeId}, #{entity.businessType}, #{entity.document}, #{entity.orderDate},
+            #{entity.purchaseType}, #{entity.department}, #{entity.clerkName}, #{entity.currency},
+            #{entity.exchangeRate}, #{entity.transportationType}, #{entity.taxRate}, #{entity.orderRemark},
+            #{entity.orderCreater}, #{entity.reviewer}, #{entity.orderState}, #{entity.createDate})
+        </foreach>
+        on duplicate key update
+        employee_id = values(employee_id),
+        business_type = values(business_type),
+        document = values(document),
+        order_date = values(order_date),
+        purchase_type = values(purchase_type),
+        department = values(department),
+        clerk_name = values(clerk_name),
+        currency = values(currency),
+        exchange_rate = values(exchange_rate),
+        transportation_type = values(transportation_type),
+        tax_rate = values(tax_rate),
+        order_remark = values(order_remark),
+        order_creater = values(order_creater),
+        reviewer = values(reviewer),
+        order_state = values(order_state),
+        create_date = values(create_date)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update accessories_order
+        <set>
+            <if test="employeeId != null">
+                employee_id = #{employeeId},
+            </if>
+            <if test="businessType != null and businessType != ''">
+                business_type = #{businessType},
+            </if>
+            <if test="document != null and document != ''">
+                document = #{document},
+            </if>
+            <if test="orderDate != null">
+                order_date = #{orderDate},
+            </if>
+            <if test="purchaseType != null and purchaseType != ''">
+                purchase_type = #{purchaseType},
+            </if>
+            <if test="department != null and department != ''">
+                department = #{department},
+            </if>
+            <if test="clerkName != null and clerkName != ''">
+                clerk_name = #{clerkName},
+            </if>
+            <if test="currency != null and currency != ''">
+                currency = #{currency},
+            </if>
+            <if test="exchangeRate != null and exchangeRate != ''">
+                exchange_rate = #{exchangeRate},
+            </if>
+            <if test="transportationType != null and transportationType != ''">
+                transportation_type = #{transportationType},
+            </if>
+            <if test="taxRate != null and taxRate != ''">
+                tax_rate = #{taxRate},
+            </if>
+            <if test="orderRemark != null and orderRemark != ''">
+                order_remark = #{orderRemark},
+            </if>
+            <if test="orderCreater != null and orderCreater != ''">
+                order_creater = #{orderCreater},
+            </if>
+            <if test="reviewer != null and reviewer != ''">
+                reviewer = #{reviewer},
+            </if>
+            <if test="orderState != null and orderState != ''">
+                order_state = #{orderState},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate},
+            </if>
+        </set>
+        where order_id = #{orderId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from accessories_order
+        where order_id = #{orderId}
+    </delete>
+
+</mapper>
+
