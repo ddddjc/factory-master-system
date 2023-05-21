@@ -44,7 +44,12 @@ public class AccessoriesArrivalVo implements Serializable {
     /**
      * 采购类型
      */
+
     private String purchaseType;
+    /**
+     * 品牌
+     */
+    private String accessoriesBrand;
     /**
      * 供应商
      */

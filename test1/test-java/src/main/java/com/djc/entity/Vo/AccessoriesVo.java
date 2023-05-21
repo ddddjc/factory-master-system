@@ -56,20 +56,5 @@ public class AccessoriesVo {
      * 计量单位
      */
     private String unit;
-    public Accessories toAccessories() {
-        Accessories accessories = new Accessories();
-        accessories.setAccessoriesId(this.accessoriesId);
-        accessories.setAccessoriesName(this.accessoriesName);
-        accessories.setEmployeeId(this.employeeId);
-        accessories.setImportance(this.importance);
-        accessories.setImportanceDescription(this.importanceDescription);
-        accessories.setMachineTypeId(this.machineTypeId);
-        accessories.setModel(this.model);
-        accessories.setStockCode(this.stockCode);
-        accessories.setStockId(this.stockId);
-        accessories.setType(this.type);
-        accessories.setUnit(this.unit);
-        return accessories;
-    }
 
 }

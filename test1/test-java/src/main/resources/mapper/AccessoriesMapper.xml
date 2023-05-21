@@ -14,13 +14,17 @@
         <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
         <result property="type" column="type" jdbcType="VARCHAR"/>
         <result property="importanceDescription" column="importance_description" jdbcType="VARCHAR"/>
+        <result property="accessoriesBrand" column="accessories_brand"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="machineTypeName" column="machine_type_name"/>
+        <result property="typeId" column="type_id"/>
     </resultMap>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AccessoriesMap">
         select
         accessories_id, stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance, employee_id,
-        type, importance_description
+        type, importance_description,accessories_brand,employee_name,machine_type_name,type_id
         from accessories
         <where>
             <if test="accessories.accessoriesId != null">
@@ -34,6 +38,9 @@
             </if>
             <if test="accessories.accessoriesName != null and accessories.accessoriesName != ''">
                 and accessories_name = #{accessories.accessoriesName}
+            </if>
+            <if test="accessories.accessoriesBrand != null and accessories.accessoriesBrand != ''">
+                and accessories_brand = #{accessories.accessoriesBrand}
             </if>
             <if test="accessories.unit != null and accessories.unit != ''">
                 and unit = #{accessories.unit}
@@ -53,8 +60,17 @@
             <if test="accessories.type != null and accessories.type != ''">
                 and type = #{accessories.type}
             </if>
-            <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
+            <if test="accessories.typeId != null and accessories.typeId != ''">
+                and type_id = #{accessories.typeId}
+            </if>
+        <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
                 and importance_description = #{accessories.importanceDescription}
+            </if>
+            <if test="accessories.employeeName != null and accessories.employeeName != ''">
+                and employee_name = #{accessories.employeeName}
+            </if>
+            <if test="accessories.machineTypeName != null and accessories.machineTypeName != ''">
+                and machine_type_name = #{accessories.machineTypeName}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -71,7 +87,11 @@
                importance,
                employee_id,
                type,
-               importance_description
+               importance_description,
+               accessories_brand,
+               machine_type_name,
+               employee_name,
+               type_id
         from accessories
         where accessories_id = #{accessoriesId}
     </select>
@@ -80,7 +100,7 @@
     <select id="queryAllByLike" resultMap="AccessoriesMap">
         select
         accessories_id, stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance, employee_id,
-        type, importance_description
+        type, importance_description,accessories_brand,employee_name,machine_type_name
         from accessories
         <where>
             <if test="accessories.accessoriesId != null">
@@ -95,13 +115,19 @@
             <if test="accessories.accessoriesName != null and accessories.accessoriesName != ''">
                 and accessories_name like concat('%',#{accessories.accessoriesName},'%')
             </if>
+            <if test="accessories.accessoriesBrand != null and accessories.accessoriesBrand != ''">
+                and accessories_brand like concat('%',#{accessories.accessoriesBrand},'%')
+            </if>
             <if test="accessories.unit != null and accessories.unit != ''">
                 and unit like concat('%',#{accessories.unit},'%')
             </if>
             <if test="accessories.model != null and accessories.model != ''">
                 and model like concat('%',#{accessories.model},'%')
             </if>
-            <if test="accessories.machineTypeId != null">
+            <if test="accessories.typeId != null">
+                and type_id = #{accessories.typeId}
+            </if>
+        <if test="accessories.machineTypeId != null">
                 and machine_type_id like concat('%',#{accessories.machineTypeId},'%')
             </if>
             <if test="accessories.importance != null">
@@ -114,7 +140,13 @@
                 and type like concat('%',#{accessories.type},'%')
             </if>
             <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
-                and importance_description concat('%',#{accessories.importanceDescription},'%')
+                and importance_description like concat('%',#{accessories.importanceDescription},'%')
+            </if>
+            <if test="accessories.employeeName != null and accessories.employeeName != ''">
+                and employee_name like concat('%',#{accessories.employeeName},'%')
+            </if>
+            <if test="accessories.machineTypeName != null and accessories.machineTypeName != ''">
+                and machine_type_name like concat('%',#{accessories.machineTypeName},'%')
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -160,11 +192,17 @@
             <if test="employeeId != null">
                 and employee_id = #{employeeId}
             </if>
-            <if test="type != null and type != ''">
+            <if test="accessories.typeId != null">
+                and type_id = #{accessories.typeId}
+            </if>
+        <if test="type != null and type != ''">
                 and type = #{type}
             </if>
             <if test="importanceDescription != null and importanceDescription != ''">
                 and importance_description = #{importanceDescription}
+            </if>
+            <if test="accessoriesBrand != null and accessoriesBrand != ''">
+                and accessories_brand = #{accessoriesBrand}
             </if>
         </where>
     </select>
@@ -185,11 +223,17 @@
             <if test="accessories.accessoriesName != null and accessories.accessoriesName != ''">
                 and accessories_name like concat('%',#{accessories.accessoriesName},'%')
             </if>
+            <if test="accessories.accessoriesBrand != null and accessories.accessoriesBrand != ''">
+                and accessories_brand like('%',#{accessories.accessoriesBrand},'%')
+            </if>
             <if test="accessories.unit != null and accessories.unit != ''">
                 and unit like concat('%',#{accessories.unit},'%')
             </if>
             <if test="accessories.model != null and accessories.model != ''">
                 and model like concat('%',#{accessories.model},'%')
+            </if>
+            <if test="accessories.typeId != null">
+                and type_id = #{accessories.typeId}
             </if>
             <if test="accessories.machineTypeId != null">
                 and machine_type_id like concat('%',#{accessories.machineTypeId},'%')
@@ -204,38 +248,53 @@
                 and type like concat('%',#{accessories.type},'%')
             </if>
             <if test="accessories.importanceDescription != null and accessories.importanceDescription != ''">
-                and importance_description concat('%',#{accessories.importanceDescription},'%')
+                and importance_description like concat('%',#{accessories.importanceDescription},'%')
+            </if>
+            <if test="accessories.employeeName != null and accessories.employeeName != ''">
+                and employee_name like concat('%',#{accessories.employeeName},'%')
+            </if>
+            <if test="accessories.machineTypeName != null and accessories.machineTypeName != ''">
+                and machine_type_name like concat('%',#{accessories.machineTypeName},'%')
             </if>
         </where>
+    </select>
+    <select id="queryTypeList" resultType="Map">
+        select distinct type_id as typeId , type
+        from accessories
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <select id="queryTypeNum" resultType="java.lang.Integer">
+        select count(distinct type)
+        from accessories
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="accessoriesId" useGeneratedKeys="true">
         insert into accessories(stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance,
-                                employee_id, type, importance_description)
+                                employee_id, type, importance_description,accessories_brand,employee_name,machine_type_name)
         values (#{stockId}, #{stockCode}, #{accessoriesName}, #{unit}, #{model}, #{machineTypeId}, #{importance},
-                #{employeeId}, #{type}, #{importanceDescription})
+                #{employeeId}, #{type}, #{importanceDescription},#{accessoriesBrand},#{employeeName},#{machineTypeName})
     </insert>
 
     <insert id="insertBatch" keyProperty="accessoriesId" useGeneratedKeys="true">
         insert into accessories(stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance,
-        employee_id, type, importance_description)
+        employee_id, type, importance_description,accessories_brand,employee_name,machine_type_name)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.stockId}, #{entity.stockCode}, #{entity.accessoriesName}, #{entity.unit}, #{entity.model},
             #{entity.machineTypeId}, #{entity.importance}, #{entity.employeeId}, #{entity.type},
-            #{entity.importanceDescription})
+            #{entity.importanceDescription},#{entity.accessoriesBrand},#{employeeName},#{machineTypeName})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="accessoriesId" useGeneratedKeys="true">
         insert into accessories(stock_id, stock_code, accessories_name, unit, model, machine_type_id, importance,
-        employee_id, type, importance_description)
+        employee_id, type, importance_description,accessories_brand,employee_name,machine_type_name)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.stockId}, #{entity.stockCode}, #{entity.accessoriesName}, #{entity.unit}, #{entity.model},
             #{entity.machineTypeId}, #{entity.importance}, #{entity.employeeId}, #{entity.type},
-            #{entity.importanceDescription})
+            #{entity.importanceDescription},#{entity.accessoriesBrand},#{employeeName},#{machineTypeName})
         </foreach>
         on duplicate key update
         stock_id = values(stock_id),
@@ -247,7 +306,10 @@
         importance = values(importance),
         employee_id = values(employee_id),
         type = values(type),
-        importance_description = values(importance_description)
+        importance_description = values(importance_description),
+        accessories_brand=values(accessories_brand),
+        machine_type_name=values(machine_type_name),
+        employee_name=values(employee_name)
     </insert>
 
     <!--通过主键修改数据-->
@@ -262,6 +324,9 @@
             </if>
             <if test="accessoriesName != null and accessoriesName != ''">
                 accessories_name = #{accessoriesName},
+            </if>
+            <if test="accessoriesBrand != null and accessoriesBrand != ''">
+                accessories_brand = #{accessoriesBrand},
             </if>
             <if test="unit != null and unit != ''">
                 unit = #{unit},
@@ -283,6 +348,12 @@
             </if>
             <if test="importanceDescription != null and importanceDescription != ''">
                 importance_description = #{importanceDescription},
+            </if>
+            <if test="employeeName != null and employeeName != ''">
+                employee_name = #{employeeName},
+            </if>
+            <if test="machineTypeName != null and machineTypeName != ''">
+                machine_type_name = #{machineTypeName}
             </if>
         </set>
         where accessories_id = #{accessoriesId}

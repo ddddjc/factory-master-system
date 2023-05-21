@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 配件表
@@ -118,6 +119,16 @@ public class AccessoriesServiceImpl implements AccessoriesService {
     }
 
     @Override
+    public List<Map> queryType(Integer page, Integer num) {
+        return accessoriesMapper.queryTypeList(PageRequest.of(page,num));
+    }
+
+    @Override
+    public Integer queryTypeNum() {
+        return accessoriesMapper.queryTypeNum();
+    }
+
+    @Override
     public Integer queryAccessoriesNum(Accessories accessories) {
         return (int) accessoriesMapper.count(accessories);
     }
@@ -127,6 +138,7 @@ public class AccessoriesServiceImpl implements AccessoriesService {
      * @param id
      * @return
      */
+/*
     @Override
     public AccessoriesVo queryVoById(Integer id) {
         Accessories accessories = accessoriesMapper.queryById(id);
@@ -136,4 +148,5 @@ public class AccessoriesServiceImpl implements AccessoriesService {
             accessoriesVo.setEmployeeName(queryEmployeeVo.getEmployeeName());
         return accessoriesVo;
     }
+*/
 }

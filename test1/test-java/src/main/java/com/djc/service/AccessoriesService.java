@@ -4,6 +4,7 @@ import com.djc.entity.Accessories;
 import com.djc.entity.Vo.AccessoriesVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 配件表
@@ -68,7 +69,7 @@ public interface AccessoriesService {
 
     Integer queryAccessoriesNum(Accessories accessories);
 
-    AccessoriesVo queryVoById(Integer id);
+//    AccessoriesVo queryVoById(Integer id);
 
     /**
      * 模糊查询
@@ -80,4 +81,13 @@ public interface AccessoriesService {
     public List<Accessories> queryByLike(Accessories accessories, Integer page, Integer num);
 
     public Integer queryByLikeCount(Accessories accessories);
+
+    List<Map> queryType(Integer page, Integer num);
+
+    /**
+     *
+     * @return
+     */
+    Integer queryTypeNum();
+
 }

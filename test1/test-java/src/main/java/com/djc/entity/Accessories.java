@@ -1,18 +1,16 @@
 package com.djc.entity;
 
-import com.djc.entity.Vo.AccessoriesVo;
-
 import java.io.Serializable;
 
 /**
  * 配件表
- * (Accessories)实体类
+(Accessories)实体类
  *
  * @author djc
- * @since 2023-04-16 14:02:16
+ * @since 2023-05-21 10:56:29
  */
 public class Accessories implements Serializable {
-    private static final long serialVersionUID = -17644555662943579L;
+    private static final long serialVersionUID = 229634645067082622L;
     /**
      * 配件id
      */
@@ -30,6 +28,10 @@ public class Accessories implements Serializable {
      */
     private String accessoriesName;
     /**
+     * 零件品牌
+     */
+    private String accessoriesBrand;
+    /**
      * 计量单位
      */
     private String unit;
@@ -42,6 +44,10 @@ public class Accessories implements Serializable {
      */
     private Integer machineTypeId;
     /**
+     * 配件所属设备
+     */
+    private String machineTypeName;
+    /**
      * 重要性
      */
     private Integer importance;
@@ -49,6 +55,14 @@ public class Accessories implements Serializable {
      * 负责人id
      */
     private Integer employeeId;
+    /**
+     * 负责人名字
+     */
+    private String employeeName;
+    /**
+     * 类型id
+     */
+    private Integer typeId;
     /**
      * 配件类型（excl表名）
      */
@@ -91,6 +105,14 @@ public class Accessories implements Serializable {
         this.accessoriesName = accessoriesName;
     }
 
+    public String getAccessoriesBrand() {
+        return accessoriesBrand;
+    }
+
+    public void setAccessoriesBrand(String accessoriesBrand) {
+        this.accessoriesBrand = accessoriesBrand;
+    }
+
     public String getUnit() {
         return unit;
     }
@@ -115,6 +137,14 @@ public class Accessories implements Serializable {
         this.machineTypeId = machineTypeId;
     }
 
+    public String getMachineTypeName() {
+        return machineTypeName;
+    }
+
+    public void setMachineTypeName(String machineTypeName) {
+        this.machineTypeName = machineTypeName;
+    }
+
     public Integer getImportance() {
         return importance;
     }
@@ -131,6 +161,22 @@ public class Accessories implements Serializable {
         this.employeeId = employeeId;
     }
 
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
     public String getType() {
         return type;
     }
@@ -145,26 +191,6 @@ public class Accessories implements Serializable {
 
     public void setImportanceDescription(String importanceDescription) {
         this.importanceDescription = importanceDescription;
-    }
-
-    /**
-     * 生成对应的AccessoriesVo
-     * @return 新的AccessoriesVo
-     */
-    public AccessoriesVo toAccessoriesVo() {
-        AccessoriesVo accessoriesVo = new AccessoriesVo();
-        accessoriesVo.setAccessoriesId(this.accessoriesId);
-        accessoriesVo.setAccessoriesName(this.accessoriesName);
-        accessoriesVo.setEmployeeId(this.employeeId);
-        accessoriesVo.setImportance(this.importance);
-        accessoriesVo.setImportanceDescription(this.importanceDescription);
-        accessoriesVo.setMachineTypeId(this.machineTypeId);
-        accessoriesVo.setModel(this.model);
-        accessoriesVo.setStockCode(this.stockCode);
-        accessoriesVo.setStockId(this.stockId);
-        accessoriesVo.setType(this.type);
-        accessoriesVo.setUnit(this.unit);
-        return accessoriesVo;
     }
 
 }

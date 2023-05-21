@@ -50,7 +50,7 @@ public class AccessoriesController<E> {
      */
     @GetMapping("{id}")
     public JsonResult queryById(@PathVariable("id") Integer id) {
-        return new JsonResult<>(200, "查询成功", this.accessoriesService.queryVoById(id));
+        return new JsonResult<>(200, "查询成功", this.accessoriesService.queryById(id));
     }
 
     /**
@@ -103,5 +103,15 @@ public class AccessoriesController<E> {
         } else {
             return new JsonResult<>(500, "删除失败，零件可能不存在", false);
         }
+    }
+
+    @GetMapping("findType")
+    public JsonResult queryType(@Param("page")Integer page,@Param("num")Integer num){
+        List<Map> typeList=accessoriesService.queryType(page-1,num);
+        Integer total = accessoriesService.queryTypeNum();
+        Map t=new HashMap();
+        t.put("typeList",typeList);
+        t.put("total",total);
+        return new JsonResult(200,"查询成功",t);
     }
 }

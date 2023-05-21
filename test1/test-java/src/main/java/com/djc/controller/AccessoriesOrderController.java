@@ -75,7 +75,8 @@ public class AccessoriesOrderController {
      * @return 新增结果
      */
     @PostMapping
-    public JsonResult<AccessoriesOrder> add(AccessoriesOrder accessoriesOrder) {
+    public JsonResult<AccessoriesOrder> add(@RequestBody AccessoriesOrder accessoriesOrder) {
+        System.out.println(accessoriesOrder);
         return new JsonResult<>(200,"新增成功",this.accessoriesOrderService.insert(accessoriesOrder));
     }
 
@@ -86,7 +87,7 @@ public class AccessoriesOrderController {
      * @return 编辑结果
      */
     @PutMapping
-    public JsonResult<AccessoriesOrder> edit(AccessoriesOrder accessoriesOrder) {
+    public JsonResult<AccessoriesOrder> edit(@RequestBody AccessoriesOrder accessoriesOrder) {
         return new JsonResult<>(200,"修改成功",this.accessoriesOrderService.update(accessoriesOrder));
     }
 
@@ -96,8 +97,8 @@ public class AccessoriesOrderController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public JsonResult<Boolean> deleteById(Integer id) {
+    @DeleteMapping("/id")
+    public JsonResult<Boolean> deleteById(@PathVariable("id") Integer id) {
         return new JsonResult<>(200,"删除成功",this.accessoriesOrderService.deleteById(id));
     }
 

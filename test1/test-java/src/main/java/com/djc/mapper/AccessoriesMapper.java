@@ -2,9 +2,11 @@ package com.djc.mapper;
 
 import com.djc.entity.Accessories;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 配件表
@@ -93,7 +95,20 @@ public interface AccessoriesMapper {
      */
     int deleteById(Integer accessoriesId);
 
-
+    /**
+     * 查询零件数量
+     * @param accessories
+     * @return
+     */
     Integer queryByLikeCount(@Param("accessories") Accessories accessories);
+
+    /**
+     * 查询类型
+     * @param pageable
+     * @return
+     */
+    List<Map> queryTypeList(@Param("pageable") Pageable pageable);
+
+    Integer queryTypeNum();
 }
 

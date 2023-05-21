@@ -222,7 +222,8 @@
             <if test="accessoriesOrder.createDate != null">
                 and create_date LIKE CONCAT('%', #{accessoriesOrder.createDate}, '%')
             </if>
-            </where>
+        </where>
+            limit #{pageable.offset}, #{pageable.pageSize}
         </select>
     <select id="queryNumByLike" resultType="java.lang.Integer">
         select count(1)
