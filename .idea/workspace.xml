@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="idea">
+    <list default="true" id="2cbce845-e34f-4d81-a926-07f599264f43" name="更改" comment="accessories新增属性（type，name。。。）改动">
+      <change beforePath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f04cf727-5d22-4680-b1b3-38f37ec08386.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesOrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Accessories.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Accessories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Vo/AccessoriesArrivalVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Vo/AccessoriesArrivalVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Vo/AccessoriesVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/entity/Vo/AccessoriesVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/mapper/AccessoriesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/mapper/AccessoriesMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/AccessoriesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/AccessoriesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/AccessoriesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/AccessoriesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/AccessoriesMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/AccessoriesMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/AccessoriesOrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/mapper/AccessoriesOrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1/test-java/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test1/test-java/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,32 +53,32 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "项目",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "spring.configuration.checksum": "3dfd291099725ec191a719181ee7858f",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;3dfd291099725ec191a719181ee7858f&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -215,7 +208,8 @@
       <workItem from="1684235532484" duration="136000" />
       <workItem from="1684235684394" duration="3167000" />
       <workItem from="1684238872293" duration="1869000" />
-      <workItem from="1684299928463" duration="38710000" />
+      <workItem from="1684299928463" duration="46268000" />
+      <workItem from="1684664058762" duration="1224000" />
     </task>
     <task id="LOCAL-00002" summary="idea">
       <created>1684295877695</created>
@@ -245,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684401558677</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="accessories新增属性（type，name。。。）改动">
+      <created>1684641467133</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684641467133</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +310,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea" />
+    <MESSAGE value="accessories新增属性（type，name。。。）改动" />
+    <option name="LAST_COMMIT_MESSAGE" value="accessories新增属性（type，name。。。）改动" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -407,11 +409,6 @@
           <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/service/impl/AccessoriesOrderDetailServiceImpl.java</url>
           <line>46</line>
           <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/controller/AccessoriesController.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/test1/test-java/src/main/java/com/djc/util/JwtUtil.java</url>

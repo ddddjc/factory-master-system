@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,12 @@ public class AccessoriesController<E> {
         }
     }
 
+    /**
+     * 查询零件类型
+     * @param page
+     * @param num
+     * @return
+     */
     @GetMapping("findType")
     public JsonResult queryType(@Param("page")Integer page,@Param("num")Integer num){
         List<Map> typeList=accessoriesService.queryType(page-1,num);

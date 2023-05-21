@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djc.mapper.AccessoriesTypeMapper">
+
+    <resultMap type="com.djc.entity.AccessoriesType" id="AccessoriesTypeMap">
+        <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="typeFunction" column="type_function" jdbcType="VARCHAR"/>
+        <result property="typeDescription" column="type_description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AccessoriesTypeMap">
+        select type_id,
+               type,
+               type_function,
+               type_description
+        from accessories_type
+        where type_id = #{typeId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AccessoriesTypeMap">
+        select
+        type_id, type, type_function, type_description
+        from accessories_type
+        <where>
+            <if test="typeId != null">
+                and type_id = #{typeId}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="typeFunction != null and typeFunction != ''">
+                and type_function = #{typeFunction}
+            </if>
+            <if test="typeDescription != null and typeDescription != ''">
+                and type_description = #{typeDescription}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--关键字模糊查询-->
+    <!--<select id="queryAll" resultMap="AccessoriesTypeMap">
+        SELECT * FROM accessories_type
+        where xxx LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{page},#{num}
+    </select>-->
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from accessories_type
+        <where>
+            <if test="typeId != null">
+                and type_id = #{typeId}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="typeFunction != null and typeFunction != ''">
+                and type_function = #{typeFunction}
+            </if>
+            <if test="typeDescription != null and typeDescription != ''">
+                and type_description = #{typeDescription}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="typeId" useGeneratedKeys="true">
+        insert into accessories_type(type, type_function, type_description)
+        values (#{type}, #{typeFunction}, #{typeDescription})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="typeId" useGeneratedKeys="true">
+        insert into accessories_type(type, type_function, type_description)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.type}, #{entity.typeFunction}, #{entity.typeDescription})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="typeId" useGeneratedKeys="true">
+        insert into accessories_type(type, type_function, type_description)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.type}, #{entity.typeFunction}, #{entity.typeDescription})
+        </foreach>
+        on duplicate key update
+        type = values(type),
+        type_function = values(type_function),
+        type_description = values(type_description)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update accessories_type
+        <set>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="typeFunction != null and typeFunction != ''">
+                type_function = #{typeFunction},
+            </if>
+            <if test="typeDescription != null and typeDescription != ''">
+                type_description = #{typeDescription},
+            </if>
+        </set>
+        where type_id = #{typeId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from accessories_type
+        where type_id = #{typeId}
+    </delete>
+
+</mapper>
+
